@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 23935537751192922}
   - component: {fileID: 957002476072741415}
   - component: {fileID: 906136825173632714}
+  - component: {fileID: 144618772689569455}
   m_Layer: 0
   m_Name: S_Small_Bullet
   m_TagString: Untagged
@@ -69,7 +70,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2913d8ca0a015b84b9eb012636fd45d2, type: 2}
+  - {fileID: 2100000, guid: a6446c3d60c24484389f62b51dad12a3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -134,12 +135,24 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 0.010220757, y: 0.029011995, z: 0.01022472}
   m_Center: {x: -2.3283064e-10, y: 0.0015156623, z: 0.00000015762635}
+--- !u!114 &144618772689569455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1325836922669442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bae85f0b8d9274844a5f5fef166121d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::S_Bullet
 --- !u!1 &5914827968627979159
 GameObject:
   m_ObjectHideFlags: 0
