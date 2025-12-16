@@ -1,6 +1,9 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using System;
+using System.Collections;
+using System.Collections.Generic;
 
 public class S_PlayerController : MonoBehaviour
 {
@@ -28,6 +31,8 @@ public class S_PlayerController : MonoBehaviour
     public float abilityGauge = 100f;
     [SerializeField] private Slider abilitySlider;
 
+    private float recoverTimer = 0f;
+
     [Header("카메라 연결")]
     public Transform cameraTransform;
 
@@ -41,6 +46,7 @@ public class S_PlayerController : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         TryGetComponent(out characterController);
+        AbilityGaugeSlider();
     }
 
     void Update()
@@ -49,24 +55,15 @@ public class S_PlayerController : MonoBehaviour
 
         currentVelocity = velocity;
 
+        HandleAbilityGauge();
+
         if (Keyboard.current.tKey.wasPressedThisFrame && abilityGauge >= 0)
         {
             ToggleTime();
         }
-        else if (abilityGauge <= 0)
+        else if (isTimeSlow && abilityGauge <= 0)
         {
             ToggleTime();
-        }
-
-        if (isTimeSlow && abilityGauge >= 0)
-        {
-            abilityGauge -= 100 * Time.deltaTime;
-            AbilityGaugeSlider();
-        }
-        else if (!isTimeSlow && abilityGauge <= 100)
-        {
-            abilityGauge += 10 * Time.deltaTime;
-            AbilityGaugeSlider();
         }
 
         if (isGround && velocity.y < 0)
@@ -93,8 +90,42 @@ public class S_PlayerController : MonoBehaviour
     private void ToggleTime()
     {
         isTimeSlow = !isTimeSlow;
-        if (isTimeSlow) { Time.timeScale = slowFactor; Time.fixedDeltaTime = 0.02f * Time.timeScale; }
-        else { Time.timeScale = 1.0f; Time.fixedDeltaTime = 0.02f; }
+        if (isTimeSlow)
+        {
+            Time.timeScale = slowFactor;
+            Time.fixedDeltaTime = 0.02f * Time.timeScale;
+        }
+        else
+        {
+            Time.timeScale = 1.0f;
+            Time.fixedDeltaTime = 0.02f;
+        }
+    }
+
+    private void HandleAbilityGauge()
+    {
+        if (isTimeSlow)
+        {
+            abilityGauge -= 10f * Time.unscaledDeltaTime;
+
+            recoverTimer = 0f;
+        }
+        else
+        {
+            if (abilityGauge < 100f)
+            {
+                recoverTimer += Time.unscaledDeltaTime;
+
+                if (recoverTimer >= 3.0f)
+                {
+                    abilityGauge += 50f * Time.unscaledDeltaTime;
+                }
+            }
+        }
+
+        abilityGauge = Mathf.Clamp(abilityGauge, 0f, 100f);
+
+        AbilityGaugeSlider();
     }
 
     private void CalculateGravity() { velocity.y += gravity * Time.unscaledDeltaTime; }
@@ -114,8 +145,6 @@ public class S_PlayerController : MonoBehaviour
 
         Vector3 targetPoint = GetAimTargetPoint();
         Vector3 fireDirection = (targetPoint - firePoint.position).normalized;
-
-        Debug.DrawLine(firePoint.position, targetPoint, Color.red, 2.0f);
 
         GameObject newBullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
         newBullet.transform.up = fireDirection;

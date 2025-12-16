@@ -19,7 +19,7 @@ public class S_CameraBob : MonoBehaviour
         float speed = player.GetComponent<CharacterController>().velocity.magnitude;
         if (!player.isJumping)
         {
-            if (speed > 0.1f) // °È°í ÀÖ´Ù¸é
+            if (speed > 0.1f)
             {
                 timer += Time.deltaTime * bobSpeed;
 
