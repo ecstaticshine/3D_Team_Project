@@ -67,26 +67,37 @@ public class CombatState : IState
     {
         if (distance > ai.meleeEngageDistance)
         {
-            Move(ai, playerPos);
+            Move(ai, playerPos); // 플레이어에게 붙음
         }
         else
         {
-            ai.StopMove();
+            ai.StopMove(); // 멈추고
+            //공격
         }
+        ai.LookAt(playerPos);
     }
 
     private void HandleRangedCombat(K_AIController ai, Vector3 playerPos, float distance)
     {
-        if (distance < ai.rangedEngageDistance)
+        // 플레이어랑 너무 가까울 시 후퇴
+        if (distance < ai.rangedEngageDistance*0.8)
         {
             Vector3 retreatDir = (ai.transform.position - playerPos).normalized;
             Vector3 retreatPos = ai.transform.position + retreatDir * ai.retreatDistance;
             Move(ai, retreatPos);
         }
+        // 거리가 너무 멀면 접근을 함
+        else if(distance> ai.rangedEngageDistance)
+        {
+            Move(ai, playerPos);
+        }
+        // 적정한 거리면 사격하는 곳
         else
         {
-            ai.StopMove();
+            ai.StopMove(); //멈추고 공격
+
         }
+       
     }
 
     private void Move(K_AIController ai, Vector3 targetPos)

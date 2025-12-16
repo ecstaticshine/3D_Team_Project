@@ -1361,10 +1361,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ddcba6a42735974b84bfc944d67c2ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AIController
-  combatType: 0
-  meleeEngageDistance: 3
-  rangedEngageDistance: 12
-  retreatDistance: 4
+  combatType: 1
+  meleeEngageDistance: 0
+  rangedEngageDistance: 10
+  retreatDistance: 2
   player: {fileID: 974370560}
   eyePoint: {fileID: 1500781063}
   timeScaleMultiplier: 1
@@ -1373,15 +1373,15 @@ MonoBehaviour:
   obstacleMask:
     serializedVersion: 2
     m_Bits: 64
-  patrolRadius: 2
-  waitTimeRange: {x: 1, y: 5}
+  patrolRadius: 30
+  waitTimeRange: {x: 1, y: 3}
   PatrolPoints: []
   currentPatrolIndex: 0
   combatEngageDistance: 4
   combatSnipeDistance: 25
   fireInterval: {x: 0.5, y: 1.5}
   lastHeardPosition: {x: 0, y: 0, z: 0}
-  alertDuration: 4
+  alertDuration: 5
 --- !u!54 &1510627494
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1452,7 +1452,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!135 &1880414545
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1515,7 +1515,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AIController
   combatType: 0
   meleeEngageDistance: 3
-  rangedEngageDistance: 12
+  rangedEngageDistance: 10
   retreatDistance: 4
   player: {fileID: 974370560}
   eyePoint: {fileID: 288090560}
@@ -1525,7 +1525,7 @@ MonoBehaviour:
   obstacleMask:
     serializedVersion: 2
     m_Bits: 64
-  patrolRadius: 2
+  patrolRadius: 4
   waitTimeRange: {x: 1, y: 5}
   PatrolPoints:
   - {fileID: 247281073}
