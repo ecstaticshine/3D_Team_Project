@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class PlayerShooter : MonoBehaviour
 {
+    [Tooltip("메인카메라 권총에 자식으로 되어있습니다")]
+    [Header("권총 좌표값")]
     public Transform gunPivot;      // 총의 부모 오브젝트 (보통 오른손 근처에 위치)
     public Transform leftHandMount;  // 총 모델에 붙어있는 왼손잡이 위치
     public Transform rightHandMount; // 총 모델에 붙어있는 오른손잡이 위치
