@@ -7,7 +7,6 @@ public class S_Item_Medicine : MonoBehaviour, S_IItem
 {
     public void Use(S_Player player)
     {
-        Debug.Log("체력 회복");
         player.RestoreAbilityGauge();
     }
 }
