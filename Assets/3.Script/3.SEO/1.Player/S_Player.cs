@@ -150,10 +150,10 @@ public class S_Player : MonoBehaviour
         else if (abilityGauge < 100f)
         {
             recoverTimer += Time.unscaledDeltaTime;
+            AudioManager.instance.PlayOriginal();
             if (recoverTimer >= 3.0f)
             {
                 abilityGauge += 100f * Time.unscaledDeltaTime;
-                AudioManager.instance.PlayOriginal();
             }
         }
         abilityGauge = Mathf.Clamp(abilityGauge, 0f, 100f);
