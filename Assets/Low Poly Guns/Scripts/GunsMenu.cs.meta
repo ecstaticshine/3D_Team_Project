@@ -1,7 +1,11 @@
 fileFormatVersion: 2
-guid: 9fc0d4010bbf28b4594072e72b8655ab
-DefaultImporter:
+guid: c859d416b6fab4749b7d8f1d9dc840eb
+MonoImporter:
   externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
   userData: 
   assetBundleName: 
   assetBundleVariant: 
@@ -10,5 +14,5 @@ AssetOrigin:
   productId: 192553
   packageName: 'Guns Pack: Low Poly Guns Collection'
   packageVersion: 1.0
-  assetPath: Assets/1.Scene/Main.unity
+  assetPath: Assets/Low Poly Guns/Scripts/GunsMenu.cs
   uploadId: 430093

@@ -1,7 +1,8 @@
 fileFormatVersion: 2
-guid: 9fc0d4010bbf28b4594072e72b8655ab
-DefaultImporter:
+guid: e96fa539506a82f4097ae5999f559460
+NativeFormatImporter:
   externalObjects: {}
+  mainObjectFileID: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
@@ -10,5 +11,5 @@ AssetOrigin:
   productId: 192553
   packageName: 'Guns Pack: Low Poly Guns Collection'
   packageVersion: 1.0
-  assetPath: Assets/1.Scene/Main.unity
+  assetPath: Assets/Low Poly Guns/Materials/Plane.mat
   uploadId: 430093

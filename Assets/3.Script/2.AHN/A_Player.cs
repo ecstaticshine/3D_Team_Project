@@ -107,6 +107,7 @@ public class A_Player : MonoBehaviour
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
             isJumping = true;
+            anime.SetBool("IsJump", true);
         }
     }
 
