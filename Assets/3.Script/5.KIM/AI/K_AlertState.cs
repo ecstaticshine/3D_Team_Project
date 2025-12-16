@@ -14,7 +14,7 @@ public class AlertState : IState
 
     private Vector3 targetSearchDirection;
 
-    public void Enter(AIController ai)
+    public void Enter(K_AIController ai)
     {
         timer = 0f;
         rotationTimer = 0f;
@@ -35,7 +35,7 @@ public class AlertState : IState
         }
     }
 
-    public void Execute(AIController ai)
+    public void Execute(K_AIController ai)
     {
 
         timer += Time.deltaTime * ai.timeScaleMultiplier;
@@ -74,7 +74,7 @@ public class AlertState : IState
         }
     }
 
-    public void Exit(AIController ai)
+    public void Exit(K_AIController ai)
     {
         ai.StopMove();
     }

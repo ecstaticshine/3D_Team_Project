@@ -14,14 +14,14 @@ public class CombatState : IState
     private const float MAX_FIRE_INTERVAL = 0.6f;
     private const float LOST_SIGHT_GRACE_TIME = 0.5f;
 
-    public void Enter(AIController ai)
+    public void Enter(K_AIController ai)
     {
         fireCooldown = Random.Range(MIN_FIRE_INTERVAL, MAX_FIRE_INTERVAL);
         lostSightTimer = 0f;
         ai.Agent.isStopped = false;
     }
 
-    public void Execute(AIController ai)
+    public void Execute(K_AIController ai)
     {
         Vector3 playerPos = ai.player.position;
         float distance = Vector3.Distance(ai.transform.position, playerPos);
@@ -42,7 +42,7 @@ public class CombatState : IState
         }
 
         // 2. Combat behavior by type
-        if (ai.combatType == AIController.CombatType.Melee)
+        if (ai.combatType == K_AIController.CombatType.Melee)
         {
             HandleMeleeCombat(ai, playerPos, distance);
         }
@@ -63,7 +63,7 @@ public class CombatState : IState
         }
     }
 
-    private void HandleMeleeCombat(AIController ai, Vector3 playerPos, float distance)
+    private void HandleMeleeCombat(K_AIController ai, Vector3 playerPos, float distance)
     {
         if (distance > ai.meleeEngageDistance)
         {
@@ -75,7 +75,7 @@ public class CombatState : IState
         }
     }
 
-    private void HandleRangedCombat(AIController ai, Vector3 playerPos, float distance)
+    private void HandleRangedCombat(K_AIController ai, Vector3 playerPos, float distance)
     {
         if (distance < ai.rangedEngageDistance)
         {
@@ -89,7 +89,7 @@ public class CombatState : IState
         }
     }
 
-    private void Move(AIController ai, Vector3 targetPos)
+    private void Move(K_AIController ai, Vector3 targetPos)
     {
         if (!ai.Agent.pathPending &&
             (ai.Agent.destination - targetPos).sqrMagnitude > 1f)
@@ -98,7 +98,7 @@ public class CombatState : IState
         }
     }
 
-    public void Exit(AIController ai)
+    public void Exit(K_AIController ai)
     {
         ai.StopMove();
     }

@@ -11,14 +11,14 @@ public class PatrolState : IState
     private const float MIN_ARRIVAL_DISTANCE = 0.5f;
     private const int MAX_SAMPLE_TRY = 5;
 
-    public void Enter(AIController ai)
+    public void Enter(K_AIController ai)
     {
         Debug.Log($"[Patrol] {ai.name}: 순찰 시작");
         ai.Agent.isStopped = false;
         SetNewPatrolPoint(ai);
     }
 
-    public void Execute(AIController ai)
+    public void Execute(K_AIController ai)
     {
         // 1. 플레이어 인식 우선
         if (ai.CanSeePlayer())
@@ -35,12 +35,12 @@ public class PatrolState : IState
         }
     }
 
-    public void Exit(AIController ai)
+    public void Exit(K_AIController ai)
     {
         ai.StopMove();
     }
 
-    private void SetNewPatrolPoint(AIController ai)
+    private void SetNewPatrolPoint(K_AIController ai)
     {
         Vector3 origin = ai.transform.position;
 

@@ -6,7 +6,7 @@ using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
 
-public class AIController : MonoBehaviour
+public class K_AIController : MonoBehaviour
 {
 
     public enum CombatType
