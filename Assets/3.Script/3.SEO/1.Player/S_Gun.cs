@@ -70,7 +70,7 @@ public class S_Gun : MonoBehaviour
         {
             bulletRb.linearVelocity = fireDirection * bulletSpeed;
         }
-
+        AudioManager.instance.PlaySFX("Fire");
         Destroy(newBullet, 3.0f);
     }
 
