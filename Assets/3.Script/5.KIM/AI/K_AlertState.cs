@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+
+// ai가 어 무슨 소리였지?하고 주위를 경계하는 걸 담당하는 코드
 public class AlertState : IState
 {
     private float timer;
@@ -14,12 +16,12 @@ public class AlertState : IState
 
     private Vector3 targetSearchDirection;
 
-    public void Enter(K_AIController ai)
+    public void Enter(K_AIController ai) // AI가 처음 경계 상태에 들어오자마자 하는 행동(방금 저기서 소리가 났는데?)
     {
         timer = 0f;
         rotationTimer = 0f;
 
-        ai.StopMove(); // 잔여 이동 정리
+        ai.StopMove(); // 가고있던 길을 멈추고 새로운 명령을 받기 전 정지 상태로 만듬
 
         // 청각 정보 위치를 NavMesh 위로 보정
         if (NavMesh.SamplePosition(ai.lastHeardPosition, out NavMeshHit hit, 3f, NavMesh.AllAreas))
@@ -35,7 +37,7 @@ public class AlertState : IState
         }
     }
 
-    public void Execute(K_AIController ai)
+    public void Execute(K_AIController ai) // AI가 소리가 난 곳에 도착한 이후의 행동(도착했으니 주변을 살펴보자)
     {
 
         timer += Time.deltaTime * ai.timeScaleMultiplier;
@@ -74,7 +76,7 @@ public class AlertState : IState
         }
     }
 
-    public void Exit(K_AIController ai)
+    public void Exit(K_AIController ai) // AI가 일정시간 동안 수색해도 아무것도 없을 때 하는 행동(아무것도 없네 다시 순찰이나 하자)
     {
         ai.StopMove();
     }
