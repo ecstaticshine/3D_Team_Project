@@ -33,7 +33,7 @@ Transform:
   m_LocalScale: {x: 15, y: 15, z: 15}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 267961458821127070}
+  - {fileID: 1933362821740817202}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &33559657086904636
@@ -140,7 +140,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.010220757, y: 0.029011995, z: 0.01022472}
   m_Center: {x: -2.3283064e-10, y: 0.0015156623, z: 0.00000015762635}
---- !u!1 &2763649924808319834
+--- !u!1 &5914827968627979159
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -148,38 +148,38 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 267961458821127070}
-  - component: {fileID: 1949917337072908724}
+  - component: {fileID: 1933362821740817202}
+  - component: {fileID: 6931757936568630647}
   m_Layer: 0
-  m_Name: Trail
+  m_Name: TrailPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &267961458821127070
+--- !u!4 &1933362821740817202
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2763649924808319834}
+  m_GameObject: {fileID: 5914827968627979159}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.013, z: 0}
+  m_LocalPosition: {x: 0, y: 0.013, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4833035398139372}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!96 &1949917337072908724
+--- !u!96 &6931757936568630647
 TrailRenderer:
   serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2763649924808319834}
+  m_GameObject: {fileID: 5914827968627979159}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
