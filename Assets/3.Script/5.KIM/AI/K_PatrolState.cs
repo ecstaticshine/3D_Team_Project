@@ -1,4 +1,4 @@
-//using System;
+ï»¿//using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,67 +7,149 @@ using UnityEngine.AI;
 
 public class PatrolState : IState
 {
-    private Vector3 patrolTarget;
-    private const float MIN_ARRIVAL_DISTANCE = 0.5f;
-    private const int MAX_SAMPLE_TRY = 5;
+    private const int MAX_SAMPLE_TRY = 10;
+    private const float STUCK_VELOCITY_THRESHOLD = 0.01f;
+    private const float ARRIVE_DISTANCE_BUFFER = 0.3f;
 
-    public void Enter(K_AIController ai)
+    private float waitTimer;
+    private float waitDuration;
+
+    public void Enter(K_AIController controller)
     {
-        Debug.Log($"[Patrol] {ai.name}: ¼øÂû ½ÃÀÛ");
-        ai.Agent.isStopped = false;
-        SetNewPatrolPoint(ai);
+        waitTimer = 0f;
+        waitDuration = Random.Range(
+            controller.waitTimeRange.x,
+            controller.waitTimeRange.y
+        );
+
+        controller.Agent.isStopped = false;
+        GotoNextPoint(controller);
+
+        Debug.Log($"[Patrol] {controller.name}: Patrol Start");
     }
 
-    public void Execute(K_AIController ai)
+    public void Execute(K_AIController controller)
     {
-        // 1. ÇÃ·¹ÀÌ¾î ÀÎ½Ä ¿ì¼±
-        if (ai.CanSeePlayer())
+        // 1ï¸ í”Œë ˆì´ì–´ ë°œê²¬ â†’ ì¦‰ì‹œ ì „íˆ¬
+        if (controller.CanSeePlayer())
         {
-            ai.ChangeState(ai.combatState);
+            controller.ChangeState(controller.combatState);
             return;
         }
 
-        // 2. ¸ñÀûÁö µµÂø ÆÇÁ¤
-        if (!ai.Agent.pathPending &&
-            ai.Agent.remainingDistance <= ai.Agent.stoppingDistance + MIN_ARRIVAL_DISTANCE)
+        // 2ï¸ ê²½ë¡œê°€ ì—†ê±°ë‚˜ ë§‰í˜ â†’ ìƒˆ ìˆœì°° ì§€ì 
+        if (!controller.Agent.hasPath ||
+            controller.Agent.pathStatus != NavMeshPathStatus.PathComplete)
         {
-            SetNewPatrolPoint(ai);
+            GotoNextPoint(controller);
+            return;
+        }
+
+        // 3ï¸ ë²½/ì½”ë„ˆì— ë¼ì—¬ ë©ˆì¶˜ ê²½ìš°
+        if (controller.Agent.velocity.sqrMagnitude < STUCK_VELOCITY_THRESHOLD)
+        {
+            GotoNextPoint(controller);
+            return;
+        }
+
+        // 4ï¸ ëª©ì ì§€ ë„ì°© ì²˜ë¦¬
+        if (!controller.Agent.pathPending &&
+            controller.Agent.remainingDistance <=
+            controller.Agent.stoppingDistance + ARRIVE_DISTANCE_BUFFER)
+        {
+            waitTimer += Time.deltaTime * controller.timeScaleMultiplier;
+
+            if (waitTimer >= waitDuration)
+            {
+                waitTimer = 0f;
+                waitDuration = Random.Range(
+                    controller.waitTimeRange.x,
+                    controller.waitTimeRange.y
+                );
+
+                GotoNextPoint(controller);
+            }
         }
     }
 
-    public void Exit(K_AIController ai)
+    public void Exit(K_AIController controller)
     {
-        ai.StopMove();
+        controller.Agent.isStopped = true;
     }
 
-    private void SetNewPatrolPoint(K_AIController ai)
+    // ======================================
+    // ë‹¤ìŒ ìˆœì°° ì§€ì  ì„¤ì • (ê³ ì • / ëœë¤)
+    // ======================================
+    private void GotoNextPoint(K_AIController controller)
     {
-        Vector3 origin = ai.transform.position;
-
-        // ¿©·¯ ¹ø ½ÃµµÇÏ¿© ¹İµå½Ã NavMesh À§ ÁöÁ¡ È®º¸
-        for (int i = 0; i < MAX_SAMPLE_TRY; i++)
+        // -----------------------------
+        // 1ï¸ ê³ ì • ìˆœì°°
+        // -----------------------------
+        if (controller.PatrolPoints != null &&
+            controller.PatrolPoints.Length > 0)
         {
-            // XZ Æò¸é ·£´ı À§Ä¡
-            Vector2 rand = Random.insideUnitCircle * ai.patrolRadius;
-            Vector3 checkPos = origin + new Vector3(rand.x, 0f, rand.y);
-
-            if (NavMesh.SamplePosition(
-                    checkPos,
-                    out NavMeshHit hit,
-                    ai.patrolRadius,
-                    NavMesh.AllAreas))
+            for (int i = 0; i < controller.PatrolPoints.Length; i++)
             {
-                patrolTarget = hit.position;
-                ai.MoveTo(patrolTarget);
+                Transform point =
+                    controller.PatrolPoints[controller.currentPatrolIndex];
 
-                Debug.Log($"[Patrol] {ai.name}: »õ ¼øÂû ÁöÁ¡ {patrolTarget}");
-                return;
+                controller.currentPatrolIndex =
+                    (controller.currentPatrolIndex + 1) %
+                    controller.PatrolPoints.Length;
+
+                if (TrySetDestination(controller, point.position))
+                {
+                    Debug.Log($"[Patrol] {controller.name}: Fixed Point -> {point.name}");
+                    return;
+                }
             }
         }
 
-        // ÃÖÈÄ ¼ö´Ü: ÀÌµ¿ Áß´Ü (¸ØÃã ¹æÁö)
-        Debug.LogWarning($"[Patrol] {ai.name}: ¼øÂû ÁöÁ¡ Å½»ö ½ÇÆĞ, ÇöÀç À§Ä¡ À¯Áö");
-        ai.StopMove();
+        // -----------------------------
+        // 2ï¸ ëœë¤ ìˆœì°°
+        // -----------------------------
+        Vector3 origin = controller.transform.position;
+
+        for (int i = 0; i < MAX_SAMPLE_TRY; i++)
+        {
+            Vector2 rand = Random.insideUnitCircle * controller.patrolRadius;
+            Vector3 candidate =
+                origin + new Vector3(rand.x, 0f, rand.y);
+
+            if (NavMesh.SamplePosition(
+                    candidate,
+                    out NavMeshHit hit,
+                    controller.patrolRadius,
+                    NavMesh.AllAreas))
+            {
+                if (TrySetDestination(controller, hit.position))
+                {
+                    Debug.Log($"[Patrol] {controller.name}: Random Point -> {hit.position}");
+                    return;
+                }
+            }
+        }
+
+        // ëª¨ë“  ì‹œë„ ì‹¤íŒ¨ â†’ ì •ì§€
+        controller.Agent.ResetPath();
+    }
+
+    // ======================================
+    // ëª©ì ì§€ ìœ íš¨ì„± ê²€ì‚¬ + SetDestination
+    // ======================================
+    private bool TrySetDestination(K_AIController controller, Vector3 target)
+    {
+        NavMeshPath path = new NavMeshPath();
+
+        if (controller.Agent.CalculatePath(target, path) &&
+            path.status == NavMeshPathStatus.PathComplete)
+        {
+            controller.Agent.isStopped = false;
+            controller.Agent.SetDestination(target);
+            return true;
+        }
+
+        return false;
     }
 
 }

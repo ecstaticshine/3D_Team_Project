@@ -9,6 +9,8 @@ using UnityEngine.AI;
 public class K_AIController : MonoBehaviour
 {
 
+
+
     public enum CombatType
     {
         Melee,
@@ -62,13 +64,15 @@ public class K_AIController : MonoBehaviour
     public readonly AlertState alertState = new AlertState();
     public readonly CombatState combatState = new CombatState();
 
-    [Header("순찰설정")]
-    [Tooltip("순찰 위치 탐색 반경")]
+    [Header("순찰 설정")]
     public float patrolRadius = 15f;
-    [Tooltip("순찰 지점 도착 후 대기 시간 범위")]
+
     public Vector2 waitTimeRange = new Vector2(1f, 3f);
 
-    [Header("Combat")]
+    public Transform[] PatrolPoints;
+    [HideInInspector] public int currentPatrolIndex;
+
+    [Header("전투 설정")]
     [Tooltip("플레이어와 전투 상태를 유지할 최소 거리")]
     public float combatEngageDistance = 15f;
     [Tooltip("전투 중 엄폐물 간 이동 시 스나이핑 사거리")]
