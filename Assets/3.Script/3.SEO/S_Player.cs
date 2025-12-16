@@ -7,7 +7,6 @@ public class S_Player : MonoBehaviour
     [Header("연결")]
     [SerializeField] private S_Gun gun;
     [SerializeField] private Transform cameraTransform;
-    [SerializeField] private Slider abilitySlider;
 
     [Header("설정 값")]
     [SerializeField] private float moveSpeed = 5.0f;
@@ -99,6 +98,7 @@ public class S_Player : MonoBehaviour
     public void OnFire(InputValue value) { if (value.isPressed && gun != null) gun.Fire(); }
     public void OnMove(InputValue value) { moveInput = value.Get<Vector2>(); }
     public void OnLook(InputValue value) { lookInput = value.Get<Vector2>(); }
+    public void OnReload(InputValue value) { gun.Reload(); }
     public void OnJump(InputValue value)
     {
         if (isGround && !isJumping)
@@ -109,8 +109,8 @@ public class S_Player : MonoBehaviour
     }
 
     private void AbilityGaugeSlider() 
-    { 
-        if (abilitySlider != null) abilitySlider.value = abilityGauge; 
+    {
+        S_UIManager.instance.UpdateAbilitySlider(abilityGauge);
     }
 
     private void ToggleTime()
