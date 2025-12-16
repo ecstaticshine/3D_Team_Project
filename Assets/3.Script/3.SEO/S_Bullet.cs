@@ -7,8 +7,11 @@ public class S_Bullet : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.name);
+        if (other.CompareTag("Player"))
+        {
+            Debug.Log(other.name);
 
-        Destroy(gameObject);
+            Destroy(gameObject);
+        }
     }
 }
