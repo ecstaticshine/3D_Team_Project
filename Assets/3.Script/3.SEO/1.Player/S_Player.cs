@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 public class S_Player : MonoBehaviour
 {
     [Header("연결")]
-    [SerializeField] private S_Gun gun;
+    [SerializeField] public S_Gun gun;
     [SerializeField] private Transform cameraTransform;
 
     [Header("설정 값")]
@@ -36,6 +36,8 @@ public class S_Player : MonoBehaviour
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
         TryGetComponent(out characterController);
         AbilityGaugeSlider();
     }
@@ -95,6 +97,15 @@ public class S_Player : MonoBehaviour
         transform.Rotate(Vector3.up * mouseX);
     }
 
+    private void OnApplicationFocus(bool hasFocus)
+    {
+        if (hasFocus)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+    }
+
     public void OnFire(InputValue value) { if (value.isPressed && gun != null) gun.Fire(); }
     public void OnMove(InputValue value) { moveInput = value.Get<Vector2>(); }
     public void OnLook(InputValue value) { lookInput = value.Get<Vector2>(); }
@@ -144,6 +155,12 @@ public class S_Player : MonoBehaviour
             }
         }
         abilityGauge = Mathf.Clamp(abilityGauge, 0f, 100f);
+        AbilityGaugeSlider();
+    }
+
+    public void RestoreAbilityGauge()
+    {
+        abilityGauge = 100f;
         AbilityGaugeSlider();
     }
 }

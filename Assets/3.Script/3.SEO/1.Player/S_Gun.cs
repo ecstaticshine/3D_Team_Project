@@ -74,6 +74,12 @@ public class S_Gun : MonoBehaviour
         Destroy(newBullet, 3.0f);
     }
 
+    public void AddAmmo(int amount)
+    {
+        totalAmmo += amount;
+        UpdateAmmoUI();
+    }
+
     private void UpdateAmmoUI()
     {
         if (S_UIManager.instance != null)
