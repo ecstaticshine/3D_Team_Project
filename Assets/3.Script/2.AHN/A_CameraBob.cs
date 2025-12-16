@@ -3,7 +3,7 @@ using UnityEngine;
 public class A_CameraBob : MonoBehaviour
 {
     [Header("플레이어")]
-    [SerializeField] private S_Player player;
+    [SerializeField] private A_Player player;
 
     [Header("카메라 설정")]
     [SerializeField] private float bobSpeed = 14f;

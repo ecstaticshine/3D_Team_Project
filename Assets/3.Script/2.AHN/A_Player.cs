@@ -28,6 +28,7 @@ public class A_Player : MonoBehaviour
     private float abilityGauge = 100f;
 
     private CharacterController characterController;
+    private Animator anime;
     private Vector2 moveInput;
     private Vector2 lookInput;
     private Vector3 velocity;
@@ -38,6 +39,7 @@ public class A_Player : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         TryGetComponent(out characterController);
+        TryGetComponent(out anime);
         AbilityGaugeSlider();
     }
 
