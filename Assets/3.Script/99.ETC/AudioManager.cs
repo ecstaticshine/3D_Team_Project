@@ -40,9 +40,10 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioSource[] SFXPlayer;
 
     private float bgmPausedTime = 0f;
-
+    [Header("음향 속도")]
     public float globalPitch = 1f;
-
+    [Space(10f)]
+    [Header("볼륨")]
     public float BGMVolume = 1f;
     public float SFXVolume = 1f;
 
@@ -90,7 +91,6 @@ public class AudioManager : MonoBehaviour
             {
                 for (int i = 0; i < SFXPlayer.Length; i++)
                 {
-                    Debug.Log(SFXPlayer[i].isPlaying);
                     if (!SFXPlayer[i].isPlaying)
                     {
                         SFXPlayer[i].pitch = globalPitch;
