@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour
+public class S_PlayerController : MonoBehaviour
 {
     [Header("¼³Á¤ °ª")]
     public float moveSpeed = 5.0f;

@@ -1,10 +1,10 @@
 using UnityEngine;
 
-public class CameraBob : MonoBehaviour
+public class S_CameraBob : MonoBehaviour
 {
     public float bobSpeed = 14f;
     public float bobAmount = 0.05f;
-    public PlayerController player;
+    public S_PlayerController player;
 
     private float defaultPosY = 0;
     private float timer = 0;
