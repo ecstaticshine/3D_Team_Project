@@ -72,7 +72,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8988161818803807066}
   - component: {fileID: 536796873648197121}
-  - component: {fileID: 331358666881029705}
   m_Layer: 0
   m_Name: Pistol(M1911)
   m_TagString: Untagged
@@ -119,28 +118,6 @@ MonoBehaviour:
   bulletSpeed: 50
   fireDelay: 1
   cameraTransform: {fileID: 0}
---- !u!95 &331358666881029705
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1085417395900564196}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2463752579456916409
 GameObject:
   m_ObjectHideFlags: 0
@@ -332,6 +309,7 @@ GameObject:
   - component: {fileID: 4691243505554212568}
   - component: {fileID: 1379871598729270678}
   - component: {fileID: 7588263497401346693}
+  - component: {fileID: 8856606280772077741}
   m_Layer: 0
   m_Name: M1911 Handgun_Model
   m_TagString: Untagged
@@ -436,6 +414,27 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8856606280772077741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3455177816964080978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6be84e4d7829855419c06b94e56bd135, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 6804990658058999119, guid: 65c9f6563c561ee4e8905d1e6a32548b, type: 3}
+  casingPrefab: {fileID: 4362657251999731927, guid: 4cb20e8abae957146a8b78e670d3fe74, type: 3}
+  muzzleFlashPrefab: {fileID: 1782395880954752, guid: 3dd9cf2e209c504448f1c4c6835675cf, type: 3}
+  gunAnimator: {fileID: 7588263497401346693}
+  barrelLocation: {fileID: 5202651896945462437}
+  casingExitLocation: {fileID: 6207647911704500513}
+  destroyTimer: 2
+  shotPower: 700
+  ejectPower: 250
 --- !u!1 &3875230882541231827
 GameObject:
   m_ObjectHideFlags: 0
