@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5691a6e43da3a94a80137f144a20c01, type: 3}
+  m_Name: M1911_Data
+  m_EditorClassIdentifier: Assembly-CSharp::S_GunData
+  gunName: M1911
+  gunPrefab: {fileID: 1085417395900564196, guid: 136950be0ffc5874f82d86888d3361e6, type: 3}
+  gunAnimation: {fileID: 0}
+  bulletPrefab: {fileID: 1325836922669442, guid: e3a80f145c0d9924b95568742467a354, type: 3}
+  bulletSpeed: 100
+  fireDelay: 0.3
+  reloadTime: 2
+  maxAmmo: 7
+  fireSoundName: PistolSound
