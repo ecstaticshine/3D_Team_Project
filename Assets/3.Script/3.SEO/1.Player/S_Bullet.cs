@@ -5,8 +5,7 @@ using UnityEngine;
 
 public class S_Bullet : MonoBehaviour
 {
-    [SerializeField] private float bodyDamage = 50f;
-    [SerializeField] private float headDamage = 100f;
+    [SerializeField] private float baseDamage = 50f;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -16,20 +15,18 @@ public class S_Bullet : MonoBehaviour
 
         if (enemy != null)
         {
-            if (other.name == "Head")
+            float finalDamage = baseDamage;
+
+            if (other.TryGetComponent(out S_HitBox hitBox))
             {
-                Debug.Log("헤드");
-                enemy.TakeDamage(headDamage);
+                finalDamage *= hitBox.damageMultiplier;
             }
-            else
-            {
-                Debug.Log("몸통");
-                enemy.TakeDamage(bodyDamage);
-            }
+
+            enemy.TakeDamage(finalDamage);
         }
         else
         {
-            Debug.Log($"벽 : {other.name}");
+            Debug.Log($"벽 또는 오브젝트 : {other.name}");
         }
 
         Destroy(gameObject);

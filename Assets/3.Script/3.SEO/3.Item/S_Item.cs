@@ -18,8 +18,6 @@ public class S_Item : MonoBehaviour
                     item.Use(player);
                 }
             }
-
-            Destroy(gameObject);
         }
     }
 }

@@ -212,12 +212,4 @@ public class S_Player : MonoBehaviour
             currentGun = targetGun;
         }
     }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.TryGetComponent(out S_Item_Gun item_gun))
-        {
-            item_gun.Use(this);
-        }
-    }
 }
