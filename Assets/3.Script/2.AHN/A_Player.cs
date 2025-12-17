@@ -99,7 +99,14 @@ public class A_Player : MonoBehaviour
     }
 
     public void OnFire(InputValue value) { if (value.isPressed && gun != null) gun.Fire(); }
-    public void OnMove(InputValue value) { moveInput = value.Get<Vector2>(); }
+    public void OnMove(InputValue value)
+    {
+        moveInput = value.Get<Vector2>();
+
+        anime.SetFloat("input_x", moveInput.x);
+        anime.SetFloat("input_y", moveInput.y);
+
+    }
     public void OnLook(InputValue value) { lookInput = value.Get<Vector2>(); }
     public void OnJump(InputValue value)
     {
