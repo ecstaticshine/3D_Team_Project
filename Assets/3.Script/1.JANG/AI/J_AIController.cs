@@ -83,9 +83,12 @@ public class J_AIController : MonoBehaviour
     [Header("경계 및 수색")]
     public Vector3 lastHeardPosition;
     [Tooltip("경계 상태를 유지하는 시간")]
-    public float alertDuration = 5f; 
+    public float alertDuration = 5f;
 
-   
+    [Header("총")]
+    public J_AIShooter j_AIShooter;
+
+
     void Awake()
     {
         Agent = GetComponent<NavMeshAgent>();

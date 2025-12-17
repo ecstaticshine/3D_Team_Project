@@ -103,6 +103,7 @@ public class J_CombatState : J_IState
         else
         {
             ai.StopMove(); //멈추고 공격
+            ai.j_AIShooter.TryFire();
 
         }
        
