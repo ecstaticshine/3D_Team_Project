@@ -63,7 +63,6 @@ public class P_Player : MonoBehaviour
 
     void Update()
     {
-
         // 대시 중일 때는 일반 이동 로직을 수행하지 않음 (대시 코루틴이 이동 제어)
         if (isDashing) return;
 
@@ -158,10 +157,23 @@ public class P_Player : MonoBehaviour
     {
 
         float targetHeight = isCrouching ? crouchHeight : standHeight;
-        if (Mathf.Abs(characterController.height - targetHeight) > 0.01f)
+
+
+        if (isCrouching)
         {
-            characterController.height = Mathf.Lerp(characterController.height, targetHeight, Time.unscaledDeltaTime * crouchTransitionSpeed);
-            characterController.center = Vector3.up * (characterController.height / 2f);
+            if (Mathf.Abs(characterController.height - targetHeight) > 0.01f)
+            {
+                characterController.height = Mathf.Lerp(characterController.height, targetHeight, Time.unscaledDeltaTime * crouchTransitionSpeed);
+
+                characterController.center = Vector3.up * (characterController.height / 2f);
+            }
+            
+        }
+        else
+        {
+            characterController.height = targetHeight;
+            characterController.center = Vector3.zero;
+            gameObject.transform.position = Vector3.up * (characterController.height / 2f);
         }
     }
 
@@ -220,11 +232,16 @@ public class P_Player : MonoBehaviour
     public void OnMove(InputValue value) { moveInput = value.Get<Vector2>(); }
     public void OnLook(InputValue value) { lookInput = value.Get<Vector2>(); }
     public void OnReload(InputValue value) { gun.Reload(); }
-    public void OnJump(InputValue value) { if (isGround && !isJumping && !isCrouching) { velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity); isJumping = true; } }
+    public void OnJump(InputValue value)
+    {
+        if (isGround && !isJumping && !isCrouching)
+        {
+            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity); isJumping = true;
+        }
+    }
 
     public void OnCrouch(InputValue value)
     {
-
         isCrouching = value.isPressed;
     }
 }

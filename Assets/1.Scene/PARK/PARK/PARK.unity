@@ -5221,7 +5221,35 @@ MonoBehaviour:
   m_ControlsChangedEvent:
     m_PersistentCalls:
       m_Calls: []
-  m_ActionEvents: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 0d7f017f-d83f-439a-b653-99b52b73ef0c
+    m_ActionName: 'Player/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c0d1a410-a7ba-489d-ae33-cd3c5f43d361
+    m_ActionName: 'Player/Look[/Mouse/delta]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: d7034dc3-26b6-4bfd-8851-5f85a16925d8
+    m_ActionName: 'Player/Jump[/Keyboard/space]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4099d9bc-b86f-4591-a817-00ad8d42c06a
+    m_ActionName: 'Player/Fire[/Mouse/leftButton]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 696af811-a90d-48c3-aec5-9101f44bb656
+    m_ActionName: 'Player/Reload[/Keyboard/r]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 6518a8e6-0be2-4cf7-8fc9-bcb0a6c85a31
+    m_ActionName: 'Player/Crouch[/Keyboard/leftCtrl]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9362cc48-8ae6-4086-99db-ae09435a8000
+    m_ActionName: 'Player/Dash[/Keyboard/leftShift]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: PC
   m_DefaultActionMap: Player
@@ -5650,7 +5678,7 @@ MonoBehaviour:
   isGround: 0
   isJumping: 0
   isDashing: 0
-  isCrouching: 1
+  isCrouching: 0
   isTimeSlow: 0
   slowFactor: 0.1
 --- !u!33 &9196976884465610243
