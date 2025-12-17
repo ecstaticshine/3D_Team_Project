@@ -4682,8 +4682,8 @@ GameObject:
   - component: {fileID: 1526165904467392642}
   - component: {fileID: 7950483916967701462}
   - component: {fileID: 6051318727076859950}
-  - component: {fileID: 7460490880896814712}
   - component: {fileID: 7950483916967701463}
+  - component: {fileID: 7950483916967701464}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -5078,13 +5078,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd5b1df21e01965498fb41778f17c33d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::S_Gun
-  weaponHolder: {fileID: 0}
-  playerGunAnimator: {fileID: 0}
   gunData: {fileID: 11400000, guid: c6036ba7588b4b04f8613519e334e3be, type: 2}
-  cameraTransform: {fileID: 1526165904467392642}
   firePoint: {fileID: 1403043239}
-  totalAmmo: 120
-  currentAmmo: 0
+  cameraTransform: {fileID: 1526165904467392642}
+  gunAnimator: {fileID: 0}
 --- !u!1 &1543249127048496969
 GameObject:
   m_ObjectHideFlags: 0
@@ -5432,7 +5429,7 @@ GameObject:
   - component: {fileID: 4216951808256291389}
   - component: {fileID: 2105778369326524284}
   - component: {fileID: 62704087974144924}
-  - component: {fileID: 8379244190484918121}
+  - component: {fileID: 8513074086017918865}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -5440,21 +5437,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &7460490880896814712
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 168671843770106440}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f03b0b84bf2a73468ee7583135232c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::S_CameraBob
-  player: {fileID: 8379244190484918121}
-  bobSpeed: 14
-  bobAmount: 0.2
 --- !u!33 &7686042618553469951
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -5558,6 +5540,21 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!114 &7950483916967701464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 168671843770106440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b601c66f2406874b971369f0aa330af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::P_CameraBob
+  player: {fileID: 8513074086017918865}
+  bobSpeed: 14
+  bobAmount: 0.05
 --- !u!1 &8378635027679686961
 GameObject:
   m_ObjectHideFlags: 0
@@ -5577,28 +5574,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &8379244190484918121
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7133877492874171426}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dba22cc02e7222942b4bdca7232c4df2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  gun: {fileID: 1543229061374085636}
-  cameraTransform: {fileID: 1526165904467392642}
-  moveSpeed: 10
-  mouseSensitivity: 25
-  jumpHeight: 1.5
-  gravity: -9.81
-  isGround: 0
-  isJumping: 0
-  isTimeSlow: 0
-  slowFactor: 0.1
 --- !u!23 &8513074086017918864
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5647,6 +5622,37 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &8513074086017918865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7133877492874171426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9195e27c77cc8424f9d2861b29b5fdff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::P_Player
+  gun: {fileID: 1543229061374085636}
+  cameraTransform: {fileID: 1526165904467392642}
+  walkSpeed: 5
+  crouchSpeed: 2.5
+  mouseSensitivity: 25
+  dashSpeed: 50
+  dashDuration: 0.2
+  dashCooldown: 1
+  standHeight: 2
+  crouchHeight: 1
+  crouchTransitionSpeed: 10
+  jumpHeight: 1.5
+  gravity: -9.81
+  isGround: 0
+  isJumping: 0
+  isDashing: 0
+  isCrouching: 1
+  isTimeSlow: 0
+  slowFactor: 0.1
 --- !u!33 &9196976884465610243
 MeshFilter:
   m_ObjectHideFlags: 0

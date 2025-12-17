@@ -53,12 +53,12 @@
                 },
                 {
                     "name": "Crouch",
-                    "type": "Value",
+                    "type": "Button",
                     "id": "6518a8e6-0be2-4cf7-8fc9-bcb0a6c85a31",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": true
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Dash",
@@ -173,7 +173,7 @@
                 {
                     "name": "",
                     "id": "8ddeea3c-5831-4d32-846a-742d6b9f7c51",
-                    "path": "<Keyboard>/ctrl",
+                    "path": "<Keyboard>/leftCtrl",
                     "interactions": "",
                     "processors": "",
                     "groups": ";PC",

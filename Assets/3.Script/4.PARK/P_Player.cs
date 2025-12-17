@@ -63,13 +63,6 @@ public class P_Player : MonoBehaviour
 
     void Update()
     {
-        
-        // [핵심 수정] Input System 이벤트 대신 여기서 직접 검사합니다.
-        // 왼쪽 컨트롤 키를 누르고 있는 동안 무조건 True, 떼면 False가 됩니다.
-        if (Keyboard.current != null)
-        {
-            isCrouching = Keyboard.current.leftCtrlKey.isPressed;
-        }
 
         // 대시 중일 때는 일반 이동 로직을 수행하지 않음 (대시 코루틴이 이동 제어)
         if (isDashing) return;
@@ -78,7 +71,7 @@ public class P_Player : MonoBehaviour
 
         HandleAbilityGauge();
         HandleTimeInput();
-        HandleCrouchAnimation();
+        HandleCrouch();
 
         // 바닥 체크 및 중력 초기화
         if (isGround && velocity.y < 0)
@@ -161,8 +154,9 @@ public class P_Player : MonoBehaviour
         characterController.Move(finalVelocity * Time.unscaledDeltaTime);
     }
 
-    private void HandleCrouchAnimation()
+    private void HandleCrouch()
     {
+
         float targetHeight = isCrouching ? crouchHeight : standHeight;
         if (Mathf.Abs(characterController.height - targetHeight) > 0.01f)
         {
@@ -227,4 +221,10 @@ public class P_Player : MonoBehaviour
     public void OnLook(InputValue value) { lookInput = value.Get<Vector2>(); }
     public void OnReload(InputValue value) { gun.Reload(); }
     public void OnJump(InputValue value) { if (isGround && !isJumping && !isCrouching) { velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity); isJumping = true; } }
+
+    public void OnCrouch(InputValue value)
+    {
+
+        isCrouching = value.isPressed;
+    }
 }
