@@ -3,40 +3,40 @@ using System.Collections;
 
 public class S_Gun : MonoBehaviour
 {
-    public enum GunState
-    {
-        Ready,
-        Empty,
-        Reloading
-    }
+    public enum GunState { Ready, Empty, Reloading }
 
-    [Header("총 데이터")]
+    [Header("설정")]
     [SerializeField] private S_GunData gunData;
-    private Animator gunAnimator;
+    public S_GunData currentGunData => gunData;
 
-    [Header("발사 위치")]
-    [SerializeField] private Transform cameraTransform;
+    [Header("연결")]
     [SerializeField] private Transform firePoint;
+    [SerializeField] private Transform cameraTransform;
+    [SerializeField] private Animator gunAnimator;
 
-    [Header("탄약 설정")]
-    [SerializeField] private int totalAmmo = 120;
-    [SerializeField] private int currentAmmo;
+    [Header("탄약")]
+    private int totalAmmo;
+    private int currentAmmo;
     public GunState gunState { get; private set; }
     private float currentTimer;
 
+    private void OnEnable()
+    {
+        gunState = GunState.Ready;
+
+        UpdateAmmoUI();
+    }
 
     private void Start()
     {
-        if (gunData == null) return;
-
-        if(gunData.gunAnimation != null && gunAnimator != null)
+        if (gunData != null)
         {
-            gunAnimator.runtimeAnimatorController = gunData.gunAnimation;
+            currentAmmo = gunData.maxAmmo;
+            totalAmmo = gunData.maxAmmo * 2;
         }
 
-        gunState = GunState.Ready;
-        currentTimer = gunData.fireDelay;
-        currentAmmo = gunData.maxAmmo;
+        if (cameraTransform == null && Camera.main != null) cameraTransform = Camera.main.transform;
+
         UpdateAmmoUI();
     }
 
@@ -47,35 +47,57 @@ public class S_Gun : MonoBehaviour
 
     public void Fire()
     {
-        if (gunState == GunState.Reloading || gunState == GunState.Empty) return;
-
-        if (gunData.bulletPrefab == null || firePoint == null || cameraTransform == null || currentTimer < gunData.fireDelay) return;
-
-        if (gunAnimator != null) gunAnimator.SetTrigger("Fire");
+        if (gunState != GunState.Ready) return;
+        if (currentTimer < gunData.fireDelay) return;
+        if (currentAmmo <= 0)
+        {
+            Reload();
+            return;
+        }
 
         currentTimer = 0;
         currentAmmo--;
 
-        if (currentAmmo <= 0)
-        {
-            currentAmmo = 0;
-            gunState = GunState.Empty;
-        }
-
-        UpdateAmmoUI();
+        if (gunAnimator != null) gunAnimator.SetTrigger("Fire");
 
         Vector3 targetPoint = GetAimTargetPoint();
-        Vector3 fireDirection = (targetPoint - firePoint.position).normalized;
+        Vector3 dir = (targetPoint - firePoint.position).normalized;
 
-        GameObject newBullet = Instantiate(gunData.bulletPrefab, firePoint.position, Quaternion.identity);
-        newBullet.transform.up = fireDirection;
+        GameObject bullet = Instantiate(gunData.bulletPrefab, firePoint.position, Quaternion.identity);
+        bullet.transform.up = dir;
 
-        if (newBullet.TryGetComponent(out Rigidbody bulletRb))
+        if (bullet.TryGetComponent(out Rigidbody rb))
         {
-            bulletRb.linearVelocity = fireDirection * gunData.bulletSpeed;
+            rb.linearVelocity = dir * gunData.bulletSpeed;
         }
-        AudioManager.instance.PlaySFX("Fire");
-        Destroy(newBullet, 3.0f);
+
+        AudioManager.instance.PlaySFX(gunData.fireSoundName);
+
+        UpdateAmmoUI();
+        Destroy(bullet, 3f);
+    }
+
+    public void Reload()
+    {
+        if (gunState == GunState.Reloading || currentAmmo >= gunData.maxAmmo || totalAmmo <= 0) return;
+        StartCoroutine(ReloadCoroutine());
+    }
+
+    private IEnumerator ReloadCoroutine()
+    {
+        gunState = GunState.Reloading;
+        if (gunAnimator != null) gunAnimator.SetTrigger("Reload");
+
+        yield return new WaitForSecondsRealtime(gunData.reloadTime);
+
+        int need = gunData.maxAmmo - currentAmmo;
+        int take = Mathf.Min(need, totalAmmo);
+
+        currentAmmo += take;
+        totalAmmo -= take;
+
+        gunState = GunState.Ready;
+        UpdateAmmoUI();
     }
 
     public void AddAmmo(int amount)
@@ -84,55 +106,30 @@ public class S_Gun : MonoBehaviour
         UpdateAmmoUI();
     }
 
+    public void InitializeGun()
+    {
+        if (gunData == null) return;
+
+        currentAmmo = gunData.maxAmmo;
+
+        totalAmmo = gunData.maxAmmo * 2;
+
+        gunState = GunState.Ready;
+
+        UpdateAmmoUI();
+    }
+
     private void UpdateAmmoUI()
     {
-        if (S_UIManager.instance != null)
+        if (gameObject.activeInHierarchy && S_UIManager.instance != null)
         {
             S_UIManager.instance.UpdateAmmoText(currentAmmo, totalAmmo);
         }
     }
 
-    public void Reload()
-    {
-        if (gunState == GunState.Reloading || currentAmmo >= gunData.maxAmmo || totalAmmo <= 0) return;
-
-        Debug.Log("장전 시작");
-
-        StartCoroutine(ReloadCoroutine());
-
-    }
-
-    private IEnumerator ReloadCoroutine()
-    {
-        gunState = GunState.Reloading;
-
-        if (gunAnimator != null) gunAnimator.SetTrigger("Reload");
-
-        yield return new WaitForSecondsRealtime(gunData.reloadTime);
-
-        int ammoToFill = gunData.maxAmmo - currentAmmo;
-        int ammoToTake = Mathf.Min(ammoToFill, totalAmmo);
-
-        currentAmmo += ammoToTake;
-        totalAmmo -= ammoToTake;
-
-        gunState = GunState.Ready;
-        Debug.Log("장전 끝");
-
-        UpdateAmmoUI();
-    }
-
     private Vector3 GetAimTargetPoint()
     {
         Ray ray = new Ray(cameraTransform.position, cameraTransform.forward);
-
-        if (Physics.Raycast(ray, out RaycastHit hit, 100f))
-        {
-            return hit.point;
-        }
-        else
-        {
-            return ray.GetPoint(100f);
-        }
+        return Physics.Raycast(ray, out RaycastHit hit, 100f) ? hit.point : ray.GetPoint(100f);
     }
 }

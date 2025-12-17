@@ -196,8 +196,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::S_Enemy
   maxHp: 100
+  enemyGunData: {fileID: 0}
   medicinePrefab: {fileID: 1193652733296499636, guid: d0d0f63b884303145a177bc6c8a2cfe7, type: 3}
-  gunPrefab: {fileID: 8444252888425668051, guid: 263d00b918de8f64d983dddf3e64142b, type: 3}
 --- !u!54 &241759628
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2510,8 +2510,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::S_Enemy
   maxHp: 100
+  enemyGunData: {fileID: 0}
   medicinePrefab: {fileID: 1193652733296499636, guid: d0d0f63b884303145a177bc6c8a2cfe7, type: 3}
-  gunPrefab: {fileID: 8444252888425668051, guid: 263d00b918de8f64d983dddf3e64142b, type: 3}
 --- !u!54 &940057636
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2662,8 +2662,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::S_Enemy
   maxHp: 100
+  enemyGunData: {fileID: 0}
   medicinePrefab: {fileID: 1193652733296499636, guid: d0d0f63b884303145a177bc6c8a2cfe7, type: 3}
-  gunPrefab: {fileID: 8444252888425668051, guid: 263d00b918de8f64d983dddf3e64142b, type: 3}
 --- !u!54 &1080337648
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3808,8 +3808,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::S_Enemy
   maxHp: 100
+  enemyGunData: {fileID: 0}
   medicinePrefab: {fileID: 1193652733296499636, guid: d0d0f63b884303145a177bc6c8a2cfe7, type: 3}
-  gunPrefab: {fileID: 8444252888425668051, guid: 263d00b918de8f64d983dddf3e64142b, type: 3}
 --- !u!54 &1622822198
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4222,8 +4222,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::S_Enemy
   maxHp: 100
+  enemyGunData: {fileID: 11400000, guid: a73b1649a50d0974a9bc474acd507ad8, type: 2}
   medicinePrefab: {fileID: 1193652733296499636, guid: d0d0f63b884303145a177bc6c8a2cfe7, type: 3}
-  gunPrefab: {fileID: 8444252888425668051, guid: 263d00b918de8f64d983dddf3e64142b, type: 3}
 --- !u!54 &1868004460
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4448,8 +4448,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::S_Enemy
   maxHp: 100
+  enemyGunData: {fileID: 0}
   medicinePrefab: {fileID: 1193652733296499636, guid: d0d0f63b884303145a177bc6c8a2cfe7, type: 3}
-  gunPrefab: {fileID: 8444252888425668051, guid: 263d00b918de8f64d983dddf3e64142b, type: 3}
 --- !u!54 &1908321626
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4525,8 +4525,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::S_Enemy
   maxHp: 100
+  enemyGunData: {fileID: 11400000, guid: 2e234ba30ac4b9140a39325848ae05c1, type: 2}
   medicinePrefab: {fileID: 1193652733296499636, guid: d0d0f63b884303145a177bc6c8a2cfe7, type: 3}
-  gunPrefab: {fileID: 8444252888425668051, guid: 263d00b918de8f64d983dddf3e64142b, type: 3}
 --- !u!54 &1937114128
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5078,7 +5078,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd5b1df21e01965498fb41778f17c33d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::S_Gun
-  gunData: {fileID: 0}
+  weaponHolder: {fileID: 0}
+  playerGunAnimator: {fileID: 0}
+  gunData: {fileID: 11400000, guid: c6036ba7588b4b04f8613519e334e3be, type: 2}
   cameraTransform: {fileID: 1526165904467392642}
   firePoint: {fileID: 1403043239}
   totalAmmo: 120
@@ -5414,8 +5416,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::S_Enemy
   maxHp: 100
+  enemyGunData: {fileID: 11400000, guid: c6036ba7588b4b04f8613519e334e3be, type: 2}
   medicinePrefab: {fileID: 1193652733296499636, guid: d0d0f63b884303145a177bc6c8a2cfe7, type: 3}
-  gunPrefab: {fileID: 8444252888425668051, guid: 263d00b918de8f64d983dddf3e64142b, type: 3}
 --- !u!1 &7133877492874171426
 GameObject:
   m_ObjectHideFlags: 0

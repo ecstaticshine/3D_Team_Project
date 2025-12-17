@@ -1,12 +1,14 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using System.Collections.Generic;
 
 public class S_Player : MonoBehaviour
 {
     [Header("¿¬°á")]
-    [SerializeField] public S_Gun gun;
+    [SerializeField] public S_Gun currentGun;
     [SerializeField] private Transform cameraTransform;
+    private S_Gun[] allGuns;
 
     [Header("¼³Á¤ °ª")]
     [SerializeField] private float moveSpeed = 5.0f;
@@ -35,11 +37,22 @@ public class S_Player : MonoBehaviour
 
     void Start()
     {
+        
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
         TryGetComponent(out characterController);
         AbilityGaugeSlider();
+
+        allGuns = GetComponentsInChildren<S_Gun>(true);
+        foreach (var gun in allGuns)
+        {
+            if (gun.gameObject.activeSelf)
+            {
+                currentGun = gun;
+                break;
+            }
+        }
     }
 
     void Update()
@@ -106,10 +119,10 @@ public class S_Player : MonoBehaviour
         }
     }
 
-    public void OnFire(InputValue value) { if (value.isPressed && gun != null) gun.Fire(); }
+    public void OnFire(InputValue value) { if (value.isPressed && currentGun != null) currentGun.Fire(); }
+    public void OnReload(InputValue value) { if (currentGun != null) currentGun.Reload(); }
     public void OnMove(InputValue value) { moveInput = value.Get<Vector2>(); }
     public void OnLook(InputValue value) { lookInput = value.Get<Vector2>(); }
-    public void OnReload(InputValue value) { gun.Reload(); }
     public void OnJump(InputValue value)
     {
         if (isGround && !isJumping)
@@ -164,5 +177,49 @@ public class S_Player : MonoBehaviour
     {
         abilityGauge = 100f;
         AbilityGaugeSlider();
+    }
+
+    public void HandleGunPickup(S_GunData newGunData)
+    {
+        S_Gun targetGun = null;
+
+        foreach (var gun in allGuns)
+        {
+            if (gun.currentGunData == newGunData)
+            {
+                targetGun = gun;
+                break;
+            }
+        }
+
+        if (targetGun == null)
+        {
+            return;
+        }
+
+        if (currentGun == targetGun)
+        {
+            currentGun.AddAmmo(newGunData.maxAmmo);
+
+            Debug.Log($"[{newGunData.gunName}] Åº¾à È¹µæ! µçµçÇÏ´Ù!");
+        }
+        else
+        {
+            if (currentGun != null)
+                currentGun.gameObject.SetActive(false);
+
+            targetGun.InitializeGun();
+
+            targetGun.gameObject.SetActive(true);
+            currentGun = targetGun;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.TryGetComponent(out S_Item_Gun item_gun))
+        {
+            item_gun.Use(this);
+        }
     }
 }

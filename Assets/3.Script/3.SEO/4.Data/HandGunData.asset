@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b5691a6e43da3a94a80137f144a20c01, type: 3}
-  m_Name: PistolData
+  m_Name: HandGunData
   m_EditorClassIdentifier: Assembly-CSharp::S_GunData
   gunName: Pistol
-  gunPrefab: {fileID: 1669814075106190, guid: ea530e89dc913d14480baec0a57c7801, type: 3}
+  gunPrefab: {fileID: 8444252888425668051, guid: 263d00b918de8f64d983dddf3e64142b, type: 3}
   gunAnimation: {fileID: 0}
   bulletPrefab: {fileID: 1325836922669442, guid: e3a80f145c0d9924b95568742467a354, type: 3}
   bulletSpeed: 50
   fireDelay: 0.5
-  reloadTime: 2
+  reloadTime: 1
   maxAmmo: 30
   fireSoundName: PistolSound

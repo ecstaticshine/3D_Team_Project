@@ -29,7 +29,7 @@ public class S_Bullet : MonoBehaviour
         }
         else
         {
-            Debug.Log($"벽 명중: {other.name}");
+            Debug.Log($"벽 : {other.name}");
         }
 
         Destroy(gameObject);
