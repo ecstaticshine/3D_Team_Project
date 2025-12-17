@@ -5078,15 +5078,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd5b1df21e01965498fb41778f17c33d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::S_Gun
-  bulletPrefab: {fileID: 1325836922669442, guid: e3a80f145c0d9924b95568742467a354, type: 3}
-  firePoint: {fileID: 1403043239}
-  bulletSpeed: 50
-  fireDelay: 1
-  reloadTime: 2
-  totalAmmo: 120
-  maxAmmo: 30
-  currentAmmo: 0
+  gunData: {fileID: 0}
   cameraTransform: {fileID: 1526165904467392642}
+  firePoint: {fileID: 1403043239}
+  totalAmmo: 120
+  currentAmmo: 0
 --- !u!1 &1543249127048496969
 GameObject:
   m_ObjectHideFlags: 0
