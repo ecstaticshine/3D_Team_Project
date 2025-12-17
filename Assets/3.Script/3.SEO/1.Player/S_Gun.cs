@@ -10,31 +10,33 @@ public class S_Gun : MonoBehaviour
         Reloading
     }
 
-    [Header("총 설정")]
-    public GameObject bulletPrefab;
-    public Transform firePoint;
-    public float bulletSpeed = 50f;
+    [Header("총 데이터")]
+    [SerializeField] private S_GunData gunData;
+    private Animator gunAnimator;
 
-    public float fireDelay = 0.7f;
-    private float currentTimer;
-
-    public float reloadTime = 2.0f;
-
-    public GunState gunState { get; private set; }
+    [Header("발사 위치")]
+    [SerializeField] private Transform cameraTransform;
+    [SerializeField] private Transform firePoint;
 
     [Header("탄약 설정")]
-    public int totalAmmo = 120;
-    public int maxAmmo = 30;
-    public int currentAmmo;
+    [SerializeField] private int totalAmmo = 120;
+    [SerializeField] private int currentAmmo;
+    public GunState gunState { get; private set; }
+    private float currentTimer;
 
-    [Header("조준 설정")]
-    public Transform cameraTransform;
 
     private void Start()
     {
+        if (gunData == null) return;
+
+        if(gunData.gunAnimation != null && gunAnimator != null)
+        {
+            gunAnimator.runtimeAnimatorController = gunData.gunAnimation;
+        }
+
         gunState = GunState.Ready;
-        currentTimer = fireDelay;
-        currentAmmo = maxAmmo;
+        currentTimer = gunData.fireDelay;
+        currentAmmo = gunData.maxAmmo;
         UpdateAmmoUI();
     }
 
@@ -47,7 +49,9 @@ public class S_Gun : MonoBehaviour
     {
         if (gunState == GunState.Reloading || gunState == GunState.Empty) return;
 
-        if (bulletPrefab == null || firePoint == null || cameraTransform == null || currentTimer < fireDelay) return;
+        if (gunData.bulletPrefab == null || firePoint == null || cameraTransform == null || currentTimer < gunData.fireDelay) return;
+
+        if (gunAnimator != null) gunAnimator.SetTrigger("Fire");
 
         currentTimer = 0;
         currentAmmo--;
@@ -63,12 +67,12 @@ public class S_Gun : MonoBehaviour
         Vector3 targetPoint = GetAimTargetPoint();
         Vector3 fireDirection = (targetPoint - firePoint.position).normalized;
 
-        GameObject newBullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
+        GameObject newBullet = Instantiate(gunData.bulletPrefab, firePoint.position, Quaternion.identity);
         newBullet.transform.up = fireDirection;
 
         if (newBullet.TryGetComponent(out Rigidbody bulletRb))
         {
-            bulletRb.linearVelocity = fireDirection * bulletSpeed;
+            bulletRb.linearVelocity = fireDirection * gunData.bulletSpeed;
         }
         AudioManager.instance.PlaySFX("Fire");
         Destroy(newBullet, 3.0f);
@@ -90,7 +94,7 @@ public class S_Gun : MonoBehaviour
 
     public void Reload()
     {
-        if (gunState == GunState.Reloading || currentAmmo >= maxAmmo || totalAmmo <= 0) return;
+        if (gunState == GunState.Reloading || currentAmmo >= gunData.maxAmmo || totalAmmo <= 0) return;
 
         Debug.Log("장전 시작");
 
@@ -102,9 +106,11 @@ public class S_Gun : MonoBehaviour
     {
         gunState = GunState.Reloading;
 
-        yield return new WaitForSecondsRealtime(reloadTime);
+        if (gunAnimator != null) gunAnimator.SetTrigger("Reload");
 
-        int ammoToFill = maxAmmo - currentAmmo;
+        yield return new WaitForSecondsRealtime(gunData.reloadTime);
+
+        int ammoToFill = gunData.maxAmmo - currentAmmo;
         int ammoToTake = Mathf.Min(ammoToFill, totalAmmo);
 
         currentAmmo += ammoToTake;
