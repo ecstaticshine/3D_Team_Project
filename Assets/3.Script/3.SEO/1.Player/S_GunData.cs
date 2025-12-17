@@ -25,6 +25,9 @@ public class S_GunData : ScriptableObject
     [S_Lavel("√— «¡∏Æ∆’")]
     public GameObject gunPrefab;
 
+    [S_Lavel("æ∆¿Ã≈€ ≈©±‚")]
+    public Vector3 itemScale = Vector3.one;
+
     [S_Lavel("√— æ÷¥œ∏ﬁ¿Ã≈Õ")]
     public AnimatorOverrideController gunAnimation;
 

@@ -10,7 +10,7 @@ public class S_Item_Gun : MonoBehaviour, S_IItem
 
         gunData = data;
 
-        transform.localScale = new Vector3(3f, 3f, 3f);
+        transform.localScale = gunData.itemScale;
     }
 
     public void Use(S_Player player)
