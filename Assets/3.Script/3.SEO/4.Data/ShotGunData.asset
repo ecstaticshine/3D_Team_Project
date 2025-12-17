@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b5691a6e43da3a94a80137f144a20c01, type: 3}
-  m_Name: RifleData
+  m_Name: ShotGunData
   m_EditorClassIdentifier: Assembly-CSharp::S_GunData
-  gunName: Rifle
-  fireMode: 1
-  gunPrefab: {fileID: 1719131515888008, guid: 763133082ee161b4c86f3ed072a80d09, type: 3}
+  gunName: ShotGun
+  fireMode: 2
+  gunPrefab: {fileID: 4759539053091665922, guid: 1010158ae1f83ec429737f943adba07d, type: 3}
   gunAnimation: {fileID: 0}
   bulletPrefab: {fileID: 1325836922669442, guid: e3a80f145c0d9924b95568742467a354, type: 3}
   bulletSpeed: 50
-  fireDelay: 0.1
-  reloadTime: 2
-  maxAmmo: 10
+  fireDelay: 1
+  reloadTime: 0
+  maxAmmo: 2
   pelletCount: 5
   spreadAngle: 15
-  fireSoundName: RifleSound
+  fireSoundName: ShotGunSound

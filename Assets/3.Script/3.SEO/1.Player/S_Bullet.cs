@@ -10,7 +10,7 @@ public class S_Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player")) return;
+        if (!other.CompareTag("Target")) return;
 
         S_Enemy enemy = other.GetComponentInParent<S_Enemy>();
 

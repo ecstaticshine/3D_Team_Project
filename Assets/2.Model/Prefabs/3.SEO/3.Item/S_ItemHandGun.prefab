@@ -298,8 +298,8 @@ Transform:
   m_GameObject: {fileID: 8444252888425668051}
   serializedVersion: 2
   m_LocalRotation: {x: 0.0000018099952, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.9331, y: 0, z: 0.94831}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6390083489031629327}
@@ -386,8 +386,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b5e2446825460e4db588900699e2c7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::S_Item_Gun
-  gunData: {fileID: 11400000, guid: c6036ba7588b4b04f8613519e334e3be, type: 2}
-  modelHolder: {fileID: 0}
 --- !u!65 &8237682596448289543
 BoxCollider:
   m_ObjectHideFlags: 0

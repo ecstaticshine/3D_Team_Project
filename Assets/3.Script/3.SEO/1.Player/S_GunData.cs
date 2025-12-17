@@ -3,13 +3,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum FireMode
+{
+    SemiAuto,
+    FullAuto,
+    Shotgun
+}
+
 [CreateAssetMenu(menuName = "ScriptableObejct/GunData", fileName = "GunData")]
 public class S_GunData : ScriptableObject
 {
+
     [Header("ÃÑ ±âº» Á¤º¸")]
 
     [S_Lavel("ÃÑ ÀÌ¸§")]
     public string gunName;
+
+    [S_Lavel("¹ß»ç Çü½Ä")]
+    public FireMode fireMode;
 
     [S_Lavel("ÃÑ ÇÁ¸®ÆÕ")]
     public GameObject gunPrefab;
@@ -33,6 +44,14 @@ public class S_GunData : ScriptableObject
 
     [S_Lavel("ÅºÃ¢ ¿ë·®")]
     public int maxAmmo;
+
+    [Header("¼¦°Ç Àü¿ë ¼³Á¤")]
+
+    [S_Lavel("ÃÑ¾Ë °³¼ö")]
+    public int pelletCount = 5;
+
+    [S_Lavel("ÃÑ¾Ë °¢µµ")]
+    public float spreadAngle = 15f;
 
     [Header("ÃÑ »ç¿îµå & ÀÌÆåÆ®")]
 

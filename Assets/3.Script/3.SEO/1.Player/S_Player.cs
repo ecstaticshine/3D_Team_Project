@@ -119,7 +119,7 @@ public class S_Player : MonoBehaviour
         }
     }
 
-    public void OnFire(InputValue value) { if (value.isPressed && currentGun != null) currentGun.Fire(); }
+    public void OnFire(InputValue value) { if (currentGun != null) Debug.Log($"Fire Ω≈»£ πﬁ¿Ω: {value.isPressed}");  currentGun.SetTriggerPressed(value.isPressed); }
     public void OnReload(InputValue value) { if (currentGun != null) currentGun.Reload(); }
     public void OnMove(InputValue value) { moveInput = value.Get<Vector2>(); }
     public void OnLook(InputValue value) { lookInput = value.Get<Vector2>(); }
@@ -200,8 +200,6 @@ public class S_Player : MonoBehaviour
         if (currentGun == targetGun)
         {
             currentGun.AddAmmo(newGunData.maxAmmo);
-
-            Debug.Log($"[{newGunData.gunName}] ≈∫æ‡ »πµÊ! µÁµÁ«œ¥Ÿ!");
         }
         else
         {

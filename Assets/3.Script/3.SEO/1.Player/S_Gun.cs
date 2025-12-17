@@ -14,16 +14,16 @@ public class S_Gun : MonoBehaviour
     [SerializeField] private Transform cameraTransform;
     [SerializeField] private Animator gunAnimator;
 
-    [Header("Åº¾à")]
+    [Header("Åº¾à ¹× »óÅÂ")]
     private int totalAmmo;
     private int currentAmmo;
     public GunState gunState { get; private set; }
     private float currentTimer;
+    private bool isTriggerHeld = false;
 
     private void OnEnable()
     {
         gunState = GunState.Ready;
-
         UpdateAmmoUI();
     }
 
@@ -43,12 +43,36 @@ public class S_Gun : MonoBehaviour
     private void Update()
     {
         currentTimer += Time.unscaledDeltaTime;
+
+        if (gunData == null || gunState == GunState.Reloading) return;
+
+        CheckContinuousFire();
     }
 
-    public void Fire()
+    public void SetTriggerPressed(bool isPressed)
+    {
+        isTriggerHeld = isPressed;
+
+        if (isPressed && gunData.fireMode != FireMode.FullAuto)
+        {
+            TryFire();
+        }
+    }
+
+    private void CheckContinuousFire()
+    {
+        if (isTriggerHeld && gunData.fireMode == FireMode.FullAuto)
+        {
+            TryFire();
+        }
+    }
+
+    public void TryFire()
     {
         if (gunState != GunState.Ready) return;
+
         if (currentTimer < gunData.fireDelay) return;
+
         if (currentAmmo <= 0)
         {
             Reload();
@@ -59,22 +83,52 @@ public class S_Gun : MonoBehaviour
         currentAmmo--;
 
         if (gunAnimator != null) gunAnimator.SetTrigger("Fire");
-
-        Vector3 targetPoint = GetAimTargetPoint();
-        Vector3 dir = (targetPoint - firePoint.position).normalized;
-
-        GameObject bullet = Instantiate(gunData.bulletPrefab, firePoint.position, Quaternion.identity);
-        bullet.transform.up = dir;
-
-        if (bullet.TryGetComponent(out Rigidbody rb))
-        {
-            rb.linearVelocity = dir * gunData.bulletSpeed;
-        }
-
         AudioManager.instance.PlaySFX(gunData.fireSoundName);
 
         UpdateAmmoUI();
+        ProcessShooting();
+    }
+
+    private void ProcessShooting()
+    {
+        Vector3 targetPoint = GetAimTargetPoint();
+        Vector3 baseDirection = (targetPoint - firePoint.position).normalized;
+
+        if (gunData.fireMode == FireMode.Shotgun)
+        {
+            for (int i = 0; i < gunData.pelletCount; i++)
+            {
+                Vector3 spreadDir = GetSpreadDirection(baseDirection, gunData.spreadAngle);
+                CreateBullet(spreadDir);
+            }
+        }
+        else
+        {
+            CreateBullet(baseDirection);
+        }
+    }
+
+    private void CreateBullet(Vector3 direction)
+    {
+        GameObject bullet = Instantiate(gunData.bulletPrefab, firePoint.position, Quaternion.identity);
+
+        bullet.transform.up = direction;
+
+        if (bullet.TryGetComponent(out Rigidbody rb))
+        {
+            rb.linearVelocity = direction * gunData.bulletSpeed;
+        }
+
         Destroy(bullet, 3f);
+    }
+
+    private Vector3 GetSpreadDirection(Vector3 baseDir, float angle)
+    {
+        float x = Random.Range(-angle, angle);
+        float y = Random.Range(-angle, angle);
+
+        Quaternion spreadRot = Quaternion.LookRotation(baseDir) * Quaternion.Euler(x, y, 0);
+        return spreadRot * Vector3.forward;
     }
 
     public void Reload()
@@ -109,13 +163,9 @@ public class S_Gun : MonoBehaviour
     public void InitializeGun()
     {
         if (gunData == null) return;
-
         currentAmmo = gunData.maxAmmo;
-
         totalAmmo = gunData.maxAmmo * 2;
-
         gunState = GunState.Ready;
-
         UpdateAmmoUI();
     }
 

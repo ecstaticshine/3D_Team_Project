@@ -222,7 +222,7 @@ public class P_Player : MonoBehaviour
 
     private void AbilityGaugeSlider() { if (S_UIManager.instance != null) S_UIManager.instance.UpdateAbilitySlider(abilityGauge); }
 
-    public void OnFire(InputValue value) { if (value.isPressed && gun != null) gun.Fire(); }
+    public void OnFire(InputValue value) { if (value.isPressed && gun != null) gun.TryFire(); }
     public void OnMove(InputValue value) { moveInput = value.Get<Vector2>(); }
     public void OnLook(InputValue value) { lookInput = value.Get<Vector2>(); }
     public void OnReload(InputValue value) { gun.Reload(); }
