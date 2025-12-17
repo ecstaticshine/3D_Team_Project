@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.Pool;
 
 public class S_Gun : MonoBehaviour
 {
@@ -18,8 +19,62 @@ public class S_Gun : MonoBehaviour
     private int totalAmmo;
     private int currentAmmo;
     public GunState gunState { get; private set; }
+
+    private ObjectPool<GameObject> bulletPool;
     private float currentTimer;
     private bool isTriggerHeld = false;
+
+    private void Awake()
+    {
+        bulletPool = new ObjectPool<GameObject>(
+            createFunc: CreateBulletObject,
+            actionOnGet: OnGetBullet,
+            actionOnRelease: OnReleaseBullet,
+            actionOnDestroy: OnDestroyBullet,
+            collectionCheck: true,
+            defaultCapacity: 20,
+            maxSize: 100
+        );
+    }
+
+    private GameObject CreateBulletObject()
+    {
+        GameObject bullet = Instantiate(gunData.bulletPrefab);
+
+        if (bullet.TryGetComponent(out S_Bullet bulletScript))
+        {
+            bulletScript.SetManagedPool(bulletPool);
+        }
+        return bullet;
+    }
+
+    private void OnGetBullet(GameObject bullet)
+    {
+        if (bullet == null) return;
+
+        bullet.transform.position = firePoint.position;
+        bullet.transform.rotation = Quaternion.identity;
+
+        bullet.SetActive(true);
+
+        if (bullet.TryGetComponent(out Rigidbody rb))
+        {
+            rb.linearVelocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+        }
+    }
+
+    private void OnReleaseBullet(GameObject bullet)
+    {
+        if (bullet == null) return;
+
+        bullet.SetActive(false);
+    }
+
+    private void OnDestroyBullet(GameObject bullet)
+    {
+        Destroy(bullet);
+    }
 
     private void OnEnable()
     {
@@ -99,18 +154,20 @@ public class S_Gun : MonoBehaviour
             for (int i = 0; i < gunData.pelletCount; i++)
             {
                 Vector3 spreadDir = GetSpreadDirection(baseDirection, gunData.spreadAngle);
-                CreateBullet(spreadDir);
+                FireBulletFromPool(spreadDir);
             }
         }
         else
         {
-            CreateBullet(baseDirection);
+            FireBulletFromPool(baseDirection);
         }
     }
 
-    private void CreateBullet(Vector3 direction)
+    private void FireBulletFromPool(Vector3 direction)
     {
-        GameObject bullet = Instantiate(gunData.bulletPrefab, firePoint.position, Quaternion.identity);
+        GameObject bullet = bulletPool.Get();
+
+        if (bullet == null) return;
 
         bullet.transform.up = direction;
 
@@ -118,8 +175,6 @@ public class S_Gun : MonoBehaviour
         {
             rb.linearVelocity = direction * gunData.bulletSpeed;
         }
-
-        Destroy(bullet, 3f);
     }
 
     private Vector3 GetSpreadDirection(Vector3 baseDir, float angle)

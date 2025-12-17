@@ -119,7 +119,7 @@ public class S_Player : MonoBehaviour
         }
     }
 
-    public void OnFire(InputValue value) { if (currentGun != null) Debug.Log($"Fire 신호 받음: {value.isPressed}");  currentGun.SetTriggerPressed(value.isPressed); }
+    public void OnFire(InputValue value) { if (currentGun != null) currentGun.SetTriggerPressed(value.isPressed); }
     public void OnReload(InputValue value) { if (currentGun != null) currentGun.Reload(); }
     public void OnMove(InputValue value) { moveInput = value.Get<Vector2>(); }
     public void OnLook(InputValue value) { lookInput = value.Get<Vector2>(); }
