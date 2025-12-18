@@ -226,9 +226,9 @@ public class S_Gun : MonoBehaviour
 
     private void UpdateAmmoUI()
     {
-        if (gameObject.activeInHierarchy && S_UIManager.instance != null)
+        if (gameObject.activeInHierarchy && P_UIManager.instance != null)
         {
-            S_UIManager.instance.UpdateAmmoText(currentAmmo, totalAmmo);
+            P_UIManager.instance.UpdateAmmoText(currentAmmo, totalAmmo);
         }
     }
 
