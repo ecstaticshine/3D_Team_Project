@@ -3850,7 +3850,7 @@ GameObject:
   - component: {fileID: 5222189521968589805}
   - component: {fileID: 6014838923148933440}
   - component: {fileID: 1008869976130422374}
-  - component: {fileID: 1056772126761525415}
+  - component: {fileID: 6014838923148933441}
   m_Layer: 0
   m_Name: ShotGun
   m_TagString: Untagged
@@ -4433,22 +4433,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &1056772126761525415
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 432671786044587438}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd5b1df21e01965498fb41778f17c33d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::S_Gun
-  gunData: {fileID: 11400000, guid: a73b1649a50d0974a9bc474acd507ad8, type: 2}
-  firePoint: {fileID: 6168758574543872796}
-  cameraTransform: {fileID: 1528972980648037041}
-  gunAnimator: {fileID: 0}
 --- !u!33 &1158104542442542735
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -4977,7 +4961,7 @@ GameObject:
   - component: {fileID: 1737746219470951581}
   - component: {fileID: 6693501504727785647}
   - component: {fileID: 2526232114799753236}
-  - component: {fileID: 4615405499799532034}
+  - component: {fileID: 6693501504727785648}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -5738,22 +5722,6 @@ Transform:
   - {fileID: 8235933000300477621}
   m_Father: {fileID: 375672876748315672}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2819181615365131647
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3542051466116180710}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd5b1df21e01965498fb41778f17c33d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::S_Gun
-  gunData: {fileID: 11400000, guid: 2e234ba30ac4b9140a39325848ae05c1, type: 2}
-  firePoint: {fileID: 5782813031154434638}
-  cameraTransform: {fileID: 1528972980648037041}
-  gunAnimator: {fileID: 0}
 --- !u!4 &2832043777540644797
 Transform:
   m_ObjectHideFlags: 0
@@ -6341,7 +6309,7 @@ GameObject:
   - component: {fileID: 612768763707152966}
   - component: {fileID: 6214817602317580216}
   - component: {fileID: 8403011101829543425}
-  - component: {fileID: 2819181615365131647}
+  - component: {fileID: 8403011101829543426}
   m_Layer: 0
   m_Name: Rifle
   m_TagString: Untagged
@@ -7006,36 +6974,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &4615405499799532034
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2003981214278234970}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9195e27c77cc8424f9d2861b29b5fdff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::P_Player
-  gun: {fileID: 7893042660893978281}
-  cameraTransform: {fileID: 1528972980648037041}
-  playerBody: {fileID: 9156524267624646241}
-  walkSpeed: 5
-  crouchSpeed: 2.5
-  mouseSensitivity: 25
-  dashSpeed: 50
-  dashDuration: 0.2
-  dashCooldown: 1
-  crouchTransitionSpeed: 10
-  jumpHeight: 1.5
-  gravity: -9.81
-  isGround: 0
-  isJumping: 0
-  isDashing: 0
-  isCrouching: 0
-  isTimeSlow: 0
-  slowFactor: 0.1
 --- !u!4 &4619850956702900030
 Transform:
   m_ObjectHideFlags: 0
@@ -7859,6 +7797,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 432671786044587438}
   m_Mesh: {fileID: -2669706662169894795, guid: 8b36fb41929fc22429f0083d817b8040, type: 3}
+--- !u!114 &6014838923148933441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 432671786044587438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 117db453b428fa840939fa8f9ac10f0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Gun
+  gunData: {fileID: 11400000, guid: a9470847588ffdd40b3c454e6bc65052, type: 2}
+  firePoint: {fileID: 6168758574543872796}
+  cameraTransform: {fileID: 1528972980648037041}
+  gunAnimator: {fileID: 0}
 --- !u!1 &6077872971186179472
 GameObject:
   m_ObjectHideFlags: 0
@@ -7996,7 +7950,7 @@ GameObject:
   - component: {fileID: 8667662773771331082}
   - component: {fileID: 4336964400159896931}
   - component: {fileID: 917577662926561539}
-  - component: {fileID: 7893042660893978281}
+  - component: {fileID: 8667662773771331083}
   m_Layer: 0
   m_Name: HandGun
   m_TagString: Untagged
@@ -8241,6 +8195,36 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &6693501504727785648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2003981214278234970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b45914265ab5fe0489747bcc201c6236, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Player
+  currentGun: {fileID: 0}
+  cameraTransform: {fileID: 1528972980648037041}
+  playerBody: {fileID: 9156524267624646241}
+  moveSpeed: 5
+  crouchSpeed: 2.5
+  mouseSensitivity: 25
+  dashSpeed: 15
+  dashDuration: 0.2
+  dashCooldown: 1
+  crouchTransitionSpeed: 10
+  jumpHeight: 1.5
+  gravity: -9.81
+  isTimeSlow: 0
+  slowFactor: 0.1
+  isGround: 0
+  isJumping: 0
+  isDashing: 0
+  isCrouching: 0
 --- !u!4 &6718531690780757957
 Transform:
   m_ObjectHideFlags: 0
@@ -8770,22 +8754,6 @@ Transform:
   - {fileID: 1762605930518536562}
   m_Father: {fileID: 1666884092383183814}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7893042660893978281
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6201998415308348523}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd5b1df21e01965498fb41778f17c33d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::S_Gun
-  gunData: {fileID: 11400000, guid: c6036ba7588b4b04f8613519e334e3be, type: 2}
-  firePoint: {fileID: 2832043777540644797}
-  cameraTransform: {fileID: 1528972980648037041}
-  gunAnimator: {fileID: 0}
 --- !u!1 &7915894108966324162
 GameObject:
   m_ObjectHideFlags: 0
@@ -9030,7 +8998,7 @@ GameObject:
   - component: {fileID: 8062562971981506219}
   - component: {fileID: 7188249086865941971}
   - component: {fileID: 2444478722691001847}
-  - component: {fileID: 8720678822700446284}
+  - component: {fileID: 8213229751735397963}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -9038,6 +9006,24 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &8213229751735397963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8213229751735397962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4260f02a626571e44930becbb9fc419c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraBob
+  player: {fileID: 6693501504727785648}
+  bobSpeed: 14
+  bobAmount: 0.05
+  standHeight: 1.6
+  crouchHeight: 0.8
+  changeSpeed: 10
 --- !u!4 &8235933000300477621
 Transform:
   m_ObjectHideFlags: 0
@@ -9244,6 +9230,22 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &8403011101829543426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3542051466116180710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 117db453b428fa840939fa8f9ac10f0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Gun
+  gunData: {fileID: 11400000, guid: aeb3800fa49ada944b596115e48cdfed, type: 2}
+  firePoint: {fileID: 5782813031154434638}
+  cameraTransform: {fileID: 1528972980648037041}
+  gunAnimator: {fileID: 0}
 --- !u!1 &8438280767589098779
 GameObject:
   m_ObjectHideFlags: 0
@@ -9453,6 +9455,22 @@ Transform:
   - {fileID: 2832043777540644797}
   m_Father: {fileID: 1528972980648037041}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8667662773771331083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6201998415308348523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 117db453b428fa840939fa8f9ac10f0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Gun
+  gunData: {fileID: 11400000, guid: 72e03fa40aecfc7408cf1807973bf6eb, type: 2}
+  firePoint: {fileID: 2832043777540644797}
+  cameraTransform: {fileID: 1528972980648037041}
+  gunAnimator: {fileID: 0}
 --- !u!1 &8706168634024720182
 GameObject:
   m_ObjectHideFlags: 0
@@ -9471,24 +9489,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &8720678822700446284
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8213229751735397962}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b601c66f2406874b971369f0aa330af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::P_CameraBob
-  player: {fileID: 4615405499799532034}
-  bobSpeed: 14
-  bobAmount: 0.05
-  standHeight: 1.6
-  crouchHeight: 0.8
-  changeSpeed: 10
 --- !u!4 &8756910691568560759
 Transform:
   m_ObjectHideFlags: 0
