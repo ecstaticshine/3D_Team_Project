@@ -180,6 +180,7 @@ public class K_AIController : MonoBehaviour
         // 전투 중이 아닐 때만 Alert 진입
         if (currentState is not CombatState)
         {
+            LookAt(soundPosition);
             ChangeState(alertState);
         }
     }
