@@ -210,6 +210,12 @@ public class Player : MonoBehaviour
         }
         abilityGauge = Mathf.Clamp(abilityGauge, 0f, 100f);
         AbilityGaugeSlider();
+        // [추가] 화면 효과 업데이트 요청!
+        // 게이지가 낮으면 화면이 붉어지게 만듭니다.
+        if (P_ScreenEffectManager.instance != null)
+        {
+            P_ScreenEffectManager.instance.UpdateEffect(abilityGauge, 100f);
+        }
     }
 
     public void RestoreAbilityGauge() { abilityGauge = 100f; AbilityGaugeSlider(); }
