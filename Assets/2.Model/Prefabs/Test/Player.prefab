@@ -4099,6 +4099,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pistol(M1911)
       objectReference: {fileID: 0}
+    - target: {fileID: 1085417395900564196, guid: 136950be0ffc5874f82d86888d3361e6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8988161818803807066, guid: 136950be0ffc5874f82d86888d3361e6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.24
