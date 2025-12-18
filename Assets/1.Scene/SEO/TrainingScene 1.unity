@@ -381,6 +381,81 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!1 &184911882
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 184911883}
+  - component: {fileID: 184911885}
+  - component: {fileID: 184911884}
+  m_Layer: 5
+  m_Name: Img_Dash_Gauge
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &184911883
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 184911882}
+  m_LocalRotation: {x: 0, y: 0, z: -0.32556805, w: 0.9455186}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 4301190843454201442}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -38}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &184911884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 184911882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0.7490196, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 2c498764daf260c4ba2e45cfce187833, type: 3}
+  m_Type: 3
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 0.21
+  m_FillClockwise: 0
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &184911885
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 184911882}
+  m_CullTransparentMesh: 1
 --- !u!1 &288090559
 GameObject:
   m_ObjectHideFlags: 0
@@ -2618,7 +2693,7 @@ GameObject:
   - component: {fileID: 1017107580}
   - component: {fileID: 1017107579}
   - component: {fileID: 1017107578}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3896,7 +3971,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2130691619}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3933,7 +4008,7 @@ GameObject:
   - component: {fileID: 6860730850208006076}
   - component: {fileID: 8260349956255624604}
   m_Layer: 5
-  m_Name: Image (1)
+  m_Name: Aim
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5055,7 +5130,7 @@ GameObject:
   - component: {fileID: 1887246423938224301}
   - component: {fileID: 5558577860685153905}
   - component: {fileID: 1363797899999066461}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 9_l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5129,7 +5204,7 @@ GameObject:
   - component: {fileID: 8402021675876795239}
   - component: {fileID: 4514625340234551802}
   - component: {fileID: 9053315525324288843}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 13_l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5412,7 +5487,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7648804142807777751}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: LeftHandMount
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5611,7 +5686,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2768910935028688799}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RightHandMount
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5812,7 +5887,7 @@ GameObject:
   - component: {fileID: 2591945396367535254}
   - component: {fileID: 1288094022264842921}
   - component: {fileID: 7651460548289529843}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: HandGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5889,7 +5964,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3785838451575353762}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Gunpivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5949,7 +6024,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.74509805, g: 0.66788465, b: 0.05882353, a: 0.70980394}
+  m_Color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5993,7 +6068,7 @@ GameObject:
   - component: {fileID: 7299626204276841527}
   - component: {fileID: 1479788647876626544}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Aim
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6028,7 +6103,7 @@ GameObject:
   - component: {fileID: 5275575879139917872}
   - component: {fileID: 324499274458936796}
   - component: {fileID: 481506925966244217}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6145,7 +6220,7 @@ GameObject:
   - component: {fileID: 8367410127127404904}
   - component: {fileID: 6660800067932656276}
   - component: {fileID: 717412119487629329}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 5_l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6415,7 +6490,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1660620977679454539}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GunPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6431,7 +6506,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7372377624114458089}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ejection_Location
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6462,7 +6537,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4700870793546267661}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RightHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6572,7 +6647,7 @@ GameObject:
   - component: {fileID: 6171704709831786030}
   - component: {fileID: 2769380806935403263}
   - component: {fileID: 4537257041240098208}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 12_l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6808,7 +6883,7 @@ GameObject:
   - component: {fileID: 3961299187866433861}
   - component: {fileID: 6130215071132811487}
   - component: {fileID: 6271000113338453111}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 19_l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6843,7 +6918,7 @@ GameObject:
   - component: {fileID: 1893110926072237987}
   - component: {fileID: 21717713110835321}
   - component: {fileID: 4338899151320210523}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 2_l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6968,7 +7043,7 @@ GameObject:
   - component: {fileID: 6658703733162768166}
   - component: {fileID: 2088427589001191032}
   - component: {fileID: 5637301865790651112}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 10_l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7246,7 +7321,7 @@ GameObject:
   - component: {fileID: 1069933655720050409}
   - component: {fileID: 7989228258600967069}
   - component: {fileID: 7808607577779503183}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 16_l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7264,7 +7339,7 @@ GameObject:
   - component: {fileID: 1772221702769607796}
   - component: {fileID: 5006415919257617462}
   - component: {fileID: 8152294521702246071}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: M1911 Magazine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7312,7 +7387,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5053738514522007338}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: LeftHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7642,7 +7717,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3305047475670141581}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: CasingExit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7818,7 +7893,7 @@ GameObject:
   - component: {fileID: 3122558681852344383}
   - component: {fileID: 7152269153855613846}
   - component: {fileID: 4490852806855241923}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 23_l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8011,7 +8086,7 @@ GameObject:
   - component: {fileID: 6938728471084015330}
   - component: {fileID: 7164208125473636657}
   - component: {fileID: 7809523618278033365}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8195,7 +8270,7 @@ GameObject:
   - component: {fileID: 4964413665259868416}
   - component: {fileID: 1115840307682242490}
   - component: {fileID: 8401852982775021924}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 11_l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8265,7 +8340,7 @@ GameObject:
   - component: {fileID: 411347854286238014}
   - component: {fileID: 9213733904766897709}
   - component: {fileID: 7817073734649965573}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: M1911 Handgun_Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8342,6 +8417,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UIManager
   hpGauge: {fileID: 4398208037545531366}
   apGauge: {fileID: 2141998802348061800}
+  dashGauge: {fileID: 184911884}
   ammoText: {fileID: 109301116862917953}
 --- !u!1 &4266821311322945252
 GameObject:
@@ -8391,6 +8467,7 @@ RectTransform:
   - {fileID: 4264322178103913571}
   - {fileID: 119177089984960558}
   - {fileID: 7841315675498856794}
+  - {fileID: 184911883}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -8475,7 +8552,7 @@ GameObject:
   - component: {fileID: 4761600232077087454}
   - component: {fileID: 3561024677415487087}
   - component: {fileID: 5123830168084524312}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 6_l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8503,7 +8580,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.745283, g: 0.059763268, b: 0.059763268, a: 0.70980394}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -8773,7 +8850,7 @@ GameObject:
   - component: {fileID: 2811593474474987970}
   - component: {fileID: 6433867369869125062}
   - component: {fileID: 2417818134499004821}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9305,7 +9382,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5801598620494432644}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9644,7 +9721,7 @@ GameObject:
   - component: {fileID: 2448276664694606599}
   - component: {fileID: 6782951391081986298}
   - component: {fileID: 2875757619005853563}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 15_l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9768,7 +9845,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3222757987094735291}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9786,7 +9863,7 @@ GameObject:
   - component: {fileID: 9139614778297718094}
   - component: {fileID: 1818823073351234311}
   - component: {fileID: 394257505161766651}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 26_l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9915,7 +9992,7 @@ GameObject:
   - component: {fileID: 3272488526333171314}
   - component: {fileID: 5808939403905026026}
   - component: {fileID: 3737654447204027590}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 27_l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9933,7 +10010,7 @@ GameObject:
   - component: {fileID: 4531454562143574413}
   - component: {fileID: 3102087353056365703}
   - component: {fileID: 2933067225674861331}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 25_l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9951,7 +10028,7 @@ GameObject:
   - component: {fileID: 4504975460734176642}
   - component: {fileID: 4558786452098981240}
   - component: {fileID: 7045392039668422783}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 21_l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9983,7 +10060,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3644206440822521539}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Magazine_Location
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10362,7 +10439,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2867985280425682457}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: M1911 Magazine_Black
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10378,7 +10455,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4948500899732705026}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: LeftHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10466,7 +10543,7 @@ GameObject:
   - component: {fileID: 5752200391012541697}
   - component: {fileID: 3454880234831352922}
   - component: {fileID: 1621840595856120882}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 3_l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10602,7 +10679,7 @@ GameObject:
   - component: {fileID: 8220207965401860481}
   - component: {fileID: 2755328838432685571}
   - component: {fileID: 2938923755618430127}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 17_l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10716,7 +10793,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 13037279916404565}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GunPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10762,7 +10839,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1447913679186638385}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: parts
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10822,7 +10899,7 @@ GameObject:
   - component: {fileID: 2575566298162983752}
   - component: {fileID: 5651566272268198923}
   - component: {fileID: 7004916864771747755}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Rifle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10996,7 +11073,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5896527879808963951}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RightHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11020,7 +11097,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6818633506076452877}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Barrel_Location
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11076,7 +11153,7 @@ GameObject:
   - component: {fileID: 7399080628421695543}
   - component: {fileID: 3621697992964818977}
   - component: {fileID: 6208949182171101011}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 14_l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11204,7 +11281,7 @@ GameObject:
   - component: {fileID: 4663145065477488009}
   - component: {fileID: 2507103372167194336}
   - component: {fileID: 7402950480355592825}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: CasingExit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11286,7 +11363,7 @@ GameObject:
   - component: {fileID: 8036735747650589976}
   - component: {fileID: 636079924603231701}
   - component: {fileID: 8692500269418168138}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 22_l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11304,7 +11381,7 @@ GameObject:
   - component: {fileID: 8973075847923381386}
   - component: {fileID: 6677020337094361011}
   - component: {fileID: 1766033013093282998}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: glass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11423,7 +11500,7 @@ GameObject:
   - component: {fileID: 8939074327823592244}
   - component: {fileID: 6952042425209965407}
   - component: {fileID: 1528618887371394365}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 24_l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11441,7 +11518,7 @@ GameObject:
   - component: {fileID: 4270653643612692372}
   - component: {fileID: 6248875855433642052}
   - component: {fileID: 306548735178197555}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 20_l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11465,7 +11542,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6602319047982764735}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: CasingExit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11685,7 +11762,7 @@ GameObject:
   - component: {fileID: 28625269475916473}
   - component: {fileID: 2792381132545085692}
   - component: {fileID: 7885795769944830132}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -11874,7 +11951,7 @@ GameObject:
   - component: {fileID: 4591757537357449410}
   - component: {fileID: 2391675254905925463}
   - component: {fileID: 8148451726792488957}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ShotGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12082,7 +12159,7 @@ GameObject:
   - component: {fileID: 4500803927702114033}
   - component: {fileID: 1713213693300922826}
   - component: {fileID: 8611883962534490546}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 1_l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12266,7 +12343,7 @@ GameObject:
   - component: {fileID: 6114121295912058147}
   - component: {fileID: 5782177913326789632}
   - component: {fileID: 1706923096966360988}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Hammer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12349,7 +12426,7 @@ GameObject:
   - component: {fileID: 1035373811737092843}
   - component: {fileID: 4696586888482952612}
   - component: {fileID: 109301116862917953}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: AmmoText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12365,7 +12442,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3126082987024307128}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Gunpivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12400,7 +12477,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5338751166495087525}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BarrelLocation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12434,7 +12511,7 @@ GameObject:
   - component: {fileID: 5676749877462419348}
   - component: {fileID: 8333890827965899685}
   - component: {fileID: 8785117842482068236}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 8_l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12800,7 +12877,7 @@ GameObject:
   - component: {fileID: 7450747053506358921}
   - component: {fileID: 5472992363308190696}
   - component: {fileID: 7518107382282299154}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 4_l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12921,7 +12998,7 @@ GameObject:
   - component: {fileID: 2548503707597295203}
   - component: {fileID: 3453515899760390430}
   - component: {fileID: 594607030577862447}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 7_l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13057,7 +13134,7 @@ GameObject:
   - component: {fileID: 6548029070579426876}
   - component: {fileID: 7747012952972298030}
   - component: {fileID: 606139679850387847}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 18_l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
