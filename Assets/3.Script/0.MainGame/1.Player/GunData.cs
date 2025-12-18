@@ -28,9 +28,6 @@ public class GunData : ScriptableObject
     [Lavel("아이템 크기")]
     public Vector3 itemScale = Vector3.one;
 
-    [Lavel("총 애니메이터")]
-    public AnimatorOverrideController gunAnimation;
-
     [Lavel("총알 프리팹")]
     public GameObject bulletPrefab;
 

@@ -14,10 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GunData
   gunName: HandGun
   fireMode: 0
-  gunPrefab: {fileID: 8444252888425668051, guid: 61cbb228134feee488179c7fd42feef5, type: 3}
-  itemScale: {x: 1, y: 1, z: 1}
-  gunAnimation: {fileID: 0}
-  bulletPrefab: {fileID: 1325836922669442, guid: c63679d7cfb07c348842c52c1ee64589, type: 3}
+  gunPrefab: {fileID: 1085417395900564196, guid: 7bc379de9cb07c04c81f1505d65bbe3f, type: 3}
+  itemScale: {x: 3, y: 3, z: 3}
+  bulletPrefab: {fileID: 1325836922669442, guid: e3a80f145c0d9924b95568742467a354, type: 3}
   bulletSpeed: 50
   fireDelay: 0.5
   reloadTime: 1

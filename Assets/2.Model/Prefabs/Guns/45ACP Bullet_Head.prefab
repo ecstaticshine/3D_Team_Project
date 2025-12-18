@@ -101,6 +101,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: 45ACP Bullet_Head
       objectReference: {fileID: 0}
+    - target: {fileID: 8403992145370945202, guid: 9e0ef2cf9cfc11c46bbe7f28b272f6fb, type: 3}
+      propertyPath: m_Constraints
+      value: 112
+      objectReference: {fileID: 0}
     - target: {fileID: 8535412081993147290, guid: 9e0ef2cf9cfc11c46bbe7f28b272f6fb, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -157,6 +161,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9100654289512178833, guid: 9e0ef2cf9cfc11c46bbe7f28b272f6fb, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -166,7 +174,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 3625037896966406280, guid: 9e0ef2cf9cfc11c46bbe7f28b272f6fb, type: 3}
       insertIndex: -1
-      addedObject: {fileID: -1826750545042362749}
+      addedObject: {fileID: -434647002241047688}
   m_SourcePrefab: {fileID: 100100000, guid: 9e0ef2cf9cfc11c46bbe7f28b272f6fb, type: 3}
 --- !u!4 &1895300901454820957 stripped
 Transform:
@@ -178,7 +186,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3625037896966406280, guid: 9e0ef2cf9cfc11c46bbe7f28b272f6fb, type: 3}
   m_PrefabInstance: {fileID: 7799836738284049863}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &-1826750545042362749
+--- !u!114 &-434647002241047688
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -187,8 +195,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6804990658058999119}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bae85f0b8d9274844a5f5fef166121d9, type: 3}
+  m_Script: {fileID: 11500000, guid: 5229a18669b24684caaa7513a058ba0c, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::S_Bullet
-  bodyDamage: 50
-  headDamage: 100
+  m_EditorClassIdentifier: Assembly-CSharp::Bullet
+  baseDamage: 50

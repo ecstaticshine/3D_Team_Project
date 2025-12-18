@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     [SerializeField] public Gun currentGun;
     [SerializeField] private Transform cameraTransform;
     [SerializeField] private Transform playerBody;
-    private Gun[] allGuns;
+    [SerializeField] private Gun[] allGuns;
 
     [Header("이동 설정")]
     [SerializeField] private float moveSpeed = 5.0f;

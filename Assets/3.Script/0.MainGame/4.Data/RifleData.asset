@@ -14,10 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GunData
   gunName: Rifle
   fireMode: 1
-  gunPrefab: {fileID: 1719131515888008, guid: 7d5c4c4edd38ff546b48715fb07554c3, type: 3}
-  itemScale: {x: 2, y: 2, z: 2}
-  gunAnimation: {fileID: 0}
-  bulletPrefab: {fileID: 1325836922669442, guid: c63679d7cfb07c348842c52c1ee64589, type: 3}
+  gunPrefab: {fileID: 1610698978909566985, guid: 886c09cd81d2afb4ebcdabf5aa12ed23, type: 3}
+  itemScale: {x: 15, y: 15, z: 15}
+  bulletPrefab: {fileID: 1325836922669442, guid: e3a80f145c0d9924b95568742467a354, type: 3}
   bulletSpeed: 50
   fireDelay: 0.1
   reloadTime: 2

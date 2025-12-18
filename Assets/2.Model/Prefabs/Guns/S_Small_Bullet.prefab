@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 23935537751192922}
   - component: {fileID: 957002476072741415}
   - component: {fileID: 906136825173632714}
-  - component: {fileID: 144618772689569455}
+  - component: {fileID: 9076282379640924770}
   m_Layer: 0
   m_Name: S_Small_Bullet
   m_TagString: Untagged
@@ -141,7 +141,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.010220757, y: 0.029011995, z: 0.01022472}
   m_Center: {x: -2.3283064e-10, y: 0.0015156623, z: 0.00000015762635}
---- !u!114 &144618772689569455
+--- !u!114 &9076282379640924770
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -150,9 +150,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1325836922669442}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bae85f0b8d9274844a5f5fef166121d9, type: 3}
+  m_Script: {fileID: 11500000, guid: 5229a18669b24684caaa7513a058ba0c, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::S_Bullet
+  m_EditorClassIdentifier: Assembly-CSharp::Bullet
+  baseDamage: 50
 --- !u!1 &5914827968627979159
 GameObject:
   m_ObjectHideFlags: 0

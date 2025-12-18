@@ -6,8 +6,8 @@ public class J_AIShooter : MonoBehaviour
     public enum GunState { Ready, Empty, Reloading }
 
     [Header("설정")]
-    [SerializeField] private S_GunData gunData;
-    public S_GunData currentGunData => gunData;
+    [SerializeField] private GunData gunData;
+    public GunData currentGunData => gunData;
 
     [Header("연결")]
     [SerializeField] private Transform firePoint;
@@ -70,7 +70,7 @@ public class J_AIShooter : MonoBehaviour
         Vector3 targetPoint = GetAimTargetPoint();
         Vector3 baseDirection = (targetPoint - firePoint.position).normalized;
 
-        if (gunData.fireMode == FireMode.Shotgun)
+        if (gunData.fireMode == GunFireMode.Shotgun)
         {
             for (int i = 0; i < gunData.pelletCount; i++)
             {

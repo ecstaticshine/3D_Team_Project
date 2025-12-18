@@ -73,9 +73,11 @@ GameObject:
   - component: {fileID: 5599115863582868309}
   - component: {fileID: 3265997567120015272}
   - component: {fileID: 6111968600939635947}
-  - component: {fileID: 4107926613268509608}
+  - component: {fileID: -7933662785073931646}
+  - component: {fileID: -1283062875201007779}
+  - component: {fileID: 5833245289444325795}
   m_Layer: 0
-  m_Name: AK47
+  m_Name: ItemAK47
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -89,7 +91,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1610698978909566985}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0.007, y: 1.36, z: 1.131}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 0
@@ -101,7 +103,7 @@ Transform:
   - {fileID: 4430171010096270342}
   - {fileID: 6535232969395608878}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!33 &3265997567120015272
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -158,7 +160,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &4107926613268509608
+--- !u!114 &-7933662785073931646
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -167,18 +169,42 @@ MonoBehaviour:
   m_GameObject: {fileID: 1610698978909566985}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b850efc28de70724188449f9e3967ff0, type: 3}
+  m_Script: {fileID: 11500000, guid: 10ee05227e7e8934d8ad962fe0f98b33, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Shooter
-  bulletPrefab: {fileID: 6804990658058999119, guid: 266377f624120534a8fc4f2c7ea40255, type: 3}
-  casingPrefab: {fileID: 4362657251999731927, guid: 650cf33e4d11eae44b2d452a6479edd8, type: 3}
-  muzzleFlashPrefab: {fileID: 1782395880954752, guid: 3dd9cf2e209c504448f1c4c6835675cf, type: 3}
-  barrelLocation: {fileID: 6617377445135023640}
-  casingExitLocation: {fileID: 6535232969395608878}
-  destroyTimer: 2
-  shotPower: 500
-  ejectPower: 150
-  CasingExitforce: 1
+  m_EditorClassIdentifier: Assembly-CSharp::Item
+--- !u!114 &-1283062875201007779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1610698978909566985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e56531f29b8eab74a868b7d89c984279, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Item_Gun
+--- !u!65 &5833245289444325795
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1610698978909566985}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.0070510125, y: 0.08785579, z: 0.02598591}
+  m_Center: {x: -0.0012836804, y: 0.007825277, z: -0.0040965206}
 --- !u!1 &2810184704093274995
 GameObject:
   m_ObjectHideFlags: 0
