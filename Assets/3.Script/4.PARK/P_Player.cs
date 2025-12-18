@@ -1,14 +1,14 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
-using System.Collections; // IEnumerator 사용을 위해 필수
-
+using System.Collections;
 
 public class P_Player : MonoBehaviour
 {
     [Header("연결")]
     [SerializeField] public S_Gun gun;
     [SerializeField] private Transform cameraTransform;
+    [SerializeField] private Transform playerBody;
 
     [Header("이동 설정")]
     [SerializeField] private float walkSpeed = 5.0f;
@@ -16,14 +16,20 @@ public class P_Player : MonoBehaviour
     [SerializeField] private float mouseSensitivity = 25.0f;
 
     [Header("대시(순간이동) 설정")]
-    [SerializeField] private float dashSpeed = 50.0f;      // 순간이동처럼 보일 만큼 빠른 속도
-    [SerializeField] private float dashDuration = 0.2f;    // 이동 지속 시간 (짧게)
-    [SerializeField] private float dashCooldown = 1.0f;    // 재사용 대기시간
+    [SerializeField] private float dashSpeed = 50.0f;
+    [SerializeField] private float dashDuration = 0.2f;
+    [SerializeField] private float dashCooldown = 1.0f;
 
-    [Header("앉기 설정")]
-    [SerializeField] private float standHeight = 2.0f;
-    [SerializeField] private float crouchHeight = 1.0f;
+    [Header("앉기 설정 (물리 & 비주얼)")]
     [SerializeField] private float crouchTransitionSpeed = 10f;
+
+    // [유니] 서 있을 때 설정
+    private float standHeight = 2.0f;
+    private float standBodyY = 1.0f;
+
+    // [유니] 앉았을 때 설정
+    private float crouchHeight = 1.0f;
+    private float crouchBodyY = 0.5f;
 
     [Header("점프 & 중력 설정")]
     [SerializeField] private float jumpHeight = 1.5f;
@@ -32,7 +38,7 @@ public class P_Player : MonoBehaviour
     [Header("상태 확인용")]
     [SerializeField] public bool isGround;
     [SerializeField] public bool isJumping = false;
-    [SerializeField] public bool isDashing = false; // 대시 중인지 확인
+    [SerializeField] public bool isDashing = false;
     [SerializeField] public bool isCrouching = false;
 
     [Header("시간 조종 설정")]
@@ -47,7 +53,7 @@ public class P_Player : MonoBehaviour
     private float xRotation = 0f;
     private float recoverTimer = 0f;
     private float currentSpeed;
-    private float lastDashTime = -10f; // 마지막 대시 시간
+    private float lastDashTime = -10f;
 
     void Start()
     {
@@ -55,7 +61,9 @@ public class P_Player : MonoBehaviour
         Cursor.visible = false;
 
         TryGetComponent(out characterController);
+
         characterController.height = standHeight;
+        characterController.center = Vector3.up * (standHeight * 0.5f);
         currentSpeed = walkSpeed;
 
         AbilityGaugeSlider();
@@ -63,7 +71,6 @@ public class P_Player : MonoBehaviour
 
     void Update()
     {
-        // 대시 중일 때는 일반 이동 로직을 수행하지 않음 (대시 코루틴이 이동 제어)
         if (isDashing) return;
 
         isGround = characterController.isGrounded;
@@ -72,25 +79,40 @@ public class P_Player : MonoBehaviour
         HandleTimeInput();
         HandleCrouch();
 
-        // 바닥 체크 및 중력 초기화
         if (isGround && velocity.y < 0)
         {
             isJumping = false;
             velocity.y = -2f;
         }
 
-        // 일반 이동 수행
         MovePlayer();
-        Look(); // 시야 회전은 대시 중에도 가능하게 할지, 막을지 선택 가능 (여기선 둠)
+        Look();
     }
 
-    // --- 대시 핵심 로직 ---
+    private void HandleCrouch()
+    {
+        float targetHeight = isCrouching ? crouchHeight : standHeight;
+        float targetBodyY = isCrouching ? crouchBodyY : standBodyY;
+        Vector3 targetBodyScale = isCrouching ? new Vector3(1, 0.5f, 1) : Vector3.one;
+
+        float speed = Time.unscaledDeltaTime * crouchTransitionSpeed;
+
+        characterController.height = Mathf.Lerp(characterController.height, targetHeight, speed);
+
+        characterController.center = Vector3.up * (characterController.height * 0.5f);
+
+        if (playerBody != null)
+        {
+            playerBody.localScale = Vector3.Lerp(playerBody.localScale, targetBodyScale, speed);
+
+            Vector3 bodyPos = playerBody.localPosition;
+            bodyPos.y = Mathf.Lerp(bodyPos.y, targetBodyY, speed);
+            playerBody.localPosition = bodyPos;
+        }
+    }
+
     public void OnDash(InputValue value)
     {
-        // 1. 키를 눌렀고(isPressed)
-        // 2. 대시 중이 아니며(!isDashing)
-        // 3. 쿨타임이 지났고
-        // 4. 앉은 상태가 아닐 때 발동
         if (value.isPressed && !isDashing && !isCrouching && Time.unscaledTime >= lastDashTime + dashCooldown)
         {
             StartCoroutine(DashRoutine());
@@ -100,95 +122,41 @@ public class P_Player : MonoBehaviour
     IEnumerator DashRoutine()
     {
         isDashing = true;
-        lastDashTime = Time.unscaledTime; // 쿨타임 갱신
+        lastDashTime = Time.unscaledTime;
 
-        // 1. 대시 방향 계산
-        // 입력이 있으면 입력 방향으로, 없으면 카메라가 보는 방향으로
         Vector3 dashDir;
         if (moveInput.magnitude > 0)
-        {
             dashDir = transform.right * moveInput.x + transform.forward * moveInput.y;
-        }
         else
-        {
             dashDir = transform.forward;
-        }
-        dashDir.Normalize(); // 방향 벡터 정규화
 
-        // 2. 대시 실행 (지정된 시간 동안 고속 이동)
+        dashDir.Normalize();
+
         float startTime = Time.unscaledTime;
 
         while (Time.unscaledTime < startTime + dashDuration)
         {
-            // 중력 영향 없이 수평으로만 빠르게 이동
-            // Time.unscaledDeltaTime을 사용하여 시간이 느려져도 대시는 빠르게(정상 속도 느낌)
             characterController.Move(dashDir * dashSpeed * Time.unscaledDeltaTime);
-
-            // 대시 중에도 시야 회전은 가능하게 (원치 않으면 Update에서 Look 호출 제어)
             Look();
-
-            yield return null; // 다음 프레임까지 대기
+            yield return null;
         }
 
-        // 3. 종료
         isDashing = false;
-
-        // 대시가 끝난 후 관성을 없애려면 velocity 초기화 (선택 사항)
         velocity = Vector3.zero;
     }
-    // -----------------------
 
     private void MovePlayer()
     {
-        // 앉기 상태에 따른 속도 설정
         currentSpeed = isCrouching ? crouchSpeed : walkSpeed;
 
         Vector3 move = transform.right * moveInput.x + transform.forward * moveInput.y;
         Vector3 finalMove = move * currentSpeed;
 
-        // 중력 적용
         velocity.y += gravity * Time.unscaledDeltaTime;
 
         Vector3 finalVelocity = finalMove + velocity;
         characterController.Move(finalVelocity * Time.unscaledDeltaTime);
     }
-
-    private void HandleCrouch()
-    {
-
-        float targetHeight = isCrouching ? crouchHeight : standHeight;
-
-
-        if (isCrouching)
-        {
-            if (Mathf.Abs(characterController.height - targetHeight) > 0.01f)
-            {
-                characterController.height = Mathf.Lerp(characterController.height, targetHeight, Time.unscaledDeltaTime * crouchTransitionSpeed);
-
-                characterController.center = Vector3.up * (characterController.height / 2f);
-            }
-            
-        }
-        else
-        {
-            characterController.height = targetHeight;
-            characterController.center = Vector3.zero;
-            gameObject.transform.position = Vector3.up * (characterController.height / 2f);
-        }
-    }
-
-    // ... (나머지 Look, HandleTimeInput, HandleAbilityGauge 등의 함수는 기존과 동일) ...
-
-    //public void OnCrouch(InputValue value)
-    //{
-    //    isCrouching = value.isPressed;
-    //    Debug.Log($"Crouch State: {isCrouching}");
-    //}
-
-    // ... (Input System의 나머지 함수들 동일) ...
-
-    // 편의를 위해 중복된 나머지 함수들은 생략했습니다. 
-    // 기존 코드의 Look, HandleTimeInput, HandleAbilityGauge, OnFire 등은 그대로 유지하십시오.
 
     private void Look()
     {
