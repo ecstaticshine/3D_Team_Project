@@ -639,7 +639,7 @@ Transform:
   m_GameObject: {fileID: 339839425}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.77, y: 2.19295, z: 2.35435}
+  m_LocalPosition: {x: -9.77, y: 0.37, z: 2.35435}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -716,7 +716,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::P_Player
   gun: {fileID: 0}
   cameraTransform: {fileID: 1526165904467392642}
-  playerBody: {fileID: 6932237005613934396}
+  playerBody: {fileID: 0}
   walkSpeed: 5
   crouchSpeed: 2.5
   mouseSensitivity: 25
@@ -3555,6 +3555,55 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::S_HitBox
   damageMultiplier: 1
+--- !u!1 &1159832829
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1159832831}
+  - component: {fileID: 1159832830}
+  m_Layer: 7
+  m_Name: PostProcessing
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1159832830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1159832829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Core.Runtime::UnityEngine.Rendering.Volume
+  m_IsGlobal: 1
+  priority: 0
+  blendDistance: 0
+  weight: 1
+  sharedProfile: {fileID: 11400000, guid: 2c53f1273f4bd8f4da56c2510f4c2e9f, type: 2}
+--- !u!4 &1159832831
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1159832829}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -5.413553, y: 0.4349153, z: 7.707054}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1173010665
 GameObject:
   m_ObjectHideFlags: 0
@@ -6674,11 +6723,11 @@ MonoBehaviour:
   m_RendererIndex: -1
   m_VolumeLayerMask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 128
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
-  m_Antialiasing: 0
+  m_RenderPostProcessing: 1
+  m_Antialiasing: 1
   m_AntialiasingQuality: 2
   m_StopNaN: 0
   m_Dithering: 0
@@ -6714,7 +6763,7 @@ MonoBehaviour:
   bobSpeed: 14
   bobAmount: 0.05
   standHeight: 1.6
-  crouchHeight: 0
+  crouchHeight: 0.8
   changeSpeed: 10
 --- !u!1 &8378635027679686961
 GameObject:
@@ -6837,3 +6886,4 @@ SceneRoots:
   - {fileID: 418846591}
   - {fileID: 784027704}
   - {fileID: 686742252}
+  - {fileID: 1159832831}
