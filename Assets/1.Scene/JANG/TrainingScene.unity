@@ -1938,7 +1938,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AudioManager
   BGM: []
   SFX:
-  - audioClipName: Fire
+  - audioClipName: PistolSound
     audioClip: {fileID: 8300000, guid: 6aa8d76a39198e540994691eb8b4c86a, type: 3}
   BGMPlayer: {fileID: 1613035569}
   SFXPlayer:
@@ -2620,9 +2620,10 @@ GameObject:
   - component: {fileID: 2248036051409081193}
   - component: {fileID: 4546509434985707358}
   - component: {fileID: 961404814911831855}
+  - component: {fileID: 8895164610128877479}
   m_Layer: 0
   m_Name: Insurgent_02
-  m_TagString: Untagged
+  m_TagString: Target
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8020,7 +8021,7 @@ Transform:
   m_GameObject: {fileID: 11241896720977674}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -60.9, y: 0, z: 19.6}
+  m_LocalPosition: {x: 5.2, y: 2, z: -56.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8030,6 +8031,21 @@ Transform:
   - {fileID: 4873431926521771323}
   m_Father: {fileID: 6850856770541213482}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8895164610128877479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 11241896720977674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34b81122759767a48be32524bd8d9a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::S_Enemy
+  maxHp: 100
+  enemyGunData: {fileID: 11400000, guid: c6036ba7588b4b04f8613519e334e3be, type: 2}
+  medicinePrefab: {fileID: 8444252888425668051, guid: e64aa2f6cee491b41903d4c402619039, type: 3}
 --- !u!23 &8898755469777356542
 MeshRenderer:
   m_ObjectHideFlags: 0

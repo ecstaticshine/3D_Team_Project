@@ -60,7 +60,7 @@ public class J_AIShooter : MonoBehaviour
         currentAmmo--;
 
         if (gunAnimator != null) gunAnimator.SetTrigger("Fire");
-        //AudioManager.instance.PlaySFX(gunData.fireSoundName);
+        AudioManager.instance.PlaySFX(gunData.fireSoundName);
 
         ProcessShooting();
     }
