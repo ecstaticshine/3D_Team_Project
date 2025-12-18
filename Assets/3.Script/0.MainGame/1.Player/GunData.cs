@@ -61,6 +61,9 @@ public class GunData : ScriptableObject
     [Lavel("발사 소리 이름")]
     public string fireSoundName;
 
+    [Lavel("타격 이펙트")]
+    public GameObject hitEffectPrefab;
+
     //[S_Lavel("발사 이펙트")]
     //public ? effect;
 }

@@ -25,3 +25,4 @@ MonoBehaviour:
   pelletCount: 5
   spreadAngle: 15
   fireSoundName: PistolSound
+  hitEffectPrefab: {fileID: 7226192251770906371, guid: 0a1453ce133da5a4bb49e3d346332381, type: 3}

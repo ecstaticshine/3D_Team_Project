@@ -2836,7 +2836,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Gun
   gunData: {fileID: 11400000, guid: a9470847588ffdd40b3c454e6bc65052, type: 2}
   firePoint: {fileID: 168444277}
-  cameraTransform: {fileID: 0}
+  cameraTransform: {fileID: 2928115258009904778}
   gunAnimator: {fileID: 0}
 --- !u!1 &1157896023
 GameObject:
@@ -3960,7 +3960,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Gun
   gunData: {fileID: 11400000, guid: aeb3800fa49ada944b596115e48cdfed, type: 2}
   firePoint: {fileID: 2132050719}
-  cameraTransform: {fileID: 0}
+  cameraTransform: {fileID: 2928115258009904778}
   gunAnimator: {fileID: 0}
 --- !u!1 &1941077420
 GameObject:
@@ -5894,6 +5894,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3897499222530896114}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &2221512573455362229
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8438280767589098779}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1, y: 3.36581, z: -78.06043}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2232221491776080041
 GameObject:
   m_ObjectHideFlags: 0
@@ -5934,7 +5949,7 @@ MonoBehaviour:
   timeScaleMultiplier: 1
   baseAgentSpeed: 0
   viewDistance: 20
-  viewAngle: 90
+  viewAngle: 150
   obstacleMask:
     serializedVersion: 2
     m_Bits: 0
@@ -6232,6 +6247,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &2671874144882818382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8438280767589098779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Core.Runtime::UnityEngine.Rendering.Volume
+  m_IsGlobal: 1
+  priority: 0
+  blendDistance: 0
+  weight: 1
+  sharedProfile: {fileID: 11400000, guid: 2c53f1273f4bd8f4da56c2510f4c2e9f, type: 2}
 --- !u!1 &2679943779441268488
 GameObject:
   m_ObjectHideFlags: 0
@@ -6478,11 +6510,11 @@ MonoBehaviour:
   m_RendererIndex: -1
   m_VolumeLayerMask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 129
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
-  m_Antialiasing: 0
+  m_RenderPostProcessing: 1
+  m_Antialiasing: 1
   m_AntialiasingQuality: 2
   m_StopNaN: 0
   m_Dithering: 0
@@ -9784,6 +9816,23 @@ Transform:
   - {fileID: 3743118665988138105}
   m_Father: {fileID: 5907509967488789725}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8438280767589098779
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2221512573455362229}
+  - component: {fileID: 2671874144882818382}
+  m_Layer: 7
+  m_Name: PostProcessing
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &8442548260284411487
 Transform:
   m_ObjectHideFlags: 0
@@ -10289,3 +10338,4 @@ SceneRoots:
   - {fileID: 1157896026}
   - {fileID: 1487066939}
   - {fileID: 4301190843454201442}
+  - {fileID: 2221512573455362229}
