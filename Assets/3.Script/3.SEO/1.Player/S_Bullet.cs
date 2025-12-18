@@ -11,7 +11,12 @@ public class S_Bullet : MonoBehaviour
     private ObjectPool<GameObject> bulletManagedPool;
     private TrailRenderer trailEffect;
     private bool isReleased = false;
+    private GameObject hitEffectPrefab; // 이펙트 저장 변수
 
+    public void SetHitEffect(GameObject effect)
+    {
+        hitEffectPrefab = effect;
+    }
     public void SetManagedPool(ObjectPool<GameObject> pool)
     {
         bulletManagedPool = pool;
@@ -67,6 +72,8 @@ public class S_Bullet : MonoBehaviour
             }
 
             enemy.TakeDamage(finalDamage);
+            // [핵심] 피 생성 (위치: 맞은 곳, 회전: 총알의 반대 방향)
+            SpawnHitEffect(transform.position, -transform.forward);
         }
         else
         {
@@ -74,6 +81,18 @@ public class S_Bullet : MonoBehaviour
         }
 
         ReturnPool();
+    }
+    // [핵심] 이펙트 생성 함수
+    private void SpawnHitEffect(Vector3 position, Vector3 direction)
+    {
+        if (hitEffectPrefab == null) return;
+
+        // Quaternion.LookRotation(direction): 해당 방향을 바라보는 회전값을 만듭니다.
+        // direction에 -transform.forward(총알 반대)를 넣었으니, 사수 쪽을 보게 됩니다.
+        Quaternion rot = Quaternion.LookRotation(direction);
+
+        GameObject vfx = Instantiate(hitEffectPrefab, position, rot);
+        Destroy(vfx, 2.0f); // 2초 뒤 삭제
     }
 
     private void ReturnPool()

@@ -62,6 +62,12 @@ public class S_Gun : MonoBehaviour
             rb.linearVelocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
         }
+        // [추가] 총알에게 "너는 이 피 이펙트를 써라"라고 알려줌
+        if (bullet.TryGetComponent(out S_Bullet bulletScript))
+        {
+            bulletScript.SetManagedPool(bulletPool); // 기존 코드
+            bulletScript.SetHitEffect(gunData.hitEffectPrefab); // [여기 추가!]
+        }
     }
 
     private void OnReleaseBullet(GameObject bullet)

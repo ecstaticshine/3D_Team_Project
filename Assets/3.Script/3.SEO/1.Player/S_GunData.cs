@@ -61,6 +61,9 @@ public class S_GunData : ScriptableObject
     [S_Lavel("발사 소리 이름")]
     public string fireSoundName;
 
+    // [추가] 여기에 아까 만든 피 프리팹을 넣을 겁니다.
+    [S_Lavel("타격 이펙트")]
+    public GameObject hitEffectPrefab;
     //[S_Lavel("발사 이펙트")]
     //public ? effect;
 }
