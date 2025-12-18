@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.Pool;
 
-public class S_Gun : MonoBehaviour
+public class F_Gun : MonoBehaviour
 {
     public enum GunState { Ready, Empty, Reloading }
 
@@ -62,7 +62,7 @@ public class S_Gun : MonoBehaviour
             rb.linearVelocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
         }
-        
+
         if (bullet.TryGetComponent(out S_Bullet bulletScript))
         {
             bulletScript.SetManagedPool(bulletPool);

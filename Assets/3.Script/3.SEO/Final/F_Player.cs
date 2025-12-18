@@ -4,13 +4,13 @@ using UnityEngine.InputSystem;
 using System.Collections;
 using System.Collections.Generic;
 
-public class Player : MonoBehaviour
+public class F_Player : MonoBehaviour
 {
     [Header("무기 및 연결")]
-    [SerializeField] public Gun currentGun;
+    [SerializeField] public S_Gun currentGun;
     [SerializeField] private Transform cameraTransform;
     [SerializeField] private Transform playerBody;
-    private Gun[] allGuns;
+    private S_Gun[] allGuns;
 
     [Header("이동 설정")]
     [SerializeField] private float moveSpeed = 5.0f;
@@ -33,12 +33,12 @@ public class Player : MonoBehaviour
     [SerializeField] private float jumpHeight = 1.5f;
     [SerializeField] private float gravity = -9.81f;
 
-    [Header("시간 조종 설정")]
+    [Header("능력 설정")]
     [SerializeField] private bool isTimeSlow = false;
     [SerializeField] private float slowFactor = 0.1f;
     private float abilityGauge = 100f;
 
-    [Header("상태 확인")]
+    [Header("상태")]
     [SerializeField] public bool isGround;
     [SerializeField] public bool isJumping = false;
     [SerializeField] public bool isDashing = false;
@@ -68,7 +68,7 @@ public class Player : MonoBehaviour
     {
         AbilityGaugeSlider();
 
-        allGuns = GetComponentsInChildren<Gun>(true);
+        allGuns = GetComponentsInChildren<S_Gun>(true);
         foreach (var gun in allGuns)
         {
             if (gun.gameObject.activeSelf)
@@ -112,6 +112,40 @@ public class Player : MonoBehaviour
         characterController.Move(finalVelocity * Time.unscaledDeltaTime);
     }
 
+    public void OnDash(InputValue value)
+    {
+        if (value.isPressed && !isDashing && !isCrouching && !isJumping && Time.unscaledTime >= lastDashTime + dashCooldown)
+        {
+            StartCoroutine(DashRoutine());
+        }
+    }
+
+    IEnumerator DashRoutine()
+    {
+        isDashing = true;
+        lastDashTime = Time.unscaledTime;
+
+        Vector3 dashDir;
+        if (moveInput.magnitude > 0)
+            dashDir = transform.right * moveInput.x + transform.forward * moveInput.y;
+        else
+            dashDir = transform.forward;
+
+        dashDir.Normalize();
+
+        float startTime = Time.unscaledTime;
+
+        while (Time.unscaledTime < startTime + dashDuration)
+        {
+            characterController.Move(dashDir * dashSpeed * Time.unscaledDeltaTime);
+            Look();
+            yield return null;
+        }
+
+        isDashing = false;
+        velocity = Vector3.zero;
+    }
+
     private void HandleCrouch()
     {
         float targetHeight = isCrouching ? crouchHeight : standHeight;
@@ -132,52 +166,44 @@ public class Player : MonoBehaviour
             playerBody.localPosition = bodyPos;
         }
     }
-
-    public void OnDash(InputValue value)
-    {
-        if (value.isPressed && !isDashing && !isCrouching && isGround && Time.unscaledTime >= lastDashTime + dashCooldown)
-        {
-            StartCoroutine(DashRoutine());
-        }
+    public void OnCrouch(InputValue value) 
+    { 
+        if(!isJumping && !isCrouching && !isDashing) isCrouching = value.isPressed; 
     }
 
-    IEnumerator DashRoutine()
+    public void OnFire(InputValue value)
     {
-        isDashing = true;
-        lastDashTime = Time.unscaledTime;
-
-        Vector3 dashDir = (moveInput.magnitude > 0) ?
-            (transform.right * moveInput.x + transform.forward * moveInput.y) : transform.forward;
-
-        dashDir.Normalize();
-
-        float startTime = Time.unscaledTime;
-        while (Time.unscaledTime < startTime + dashDuration)
-        {
-            characterController.Move(dashDir * dashSpeed * Time.unscaledDeltaTime);
-            Look();
-            yield return null;
-        }
-
-        isDashing = false;
-        velocity = Vector3.zero;
+        if (currentGun != null) currentGun.SetTriggerPressed(value.isPressed);
     }
-
-    public void OnCrouch(InputValue value)
-    {
-        if (!isJumping && !isDashing) isCrouching = value.isPressed;
-    }
-
-    public void OnFire(InputValue value) { if (currentGun != null) currentGun.SetTriggerPressed(value.isPressed); }
     public void OnReload(InputValue value) { if (currentGun != null) currentGun.Reload(); }
-    public void OnMove(InputValue value) { moveInput = value.Get<Vector2>(); }
-    public void OnLook(InputValue value) { lookInput = value.Get<Vector2>(); }
-    public void OnJump(InputValue value)
+
+    public void HandleGunPickup(S_GunData newGunData)
     {
-        if (isGround && !isJumping && !isCrouching)
+        S_Gun targetGun = null;
+
+        foreach (var gun in allGuns)
         {
-            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-            isJumping = true;
+            if (gun.currentGunData == newGunData)
+            {
+                targetGun = gun;
+                break;
+            }
+        }
+
+        if (targetGun == null) return;
+
+        if (currentGun == targetGun)
+        {
+            currentGun.AddAmmo(newGunData.maxAmmo);
+        }
+        else
+        {
+            if (currentGun != null)
+                currentGun.gameObject.SetActive(false);
+
+            targetGun.InitializeGun();
+            targetGun.gameObject.SetActive(true);
+            currentGun = targetGun;
         }
     }
 
@@ -190,8 +216,16 @@ public class Player : MonoBehaviour
     private void ToggleTime()
     {
         isTimeSlow = !isTimeSlow;
-        Time.timeScale = isTimeSlow ? slowFactor : 1.0f;
-        Time.fixedDeltaTime = 0.02f * Time.timeScale;
+        if (isTimeSlow)
+        {
+            Time.timeScale = slowFactor;
+            Time.fixedDeltaTime = 0.02f * Time.timeScale;
+        }
+        else
+        {
+            Time.timeScale = 1.0f;
+            Time.fixedDeltaTime = 0.02f;
+        }
     }
 
     private void HandleAbilityGauge()
@@ -206,43 +240,31 @@ public class Player : MonoBehaviour
         {
             recoverTimer += Time.unscaledDeltaTime;
             if (AudioManager.instance != null) AudioManager.instance.PlayOriginal();
-            if (recoverTimer >= 3.0f) abilityGauge += 100f * Time.unscaledDeltaTime;
+
+            if (recoverTimer >= 3.0f)
+            {
+                abilityGauge += 100f * Time.unscaledDeltaTime;
+            }
         }
         abilityGauge = Mathf.Clamp(abilityGauge, 0f, 100f);
         AbilityGaugeSlider();
     }
 
-    public void RestoreAbilityGauge() { abilityGauge = 100f; AbilityGaugeSlider(); }
-
-    private void AbilityGaugeSlider() { if (UIManager.instance != null) UIManager.instance.UpdateAbilitySlider(abilityGauge); }
-
-    public void HandleGunPickup(GunData newGunData)
+    public void RestoreAbilityGauge()
     {
-        Gun targetGun = null;
-        foreach (var gun in allGuns)
-        {
-            if (gun.currentGunData == newGunData) { targetGun = gun; break; }
-        }
-
-        if (targetGun == null) return;
-
-        if (currentGun == targetGun) currentGun.AddAmmo(newGunData.maxAmmo);
-        else
-        {
-            if (currentGun != null) currentGun.gameObject.SetActive(false);
-            targetGun.InitializeGun();
-            targetGun.gameObject.SetActive(true);
-            currentGun = targetGun;
-        }
+        abilityGauge = 100f;
+        AbilityGaugeSlider();
     }
 
     private void Look()
     {
         if (cameraTransform == null) return;
-        xRotation -= lookInput.y * mouseSensitivity * Time.unscaledDeltaTime;
+        float mouseX = lookInput.x * mouseSensitivity * Time.unscaledDeltaTime;
+        float mouseY = lookInput.y * mouseSensitivity * Time.unscaledDeltaTime;
+        xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
         cameraTransform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
-        transform.Rotate(Vector3.up * lookInput.x * mouseSensitivity * Time.unscaledDeltaTime);
+        transform.Rotate(Vector3.up * mouseX);
     }
 
     private void OnApplicationFocus(bool hasFocus)
@@ -251,6 +273,22 @@ public class Player : MonoBehaviour
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
+        }
+    }
+
+    private void AbilityGaugeSlider()
+    {
+        if (S_UIManager.instance != null) S_UIManager.instance.UpdateAbilitySlider(abilityGauge);
+    }
+
+    public void OnMove(InputValue value) { moveInput = value.Get<Vector2>(); }
+    public void OnLook(InputValue value) { lookInput = value.Get<Vector2>(); }
+    public void OnJump(InputValue value)
+    {
+        if (isGround && !isJumping && !isCrouching)
+        {
+            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            isJumping = true;
         }
     }
 }

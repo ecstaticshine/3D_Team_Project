@@ -63,11 +63,10 @@ public class Gun : MonoBehaviour
             rb.angularVelocity = Vector3.zero;
         }
 
-        // [추가] 총알 -> 피 이펙트
         if (bullet.TryGetComponent(out Bullet bulletScript))
         {
-            bulletScript.SetManagedPool(bulletPool); // 기존 코드
-            bulletScript.SetHitEffect(gunData.hitEffectPrefab); // [여기 추가!]
+            bulletScript.SetManagedPool(bulletPool);
+            bulletScript.SetHitEffect(gunData.hitEffectPrefab);
         }
     }
 

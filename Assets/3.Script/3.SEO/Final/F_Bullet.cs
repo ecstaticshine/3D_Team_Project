@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
 
-public class Bullet : MonoBehaviour
+public class F_Bullet : MonoBehaviour
 {
     [SerializeField] private float baseDamage = 50f;
 
@@ -17,7 +17,6 @@ public class Bullet : MonoBehaviour
     {
         hitEffectPrefab = effect;
     }
-
     public void SetManagedPool(ObjectPool<GameObject> pool)
     {
         bulletManagedPool = pool;
@@ -47,7 +46,7 @@ public class Bullet : MonoBehaviour
     {
         if (trailEffect != null && gameObject.activeSelf)
         {
-            trailEffect.emitting = true;
+            trailEffect.emitting = true; // 3. 이제 다시 그려!
         }
     }
 
@@ -61,13 +60,13 @@ public class Bullet : MonoBehaviour
     {
         if (!other.CompareTag("Target")) return;
 
-        Enemy enemy = other.GetComponentInParent<Enemy>();
+        S_Enemy enemy = other.GetComponentInParent<S_Enemy>();
 
         if (enemy != null)
         {
             float finalDamage = baseDamage;
 
-            if (other.TryGetComponent(out HitBox hitBox))
+            if (other.TryGetComponent(out S_HitBox hitBox))
             {
                 finalDamage *= hitBox.damageMultiplier;
             }
@@ -83,7 +82,6 @@ public class Bullet : MonoBehaviour
 
         ReturnPool();
     }
-
     private void SpawnHitEffect(Vector3 position, Vector3 direction)
     {
         if (hitEffectPrefab == null) return;

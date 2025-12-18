@@ -1,0 +1,45 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
+
+public class F_UIManager : MonoBehaviour
+{
+    public static F_UIManager instance;
+
+    [Header("Áß¾Ó HUD")]
+    [SerializeField] private Image hpGauge;
+    [SerializeField] private Image apGauge;
+
+    [Header("¿ùµå UI")]
+    [SerializeField] private TextMeshProUGUI ammoText;
+
+    private void Awake()
+    {
+        if (instance == null) instance = this;
+    }
+
+    public void UpdateHP(float currentHp, float maxHp)
+    {
+        float ratio = currentHp / maxHp;
+        hpGauge.fillAmount = ratio * 0.21f;
+    }
+
+    public void UpdateAbilitySlider(float currentGauge)
+    {
+        float ratio = currentGauge / 100f;
+
+        apGauge.fillAmount = ratio * 0.21f;
+    }
+
+    public void UpdateAmmoText(int currentAmmo, int totalAmmo)
+    {
+        ammoText.text = currentAmmo.ToString();
+
+        ammoText.text = $"{currentAmmo} / {totalAmmo}";
+
+        ammoText.color = currentAmmo == 0 ? Color.red : Color.white;
+    }
+}

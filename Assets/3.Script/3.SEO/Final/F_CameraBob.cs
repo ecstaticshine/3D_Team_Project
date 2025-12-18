@@ -1,9 +1,9 @@
 using UnityEngine;
 
-public class CameraBob : MonoBehaviour
+public class F_CameraBob : MonoBehaviour
 {
     [Header("플레이어 연결")]
-    [SerializeField] private Player player;
+    [SerializeField] private P_Player player;
 
     [Header("카메라 흔들림 설정")]
     [SerializeField] private float bobSpeed = 14f;
