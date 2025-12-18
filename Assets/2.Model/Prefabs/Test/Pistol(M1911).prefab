@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 101313225046524647}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0.02, y: 0.03, z: -0.04}
+  m_LocalPosition: {x: 0.019, y: -0.001, z: -0.051}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -72,6 +72,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8988161818803807066}
   - component: {fileID: 536796873648197121}
+  - component: {fileID: 3849275598237272126}
   m_Layer: 0
   m_Name: Pistol(M1911)
   m_TagString: Untagged
@@ -87,7 +88,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1085417395900564196}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.24, y: -0.233, z: 0.37}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -113,11 +114,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4040bbe19d2010f4ba1381af79ee976f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::A_Gun
-  bulletPrefab: {fileID: 1325836922669442, guid: e3a80f145c0d9924b95568742467a354, type: 3}
+  bulletPrefab: {fileID: 6804990658058999119, guid: 65c9f6563c561ee4e8905d1e6a32548b, type: 3}
   firePoint: {fileID: 1638604444846263293}
   bulletSpeed: 50
   fireDelay: 1
   cameraTransform: {fileID: 0}
+--- !u!114 &3849275598237272126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1085417395900564196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48948dfe9d76b07488dacd46a7955fa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Animation.Rigging::UnityEngine.Animations.Rigging.RigTransform
 --- !u!1 &2463752579456916409
 GameObject:
   m_ObjectHideFlags: 0
