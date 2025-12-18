@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2caa62fe255db5044bcf7504a702311f, type: 3}
+  m_Name: ShotGunData
+  m_EditorClassIdentifier: Assembly-CSharp::GunData
+  gunName: ShotGun
+  fireMode: 2
+  gunPrefab: {fileID: 4759539053091665922, guid: 388ddf6bbf45d1a4284f4e252e101f8d, type: 3}
+  itemScale: {x: 0.3, y: 0.3, z: 0.3}
+  gunAnimation: {fileID: 0}
+  bulletPrefab: {fileID: 1325836922669442, guid: c63679d7cfb07c348842c52c1ee64589, type: 3}
+  bulletSpeed: 50
+  fireDelay: 1
+  reloadTime: 0
+  maxAmmo: 2
+  pelletCount: 5
+  spreadAngle: 15
+  fireSoundName: ShotGunSound

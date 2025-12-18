@@ -8,9 +8,9 @@ using UnityEngine.InputSystem;
 public class Player : MonoBehaviour
 {
     [Header("연결")]
-    [SerializeField] public S_Gun currentGun;
+    [SerializeField] public Gun currentGun;
     [SerializeField] private Transform cameraTransform;
-    private S_Gun[] allGuns;
+    private Gun[] allGuns;
 
     [Header("점프 & 중력 설정")]
     [SerializeField] private float jumpHeight = 1.5f;
@@ -60,7 +60,7 @@ public class Player : MonoBehaviour
 
         TryGetComponent(out characterController);
 
-        allGuns = GetComponentsInChildren<S_Gun>(true);
+        allGuns = GetComponentsInChildren<Gun>(true);
         foreach (var gun in allGuns)
         {
             if (gun.gameObject.activeSelf)
@@ -250,9 +250,9 @@ public class Player : MonoBehaviour
     #endregion
 
     #region Gun
-    public void HandleGunPickup(S_GunData newGunData)
+    public void HandleGunPickup(GunData newGunData)
     {
-        S_Gun targetGun = null;
+        Gun targetGun = null;
 
         foreach (var gun in allGuns)
         {
