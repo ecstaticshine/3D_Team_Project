@@ -52,10 +52,18 @@ public class Enemy : MonoBehaviour
 
         if (enemyGunData != null)
         {
+            Vector3 dropPosition = transform.position;
 
-            Vector3 gunDropPosition = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
-            GameObject drop_gun = Instantiate(enemyGunData.gunPrefab, gunDropPosition, Quaternion.identity);
+            if (Physics.Raycast(dropPosition + Vector3.up * 0.5f, Vector3.down, out RaycastHit hit, 2f))
+            {
+                dropPosition = hit.point + Vector3.up * 0.5f;
+            }
+            else
+            {
+                dropPosition.y += 0.5f;
+            }
 
+            GameObject drop_gun = Instantiate(enemyGunData.itemPrefab, dropPosition, Quaternion.identity);
 
             if (drop_gun.TryGetComponent(out Item_Gun item_gun))
             {

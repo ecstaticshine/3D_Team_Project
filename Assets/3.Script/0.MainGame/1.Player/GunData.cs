@@ -25,6 +25,9 @@ public class GunData : ScriptableObject
     [Lavel("√— «¡∏Æ∆’")]
     public GameObject gunPrefab;
 
+    [Lavel("æ∆¿Ã≈€ «¡∏Æ∆’")]
+    public GameObject itemPrefab;
+
     [Lavel("æ∆¿Ã≈€ ≈©±‚")]
     public Vector3 itemScale = Vector3.one;
 

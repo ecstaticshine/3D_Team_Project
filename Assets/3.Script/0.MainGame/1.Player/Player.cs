@@ -39,6 +39,8 @@ public class Player : MonoBehaviour
     private float abilityGauge = 100f;
 
     [Header("상태 확인")]
+    [SerializeField] public float currentHP;
+    private float maxHP = 200;
     [SerializeField] public bool isGround;
     [SerializeField] public bool isJumping = false;
     [SerializeField] public bool isDashing = false;
@@ -62,6 +64,8 @@ public class Player : MonoBehaviour
         characterController.height = standHeight;
         characterController.center = Vector3.up * (standHeight * 0.5f);
         currentSpeed = moveSpeed;
+
+        currentHP = maxHP;
     }
 
     void Start()
@@ -88,6 +92,7 @@ public class Player : MonoBehaviour
         HandleAbilityGauge();
         HandleTimeInput();
         HandleCrouch();
+        UpdateDashUI();
 
         if (isGround && velocity.y < 0)
         {
@@ -208,13 +213,26 @@ public class Player : MonoBehaviour
             if (AudioManager.instance != null) AudioManager.instance.PlayOriginal();
             if (recoverTimer >= 3.0f) abilityGauge += 100f * Time.unscaledDeltaTime;
         }
+
         abilityGauge = Mathf.Clamp(abilityGauge, 0f, 100f);
+
         AbilityGaugeSlider();
-        // [추가] 화면 효과 업데이트 요청!
-        // 게이지가 낮으면 화면이 붉어지게 만듭니다.
+
         if (P_ScreenEffectManager.instance != null)
         {
             P_ScreenEffectManager.instance.UpdateEffect(abilityGauge, 100f);
+        }
+    }
+
+    private void UpdateDashUI()
+    {
+        if (UIManager.instance != null)
+        {
+            float timeSinceLastDash = Time.unscaledTime - lastDashTime;
+
+            float cooldownPercent = Mathf.Clamp01(timeSinceLastDash / dashCooldown);
+
+            UIManager.instance.UpdateDashSlider(cooldownPercent);
         }
     }
 
@@ -240,6 +258,13 @@ public class Player : MonoBehaviour
             targetGun.gameObject.SetActive(true);
             currentGun = targetGun;
         }
+    }
+
+    public void TakeDamage(float damage)
+    {
+        currentHP -= damage;
+
+        UIManager.instance.UpdateHP(currentHP, maxHP);
     }
 
     private void Look()

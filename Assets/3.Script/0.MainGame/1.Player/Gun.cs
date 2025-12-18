@@ -15,7 +15,8 @@ public class Gun : MonoBehaviour
     [SerializeField] private Transform cameraTransform;
     [SerializeField] private Animator gunAnimator;
 
-    [Header("탄약 및 상태")]
+    [Header("설정")]
+    [SerializeField] private bool isPlayerGun = true;
     private int totalAmmo;
     private int currentAmmo;
     public GunState gunState { get; private set; }
@@ -177,9 +178,14 @@ public class Gun : MonoBehaviour
 
         if (bullet == null) return;
 
+        string layerName = isPlayerGun ? "PlayerBullet" : "EnemyBullet";
+
+        bullet.layer = LayerMask.NameToLayer(layerName);
+
         bullet.transform.up = direction;
 
         Collider[] targets = Physics.OverlapSphere(transform.position, 20f);
+
         foreach (var target in targets)
         {
             if (target.TryGetComponent(out J_AIController ai))

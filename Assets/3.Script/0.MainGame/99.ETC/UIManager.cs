@@ -12,6 +12,7 @@ public class UIManager : MonoBehaviour
     [Header("Áß¾Ó HUD")]
     [SerializeField] private Image hpGauge;
     [SerializeField] private Image apGauge;
+    [SerializeField] private Image dashGauge;
 
     [Header("¿ùµå UI")]
     [SerializeField] private TextMeshProUGUI ammoText;
@@ -24,6 +25,7 @@ public class UIManager : MonoBehaviour
     public void UpdateHP(float currentHp, float maxHp)
     {
         float ratio = currentHp / maxHp;
+
         hpGauge.fillAmount = ratio * 0.21f;
     }
 
@@ -32,6 +34,13 @@ public class UIManager : MonoBehaviour
         float ratio = currentGauge / 100f;
 
         apGauge.fillAmount = ratio * 0.21f;
+    }
+
+    public void UpdateDashSlider(float amount)
+    {
+        dashGauge.fillAmount = amount * 0.21f;
+
+        dashGauge.color = (amount >= 1f) ? Color.skyBlue : new Color(1, 1, 1, 0.5f);
     }
 
     public void UpdateAmmoText(int currentAmmo, int totalAmmo)

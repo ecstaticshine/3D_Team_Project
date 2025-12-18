@@ -59,8 +59,6 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.CompareTag("Target")) return;
-
         Enemy enemy = other.GetComponentInParent<Enemy>();
 
         if (enemy != null)
@@ -76,9 +74,17 @@ public class Bullet : MonoBehaviour
 
             SpawnHitEffect(transform.position, -transform.forward);
         }
+        else if (other.CompareTag("Player"))
+        {
+            if (other.TryGetComponent(out Player player)) player.TakeDamage(baseDamage);
+
+            SpawnHitEffect(transform.position, -transform.forward);
+        }
         else
         {
-            Debug.Log($"벽 또는 오브젝트 : {other.name}");
+            Debug.Log("벽 또는 오브젝트 충돌 : " + other.name);
+
+            SpawnHitEffect(transform.position, -transform.forward);
         }
 
         ReturnPool();
