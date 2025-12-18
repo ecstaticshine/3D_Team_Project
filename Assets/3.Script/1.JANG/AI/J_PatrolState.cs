@@ -82,6 +82,7 @@ public class J_PatrolState : J_IState
     public void Exit(J_AIController controller)
     {
         controller.Agent.isStopped = true;
+        controller.animator.SetBool("isMove", false);
     }
 
     // ======================================

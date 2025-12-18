@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float mouseSensitivity = 25.0f;
 
     [Header("대시 설정")]
-    [SerializeField] private float dashSpeed = 50.0f;
+    [SerializeField] private float dashSpeed = 15.0f;
     [SerializeField] private float dashDuration = 0.2f;
     [SerializeField] private float dashCooldown = 1.0f;
 
@@ -237,7 +237,7 @@ public class Player : MonoBehaviour
 
     private void AbilityGaugeSlider()
     {
-        S_UIManager.instance.UpdateAbilitySlider(abilityGauge);
+        UIManager.instance.UpdateAbilitySlider(abilityGauge);
     }
 
     // 안정제용

@@ -219,7 +219,7 @@ public class J_AIController : MonoBehaviour
         Agent.isStopped = true;
     }
 
-    public void Shoot()
+    public void Attack()
     {
         // 무기 시스템 연결 예정
         Debug.DrawRay(eyePoint.position, eyePoint.forward * 10f, Color.red);

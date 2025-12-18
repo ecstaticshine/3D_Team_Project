@@ -21,15 +21,13 @@ public class J_CombatState : J_IState
         fireCooldown = Random.Range(MIN_FIRE_INTERVAL, MAX_FIRE_INTERVAL);
         lostSightTimer = 0f;
         ai.Agent.isStopped = false;
-        Debug.Log("발견!!");
-        ai.animator.SetBool("isMove", false);
+
         ai.SetMoveSpeed(3.0f);
         ai.animator.SetBool("isRun",true);
     }
 
     public void Execute(J_AIController ai)
     {
-        Debug.Log("우횻! 찾았다!");
 
         Vector3 playerPos = ai.player.position;
         float distance = Vector3.Distance(ai.transform.position, playerPos);
@@ -49,7 +47,10 @@ public class J_CombatState : J_IState
             lostSightTimer = 0f;
         }
 
-        // 2. Combat behavior by type
+        // 2. Aim
+        ai.LookAt(playerPos);
+
+        // 3. Combat behavior by type
         if (ai.combatType == J_AIController.CombatType.Melee)
         {
             HandleMeleeCombat(ai, playerPos, distance);
@@ -59,16 +60,14 @@ public class J_CombatState : J_IState
             HandleRangedCombat(ai, playerPos, distance);
         }
 
-        // 3. Aim
-        ai.LookAt(playerPos);
 
         // 4. Fire
-        fireCooldown -= Time.deltaTime * ai.timeScaleMultiplier;
-        if (fireCooldown <= 0f)
-        {
-            ai.Shoot();
-            fireCooldown = Random.Range(MIN_FIRE_INTERVAL, MAX_FIRE_INTERVAL);
-        }
+        //fireCooldown -= Time.deltaTime * ai.timeScaleMultiplier;
+        //if (fireCooldown <= 0f)
+        //{
+        //    ai.Shoot();
+        //    fireCooldown = Random.Range(MIN_FIRE_INTERVAL, MAX_FIRE_INTERVAL);
+        //}
     }
 
     private void HandleMeleeCombat(J_AIController ai, Vector3 playerPos, float distance)
@@ -80,7 +79,7 @@ public class J_CombatState : J_IState
         else
         {
             ai.StopMove(); // 멈추고
-            //공격
+            ai.Attack(); //공격
         }
         ai.LookAt(playerPos);
     }
