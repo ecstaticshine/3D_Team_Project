@@ -102,10 +102,10 @@ public class J_CombatState : J_IState
         else
         {
             ai.StopMove(); //¸ØÃß°í °ø°Ý
-            ai.j_AIShooter.TryFire();
 
         }
-       
+        ai.j_AIShooter.TryFire();
+
     }
 
     private void Move(J_AIController ai, Vector3 targetPos)
