@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 1236219538872256332}
   - component: {fileID: 2162250312403876602}
   - component: {fileID: 3266200899819351958}
-  m_Layer: 0
-  m_Name: Shotgun Bullet
+  m_Layer: 9
+  m_Name: Shotgun Shell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
