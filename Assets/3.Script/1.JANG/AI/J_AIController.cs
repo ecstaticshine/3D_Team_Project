@@ -52,10 +52,12 @@ public class J_AIController : MonoBehaviour
     [Range(0f, 180f)]
     [Tooltip("플레이어를 인식할 수 있는 시야각")]
     public float viewAngle = 90f;
+    [Tooltip("AI가 옆으로 도는 속도")]
+    public float turnSpeed = 120f;
     [Tooltip("Raycast 시 플레이어를 가리는 장애물 Layer Mask")]
-    public LayerMask obstacleMask; 
+    public LayerMask obstacleMask;
 
-   
+
     private J_IState currentState;
 
     // 상태 인스턴스 (GC 방지)
@@ -137,6 +139,16 @@ public class J_AIController : MonoBehaviour
     {
         Agent.speed = baseAgentSpeed * timeScaleMultiplier;
         Agent.angularSpeed = baseAngularSpeed * timeScaleMultiplier;
+    }
+
+    public void LookAround()
+    {
+        Vector3 toPlayer = player.position - transform.position;
+        toPlayer.y = 0f;
+
+        Quaternion targetRotate = Quaternion.LookRotation(toPlayer);
+
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotate, turnSpeed * Time.deltaTime);
     }
 
     // ===============================

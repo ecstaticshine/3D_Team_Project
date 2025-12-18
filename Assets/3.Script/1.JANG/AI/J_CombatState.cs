@@ -12,7 +12,7 @@ public class J_CombatState : J_IState
 
     private const float MIN_FIRE_INTERVAL = 0.4f;
     private const float MAX_FIRE_INTERVAL = 0.6f;
-    private const float LOST_SIGHT_GRACE_TIME = 0.5f;
+    private const float LOST_SIGHT_GRACE_TIME = 3.0f;
 
     private float speed;
 
@@ -35,6 +35,7 @@ public class J_CombatState : J_IState
         // 1. Vision check (with grace time)
         if (!ai.CanSeePlayer())
         {
+            ai.LookAround();
             lostSightTimer += Time.deltaTime * ai.timeScaleMultiplier;
             if (lostSightTimer >= LOST_SIGHT_GRACE_TIME)
             {
@@ -101,8 +102,8 @@ public class J_CombatState : J_IState
         // 적정한 거리면 사격하는 곳
         else
         {
-            ai.StopMove(); //멈추고 공격
-
+            ai.StopMove(); //멈추고 바라보기
+            ai.LookAt(playerPos);
         }
         ai.j_AIShooter.TryFire();
 

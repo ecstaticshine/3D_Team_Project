@@ -143,6 +143,8 @@ public class Gun : MonoBehaviour
         currentTimer = 0;
         currentAmmo--;
 
+
+
         if (gunAnimator != null) gunAnimator.SetTrigger("Fire");
         AudioManager.instance.PlaySFX(gunData.fireSoundName);
 
@@ -176,6 +178,15 @@ public class Gun : MonoBehaviour
         if (bullet == null) return;
 
         bullet.transform.up = direction;
+
+        Collider[] targets = Physics.OverlapSphere(transform.position, 20f);
+        foreach (var target in targets)
+        {
+            if (target.TryGetComponent(out J_AIController ai))
+            {
+                ai.OnSoundHeard(transform.position);
+            }
+        }
 
         if (bullet.TryGetComponent(out Rigidbody rb))
         {
