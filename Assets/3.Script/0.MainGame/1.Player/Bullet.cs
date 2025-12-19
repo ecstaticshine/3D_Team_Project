@@ -13,6 +13,8 @@ public class Bullet : MonoBehaviour
     private bool isReleased = false;
     private GameObject hitEffectPrefab;
 
+    private Vector3 prevPosition;
+
     public void SetHitEffect(GameObject effect)
     {
         hitEffectPrefab = effect;
@@ -32,6 +34,8 @@ public class Bullet : MonoBehaviour
     {
         isReleased = false;
 
+        prevPosition = transform.position;
+
         if (trailEffect != null)
         {
             trailEffect.Clear();
@@ -41,6 +45,25 @@ public class Bullet : MonoBehaviour
         }
 
         StartCoroutine(DisableBulletAfterTime(3f));
+    }
+
+    private void Update()
+    {
+        if (isReleased) return;
+
+        Vector3 direction = (transform.position - prevPosition).normalized;
+        float distance = Vector3.Distance(prevPosition, transform.position);
+
+        if (Physics.Raycast(prevPosition, direction, out RaycastHit hit, distance))
+        {
+            if (hit.collider.CompareTag("Target") || hit.collider.CompareTag("Player"))
+            {
+                HandleHit(hit.collider);
+            }
+        }
+
+        // 현재 위치를 '이전 위치'로 갱신
+        prevPosition = transform.position;
     }
 
     private void EnableTrail()
@@ -59,36 +82,75 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Enemy enemy = other.GetComponentInParent<Enemy>();
+        HandleHit(other);
+    }
 
-        if (enemy != null)
+    private void HandleHit(Collider other)
+    {
+        if (isReleased) return;
+
+        if (other.TryGetComponent(out HitBox hitBox))
         {
-            float finalDamage = baseDamage;
-
-            if (other.TryGetComponent(out HitBox hitBox))
+            Enemy enemy = other.GetComponentInParent<Enemy>();
+            if (enemy != null)
             {
-                finalDamage *= hitBox.damageMultiplier;
+                float finalDamage = baseDamage * hitBox.damageMultiplier;
+                enemy.TakeDamage(finalDamage);
+                SpawnHitEffect(transform.position, -transform.forward);
+                ReturnPool();
+                return;
             }
-
-            enemy.TakeDamage(finalDamage);
-
-            SpawnHitEffect(transform.position, -transform.forward);
         }
-        else if (other.CompareTag("Player"))
-        {
-            if (other.TryGetComponent(out Player player)) player.TakeDamage(baseDamage);
 
+        Player player = other.GetComponentInParent<Player>();
+
+        if (player != null)
+        {
+            player.TakeDamage(baseDamage);
             SpawnHitEffect(transform.position, -transform.forward);
+            Debug.Log("우리 오빠 아프겠다! 플레이어 히트!");
         }
         else
         {
-            Debug.Log("벽 또는 오브젝트 충돌 : " + other.name);
-
+            Debug.Log("벽이나 물체에 맞았어 : " + other.name);
             SpawnHitEffect(transform.position, -transform.forward);
         }
 
         ReturnPool();
     }
+
+    //private void HandleHit(Collider other)
+    //{
+    //    Enemy enemy = other.GetComponentInParent<Enemy>();
+    //
+    //    if (enemy != null)
+    //    {
+    //        float finalDamage = baseDamage;
+    //
+    //        if (other.TryGetComponent(out HitBox hitBox))
+    //        {
+    //            finalDamage *= hitBox.damageMultiplier;
+    //        }
+    //
+    //        enemy.TakeDamage(finalDamage);
+    //
+    //        SpawnHitEffect(transform.position, -transform.forward);
+    //    }
+    //    else if (other.CompareTag("Player"))
+    //    {
+    //        if (other.TryGetComponent(out Player player)) player.TakeDamage(baseDamage);
+    //
+    //        SpawnHitEffect(transform.position, -transform.forward);
+    //    }
+    //    else
+    //    {
+    //        Debug.Log("벽 또는 오브젝트 충돌 : " + other.name);
+    //
+    //        SpawnHitEffect(transform.position, -transform.forward);
+    //    }
+    //
+    //    ReturnPool();
+    //}
 
     private void SpawnHitEffect(Vector3 position, Vector3 direction)
     {
