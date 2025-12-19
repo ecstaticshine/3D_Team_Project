@@ -1678,7 +1678,7 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.22
-  m_Height: 1.82
+  m_Height: 1.76
   m_Direction: 1
   m_Center: {x: 0, y: 0.88, z: -0.03}
 --- !u!114 &100100784
@@ -3445,7 +3445,7 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.22
-  m_Height: 1.82
+  m_Height: 1.76
   m_Direction: 1
   m_Center: {x: 0, y: 0.88, z: -0.03}
 --- !u!114 &265955325
@@ -5607,7 +5607,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8291218365678779134, guid: 57e6927a0bba907449b3f7b95f8c62d4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 957580840}
   m_SourcePrefab: {fileID: 100100000, guid: 57e6927a0bba907449b3f7b95f8c62d4, type: 3}
 --- !u!1 &464127761
 GameObject:
@@ -10644,6 +10647,55 @@ Transform:
   m_Children: []
   m_Father: {fileID: 543450653157728490}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &957580835 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8291218365678779134, guid: 57e6927a0bba907449b3f7b95f8c62d4, type: 3}
+  m_PrefabInstance: {fileID: 458968163}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &957580840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 957580835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalCameraData
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_AllowHDROutput: 1
+  m_UseScreenCoordOverride: 0
+  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_TaaSettings:
+    m_Quality: 3
+    m_FrameInfluence: 0.1
+    m_JitterScale: 1
+    m_MipBias: 0
+    m_VarianceClampScale: 0.9
+    m_ContrastAdaptiveSharpening: 0
+  m_Version: 2
 --- !u!1 &966105146
 GameObject:
   m_ObjectHideFlags: 0
@@ -20520,7 +20572,7 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.22
-  m_Height: 1.82
+  m_Height: 1.76
   m_Direction: 1
   m_Center: {x: 0, y: 0.88, z: -0.03}
 --- !u!114 &1937640513
@@ -29365,7 +29417,7 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.22
-  m_Height: 1.82
+  m_Height: 1.76
   m_Direction: 1
   m_Center: {x: 0, y: 0.88, z: -0.03}
 --- !u!114 &3837172469198730236
@@ -37884,7 +37936,7 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.22
-  m_Height: 1.82
+  m_Height: 1.76
   m_Direction: 1
   m_Center: {x: 0, y: 0.88, z: -0.03}
 --- !u!114 &8439548234674875730
