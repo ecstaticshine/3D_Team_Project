@@ -370,6 +370,7 @@ MonoBehaviour:
   currentGun: {fileID: 5618406031212764444}
   cameraTransform: {fileID: 2928115258009904778}
   playerBody: {fileID: 3606566966507257922}
+  allGuns: []
   moveSpeed: 5
   crouchSpeed: 2.5
   mouseSensitivity: 25
@@ -5443,7 +5444,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f8505157790dc44c9c370beff767f24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::J_AIShooter
-  gunData: {fileID: 11400000, guid: c6036ba7588b4b04f8613519e334e3be, type: 2}
+  gunData: {fileID: 0}
   firePoint: {fileID: 6936884830440035485}
   gunAnimator: {fileID: 0}
 --- !u!1 &1478324746882899952

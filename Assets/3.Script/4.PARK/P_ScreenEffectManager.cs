@@ -10,15 +10,20 @@ public class P_ScreenEffectManager : MonoBehaviour
     public static P_ScreenEffectManager instance;
 
     [Header("연결")]
-    [SerializeField] private Volume globalVolume; // 아까 만든 Global Volume을 여기에 넣으세요
+    [SerializeField] private Volume globalVolume; // Global Volume을 여기에 넣으세요
+    [SerializeField] private GameObject deadPanel; //  패널 연결
 
     [Header("설정")]
     [SerializeField] private float effectSpeed = 5f; // 효과가 켜지고 꺼지는 속도
     [SerializeField] private float maxIntensity = 0.5f; // 최대 얼마나 어둡게 할지 (0.0 ~ 1.0)
+    [SerializeField] private Color damageColor = Color.red; // 피격 시 비네트 색
 
     // 내부 변수
     private Vignette vignette;
     private float targetIntensity = 0f;
+    private bool isLowHealth = false;
+    private bool isDead = false;
+    private float blinkTimer = 0f;
 
     private void Awake()
     {
@@ -33,15 +38,56 @@ public class P_ScreenEffectManager : MonoBehaviour
 
     private void Update()
     {
-        if (vignette != null)
+        if (vignette == null) return;
+
+        // 1. 사망 상태 (붉은색 고정)
+        if (isDead)
         {
-            // 현재 값에서 목표 값으로 부드럽게 변경 (Lerp)
-            // 깜빡거리지 않고 자연스럽게 빨개집니다.
-            float current = vignette.intensity.value;
-            vignette.intensity.value = Mathf.Lerp(current, targetIntensity, Time.unscaledDeltaTime * effectSpeed);
+            vignette.color.value = damageColor;
+            vignette.intensity.value = Mathf.Lerp(vignette.intensity.value, 0.5f, Time.unscaledDeltaTime * 2f);
+        }
+        // 2. 빈사 상태 (붉은색 깜빡임 - 번쩍번쩍)
+        else if (isLowHealth)
+        {
+            vignette.color.value = damageColor;
+            // 두근거리는 효과 (Sin 함수)
+            blinkTimer += Time.unscaledDeltaTime * 10f;
+            float blink = 0.4f + Mathf.Sin(blinkTimer) * 0.1f;
+            vignette.intensity.value = Mathf.Lerp(vignette.intensity.value, blink, Time.unscaledDeltaTime * 10f);
+        }
+        // 3. 평상시 (효과 없음)
+        else
+        {
+            vignette.intensity.value = Mathf.Lerp(vignette.intensity.value, 0f, Time.unscaledDeltaTime * 5f);
         }
     }
 
+    // 플레이어 체력 상태를 받아오는 함수
+    public void CheckHealthStatus(float currentHp, float maxHp)
+    {
+        if (isDead) return;
+
+        // 체력이 30% 이하면 빈사 상태 발동
+        if (currentHp / maxHp <= 0.3f && currentHp > 0)
+        {
+            isLowHealth = true;
+        }
+        else
+        {
+            isLowHealth = false;
+        }
+    }
+    
+    // 사망 처리 함수
+    public void SetDeathEffect()
+    {
+        isDead = true;
+        isLowHealth = false; // 깜빡임 멈춤
+
+        // 사망 패널 켜기
+        if (deadPanel != null) deadPanel.SetActive(true);
+    }
+    //=================================================================
     // Player 스크립트에서 이 함수를 호출할 겁니다.
     public void UpdateEffect(float currentGauge, float maxGauge)
     {
