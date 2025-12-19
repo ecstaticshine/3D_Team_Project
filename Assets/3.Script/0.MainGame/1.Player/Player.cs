@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     [SerializeField] public Gun currentGun;
     [SerializeField] private Transform cameraTransform;
     [SerializeField] private Transform playerBody;
-    [SerializeField] private Gun[] allGuns;
+    private Gun[] allGuns;
 
     [Header("이동 설정")]
     [SerializeField] private float moveSpeed = 5.0f;
@@ -39,6 +39,7 @@ public class Player : MonoBehaviour
     private float abilityGauge = 100f;
 
     [Header("상태 확인")]
+    [SerializeField] public bool isDead = false;
     [SerializeField] public float currentHP;
     private float maxHP = 200;
     [SerializeField] public bool isGround;
@@ -85,7 +86,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (isDashing) return;
+        if (isDashing || isDead) return;
 
         isGround = characterController.isGrounded;
 
@@ -173,13 +174,13 @@ public class Player : MonoBehaviour
         if (!isJumping && !isDashing) isCrouching = value.isPressed;
     }
 
-    public void OnFire(InputValue value) { if (currentGun != null) currentGun.SetTriggerPressed(value.isPressed); }
-    public void OnReload(InputValue value) { if (currentGun != null) currentGun.Reload(); }
-    public void OnMove(InputValue value) { moveInput = value.Get<Vector2>(); }
-    public void OnLook(InputValue value) { lookInput = value.Get<Vector2>(); }
+    public void OnFire(InputValue value) { if (currentGun != null && !isDead) currentGun.SetTriggerPressed(value.isPressed); }
+    public void OnReload(InputValue value) { if (currentGun != null && !isDead) currentGun.Reload(); }
+    public void OnMove(InputValue value) {if(!isDead) moveInput = value.Get<Vector2>(); }
+    public void OnLook(InputValue value) {if(!isDead) lookInput = value.Get<Vector2>(); }
     public void OnJump(InputValue value)
     {
-        if (isGround && !isJumping && !isCrouching)
+        if (isGround && !isJumping && !isCrouching && !isDead)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
             isJumping = true;
@@ -188,7 +189,7 @@ public class Player : MonoBehaviour
 
     private void HandleTimeInput()
     {
-        if (Keyboard.current.tKey.wasPressedThisFrame && abilityGauge >= 0) ToggleTime();
+        if (Keyboard.current.tKey.wasPressedThisFrame && abilityGauge >= 0 && !isDead) ToggleTime();
         else if (isTimeSlow && abilityGauge <= 0) ToggleTime();
     }
 
@@ -262,9 +263,55 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        if (isDead) return;
+
         currentHP -= damage;
 
         UIManager.instance.UpdateHP(currentHP, maxHP);
+
+        ScreenEffectManager.instance.PlayHitEffect();
+        ScreenEffectManager.instance.CheckHealthStatus(currentHP, maxHP);
+        ScreenEffectManager.instance.UpdateEffect(currentHP, maxHP);
+
+        if (currentHP <= 0)
+        {
+            ScreenEffectManager.instance.SetDeathEffect();
+            StartCoroutine(DeathRoutine());
+        }
+    }
+
+    private IEnumerator DeathRoutine()
+    {
+        isDead = true;
+        isTimeSlow = false;
+        Time.timeScale = 1.0f;
+
+        if (characterController != null) characterController.enabled = false;
+
+        Vector3 startPos = cameraTransform.localPosition;
+        Quaternion startRot = cameraTransform.localRotation;
+
+        Vector3 targetPos = new Vector3(startPos.x, -1f, startPos.z);
+        Quaternion targetRot = Quaternion.Euler(0, 0, -90f);
+
+        float elapsed = 0f;
+        float duration = 1.0f;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.unscaledDeltaTime;
+            float t = elapsed / duration;
+
+            cameraTransform.localPosition = Vector3.Lerp(startPos, targetPos, t);
+            cameraTransform.localRotation = Quaternion.Slerp(startRot, targetRot, t);
+
+            yield return null;
+        }
+
+        if (P_ScreenEffectManager.instance != null)
+        {
+            P_ScreenEffectManager.instance.SetDeathEffect();
+        }
     }
 
     private void Look()
