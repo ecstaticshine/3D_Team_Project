@@ -25,6 +25,9 @@ public class P_ScreenEffectManager : MonoBehaviour
     private bool isDead = false;
     private float blinkTimer = 0f;
 
+    // [추가] 피격 효과 지속 시간 타이머
+    private float hitDurationTimer = 0f;
+
     private void Awake()
     {
         if (instance == null) instance = this;
@@ -40,22 +43,31 @@ public class P_ScreenEffectManager : MonoBehaviour
     {
         if (vignette == null) return;
 
-        // 1. 사망 상태 (붉은색 고정)
+        // 우선순위 1: 사망 (최우선 - 고정)
         if (isDead)
         {
             vignette.color.value = damageColor;
             vignette.intensity.value = Mathf.Lerp(vignette.intensity.value, 0.5f, Time.unscaledDeltaTime * 2f);
         }
-        // 2. 빈사 상태 (붉은색 깜빡임 - 번쩍번쩍)
+        // 우선순위 2: 피격 당함! (0.5초간 강하게 붉어짐) [새로 추가된 로직]
+        else if (hitDurationTimer > 0)
+        {
+            hitDurationTimer -= Time.unscaledDeltaTime;
+
+            vignette.color.value = damageColor;
+
+            // 깜빡이는 게 아니라, 순간적으로 진하게(0.6) 갔다가 서서히 빠짐
+            vignette.intensity.value = Mathf.Lerp(vignette.intensity.value, 0.6f, Time.unscaledDeltaTime * 20f);
+        }
+        // 우선순위 3: 빈사 상태 (붉은색 깜빡임)
         else if (isLowHealth)
         {
             vignette.color.value = damageColor;
-            // 두근거리는 효과 (Sin 함수)
             blinkTimer += Time.unscaledDeltaTime * 10f;
             float blink = 0.4f + Mathf.Sin(blinkTimer) * 0.1f;
             vignette.intensity.value = Mathf.Lerp(vignette.intensity.value, blink, Time.unscaledDeltaTime * 10f);
         }
-        // 3. 평상시 (효과 없음)
+        // 우선순위 4: 평상시 (효과 없음)
         else
         {
             vignette.intensity.value = Mathf.Lerp(vignette.intensity.value, 0f, Time.unscaledDeltaTime * 5f);
@@ -86,6 +98,12 @@ public class P_ScreenEffectManager : MonoBehaviour
 
         // 사망 패널 켜기
         if (deadPanel != null) deadPanel.SetActive(true);
+    }
+
+    public void PlayHitEffect()
+    {
+        // 타이머를 0.2~0.5초로 설정하여 '피격 상태'로 진입시킴
+        hitDurationTimer = 0.3f;
     }
     //=================================================================
     // Player 스크립트에서 이 함수를 호출할 겁니다.
