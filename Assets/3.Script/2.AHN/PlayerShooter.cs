@@ -12,10 +12,16 @@ public class PlayerShooter : MonoBehaviour
     public Transform leftHandMount; 
     public Transform rightHandMount; 
 
-    [Header("라이플 및 샷건")]
+    [Header("라이플 좌표값")]
     public Transform RiflePivot;
-    public Transform leftHandMount_Rifle; 
+    public Transform leftHandMount_Rifle;
     public Transform rightHandMount_Rifle;
+
+    [Header("샷건 좌표값")]
+    public Transform ShotGunPivot;
+    public Transform leftHandMount_ShotGun;
+    public Transform rightHandMount_ShotGun;
+
 
 
     [Range(0, 1)] public float aimWeight = 1.0f; // 조준 강도 (스크립트에서 조절 가능)
