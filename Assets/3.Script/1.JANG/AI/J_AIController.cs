@@ -129,7 +129,7 @@ public class J_AIController : MonoBehaviour
         currentState = newState;
         currentState.Enter(this);
 
-        Debug.Log($"[AI] {name} -> {newState.GetType().Name}");
+        //Debug.Log($"[AI] {name} -> {newState.GetType().Name}");
     }
 
     // ===============================

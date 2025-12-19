@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 957002476072741415}
   - component: {fileID: 906136825173632714}
   - component: {fileID: 9076282379640924770}
+  - component: {fileID: -3872164544236673104}
   m_Layer: 0
   m_Name: S_Small_Bullet
   m_TagString: Untagged
@@ -154,6 +155,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Bullet
   baseDamage: 50
+--- !u!114 &-3872164544236673104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1325836922669442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc06f4165309d0c48b7518cf738db82c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RewindableObject
 --- !u!1 &5914827968627979159
 GameObject:
   m_ObjectHideFlags: 0

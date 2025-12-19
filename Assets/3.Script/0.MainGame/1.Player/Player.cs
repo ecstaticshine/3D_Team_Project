@@ -219,9 +219,9 @@ public class Player : MonoBehaviour
 
         AbilityGaugeSlider();
 
-        if (P_ScreenEffectManager.instance != null)
+        if (ScreenEffectManager.instance != null)
         {
-            P_ScreenEffectManager.instance.UpdateEffect(abilityGauge, 100f);
+            ScreenEffectManager.instance.UpdateEffect(abilityGauge, 100f);
         }
     }
 
@@ -288,11 +288,15 @@ public class Player : MonoBehaviour
 
         if (characterController != null) characterController.enabled = false;
 
+        if (ScreenEffectManager.instance != null)
+        {
+            ScreenEffectManager.instance.SetDeathEffect();
+        }
+
         Vector3 startPos = cameraTransform.localPosition;
         Quaternion startRot = cameraTransform.localRotation;
-
         Vector3 targetPos = new Vector3(startPos.x, -1f, startPos.z);
-        Quaternion targetRot = Quaternion.Euler(0, 0, -90f);
+        Quaternion targetRot = Quaternion.Euler(0, 0, -60f);
 
         float elapsed = 0f;
         float duration = 1.0f;
@@ -301,17 +305,37 @@ public class Player : MonoBehaviour
         {
             elapsed += Time.unscaledDeltaTime;
             float t = elapsed / duration;
-
             cameraTransform.localPosition = Vector3.Lerp(startPos, targetPos, t);
             cameraTransform.localRotation = Quaternion.Slerp(startRot, targetRot, t);
-
             yield return null;
         }
 
-        if (P_ScreenEffectManager.instance != null)
+        yield return new WaitForSecondsRealtime(0.5f);
+
+        if (TimeRewindManager.Instance != null)
         {
-            P_ScreenEffectManager.instance.SetDeathEffect();
+            TimeRewindManager.Instance.StartFullRewind();
+
+            yield return new WaitForSecondsRealtime(5.5f);
         }
+
+        Resurrect();
+    }
+
+    private void Resurrect()
+    {
+        isDead = false;
+        currentHP = maxHP;
+
+        if (ScreenEffectManager.instance != null) ScreenEffectManager.instance.ResetEffect();
+
+        if (UIManager.instance != null) UIManager.instance.UpdateHP(currentHP, maxHP);
+
+        cameraTransform.localPosition = new Vector3(0, 0.6f, 0);
+        cameraTransform.localRotation = Quaternion.identity;
+        xRotation = 0f;
+
+        if (characterController != null) characterController.enabled = true;
     }
 
     private void Look()

@@ -242,6 +242,7 @@ GameObject:
   - component: {fileID: 109516781}
   - component: {fileID: 109516780}
   - component: {fileID: 109516779}
+  - component: {fileID: 109516782}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -257,7 +258,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 109516777}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -7.7, y: 1.33, z: -93.07}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -265,7 +266,7 @@ Transform:
   - {fileID: 3606566966507257922}
   - {fileID: 2928115258009904778}
   m_Father: {fileID: 6850856770541213482}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!114 &109516779
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -381,6 +382,20 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &109516782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 109516777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7992d4149e1d784ca611e6a356fd583, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraRewind
+  recordDuration: 15
+  fpsCamera: {fileID: 2928115258009904778}
 --- !u!1 &184911882
 GameObject:
   m_ObjectHideFlags: 0
@@ -672,6 +687,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da9a35bc51f74af4da3781127c631d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
+  MeleeDamage: 50
   maxHp: 100
   enemyGunData: {fileID: 11400000, guid: aeb3800fa49ada944b596115e48cdfed, type: 2}
   medicinePrefab: {fileID: 1193652733296499636, guid: 55801f9716236bf43960be0778605c9b, type: 3}
@@ -1225,6 +1241,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da9a35bc51f74af4da3781127c631d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
+  MeleeDamage: 50
   maxHp: 100
   enemyGunData: {fileID: 11400000, guid: 72e03fa40aecfc7408cf1807973bf6eb, type: 2}
   medicinePrefab: {fileID: 1193652733296499636, guid: 55801f9716236bf43960be0778605c9b, type: 3}
@@ -2795,6 +2812,7 @@ GameObject:
   - component: {fileID: 1157896025}
   - component: {fileID: 1157896024}
   - component: {fileID: 1157896027}
+  - component: {fileID: 1157896028}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -2862,9 +2880,102 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ScreenEffectManager
   globalVolume: {fileID: 2671874144882818382}
   deadPanel: {fileID: 1847558057}
-  effectSpeed: 5
   maxIntensity: 0.5
   damageColor: {r: 1, g: 0, b: 0, a: 1}
+  rewindUI: {fileID: 1239714204}
+  rewindVolume: {fileID: 1616663592}
+--- !u!114 &1157896028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1157896023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 263ca4177a9e7ff44ab867fdec07859f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TimeRewindManager
+  effectManager: {fileID: 1157896027}
+--- !u!1 &1239714204
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1239714205}
+  - component: {fileID: 1239714207}
+  - component: {fileID: 1239714206}
+  m_Layer: 5
+  m_Name: RewindText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1239714205
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1239714204}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4301190843454201442}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -449, y: 39}
+  m_SizeDelta: {x: 1000, y: 1000}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1239714206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1239714204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 200
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 300
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: <<REW
+--- !u!222 &1239714207
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1239714204}
+  m_CullTransparentMesh: 1
 --- !u!1 &1309106293
 GameObject:
   m_ObjectHideFlags: 0
@@ -3427,6 +3538,55 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1487066939}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1616663591
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1616663593}
+  - component: {fileID: 1616663592}
+  m_Layer: 0
+  m_Name: RewindVolume
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1616663592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1616663591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Core.Runtime::UnityEngine.Rendering.Volume
+  m_IsGlobal: 1
+  priority: 0
+  blendDistance: 0
+  weight: 0
+  sharedProfile: {fileID: 11400000, guid: e228e0ed51ea756409e4c7c3dace3538, type: 2}
+--- !u!4 &1616663593
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1616663591}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 449, y: -39, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1847558057
 GameObject:
   m_ObjectHideFlags: 0
@@ -3800,6 +3960,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da9a35bc51f74af4da3781127c631d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
+  MeleeDamage: 50
   maxHp: 100
   enemyGunData: {fileID: 11400000, guid: a9470847588ffdd40b3c454e6bc65052, type: 2}
   medicinePrefab: {fileID: 1193652733296499636, guid: 55801f9716236bf43960be0778605c9b, type: 3}
@@ -4123,6 +4284,7 @@ GameObject:
   - component: {fileID: 4546509434985707358}
   - component: {fileID: 961404814911831855}
   - component: {fileID: 8895164610128877480}
+  - component: {fileID: 8895164610128877481}
   m_Layer: 8
   m_Name: Insurgent_02
   m_TagString: Target
@@ -5320,23 +5482,6 @@ Transform:
   - {fileID: 4416404571609615741}
   m_Father: {fileID: 8589974838591090748}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1288094022264842921
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1838315302985655884}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4040bbe19d2010f4ba1381af79ee976f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::A_Gun
-  bulletPrefab: {fileID: 6804990658058999119, guid: 65c9f6563c561ee4e8905d1e6a32548b, type: 3}
-  firePoint: {fileID: 13037279916404565}
-  bulletSpeed: 50
-  fireDelay: 1
-  cameraTransform: {fileID: 0}
 --- !u!1 &1304712086233282189
 GameObject:
   m_ObjectHideFlags: 0
@@ -5978,7 +6123,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7651460548289529842}
   - component: {fileID: 2591945396367535254}
-  - component: {fileID: 1288094022264842921}
   - component: {fileID: 7651460548289529843}
   m_Layer: 7
   m_Name: HandGun
@@ -6285,6 +6429,7 @@ MonoBehaviour:
   fireInterval: {x: 0.5, y: 1.5}
   lastHeardPosition: {x: 0, y: 0, z: 0}
   alertDuration: 5
+  meleeAttackCooldown: 3
   j_AIShooter: {fileID: 1382435348419441608}
 --- !u!1 &2283681343844859560
 GameObject:
@@ -8562,6 +8707,7 @@ RectTransform:
   - {fileID: 7841315675498856794}
   - {fileID: 184911883}
   - {fileID: 1847558058}
+  - {fileID: 1239714205}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -10827,14 +10973,14 @@ Transform:
   - {fileID: 5677549662819112951}
   - {fileID: 9038685296657251178}
   - {fileID: 111387811418185651}
-  - {fileID: 1510627492}
-  - {fileID: 1880414552}
-  - {fileID: 8895164610128877478}
   - {fileID: 323379198}
   - {fileID: 974235957}
   - {fileID: 604217110}
   - {fileID: 522835158}
   - {fileID: 106141370}
+  - {fileID: 1510627492}
+  - {fileID: 1880414552}
+  - {fileID: 8895164610128877478}
   - {fileID: 109516778}
   - {fileID: 2130691619}
   m_Father: {fileID: 0}
@@ -11981,7 +12127,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!1 &8052833952078647624
 GameObject:
@@ -12864,9 +13010,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da9a35bc51f74af4da3781127c631d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
+  MeleeDamage: 50
   maxHp: 100
   enemyGunData: {fileID: 11400000, guid: 72e03fa40aecfc7408cf1807973bf6eb, type: 2}
   medicinePrefab: {fileID: 1193652733296499636, guid: 55801f9716236bf43960be0778605c9b, type: 3}
+--- !u!114 &8895164610128877481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 11241896720977674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc06f4165309d0c48b7518cf738db82c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RewindableObject
+  recordDuration: 15
 --- !u!23 &8898755469777356542
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -13283,3 +13443,4 @@ SceneRoots:
   - {fileID: 4301190843454201442}
   - {fileID: 2221512573455362229}
   - {fileID: 968770505}
+  - {fileID: 1616663593}
