@@ -382,6 +382,7 @@ MonoBehaviour:
   gravity: -9.81
   isTimeSlow: 0
   slowFactor: 0.1
+  currentHP: 0
   isGround: 0
   isJumping: 0
   isDashing: 0
@@ -719,6 +720,81 @@ MonoBehaviour:
   maxHp: 100
   enemyGunData: {fileID: 11400000, guid: aeb3800fa49ada944b596115e48cdfed, type: 2}
   medicinePrefab: {fileID: 1193652733296499636, guid: 55801f9716236bf43960be0778605c9b, type: 3}
+--- !u!1 &429645311
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 429645312}
+  - component: {fileID: 429645314}
+  - component: {fileID: 429645313}
+  m_Layer: 5
+  m_Name: Img_Dash_Gauge
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &429645312
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 429645311}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4301190843454201442}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -75}
+  m_SizeDelta: {x: 25, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &429645313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 429645311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.41585082, g: 0.65925944, b: 0.990566, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 0.2
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &429645314
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 429645311}
+  m_CullTransparentMesh: 1
 --- !u!1 &468862995
 GameObject:
   m_ObjectHideFlags: 0
@@ -766,7 +842,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5cd17fadcf402c48a32572bbffd67f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::S_HitBox
-  damageMultiplier: 1
 --- !u!136 &468862998
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1115,7 +1190,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5cd17fadcf402c48a32572bbffd67f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::S_HitBox
-  damageMultiplier: 1
 --- !u!136 &615765266
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1535,7 +1609,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5cd17fadcf402c48a32572bbffd67f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::S_HitBox
-  damageMultiplier: 2
 --- !u!135 &755544925
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -3023,6 +3096,7 @@ MonoBehaviour:
   firePoint: {fileID: 168444277}
   cameraTransform: {fileID: 2928115258009904778}
   gunAnimator: {fileID: 0}
+  isPlayerGun: 1
 --- !u!1 &1157896023
 GameObject:
   m_ObjectHideFlags: 0
@@ -3163,7 +3237,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5cd17fadcf402c48a32572bbffd67f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::S_HitBox
-  damageMultiplier: 2
 --- !u!135 &1309106296
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -4045,6 +4118,7 @@ MonoBehaviour:
   firePoint: {fileID: 2132050719}
   cameraTransform: {fileID: 2928115258009904778}
   gunAnimator: {fileID: 0}
+  isPlayerGun: 1
 --- !u!1 &1941077420
 GameObject:
   m_ObjectHideFlags: 0
@@ -4169,7 +4243,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5cd17fadcf402c48a32572bbffd67f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::S_HitBox
-  damageMultiplier: 1
 --- !u!136 &1957091398
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -4296,7 +4369,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5cd17fadcf402c48a32572bbffd67f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::S_HitBox
-  damageMultiplier: 2
 --- !u!135 &2048423455
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -7276,6 +7348,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UIManager
   hpGauge: {fileID: 4398208037545531366}
   apGauge: {fileID: 2141998802348061800}
+  dashGauge: {fileID: 429645313}
   ammoText: {fileID: 109301116862917953}
 --- !u!1 &4266821311322945252
 GameObject:
@@ -7308,6 +7381,7 @@ RectTransform:
   - {fileID: 8526591708491138101}
   - {fileID: 3321533991116640125}
   - {fileID: 4264322178103913571}
+  - {fileID: 429645312}
   - {fileID: 119177089984960558}
   - {fileID: 7841315675498856794}
   m_Father: {fileID: 0}
@@ -8010,6 +8084,7 @@ MonoBehaviour:
   firePoint: {fileID: 1909954137677954128}
   cameraTransform: {fileID: 2928115258009904778}
   gunAnimator: {fileID: 0}
+  isPlayerGun: 1
 --- !u!1 &5637013293264918506
 GameObject:
   m_ObjectHideFlags: 0
