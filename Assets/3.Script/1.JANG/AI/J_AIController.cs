@@ -29,7 +29,7 @@ public class J_AIController : MonoBehaviour
     // 참조
     // ===============================
     [Header("참조")]
-    public Transform player;
+    public GameObject player;
     public Transform eyePoint;
 
     public NavMeshAgent Agent { get; private set; }
@@ -143,7 +143,7 @@ public class J_AIController : MonoBehaviour
 
     public void LookAround()
     {
-        Vector3 toPlayer = player.position - transform.position;
+        Vector3 toPlayer = player.transform.position - transform.position;
         toPlayer.y = 0f;
 
         Quaternion targetRotate = Quaternion.LookRotation(toPlayer);
@@ -159,7 +159,7 @@ public class J_AIController : MonoBehaviour
         if (player == null || eyePoint == null)
             return false;
 
-        Vector3 toPlayer = player.position - eyePoint.position;
+        Vector3 toPlayer = player.transform.position - eyePoint.position;
         float distance = toPlayer.magnitude;
 
         // 1. 거리 체크

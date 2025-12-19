@@ -29,7 +29,7 @@ public class J_CombatState : J_IState
     public void Execute(J_AIController ai)
     {
 
-        Vector3 playerPos = ai.player.position;
+        Vector3 playerPos = ai.player.transform.position;
         float distance = Vector3.Distance(ai.transform.position, playerPos);
 
         // 1. Vision check (with grace time)
@@ -105,7 +105,10 @@ public class J_CombatState : J_IState
             ai.StopMove(); //멈추고 바라보기
             ai.LookAt(playerPos);
         }
+        if (!ai.player.GetComponent<Player>().isDead)
+        {
         ai.j_AIShooter.TryFire();
+        }
 
     }
 
