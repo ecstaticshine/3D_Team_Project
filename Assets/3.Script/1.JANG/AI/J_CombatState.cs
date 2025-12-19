@@ -80,10 +80,16 @@ public class J_CombatState : J_IState
         else
         {
             ai.StopMove(); // ¸ØÃß°í
+            ai.LookAt(playerPos);
+        }
+
+
+        if (!ai.player.GetComponent<Player>().isDead)
+        {
             ai.Attack(); //°ø°Ý
         }
-        ai.LookAt(playerPos);
-    }
+
+        }
 
     private void HandleRangedCombat(J_AIController ai, Vector3 playerPos, float distance)
     {

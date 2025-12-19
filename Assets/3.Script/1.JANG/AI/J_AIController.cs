@@ -87,6 +87,10 @@ public class J_AIController : MonoBehaviour
     [Tooltip("경계 상태를 유지하는 시간")]
     public float alertDuration = 5f;
 
+    [Header("근접 공격")]
+    public float meleeAttackCooldown = 3f;
+    private float meleeAttackTimer;
+
     [Header("총")]
     public J_AIShooter j_AIShooter;
 
@@ -104,10 +108,12 @@ public class J_AIController : MonoBehaviour
     void Start()
     {
         ChangeState(patrolState);
+        meleeAttackTimer = -meleeAttackCooldown;
     }
 
     void Update()
     {
+        meleeAttackTimer -= Time.deltaTime * timeScaleMultiplier;
         currentState?.Execute(this);
     }
 
@@ -233,6 +239,25 @@ public class J_AIController : MonoBehaviour
 
     public void Attack()
     {
+
+        if (meleeAttackTimer > 0f)
+        {
+            return;
+        }
+
+        meleeAttackTimer = meleeAttackCooldown;
+
+        Collider[] hits = Physics.OverlapSphere(eyePoint.position, meleeEngageDistance, LayerMask.GetMask("Player"));
+
+        foreach(Collider hit in hits)
+        {
+            if (hit.TryGetComponent<Player>(out Player player))
+            {
+                player.TakeDamage(gameObject.GetComponent<Enemy>().MeleeDamage);
+            }
+        }
+
+
         // 무기 시스템 연결 예정
         Debug.DrawRay(eyePoint.position, eyePoint.forward * 10f, Color.red);
     }

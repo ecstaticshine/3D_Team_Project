@@ -4,6 +4,7 @@ public class Enemy : MonoBehaviour
 {
     [Header("Àû Á¤º¸")]
     private bool isDead = false;
+    public float MeleeDamage = 50f;
     public float maxHp = 100f;
     private float currentHp;
 

@@ -1605,6 +1605,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   maxHp: 100
+  MeleeDamage: 50
   enemyGunData: {fileID: 11400000, guid: aeb3800fa49ada944b596115e48cdfed, type: 2}
   medicinePrefab: {fileID: 1193652733296499636, guid: 55801f9716236bf43960be0778605c9b, type: 3}
 --- !u!1 &370373551
@@ -2962,6 +2963,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   maxHp: 100
+  MeleeDamage: 50
   enemyGunData: {fileID: 11400000, guid: 72e03fa40aecfc7408cf1807973bf6eb, type: 2}
   medicinePrefab: {fileID: 1193652733296499636, guid: 55801f9716236bf43960be0778605c9b, type: 3}
 --- !u!1 &655081623
@@ -3347,7 +3349,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &704508020
 Transform:
   m_ObjectHideFlags: 0
@@ -3380,6 +3382,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   maxHp: 100
+  MeleeDamage: 50
   enemyGunData: {fileID: 11400000, guid: 72e03fa40aecfc7408cf1807973bf6eb, type: 2}
   medicinePrefab: {fileID: 1193652733296499636, guid: 55801f9716236bf43960be0778605c9b, type: 3}
 --- !u!135 &704508022
@@ -4325,6 +4328,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   maxHp: 100
+  MeleeDamage: 50
   enemyGunData: {fileID: 11400000, guid: 72e03fa40aecfc7408cf1807973bf6eb, type: 2}
   medicinePrefab: {fileID: 1193652733296499636, guid: 55801f9716236bf43960be0778605c9b, type: 3}
 --- !u!135 &785609342
@@ -4387,7 +4391,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba3a3fc029725744395ffcd7a92f3143, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::J_AIController
-  combatType: 1
+  combatType: 0
   meleeEngageDistance: 3
   rangedEngageDistance: 12
   retreatDistance: 4
@@ -11084,6 +11088,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   maxHp: 100
+  MeleeDamage: 50
   enemyGunData: {fileID: 11400000, guid: a9470847588ffdd40b3c454e6bc65052, type: 2}
   medicinePrefab: {fileID: 1193652733296499636, guid: 55801f9716236bf43960be0778605c9b, type: 3}
 --- !u!1 &1957091395
@@ -12070,7 +12075,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &18434698648147631
 Transform:
   m_ObjectHideFlags: 0
@@ -17253,6 +17258,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   maxHp: 100
+  MeleeDamage: 50
   enemyGunData: {fileID: 11400000, guid: 72e03fa40aecfc7408cf1807973bf6eb, type: 2}
   medicinePrefab: {fileID: 1193652733296499636, guid: 55801f9716236bf43960be0778605c9b, type: 3}
 --- !u!23 &8898755469777356542
