@@ -42,8 +42,6 @@ public class J_AIShooter : MonoBehaviour
 
     }
 
-
-
     public void TryFire()
     {
         if (gunState != GunState.Ready) return;
@@ -87,8 +85,18 @@ public class J_AIShooter : MonoBehaviour
     private void CreateBullet(Vector3 direction)
     {
         GameObject bullet = Instantiate(gunData.bulletPrefab, firePoint.position, Quaternion.identity);
+
+        bullet.layer = LayerMask.NameToLayer("EnemyBullet");
+
         bullet.transform.up = direction;
 
+        if (bullet.TryGetComponent(out Bullet bulletScript))
+        {
+            LayerMask mask = LayerMask.GetMask("Player", "Default", "Wall");
+            bulletScript.SetCollisionMask(mask);
+        }
+
+        // [유니] 물리 속도 적용
         if (bullet.TryGetComponent(out Rigidbody rb))
         {
             rb.linearVelocity = direction * gunData.bulletSpeed;
@@ -96,6 +104,19 @@ public class J_AIShooter : MonoBehaviour
 
         Destroy(bullet, 3f);
     }
+
+    //private void CreateBullet(Vector3 direction)
+    //{
+    //    GameObject bullet = Instantiate(gunData.bulletPrefab, firePoint.position, Quaternion.identity);
+    //    bullet.transform.up = direction;
+    //
+    //    if (bullet.TryGetComponent(out Rigidbody rb))
+    //    {
+    //        rb.linearVelocity = direction * gunData.bulletSpeed;
+    //    }
+    //
+    //    Destroy(bullet, 3f);
+    //}
 
     private Vector3 GetSpreadDirection(Vector3 baseDir, float angle)
     {

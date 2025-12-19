@@ -12,7 +12,7 @@ public class Bullet : MonoBehaviour
     private TrailRenderer trailEffect;
     private bool isReleased = false;
     private GameObject hitEffectPrefab;
-
+    private LayerMask collisionMask;
     private Vector3 prevPosition;
 
     public void SetHitEffect(GameObject effect)
@@ -54,16 +54,25 @@ public class Bullet : MonoBehaviour
         Vector3 direction = (transform.position - prevPosition).normalized;
         float distance = Vector3.Distance(prevPosition, transform.position);
 
-        if (Physics.Raycast(prevPosition, direction, out RaycastHit hit, distance))
+        if (distance > 0 && Physics.Raycast(prevPosition, direction, out RaycastHit hit, distance, collisionMask))
         {
-            if (hit.collider.CompareTag("Target") || hit.collider.CompareTag("Player"))
-            {
-                HandleHit(hit.collider);
-            }
+            HandleHit(hit.collider);
         }
 
-        // 현재 위치를 '이전 위치'로 갱신
+        //if (Physics.Raycast(prevPosition, direction, out RaycastHit hit, distance))
+        //{
+        //    if (hit.collider.CompareTag("Target") || hit.collider.CompareTag("Player"))
+        //    {
+        //        HandleHit(hit.collider);
+        //    }
+        //}
+
         prevPosition = transform.position;
+    }
+
+    public void SetCollisionMask(LayerMask mask)
+    {
+        collisionMask = mask;
     }
 
     private void EnableTrail()
@@ -112,30 +121,11 @@ public class Bullet : MonoBehaviour
         }
         else
         {
-            Debug.Log("벽이나 물체에 맞았어 : " + other.name);
             SpawnHitEffect(transform.position, -transform.forward);
         }
 
         ReturnPool();
     }
-
-    //private void HandleHit(Collider other)
-    //{
-    //    else if (other.CompareTag("Player"))
-    //    {
-    //        if (other.TryGetComponent(out Player player)) player.TakeDamage(baseDamage);
-    //
-    //        SpawnHitEffect(transform.position, -transform.forward);
-    //    }
-    //    else
-    //    {
-    //        Debug.Log("벽 또는 오브젝트 충돌 : " + other.name);
-    //
-    //        SpawnHitEffect(transform.position, -transform.forward);
-    //    }
-    //
-    //    ReturnPool();
-    //}
 
     private void SpawnHitEffect(Vector3 position, Vector3 direction)
     {
