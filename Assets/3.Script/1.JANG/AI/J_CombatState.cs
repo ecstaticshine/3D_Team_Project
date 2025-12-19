@@ -12,7 +12,7 @@ public class J_CombatState : J_IState
 
     private const float MIN_FIRE_INTERVAL = 0.4f;
     private const float MAX_FIRE_INTERVAL = 0.6f;
-    private const float LOST_SIGHT_GRACE_TIME = 3.0f;
+    private const float LOST_SIGHT_GRACE_TIME = 5.0f;
 
     private float speed;
 

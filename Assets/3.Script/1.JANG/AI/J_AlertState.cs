@@ -51,6 +51,17 @@ public class J_AlertState : J_IState
             return;
         }
 
+        Vector3 soundDir = (ai.lastHeardPosition - ai.transform.position).normalized;
+
+        Quaternion noise = Quaternion.Euler(
+            0,
+            Random.Range(-25f, 25f),
+            0
+        );
+
+        Vector3 fakeTarget = ai.transform.position + (noise * soundDir) * 10f;
+
+        ai.LookAt(fakeTarget);
 
         if (!ai.Agent.pathPending &&
             ai.Agent.remainingDistance <= ai.Agent.stoppingDistance + ARRIVAL_MARGIN)

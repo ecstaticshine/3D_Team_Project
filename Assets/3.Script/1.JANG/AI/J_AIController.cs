@@ -53,7 +53,7 @@ public class J_AIController : MonoBehaviour
     [Tooltip("플레이어를 인식할 수 있는 시야각")]
     public float viewAngle = 90f;
     [Tooltip("AI가 옆으로 도는 속도")]
-    public float turnSpeed = 120f;
+    public float turnSpeed = 200f;
     [Tooltip("Raycast 시 플레이어를 가리는 장애물 Layer Mask")]
     public LayerMask obstacleMask;
 

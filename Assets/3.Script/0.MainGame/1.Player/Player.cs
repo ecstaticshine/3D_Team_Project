@@ -158,7 +158,7 @@ public class Player : MonoBehaviour
         dashDir.Normalize();
 
         float startTime = Time.unscaledTime;
-        while (Time.unscaledTime < startTime + dashDuration)
+        while (Time.unscaledTime < startTime + dashDuration && !isDead)
         {
             characterController.Move(dashDir * dashSpeed * Time.unscaledDeltaTime);
             Look();

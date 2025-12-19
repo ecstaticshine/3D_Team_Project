@@ -1604,8 +1604,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da9a35bc51f74af4da3781127c631d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
-  maxHp: 100
   MeleeDamage: 50
+  maxHp: 100
   enemyGunData: {fileID: 11400000, guid: aeb3800fa49ada944b596115e48cdfed, type: 2}
   medicinePrefab: {fileID: 1193652733296499636, guid: 55801f9716236bf43960be0778605c9b, type: 3}
 --- !u!1 &370373551
@@ -2962,8 +2962,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da9a35bc51f74af4da3781127c631d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
-  maxHp: 100
   MeleeDamage: 50
+  maxHp: 100
   enemyGunData: {fileID: 11400000, guid: 72e03fa40aecfc7408cf1807973bf6eb, type: 2}
   medicinePrefab: {fileID: 1193652733296499636, guid: 55801f9716236bf43960be0778605c9b, type: 3}
 --- !u!1 &655081623
@@ -3349,7 +3349,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &704508020
 Transform:
   m_ObjectHideFlags: 0
@@ -3381,8 +3381,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da9a35bc51f74af4da3781127c631d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
-  maxHp: 100
   MeleeDamage: 50
+  maxHp: 100
   enemyGunData: {fileID: 11400000, guid: 72e03fa40aecfc7408cf1807973bf6eb, type: 2}
   medicinePrefab: {fileID: 1193652733296499636, guid: 55801f9716236bf43960be0778605c9b, type: 3}
 --- !u!135 &704508022
@@ -3469,6 +3469,7 @@ MonoBehaviour:
   fireInterval: {x: 0.5, y: 1.5}
   lastHeardPosition: {x: 0, y: 0, z: 0}
   alertDuration: 5
+  meleeAttackCooldown: 3
   j_AIShooter: {fileID: 2049348050}
 --- !u!136 &704508025
 CapsuleCollider:
@@ -4327,8 +4328,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da9a35bc51f74af4da3781127c631d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
-  maxHp: 100
   MeleeDamage: 50
+  maxHp: 100
   enemyGunData: {fileID: 11400000, guid: 72e03fa40aecfc7408cf1807973bf6eb, type: 2}
   medicinePrefab: {fileID: 1193652733296499636, guid: 55801f9716236bf43960be0778605c9b, type: 3}
 --- !u!135 &785609342
@@ -4400,7 +4401,7 @@ MonoBehaviour:
   animator: {fileID: 785609347}
   timeScaleMultiplier: 1
   baseAgentSpeed: 0
-  viewDistance: 20
+  viewDistance: 30
   viewAngle: 150
   turnSpeed: 120
   obstacleMask:
@@ -4415,6 +4416,7 @@ MonoBehaviour:
   fireInterval: {x: 0.5, y: 1.5}
   lastHeardPosition: {x: 0, y: 0, z: 0}
   alertDuration: 5
+  meleeAttackCooldown: 3
   j_AIShooter: {fileID: 1863802628}
 --- !u!136 &785609345
 CapsuleCollider:
@@ -6669,6 +6671,7 @@ GameObject:
   - component: {fileID: 1157896024}
   - component: {fileID: 1157896027}
   - component: {fileID: 1157896028}
+  - component: {fileID: 1157896029}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -6767,6 +6770,18 @@ MonoBehaviour:
   effectSpeed: 5
   maxIntensity: 0.5
   damageColor: {r: 1, g: 0, b: 0, a: 1}
+--- !u!114 &1157896029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1157896023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90f50b079fb8da642aa325dda3c86c3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SoundSystem
 --- !u!1 &1172625887
 GameObject:
   m_ObjectHideFlags: 0
@@ -11087,8 +11102,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da9a35bc51f74af4da3781127c631d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
-  maxHp: 100
   MeleeDamage: 50
+  maxHp: 100
   enemyGunData: {fileID: 11400000, guid: a9470847588ffdd40b3c454e6bc65052, type: 2}
   medicinePrefab: {fileID: 1193652733296499636, guid: 55801f9716236bf43960be0778605c9b, type: 3}
 --- !u!1 &1957091395
@@ -12075,7 +12090,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &18434698648147631
 Transform:
   m_ObjectHideFlags: 0
@@ -13468,6 +13483,7 @@ MonoBehaviour:
   fireInterval: {x: 0.5, y: 1.5}
   lastHeardPosition: {x: 0, y: 0, z: 0}
   alertDuration: 5
+  meleeAttackCooldown: 3
   j_AIShooter: {fileID: 1382435348419441608}
 --- !u!1 &2283681343844859560
 GameObject:
@@ -17257,8 +17273,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da9a35bc51f74af4da3781127c631d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
-  maxHp: 100
   MeleeDamage: 50
+  maxHp: 100
   enemyGunData: {fileID: 11400000, guid: 72e03fa40aecfc7408cf1807973bf6eb, type: 2}
   medicinePrefab: {fileID: 1193652733296499636, guid: 55801f9716236bf43960be0778605c9b, type: 3}
 --- !u!23 &8898755469777356542

@@ -144,7 +144,8 @@ public class Gun : MonoBehaviour
         currentTimer = 0;
         currentAmmo--;
 
-
+        //적이든 아군이든 쏜 곳을 확인
+        SoundSystem.EmitSound(transform.position, 20f);
 
         if (gunAnimator != null) gunAnimator.SetTrigger("Fire");
         AudioManager.instance.PlaySFX(gunData.fireSoundName);
@@ -183,21 +184,6 @@ public class Gun : MonoBehaviour
         bullet.layer = LayerMask.NameToLayer(layerName);
 
         bullet.transform.up = direction;
-
-        //주인공이 쏜 총알에만 반응하는 식으로 변경
-        if (layerName.Equals("PlayerBullet"))
-        {
-            Collider[] targets = Physics.OverlapSphere(transform.position, 20f);
-
-            foreach (var target in targets)
-            {
-                if (target.TryGetComponent(out J_AIController ai))
-                {
-                    ai.OnSoundHeard(transform.position);
-                }
-            }
-        }
-
 
         if (bullet.TryGetComponent(out Rigidbody rb))
         {
