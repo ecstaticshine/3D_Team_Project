@@ -31,7 +31,6 @@ public class TimeRewindManager : MonoBehaviour
         if (!rewindables.Contains(obj))
         {
             rewindables.Add(obj);
-            Debug.Log($"[유니 매니저] {obj.name} 등록 완료! (현재 관리 중: {rewindables.Count}개)");
         }
     }
 
@@ -41,12 +40,6 @@ public class TimeRewindManager : MonoBehaviour
     {
         if (!isRewinding)
         {
-            // [유니 디버그] 등록된 애들이 없으면 기록도 안 합니다.
-            if (rewindables.Count == 0 && Time.frameCount % 120 == 0)
-            {
-                Debug.LogWarning("[유니 매니저] 현재 관리하는 오브젝트가 0개입니다! 등록이 안 되고 있어요.");
-            }
-
             for (int i = 0; i < rewindables.Count; i++)
             {
                 if (rewindables[i] != null) rewindables[i].Record();
@@ -54,7 +47,6 @@ public class TimeRewindManager : MonoBehaviour
         }
     }
 
-    // ... (StartFullRewind 및 나머지 코드는 기존과 동일) ...
     public void StartFullRewind()
     {
         if (isRewinding) return;
@@ -67,7 +59,6 @@ public class TimeRewindManager : MonoBehaviour
     {
         isRewinding = true;
 
-        // [유니] 오빠가 수정한 부분: ScreenEffectManager 직접 호출 방식이라면 여기를 주석 처리하거나 맞춰주세요
         if (ScreenEffectManager.instance != null) ScreenEffectManager.instance.SetRewindActive(true);
 
         foreach (var obj in rewindables) { if (obj != null) obj.StartRewind(); }
