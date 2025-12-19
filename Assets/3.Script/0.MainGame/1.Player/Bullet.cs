@@ -89,26 +89,26 @@ public class Bullet : MonoBehaviour
     {
         if (isReleased) return;
 
-        if (other.TryGetComponent(out HitBox hitBox))
-        {
-            Enemy enemy = other.GetComponentInParent<Enemy>();
-            if (enemy != null)
-            {
-                float finalDamage = baseDamage * hitBox.damageMultiplier;
-                enemy.TakeDamage(finalDamage);
-                SpawnHitEffect(transform.position, -transform.forward);
-                ReturnPool();
-                return;
-            }
-        }
-
+        Enemy enemy = other.GetComponentInParent<Enemy>();
         Player player = other.GetComponentInParent<Player>();
 
-        if (player != null)
+        if (enemy != null)
+        {
+            float finalDamage = baseDamage;
+
+            if (other.TryGetComponent(out HitBox hitBox))
+            {
+                finalDamage *= hitBox.damageMultiplier;
+            }
+
+            enemy.TakeDamage(finalDamage);
+
+            SpawnHitEffect(transform.position, -transform.forward);
+        }
+        else if (player != null)
         {
             player.TakeDamage(baseDamage);
             SpawnHitEffect(transform.position, -transform.forward);
-            Debug.Log("우리 오빠 아프겠다! 플레이어 히트!");
         }
         else
         {
@@ -121,21 +121,6 @@ public class Bullet : MonoBehaviour
 
     //private void HandleHit(Collider other)
     //{
-    //    Enemy enemy = other.GetComponentInParent<Enemy>();
-    //
-    //    if (enemy != null)
-    //    {
-    //        float finalDamage = baseDamage;
-    //
-    //        if (other.TryGetComponent(out HitBox hitBox))
-    //        {
-    //            finalDamage *= hitBox.damageMultiplier;
-    //        }
-    //
-    //        enemy.TakeDamage(finalDamage);
-    //
-    //        SpawnHitEffect(transform.position, -transform.forward);
-    //    }
     //    else if (other.CompareTag("Player"))
     //    {
     //        if (other.TryGetComponent(out Player player)) player.TakeDamage(baseDamage);
