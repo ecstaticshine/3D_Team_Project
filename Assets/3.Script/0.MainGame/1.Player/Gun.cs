@@ -184,15 +184,20 @@ public class Gun : MonoBehaviour
 
         bullet.transform.up = direction;
 
-        Collider[] targets = Physics.OverlapSphere(transform.position, 20f);
-
-        foreach (var target in targets)
+        //주인공이 쏜 총알에만 반응하는 식으로 변경
+        if (layerName.Equals("PlayerBullet"))
         {
-            if (target.TryGetComponent(out J_AIController ai))
+            Collider[] targets = Physics.OverlapSphere(transform.position, 20f);
+
+            foreach (var target in targets)
             {
-                ai.OnSoundHeard(transform.position);
+                if (target.TryGetComponent(out J_AIController ai))
+                {
+                    ai.OnSoundHeard(transform.position);
+                }
             }
         }
+
 
         if (bullet.TryGetComponent(out Rigidbody rb))
         {
