@@ -3,6 +3,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [Header("Àû Á¤º¸")]
+    private bool isDead = false;
     public float maxHp = 100f;
     private float currentHp;
 
@@ -14,11 +15,14 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
+        isDead = false;
         currentHp = maxHp;
     }
 
     public void TakeDamage(float damage)
     {
+        if (isDead) return;
+
         currentHp -= damage;
 
         if (currentHp <= 0) Die();
@@ -49,6 +53,7 @@ public class Enemy : MonoBehaviour
         //        }
         //        break;
         //}
+        isDead = true;
 
         if (enemyGunData != null)
         {
