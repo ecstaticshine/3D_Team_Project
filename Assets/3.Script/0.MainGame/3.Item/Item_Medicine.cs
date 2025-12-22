@@ -7,6 +7,6 @@ public class Item_Medicine : MonoBehaviour, IItem
 {
     public void Use(Player player)
     {
-        player.RestoreAbilityGauge();
+        player.Tranquilizer();
     }
 }

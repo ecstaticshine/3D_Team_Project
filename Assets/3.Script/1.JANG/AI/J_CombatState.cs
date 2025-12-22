@@ -91,7 +91,7 @@ public class J_CombatState : J_IState
         }
 
 
-        if (!ai.player.GetComponent<Player>().isDead)
+        if (!ai.player.GetComponent<Player>().isDie)
         {
             ai.Attack(); //공격
         }
@@ -118,7 +118,7 @@ public class J_CombatState : J_IState
             ai.StopMove(); //멈추고 바라보기
             ai.LookAt(playerPos);
         }
-        if (!ai.player.GetComponent<Player>().isDead)
+        if (!ai.player.GetComponent<Player>().isDie)
         {
         ai.j_AIShooter.TryFire();
         }

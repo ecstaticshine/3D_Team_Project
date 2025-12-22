@@ -17,7 +17,7 @@ public class Item_Gun : MonoBehaviour, IItem
     {
         if (gunData != null)
         {
-            player.HandleGunPickup(gunData);
+            player.GunPickup(gunData);
 
             Destroy(gameObject);
         }

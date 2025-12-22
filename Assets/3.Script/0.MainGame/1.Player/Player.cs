@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
+    #region Variable
+
     [Header("무기 및 연결")]
     [SerializeField] public Gun currentGun;
     [SerializeField] private Transform cameraTransform;
@@ -25,9 +27,9 @@ public class Player : MonoBehaviour
 
     [Header("앉기 설정")]
     [SerializeField] private float crouchTransitionSpeed = 10f;
-    private float standHeight = 2.0f;
+    [SerializeField] private float standHeight = 2.0f;
     [SerializeField] private float standBodyY = 0f;
-    private float crouchHeight = 1.0f;
+    [SerializeField] private float crouchHeight = 1.0f;
     [SerializeField] private float crouchBodyY = 0.25f;
 
     [Header("점프 & 중력 설정")]
@@ -40,7 +42,7 @@ public class Player : MonoBehaviour
     private float abilityGauge = 100f;
 
     [Header("상태 확인")]
-    [SerializeField] public bool isDead = false;
+    [SerializeField] public bool isDie = false;
     [SerializeField] public float currentHP;
     private float maxHP = 200;
     [SerializeField] public bool isGround;
@@ -57,6 +59,8 @@ public class Player : MonoBehaviour
     private float currentSpeed;
     private float lastDashTime = -10f;
 
+    #endregion
+
     private void Awake()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -72,9 +76,10 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        AbilityGaugeSlider();
+        AbilityUI();
 
         allGuns = GetComponentsInChildren<Gun>(true);
+
         foreach (var gun in allGuns)
         {
             if (gun.gameObject.activeSelf)
@@ -84,17 +89,16 @@ public class Player : MonoBehaviour
             }
         }
     }
-
+    
     void Update()
     {
-        if (isDashing || isDead) return;
-
         isGround = characterController.isGrounded;
 
         HandleAbilityGauge();
-        HandleTimeInput();
-        HandleCrouch();
-        UpdateDashUI();
+        ToggleAbility();
+        DashUI();
+
+        if (isDashing || isDie) return;
 
         if (isGround && velocity.y < 0)
         {
@@ -102,11 +106,14 @@ public class Player : MonoBehaviour
             velocity.y = -2f;
         }
 
-        MovePlayer();
+        Crouch();
+        Move();
         Look();
     }
 
-    private void MovePlayer()
+    #region Movement
+
+    private void Move()
     {
         currentSpeed = isCrouching ? crouchSpeed : moveSpeed;
 
@@ -118,8 +125,7 @@ public class Player : MonoBehaviour
         Vector3 finalVelocity = finalMove + velocity;
         characterController.Move(finalVelocity * Time.unscaledDeltaTime);
     }
-
-    private void HandleCrouch()
+    private void Crouch()
     {
         float targetHeight = isCrouching ? crouchHeight : standHeight;
         float targetBodyY = isCrouching ? crouchBodyY : standBodyY;
@@ -139,16 +145,15 @@ public class Player : MonoBehaviour
             playerBody.localPosition = bodyPos;
         }
     }
-
-    public void OnDash(InputValue value)
+    private void Look()
     {
-        if (value.isPressed && !isDashing && !isCrouching && isGround && Time.unscaledTime >= lastDashTime + dashCooldown)
-        {
-            StartCoroutine(DashRoutine());
-        }
+        if (cameraTransform == null) return;
+        xRotation -= lookInput.y * mouseSensitivity * Time.unscaledDeltaTime;
+        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+        cameraTransform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+        transform.Rotate(Vector3.up * lookInput.x * mouseSensitivity * Time.unscaledDeltaTime);
     }
-
-    IEnumerator DashRoutine()
+    IEnumerator Dash()
     {
         isDashing = true;
         lastDashTime = Time.unscaledTime;
@@ -159,7 +164,7 @@ public class Player : MonoBehaviour
         dashDir.Normalize();
 
         float startTime = Time.unscaledTime;
-        while (Time.unscaledTime < startTime + dashDuration && !isDead)
+        while (Time.unscaledTime < startTime + dashDuration && !isDie)
         {
             characterController.Move(dashDir * dashSpeed * Time.unscaledDeltaTime);
             Look();
@@ -170,80 +175,11 @@ public class Player : MonoBehaviour
         velocity = Vector3.zero;
     }
 
-    public void OnCrouch(InputValue value)
-    {
-        if (!isJumping && !isDashing) isCrouching = value.isPressed;
-    }
+    #endregion
 
-    public void OnFire(InputValue value) { if (currentGun != null && !isDead) currentGun.SetTriggerPressed(value.isPressed); }
-    public void OnReload(InputValue value) { if (currentGun != null && !isDead) currentGun.Reload(); }
-    public void OnMove(InputValue value) {if(!isDead) moveInput = value.Get<Vector2>(); }
-    public void OnLook(InputValue value) {if(!isDead) lookInput = value.Get<Vector2>(); }
-    public void OnJump(InputValue value)
-    {
-        if (isGround && !isJumping && !isCrouching && !isDead)
-        {
-            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-            isJumping = true;
-        }
-    }
+    #region Function
 
-    private void HandleTimeInput()
-    {
-        if (Keyboard.current.tKey.wasPressedThisFrame && abilityGauge >= 0 && !isDead) ToggleTime();
-        else if (isTimeSlow && abilityGauge <= 0) ToggleTime();
-    }
-
-    private void ToggleTime()
-    {
-        isTimeSlow = !isTimeSlow;
-        Time.timeScale = isTimeSlow ? slowFactor : 1.0f;
-        Time.fixedDeltaTime = 0.02f * Time.timeScale;
-    }
-
-    private void HandleAbilityGauge()
-    {
-        if (isTimeSlow)
-        {
-            abilityGauge -= 10f * Time.unscaledDeltaTime;
-            if (ScoreManager.instance != null) ScoreManager.instance.AddAbilityUsage(Time.unscaledDeltaTime);
-            if (AudioManager.instance != null) AudioManager.instance.PlaySlow(slowFactor);
-            recoverTimer = 0f;
-        }
-        else if (abilityGauge < 100f)
-        {
-            recoverTimer += Time.unscaledDeltaTime;
-            if (AudioManager.instance != null) AudioManager.instance.PlayOriginal();
-            if (recoverTimer >= 3.0f) abilityGauge += 100f * Time.unscaledDeltaTime;
-        }
-
-        abilityGauge = Mathf.Clamp(abilityGauge, 0f, 100f);
-
-        AbilityGaugeSlider();
-
-        if (ScreenEffectManager.instance != null)
-        {
-            ScreenEffectManager.instance.UpdateEffect(abilityGauge, 100f);
-        }
-    }
-
-    private void UpdateDashUI()
-    {
-        if (UIManager.instance != null)
-        {
-            float timeSinceLastDash = Time.unscaledTime - lastDashTime;
-
-            float cooldownPercent = Mathf.Clamp01(timeSinceLastDash / dashCooldown);
-
-            UIManager.instance.UpdateDashSlider(cooldownPercent);
-        }
-    }
-
-    public void RestoreAbilityGauge() { abilityGauge = 100f; AbilityGaugeSlider(); }
-
-    private void AbilityGaugeSlider() { if (UIManager.instance != null) UIManager.instance.UpdateAbilitySlider(abilityGauge); }
-
-    public void HandleGunPickup(GunData newGunData)
+    public void GunPickup(GunData newGunData)
     {
         Gun targetGun = null;
         foreach (var gun in allGuns)
@@ -262,10 +198,9 @@ public class Player : MonoBehaviour
             currentGun = targetGun;
         }
     }
-
     public void TakeDamage(float damage)
     {
-        if (isDead) return;
+        if (isDie) return;
 
         currentHP -= damage;
 
@@ -278,13 +213,12 @@ public class Player : MonoBehaviour
         if (currentHP <= 0)
         {
             ScreenEffectManager.instance.SetDeathEffect();
-            StartCoroutine(DeathRoutine());
+            StartCoroutine(Die());
         }
     }
-
-    private IEnumerator DeathRoutine()
+    private IEnumerator Die()
     {
-        isDead = true;
+        isDie = true;
         isTimeSlow = false;
         Time.timeScale = 1.0f;
 
@@ -323,10 +257,9 @@ public class Player : MonoBehaviour
 
         Resurrect();
     }
-
     private void Resurrect()
     {
-        isDead = false;
+        isDie = false;
         currentHP = maxHP;
 
         if (ScreenEffectManager.instance != null) ScreenEffectManager.instance.ResetEffect();
@@ -340,14 +273,92 @@ public class Player : MonoBehaviour
         if (characterController != null) characterController.enabled = true;
     }
 
-    private void Look()
+    #endregion
+
+    #region Ability
+
+    private void Ability()
     {
-        if (cameraTransform == null) return;
-        xRotation -= lookInput.y * mouseSensitivity * Time.unscaledDeltaTime;
-        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
-        cameraTransform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
-        transform.Rotate(Vector3.up * lookInput.x * mouseSensitivity * Time.unscaledDeltaTime);
+        isTimeSlow = !isTimeSlow;
+        Time.timeScale = isTimeSlow ? slowFactor : 1.0f;
+        Time.fixedDeltaTime = 0.02f * Time.timeScale;
     }
+    private void ToggleAbility()
+    {
+        if (Keyboard.current.tKey.wasPressedThisFrame && abilityGauge >= 0 && !isDie) Ability();
+        else if (isTimeSlow && abilityGauge <= 0) Ability();
+    }
+    private void HandleAbilityGauge()
+    {
+        if (isTimeSlow)
+        {
+            abilityGauge -= 10f * Time.unscaledDeltaTime;
+            if (ScoreManager.instance != null) ScoreManager.instance.AddAbilityUsage(Time.unscaledDeltaTime);
+            if (AudioManager.instance != null) AudioManager.instance.PlaySlow(slowFactor);
+            recoverTimer = 0f;
+        }
+        else if (abilityGauge < 100f)
+        {
+            recoverTimer += Time.unscaledDeltaTime;
+            if (AudioManager.instance != null) AudioManager.instance.PlayOriginal();
+            if (recoverTimer >= 3.0f) abilityGauge += 100f * Time.unscaledDeltaTime;
+        }
+
+        abilityGauge = Mathf.Clamp(abilityGauge, 0f, 100f);
+
+        AbilityUI();
+
+        if (ScreenEffectManager.instance != null)
+        {
+            ScreenEffectManager.instance.UpdateEffect(abilityGauge, 100f);
+        }
+    }
+    public void Tranquilizer() { abilityGauge = 100f; AbilityUI(); }
+
+    #endregion
+
+    #region NewInputSystem
+
+    public void OnFire(InputValue value) { if (currentGun != null && !isDie) currentGun.SetTriggerPressed(value.isPressed); }
+    public void OnReload(InputValue value) { if (currentGun != null && !isDie) currentGun.Reload(); }
+    public void OnMove(InputValue value) {if(!isDie) moveInput = value.Get<Vector2>(); }
+    public void OnLook(InputValue value) {if(!isDie) lookInput = value.Get<Vector2>(); }
+    public void OnJump(InputValue value)
+    {
+        if (isGround && !isJumping && !isCrouching && !isDie)
+        {
+            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            isJumping = true;
+        }
+    }
+    public void OnCrouch(InputValue value)
+    {
+        if (!isJumping && !isDashing) isCrouching = value.isPressed;
+    }
+    public void OnDash(InputValue value)
+    {
+        if (value.isPressed && !isDashing && !isCrouching && isGround && Time.unscaledTime >= lastDashTime + dashCooldown)
+        {
+            StartCoroutine(Dash());
+        }
+    }
+
+    #endregion
+
+    #region UI
+    private void DashUI()
+    {
+        if (UIManager.instance != null)
+        {
+            float timeSinceLastDash = Time.unscaledTime - lastDashTime;
+
+            float cooldownPercent = Mathf.Clamp01(timeSinceLastDash / dashCooldown);
+
+            UIManager.instance.UpdateDashSlider(cooldownPercent);
+        }
+    }
+    private void AbilityUI() { if (UIManager.instance != null) UIManager.instance.UpdateAbilitySlider(abilityGauge); }
+    #endregion
 
     private void OnTriggerEnter(Collider other)
     {
