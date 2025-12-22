@@ -2048,7 +2048,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 236416128}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 23.86}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.099999994, y: 0.099999994, z: 0.099999994}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2058,7 +2058,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -34.84941, y: 3}
+  m_AnchoredPosition: {x: 0, y: 3}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &236416130
@@ -2196,7 +2196,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 245709574}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 23.86}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.099999994, y: 0.099999994, z: 0.099999994}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2206,7 +2206,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -32.559414, y: 3}
+  m_AnchoredPosition: {x: 0, y: 3}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &245709576
@@ -3554,6 +3554,8 @@ MonoBehaviour:
   alertDuration: 5
   meleeAttackCooldown: 3
   j_AIShooter: {fileID: 2098188587}
+  enemyAlert: {fileID: 394263686}
+  hasDetectedPlayer: 0
 --- !u!136 &394263683
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -4908,7 +4910,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 528744204}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 23.86}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.099999994, y: 0.099999994, z: 0.099999994}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4918,7 +4920,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -30.549414, y: 3}
+  m_AnchoredPosition: {x: 0, y: 3}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &528744206
@@ -6530,7 +6532,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 701599236}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 26.450005}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.099999994, y: 0.099999994, z: 0.099999994}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6540,7 +6542,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -31.379414, y: 3}
+  m_AnchoredPosition: {x: 0, y: 3}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &701599238
@@ -9322,6 +9324,8 @@ MonoBehaviour:
   alertDuration: 5
   meleeAttackCooldown: 3
   j_AIShooter: {fileID: 1712620323}
+  enemyAlert: {fileID: 1003878245}
+  hasDetectedPlayer: 0
 --- !u!136 &1003878242
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -11342,6 +11346,7 @@ GameObject:
   - component: {fileID: 1157896027}
   - component: {fileID: 1157896028}
   - component: {fileID: 1157896029}
+  - component: {fileID: 1157896030}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -11438,6 +11443,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90f50b079fb8da642aa325dda3c86c3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SoundSystem
+--- !u!114 &1157896030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1157896023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d59e68c197841344ba7e48357bd763ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ScoreManager
+  killCount: 0
+  headshotCount: 0
+  stageTime: 0
+  abilityUsageDuration: 0
+  shotsFired: 0
+  shotsHit: 0
+  finalScore: 0
+  finalAccuracy: 0
 --- !u!1 &1163037935
 GameObject:
   m_ObjectHideFlags: 0
@@ -12547,6 +12572,8 @@ MonoBehaviour:
   alertDuration: 5
   meleeAttackCooldown: 3
   j_AIShooter: {fileID: 91825134}
+  enemyAlert: {fileID: 1303689396}
+  hasDetectedPlayer: 0
 --- !u!136 &1303689393
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -17289,6 +17316,8 @@ MonoBehaviour:
   alertDuration: 5
   meleeAttackCooldown: 3
   j_AIShooter: {fileID: 1645629053}
+  enemyAlert: {fileID: 1787838450}
+  hasDetectedPlayer: 0
 --- !u!136 &1787838447
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -17759,7 +17788,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1810218814}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 26.310005}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.099999994, y: 0.099999994, z: 0.099999994}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -17769,7 +17798,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -33.519413, y: 3}
+  m_AnchoredPosition: {x: 0, y: 3}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1810218816
@@ -21688,6 +21717,8 @@ MonoBehaviour:
   alertDuration: 5
   meleeAttackCooldown: 3
   j_AIShooter: {fileID: 1382435348419441608}
+  enemyAlert: {fileID: 8895164610128877482}
+  hasDetectedPlayer: 0
 --- !u!1 &2283681343844859560
 GameObject:
   m_ObjectHideFlags: 0
