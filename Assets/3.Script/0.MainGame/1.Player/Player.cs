@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -205,6 +206,7 @@ public class Player : MonoBehaviour
         if (isTimeSlow)
         {
             abilityGauge -= 10f * Time.unscaledDeltaTime;
+            if (ScoreManager.instance != null) ScoreManager.instance.AddAbilityUsage(Time.unscaledDeltaTime);
             if (AudioManager.instance != null) AudioManager.instance.PlaySlow(slowFactor);
             recoverTimer = 0f;
         }
@@ -351,7 +353,9 @@ public class Player : MonoBehaviour
     {
         if (other.CompareTag("Finish"))
         {
-            ScoreManager.instance.CalculateFinalScore(currentHP, maxHP);
+            ScoreManager.instance.CalculateFinalScore();
+
+            SceneManager.LoadScene("ScoreScene");
         }
     }
 

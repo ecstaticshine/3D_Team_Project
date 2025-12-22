@@ -4,7 +4,13 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/1.Scene/SEO/TrainingScene 1.unity
+    guid: 3bf8ebe6f2a1bb94eaab953ae8bf31da
+  - enabled: 1
+    path: Assets/1.Scene/SEO/ScoreScene.unity
+    guid: 26d2ce6c93fbb364b9ed8f23bcbb5c29
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 289c1b55c9541489481df5cc06664110, type: 3}
   m_UseUCBPForAssetBundles: 0

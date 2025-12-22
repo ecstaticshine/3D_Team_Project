@@ -143,7 +143,6 @@ public class J_AIShooter : MonoBehaviour
         gunState = GunState.Ready;
     }
 
-
     private Vector3 GetAimTargetPoint()
     {
         Ray ray = new Ray(firePoint.position, firePoint.forward);

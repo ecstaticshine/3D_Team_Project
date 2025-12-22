@@ -1,7 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+// [유니] UI 관련 코드는 여기서 다 뺄게! 오직 데이터만 관리해.
 
 public class ScoreManager : MonoBehaviour
 {
@@ -12,16 +10,17 @@ public class ScoreManager : MonoBehaviour
     public int headshotCount = 0;
     public float stageTime = 0f;
     public float abilityUsageDuration = 0f;
-    public int detectedCount = 0;
-
     public int shotsFired = 0;
     public int shotsHit = 0;
+
+    public int finalScore = 0;
+    public float finalAccuracy = 0f;
 
     private bool isStageClear = false;
 
     private void Awake()
     {
-        if(instance == null)
+        if (instance == null)
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
@@ -37,27 +36,14 @@ public class ScoreManager : MonoBehaviour
         if (!isStageClear) stageTime += Time.unscaledDeltaTime;
     }
 
-    public void AddKill(bool isHeadshot)
-    {
-        killCount++;
-        if (isHeadshot) headshotCount++;
-    }
-
+    public void AddKill(bool isHeadshot) { killCount++; if (isHeadshot) headshotCount++; }
     public void AddShotFired() => shotsFired++;
     public void AddShotHit() => shotsHit++;
+    public void AddAbilityUsage(float duration) { abilityUsageDuration += duration; }
 
-    public void AddAbilityUsage(float duration)
+    public void CalculateFinalScore()
     {
-        abilityUsageDuration += duration;
-    }
-
-    public void AddDetection()
-    {
-        detectedCount++;
-    }
-
-    public int CalculateFinalScore(float currentHP, float maxHP)
-    {
+        if (isStageClear) return;
         isStageClear = true;
 
         int score = 0;
@@ -65,22 +51,14 @@ public class ScoreManager : MonoBehaviour
         score += killCount * 100;
         score += headshotCount * 50;
 
-        float accuracy = (shotsFired > 0) ? ((float)shotsHit / shotsFired) : 0f;
-        score += Mathf.RoundToInt(accuracy * 1000);
-
-        float hpRatio = currentHP / maxHP;
-        score += Mathf.RoundToInt(hpRatio * 500);
+        finalAccuracy = (shotsFired > 0) ? ((float)shotsHit / shotsFired) : 0f;
+        score += Mathf.RoundToInt(finalAccuracy * 1000);
 
         score -= Mathf.FloorToInt(stageTime * 10);
-
         score -= Mathf.FloorToInt(abilityUsageDuration * 5);
-
-        score -= detectedCount * 200;
 
         if (score < 0) score = 0;
 
-        return score;
+        finalScore = score;
     }
-
-
 }
