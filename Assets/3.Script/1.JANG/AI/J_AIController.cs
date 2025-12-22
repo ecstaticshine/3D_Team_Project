@@ -94,6 +94,12 @@ public class J_AIController : MonoBehaviour
     [Header("총")]
     public J_AIShooter j_AIShooter;
 
+    [Header("UI 연결")]
+    public EnemyAlert enemyAlert; // [추가] 리모컨 슬롯
+
+    [Header("상태 기억")]
+    // [추가] 한 번이라도 들켰는지 확인하는 '전투 기억' 변수
+    public bool hasDetectedPlayer = false;
 
     void Awake()
     {
@@ -103,6 +109,9 @@ public class J_AIController : MonoBehaviour
         baseAngularSpeed = Agent.angularSpeed;
 
         ApplyTimeScale();
+        // [추가] 자동으로 내 몸에 붙은 EnemyAlert 찾기
+        if (enemyAlert == null)
+            enemyAlert = GetComponent<EnemyAlert>();
     }
 
     void Start()

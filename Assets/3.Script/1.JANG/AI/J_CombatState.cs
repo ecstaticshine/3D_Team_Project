@@ -18,6 +18,13 @@ public class J_CombatState : J_IState
 
     public void Enter(J_AIController ai)
     {
+        // 1. 전투 기억 활성화 (이제 Alert로 넘어가도 '?' 안 띄움)
+        ai.hasDetectedPlayer = true;
+        // [추가] 상태 진입 시 '!' 띄우기
+        if (ai.enemyAlert != null)
+        {
+            ai.enemyAlert.SetState(EnemyAlert.AlertState.Detected);
+        }
         fireCooldown = Random.Range(MIN_FIRE_INTERVAL, MAX_FIRE_INTERVAL);
         lostSightTimer = 0f;
         ai.Agent.isStopped = false;

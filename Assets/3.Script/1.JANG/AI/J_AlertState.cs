@@ -20,6 +20,14 @@ public class J_AlertState : J_IState
 
     public void Enter(J_AIController ai) // AI가 처음 경계 상태에 들어오자마자 하는 행동(방금 저기서 소리가 났는데?)
     {
+        // [핵심 로직 수정]
+        // 방금 전까지 전투 중이 아니었을 때만(평화로울 때만) '?'를 띄운다.
+        // 전투 중이었다면(hasDetectedPlayer == true), 아이콘을 띄우지 않거나 기존 '!'를 유지한다.
+        if (ai.enemyAlert != null && !ai.hasDetectedPlayer)
+        {
+            ai.enemyAlert.SetState(EnemyAlert.AlertState.Suspicious);
+        }
+
         timer = 0f;
         rotationTimer = 0f;
 

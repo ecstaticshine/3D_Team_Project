@@ -18,6 +18,14 @@ public class J_PatrolState : J_IState
 
     public void Enter(J_AIController controller)
     {
+        // 1. 긴장 상태 해제 (이제 소리 들으면 다시 '?' 띄움)
+        controller.hasDetectedPlayer = false;
+
+        // 2. 아이콘 끄기
+        if (controller.enemyAlert != null)
+        {
+            controller.enemyAlert.SetState(EnemyAlert.AlertState.None);
+        }
         waitTimer = 0f;
         waitDuration = Random.Range(
             controller.waitTimeRange.x,
