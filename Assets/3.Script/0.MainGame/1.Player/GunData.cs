@@ -13,7 +13,6 @@ public enum GunFireMode
 [CreateAssetMenu(menuName = "ScriptableObejct/GunData", fileName = "GunData")]
 public class GunData : ScriptableObject
 {
-
     [Header("√— ±‚∫ª ¡§∫∏")]
 
     [Lavel("√— ¿Ã∏ß")]

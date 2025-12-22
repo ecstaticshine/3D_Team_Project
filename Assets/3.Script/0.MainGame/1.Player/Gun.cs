@@ -4,6 +4,8 @@ using UnityEngine.Pool;
 
 public class Gun : MonoBehaviour
 {
+    #region Variable
+
     public enum GunState { Ready, Empty, Reloading }
 
     [Header("설정")]
@@ -17,13 +19,16 @@ public class Gun : MonoBehaviour
 
     [Header("설정")]
     [SerializeField] private bool isPlayerGun = true;
+
+    public GunState gunState { get; private set; }
     private int totalAmmo;
     private int currentAmmo;
-    public GunState gunState { get; private set; }
 
     private ObjectPool<GameObject> bulletPool;
     private float currentTimer;
     private bool isTriggerHeld = false;
+
+    #endregion
 
     private void Awake()
     {
@@ -38,6 +43,45 @@ public class Gun : MonoBehaviour
         );
     }
 
+    private void OnEnable()
+    {
+        gunState = GunState.Ready;
+        UpdateAmmoUI();
+    }
+
+    private void Start()
+    {
+        if (gunData != null)
+        {
+            currentAmmo = gunData.maxAmmo;
+            totalAmmo = gunData.maxAmmo * 2;
+        }
+
+        if (cameraTransform == null && Camera.main != null) cameraTransform = Camera.main.transform;
+
+        UpdateAmmoUI();
+    }
+
+    private void Update()
+    {
+        currentTimer += Time.unscaledDeltaTime;
+
+        if (gunData == null || gunState == GunState.Reloading) return;
+
+        CheckContinuousFire();
+    }
+
+    public void InitializeGun()
+    {
+        if (gunData == null) return;
+        currentAmmo = gunData.maxAmmo;
+        totalAmmo = gunData.maxAmmo * 2;
+        gunState = GunState.Ready;
+        UpdateAmmoUI();
+    }
+
+    #region Pool
+
     private GameObject CreateBulletObject()
     {
         GameObject bullet = Instantiate(gunData.bulletPrefab);
@@ -47,6 +91,24 @@ public class Gun : MonoBehaviour
             bulletScript.SetManagedPool(bulletPool);
         }
         return bullet;
+    }
+
+    private void FireBulletFromPool(Vector3 direction)
+    {
+        GameObject bullet = bulletPool.Get();
+
+        if (bullet == null) return;
+
+        string layerName = isPlayerGun ? "PlayerBullet" : "EnemyBullet";
+
+        bullet.layer = LayerMask.NameToLayer(layerName);
+
+        bullet.transform.up = direction;
+
+        if (bullet.TryGetComponent(out Rigidbody rb))
+        {
+            rb.linearVelocity = direction * gunData.bulletSpeed;
+        }
     }
 
     private void OnGetBullet(GameObject bullet)
@@ -83,52 +145,15 @@ public class Gun : MonoBehaviour
         Destroy(bullet);
     }
 
-    private void OnEnable()
+    #endregion
+
+    #region Fire
+
+    private Vector3 GetAimTargetPoint()
     {
-        gunState = GunState.Ready;
-        UpdateAmmoUI();
+        Ray ray = new Ray(cameraTransform.position, cameraTransform.forward);
+        return Physics.Raycast(ray, out RaycastHit hit, 100f) ? hit.point : ray.GetPoint(100f);
     }
-
-    private void Start()
-    {
-        if (gunData != null)
-        {
-            currentAmmo = gunData.maxAmmo;
-            totalAmmo = gunData.maxAmmo * 2;
-        }
-
-        if (cameraTransform == null && Camera.main != null) cameraTransform = Camera.main.transform;
-
-        UpdateAmmoUI();
-    }
-
-    private void Update()
-    {
-        currentTimer += Time.unscaledDeltaTime;
-
-        if (gunData == null || gunState == GunState.Reloading) return;
-
-        CheckContinuousFire();
-    }
-
-    public void SetTriggerPressed(bool isPressed)
-    {
-        isTriggerHeld = isPressed;
-
-        if (isPressed && gunData.fireMode != GunFireMode.FullAuto)
-        {
-            TryFire();
-        }
-    }
-
-    private void CheckContinuousFire()
-    {
-        if (isTriggerHeld && gunData.fireMode == GunFireMode.FullAuto)
-        {
-            TryFire();
-        }
-    }
-
     public void TryFire()
     {
         if (gunState != GunState.Ready) return;
@@ -144,7 +169,6 @@ public class Gun : MonoBehaviour
         currentTimer = 0;
         currentAmmo--;
 
-        //적이든 아군이든 쏜 곳을 확인
         SoundSystem.EmitSound(transform.position, 20f);
 
         if (gunAnimator != null) gunAnimator.SetTrigger("Fire");
@@ -155,7 +179,22 @@ public class Gun : MonoBehaviour
 
         ScoreManager.instance.AddShotFired();
     }
+    public void SetTriggerPressed(bool isPressed)
+    {
+        isTriggerHeld = isPressed;
 
+        if (isPressed && gunData.fireMode != GunFireMode.FullAuto)
+        {
+            TryFire();
+        }
+    }
+    private void CheckContinuousFire()
+    {
+        if (isTriggerHeld && gunData.fireMode == GunFireMode.FullAuto)
+        {
+            TryFire();
+        }
+    }
     private void ProcessShooting()
     {
         Vector3 targetPoint = GetAimTargetPoint();
@@ -174,25 +213,6 @@ public class Gun : MonoBehaviour
             FireBulletFromPool(baseDirection);
         }
     }
-
-    private void FireBulletFromPool(Vector3 direction)
-    {
-        GameObject bullet = bulletPool.Get();
-
-        if (bullet == null) return;
-
-        string layerName = isPlayerGun ? "PlayerBullet" : "EnemyBullet";
-
-        bullet.layer = LayerMask.NameToLayer(layerName);
-
-        bullet.transform.up = direction;
-
-        if (bullet.TryGetComponent(out Rigidbody rb))
-        {
-            rb.linearVelocity = direction * gunData.bulletSpeed;
-        }
-    }
-
     private Vector3 GetSpreadDirection(Vector3 baseDir, float angle)
     {
         float x = Random.Range(-angle, angle);
@@ -202,12 +222,15 @@ public class Gun : MonoBehaviour
         return spreadRot * Vector3.forward;
     }
 
+    #endregion
+
+    #region Reload
+
     public void Reload()
     {
         if (gunState == GunState.Reloading || currentAmmo >= gunData.maxAmmo || totalAmmo <= 0) return;
         StartCoroutine(ReloadCoroutine());
     }
-
     private IEnumerator ReloadCoroutine()
     {
         gunState = GunState.Reloading;
@@ -225,21 +248,15 @@ public class Gun : MonoBehaviour
         UpdateAmmoUI();
     }
 
+    #endregion
+
+    #region Ammo
+
     public void AddAmmo(int amount)
     {
         totalAmmo += amount;
         UpdateAmmoUI();
     }
-
-    public void InitializeGun()
-    {
-        if (gunData == null) return;
-        currentAmmo = gunData.maxAmmo;
-        totalAmmo = gunData.maxAmmo * 2;
-        gunState = GunState.Ready;
-        UpdateAmmoUI();
-    }
-
     private void UpdateAmmoUI()
     {
         if (gameObject.activeInHierarchy && UIManager.instance != null)
@@ -248,9 +265,5 @@ public class Gun : MonoBehaviour
         }
     }
 
-    private Vector3 GetAimTargetPoint()
-    {
-        Ray ray = new Ray(cameraTransform.position, cameraTransform.forward);
-        return Physics.Raycast(ray, out RaycastHit hit, 100f) ? hit.point : ray.GetPoint(100f);
-    }
+    #endregion
 }

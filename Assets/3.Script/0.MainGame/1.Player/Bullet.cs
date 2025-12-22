@@ -6,24 +6,18 @@ using UnityEngine.Pool;
 
 public class Bullet : MonoBehaviour
 {
+    #region Variable
+
     [SerializeField] private float baseDamage = 50f;
 
     private ObjectPool<GameObject> bulletManagedPool;
-    private TrailRenderer trailEffect;
-    private bool isReleased = false;
     private GameObject hitEffectPrefab;
+    private TrailRenderer trailEffect;
     private LayerMask collisionMask;
     private Vector3 prevPosition;
+    private bool isReleased = false;
 
-    public void SetHitEffect(GameObject effect)
-    {
-        hitEffectPrefab = effect;
-    }
-
-    public void SetManagedPool(ObjectPool<GameObject> pool)
-    {
-        bulletManagedPool = pool;
-    }
+    #endregion
 
     private void Awake()
     {
@@ -52,49 +46,20 @@ public class Bullet : MonoBehaviour
         if (isReleased) return;
 
         Vector3 direction = (transform.position - prevPosition).normalized;
+
         float distance = Vector3.Distance(prevPosition, transform.position);
 
         if (distance > 0 && Physics.Raycast(prevPosition, direction, out RaycastHit hit, distance, collisionMask))
         {
-            HandleHit(hit.collider);
+            Hit(hit.collider);
         }
-
-        //if (Physics.Raycast(prevPosition, direction, out RaycastHit hit, distance))
-        //{
-        //    if (hit.collider.CompareTag("Target") || hit.collider.CompareTag("Player"))
-        //    {
-        //        HandleHit(hit.collider);
-        //    }
-        //}
 
         prevPosition = transform.position;
     }
 
-    public void SetCollisionMask(LayerMask mask)
-    {
-        collisionMask = mask;
-    }
+    #region Function
 
-    private void EnableTrail()
-    {
-        if (trailEffect != null && gameObject.activeSelf)
-        {
-            trailEffect.emitting = true;
-        }
-    }
-
-    private IEnumerator DisableBulletAfterTime(float time)
-    {
-        yield return new WaitForSeconds(time);
-        ReturnPool();
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        HandleHit(other);
-    }
-
-    private void HandleHit(Collider other)
+    private void Hit(Collider other)
     {
         if (isReleased) return;
 
@@ -112,7 +77,7 @@ public class Bullet : MonoBehaviour
             {
                 finalDamage *= hitBox.damageMultiplier;
 
-                if(hitBox.damageMultiplier >= 2.0f)
+                if (hitBox.damageMultiplier >= 2.0f)
                 {
                     isHeadShot = true;
                 }
@@ -134,7 +99,31 @@ public class Bullet : MonoBehaviour
 
         ReturnPool();
     }
+    private void EnableTrail()
+    {
+        if (trailEffect != null && gameObject.activeSelf)
+        {
+            trailEffect.emitting = true;
+        }
+    }
+    public void SetCollisionMask(LayerMask mask)
+    {
+        collisionMask = mask;
+    }
+    private IEnumerator DisableBulletAfterTime(float time)
+    {
+        yield return new WaitForSeconds(time);
+        ReturnPool();
+    }
 
+    #endregion
+
+    #region Effect
+
+    public void SetHitEffect(GameObject effect)
+    {
+        hitEffectPrefab = effect;
+    }
     private void SpawnHitEffect(Vector3 position, Vector3 direction)
     {
         if (hitEffectPrefab == null) return;
@@ -145,6 +134,14 @@ public class Bullet : MonoBehaviour
         Destroy(vfx, 2.0f);
     }
 
+    #endregion
+
+    #region Pool
+
+    public void SetManagedPool(ObjectPool<GameObject> pool)
+    {
+        bulletManagedPool = pool;
+    }
     private void ReturnPool()
     {
         if (isReleased || !gameObject.activeSelf) return;
@@ -164,5 +161,12 @@ public class Bullet : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    #endregion
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Hit(other);
     }
 }

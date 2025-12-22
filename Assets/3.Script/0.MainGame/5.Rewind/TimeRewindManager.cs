@@ -6,19 +6,18 @@ public class TimeRewindManager : MonoBehaviour
 {
     public static TimeRewindManager Instance;
 
-    private List<RewindableObject> rewindables = new List<RewindableObject>();
-    private bool isRewinding = false;
-
     [Header("효과 연결")]
     [SerializeField] private ScreenEffectManager effectManager;
 
+    private List<RewindableObject> rewindables = new List<RewindableObject>();
+
+    private bool isRewinding = false;
+
     private void Awake()
     {
-        // [유니] 싱글톤 보장
         if (Instance == null)
         {
             Instance = this;
-            // DontDestroyOnLoad(gameObject); // 필요하다면 씬 전환 시 유지
         }
         else
         {
@@ -50,8 +49,9 @@ public class TimeRewindManager : MonoBehaviour
     public void StartFullRewind()
     {
         if (isRewinding) return;
-        Debug.Log($"[유니 매니저] 되감기 시작! (대상: {rewindables.Count}명)"); // 로그 추가
+
         Time.timeScale = 1.0f;
+
         StartCoroutine(RewindAllCoroutine());
     }
 
@@ -64,6 +64,7 @@ public class TimeRewindManager : MonoBehaviour
         foreach (var obj in rewindables) { if (obj != null) obj.StartRewind(); }
 
         bool hasData = true;
+
         while (hasData)
         {
             hasData = false;
@@ -79,6 +80,5 @@ public class TimeRewindManager : MonoBehaviour
         if (ScreenEffectManager.instance != null) ScreenEffectManager.instance.SetRewindActive(false);
 
         isRewinding = false;
-        Debug.Log("되감기 완료!");
     }
 }

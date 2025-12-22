@@ -59,8 +59,6 @@ public class Enemy : MonoBehaviour
         //}
         isDead = true;
 
-        
-
         if (ScoreManager.instance != null)
         {
             ScoreManager.instance.AddKill(isHeadshot);
