@@ -124,6 +124,16 @@ public class J_AIController : MonoBehaviour
     {
         meleeAttackTimer -= Time.deltaTime * timeScaleMultiplier;
         currentState?.Execute(this);
+
+        UpdateAnimation();
+    }
+    private void UpdateAnimation()
+    {
+        if (animator == null) return;
+
+        float currentSpeed = Agent.velocity.magnitude;
+
+        animator.SetFloat("Speed", currentSpeed, 0.1f, Time.deltaTime);
     }
 
     // ===============================
@@ -268,7 +278,7 @@ public class J_AIController : MonoBehaviour
 
 
         // 무기 시스템 연결 예정
-        Debug.DrawRay(eyePoint.position, eyePoint.forward * 10f, Color.red);
+        //Debug.DrawRay(eyePoint.position, eyePoint.forward * 10f, Color.red);
     }
 
     // ===============================
