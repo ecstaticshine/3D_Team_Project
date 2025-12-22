@@ -25,9 +25,9 @@ public class Player : MonoBehaviour
     [Header("앉기 설정")]
     [SerializeField] private float crouchTransitionSpeed = 10f;
     private float standHeight = 2.0f;
-    private float standBodyY = 1.0f;
+    private float standBodyY = 0f;
     private float crouchHeight = 1.0f;
-    private float crouchBodyY = 0.5f;
+    private float crouchBodyY = 0.25f;
 
     [Header("점프 & 중력 설정")]
     [SerializeField] private float jumpHeight = 1.5f;
