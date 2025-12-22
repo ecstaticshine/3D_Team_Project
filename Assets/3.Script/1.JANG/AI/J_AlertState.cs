@@ -37,12 +37,12 @@ public class J_AlertState : J_IState
         if (NavMesh.SamplePosition(ai.lastHeardPosition, out NavMeshHit hit, 3f, NavMesh.AllAreas))
         {
             ai.MoveTo(hit.position);
-            Debug.Log($"[Alert] {ai.name}: 청각 위치로 이동 시작 {hit.position}");
+            //Debug.Log($"[Alert] {ai.name}: 청각 위치로 이동 시작 {hit.position}");
         }
         else
         {
             // NavMesh 밖이면 제자리 수색
-            Debug.LogWarning($"[Alert] {ai.name}: 청각 위치 NavMesh 실패 → 제자리 수색");
+            //Debug.LogWarning($"[Alert] {ai.name}: 청각 위치 NavMesh 실패 → 제자리 수색");
             targetSearchDirection = ai.transform.position + ai.transform.forward;
         }
     }

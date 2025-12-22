@@ -42,7 +42,7 @@ public class SaveManager : MonoBehaviour
     {
         if (!File.Exists(SavePath))
         {
-            Debug.Log("세이브 파일 없음, 새로 생성합니다.");
+            //Debug.Log("세이브 파일 없음, 새로 생성합니다.");
             return new SaveData();
         }
 

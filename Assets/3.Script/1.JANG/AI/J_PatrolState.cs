@@ -38,7 +38,7 @@ public class J_PatrolState : J_IState
         controller.animator.SetBool("isMove", true);
         GotoNextPoint(controller);
 
-        Debug.Log($"[Patrol] {controller.name}: Patrol Start");
+        //Debug.Log($"[Patrol] {controller.name}: Patrol Start");
     }
 
     public void Execute(J_AIController controller)
@@ -141,7 +141,7 @@ public class J_PatrolState : J_IState
             {
                 if (TrySetDestination(controller, hit.position))
                 {
-                    Debug.Log($"[Patrol] {controller.name}: Random Point -> {hit.position}");
+                    //Debug.Log($"[Patrol] {controller.name}: Random Point -> {hit.position}");
                     return;
                 }
             }
