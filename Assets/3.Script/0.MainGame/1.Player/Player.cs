@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems; // 이게 없으면 UI 감지를 못 합니다!
 
 public class Player : MonoBehaviour
 {
@@ -319,7 +320,25 @@ public class Player : MonoBehaviour
 
     #region NewInputSystem
 
-    public void OnFire(InputValue value) { if (currentGun != null && !isDie) currentGun.SetTriggerPressed(value.isPressed); }
+    public void OnFire(InputValue value)
+    {
+        // 1. [핵심 방어]
+        // "지금 버튼을 눌렀고(isPressed)" + "마우스가 UI 위에 있다면" -> 무시해라!
+        if (value.isPressed && EventSystem.current.IsPointerOverGameObject())
+        {
+            return;
+        }
+
+        // 2. [기존 로직]
+        // 버튼을 뗄 때(value.isPressed == false)는 위에서 걸러지지 않고 여기까지 와서
+        // 정상적으로 총을 멈추게(SetTriggerPressed(false)) 됩니다.
+        if (currentGun != null && !isDie)
+        {
+            currentGun.SetTriggerPressed(value.isPressed);
+        }
+    }
+    //기존 온파이어
+    //public void OnFire(InputValue value) { if (currentGun != null && !isDie) currentGun.SetTriggerPressed(value.isPressed); }
     public void OnReload(InputValue value) { if (currentGun != null && !isDie) currentGun.Reload(); }
     public void OnMove(InputValue value) {if(!isDie) moveInput = value.Get<Vector2>(); }
     public void OnLook(InputValue value) {if(!isDie) lookInput = value.Get<Vector2>(); }
