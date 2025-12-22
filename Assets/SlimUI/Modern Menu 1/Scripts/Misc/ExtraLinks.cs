@@ -21,5 +21,9 @@ namespace SlimUI.ModernMenu{
         public void Kim(){
             Application.OpenURL("https://github.com/kmj30");
         }
+        
+        public void Go(){
+            Application.OpenURL("https://ch.mbccomputer.co.kr/front/academy/teachers");
+        }
     }
 }
