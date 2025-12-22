@@ -101,16 +101,24 @@ public class Bullet : MonoBehaviour
         Enemy enemy = other.GetComponentInParent<Enemy>();
         Player player = other.GetComponentInParent<Player>();
 
+        float finalDamage = baseDamage;
+        bool isHeadShot = false;
+
         if (enemy != null)
         {
-            float finalDamage = baseDamage;
+            ScoreManager.instance.AddShotHit();
 
             if (other.TryGetComponent(out HitBox hitBox))
             {
                 finalDamage *= hitBox.damageMultiplier;
+
+                if(hitBox.damageMultiplier >= 2.0f)
+                {
+                    isHeadShot = true;
+                }
             }
 
-            enemy.TakeDamage(finalDamage);
+            enemy.TakeDamage(finalDamage, isHeadShot);
 
             SpawnHitEffect(transform.position, -transform.forward);
         }
@@ -119,10 +127,10 @@ public class Bullet : MonoBehaviour
             player.TakeDamage(baseDamage);
             SpawnHitEffect(transform.position, -transform.forward);
         }
-        else
-        {
-            SpawnHitEffect(transform.position, -transform.forward);
-        }
+        //else
+        //{
+        //    SpawnHitEffect(transform.position, -transform.forward);
+        //}
 
         ReturnPool();
     }

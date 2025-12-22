@@ -25,9 +25,9 @@ public class Player : MonoBehaviour
     [Header("앉기 설정")]
     [SerializeField] private float crouchTransitionSpeed = 10f;
     private float standHeight = 2.0f;
-    private float standBodyY = 0f;
+    [SerializeField] private float standBodyY = 0f;
     private float crouchHeight = 1.0f;
-    private float crouchBodyY = 0.25f;
+    [SerializeField] private float crouchBodyY = 0.25f;
 
     [Header("점프 & 중력 설정")]
     [SerializeField] private float jumpHeight = 1.5f;
@@ -345,6 +345,14 @@ public class Player : MonoBehaviour
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
         cameraTransform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
         transform.Rotate(Vector3.up * lookInput.x * mouseSensitivity * Time.unscaledDeltaTime);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Finish"))
+        {
+            ScoreManager.instance.CalculateFinalScore(currentHP, maxHP);
+        }
     }
 
     private void OnApplicationFocus(bool hasFocus)

@@ -152,6 +152,8 @@ public class Gun : MonoBehaviour
 
         UpdateAmmoUI();
         ProcessShooting();
+
+        ScoreManager.instance.AddShotFired();
     }
 
     private void ProcessShooting()

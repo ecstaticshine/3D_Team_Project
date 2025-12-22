@@ -20,16 +20,19 @@ public class Enemy : MonoBehaviour
         currentHp = maxHp;
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage, bool isHeadshot = false)
     {
         if (isDead) return;
 
         currentHp -= damage;
 
-        if (currentHp <= 0) Die();
+        if (currentHp <= 0)
+        {
+            Die(isHeadshot);
+        }
     }
 
-    private void Die()
+    private void Die(bool isHeadshot)
     {
         //int randomValue = Random.Range(0, 2);
         //
@@ -56,6 +59,20 @@ public class Enemy : MonoBehaviour
         //}
         isDead = true;
 
+        
+
+        if (ScoreManager.instance != null)
+        {
+            ScoreManager.instance.AddKill(isHeadshot);
+        }
+
+        DropItem();
+
+        Destroy(gameObject);
+    }
+
+    private void DropItem()
+    {
         if (enemyGunData != null)
         {
             Vector3 dropPosition = transform.position;
@@ -76,7 +93,5 @@ public class Enemy : MonoBehaviour
                 item_gun.SetGunData(enemyGunData);
             }
         }
-
-        Destroy(gameObject);
     }
 }
