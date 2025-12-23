@@ -616,7 +616,7 @@ MonoBehaviour:
   turnSpeed: 120
   obstacleMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
   patrolRadius: 15
   waitTimeRange: {x: 1, y: 3}
   PatrolPoints: []
