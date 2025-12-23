@@ -51,6 +51,13 @@ public class Player : MonoBehaviour
     [SerializeField] public bool isDashing = false;
     [SerializeField] public bool isCrouching = false;
 
+    [Header("애니메이션")]
+    private Animator animator; 
+    private int hashInputX; 
+    private int hashInputY; 
+    private int hashIsJump;
+    private int hashIsCrouching; 
+
     private CharacterController characterController;
     private Vector2 moveInput;
     private Vector2 lookInput;
@@ -67,6 +74,13 @@ public class Player : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         TryGetComponent(out characterController);
+        TryGetComponent(out animator);
+
+        TryGetComponent(out animator);
+        hashInputX = Animator.StringToHash("input_x"); 
+        hashInputY = Animator.StringToHash("input_y"); 
+        hashIsJump = Animator.StringToHash("IsJump"); 
+        hashIsCrouching = Animator.StringToHash("isCrouching"); 
 
         characterController.height = standHeight;
         characterController.center = Vector3.up * (standHeight * 0.5f);
@@ -107,6 +121,7 @@ public class Player : MonoBehaviour
             velocity.y = -2f;
         }
 
+        UpdateAnimation();
         Crouch();
         Move();
         Look();
@@ -272,6 +287,18 @@ public class Player : MonoBehaviour
         xRotation = 0f;
 
         if (characterController != null) characterController.enabled = true;
+    }
+    private void UpdateAnimation()
+    {
+        if (animator == null) return; 
+
+        
+        animator.SetFloat(hashInputX, moveInput.x); 
+        animator.SetFloat(hashInputY, moveInput.y); 
+
+        animator.SetBool(hashIsJump, !isGround || isJumping);
+
+        animator.SetBool(hashIsCrouching, isCrouching); 
     }
 
     #endregion
