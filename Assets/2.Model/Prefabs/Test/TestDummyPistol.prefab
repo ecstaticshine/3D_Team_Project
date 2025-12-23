@@ -448,6 +448,7 @@ Transform:
   - {fileID: 6391631234243888862}
   - {fileID: 6355640614085532033}
   - {fileID: 2879145668397968404}
+  - {fileID: 193009600506809631}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &5389297180173407902
@@ -606,7 +607,7 @@ MonoBehaviour:
   rangedEngageDistance: 12
   retreatDistance: 4
   player: {fileID: 0}
-  eyePoint: {fileID: 0}
+  eyePoint: {fileID: 193009600506809631}
   animator: {fileID: 5389297180173407902}
   timeScaleMultiplier: 1
   baseAgentSpeed: 0
@@ -2885,6 +2886,37 @@ Transform:
   - {fileID: 8641537091302304931}
   - {fileID: 4710722727768459968}
   m_Father: {fileID: 1450343619338422506}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6089153833926412684
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 193009600506809631}
+  m_Layer: 8
+  m_Name: EyePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &193009600506809631
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6089153833926412684}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8638783961288469982}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6242970203018384119
 GameObject:
