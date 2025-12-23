@@ -35,7 +35,7 @@ public class J_PatrolState : J_IState
         controller.Agent.isStopped = false;
 
         controller.SetMoveSpeed(1.0f);
-        controller.animator.SetBool("isMove", true);
+        controller.animator.SetBool("IsMove", true);
         GotoNextPoint(controller);
 
         //Debug.Log($"[Patrol] {controller.name}: Patrol Start");
