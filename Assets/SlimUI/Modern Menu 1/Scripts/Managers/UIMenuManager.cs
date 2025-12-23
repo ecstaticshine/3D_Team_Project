@@ -135,16 +135,32 @@ namespace SlimUI.ModernMenu{
 			lineGame.SetActive(true);
 		}
 
-		public void PlayHover(){
-			hoverSound.Play();
+		public void PlayHover()
+		{
+			// 기존: hoverSound.Play();
+			// 수정: AudioManager를 통해 SFX를 재생합니다.
+			if (AudioManager.instance != null)
+			{
+				AudioManager.instance.PlaySFX("Click_M"); // "Hover"는 AudioManager에 등록한 이름
+			}
 		}
 
-		public void PlaySFXHover(){
-			sliderSound.Play();
+		public void PlaySFXHover()
+		{
+			// 기존: sliderSound.Play();
+			if (AudioManager.instance != null)
+			{
+				AudioManager.instance.PlaySFX("Click_P");
+			}
 		}
 
-		public void PlaySwoosh(){
-			swooshSound.Play();
+		public void PlaySwoosh()
+		{
+			// 기존: swooshSound.Play();
+			if (AudioManager.instance != null)
+			{
+				AudioManager.instance.PlaySFX("Click_W");
+			}
 		}
 
 		// Are You Sure - Quit Panel Pop Up
