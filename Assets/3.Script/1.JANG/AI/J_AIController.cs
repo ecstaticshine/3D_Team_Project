@@ -58,7 +58,7 @@ public class J_AIController : MonoBehaviour
     public LayerMask obstacleMask;
 
 
-    private J_IState currentState;
+    public J_IState currentState;
 
     // 상태 인스턴스 (GC 방지)
     public readonly J_PatrolState patrolState = new J_PatrolState();
