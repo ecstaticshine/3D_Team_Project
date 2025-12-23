@@ -4,24 +4,32 @@ using UnityEngine.UI;
 using UnityEngine.Audio;
 using TMPro;
 
-namespace SlimUI.ModernMenu{
-	public class UISettingsManager : MonoBehaviour 
-	{
+namespace SlimUI.ModernMenu
+{
+    public class UISettingsManager : MonoBehaviour
+    {
         [Header("연결")]
         [SerializeField] private AudioMixer mainMixer;
         [SerializeField] private Slider masterSlider;
         [SerializeField] private Slider bgmSlider;
         [SerializeField] private Slider sfxSlider;
+        [SerializeField] private Slider mouseSlider;
 
         private void Start()
         {
             // 게임 시작 시, 저장된 볼륨이 있으면 불러오고 없으면 기본값(0.75) 설정
             // (PlayerPrefs 기능은 나중에 추가해도 되니 일단 기본 세팅만 합니다)
 
-            // 슬라이더 초기값 설정
-            masterSlider.value = 0.75f;
-            bgmSlider.value = 0.75f;
-            sfxSlider.value = 0.75f;
+            float savedValue = PlayerPrefs.GetFloat("MouseSensitivity", 50.0f);
+
+            if (mouseSlider != null)
+            {
+                mouseSlider.value = savedValue;
+            }
+
+            masterSlider.value = 1f;
+            bgmSlider.value = 1f;
+            sfxSlider.value = 1f;
 
             // 믹서에 적용
             SetMasterVolume(masterSlider.value);
@@ -66,6 +74,14 @@ namespace SlimUI.ModernMenu{
             {
                 mainMixer.SetFloat("SFXVol", Mathf.Log10(level) * 20);
             }
+        }
+
+        public void SetMouseSensitivity(float amount)
+        {
+            Debug.Log($"[저장됨] 마우스 감도: {amount}");
+
+            PlayerPrefs.SetFloat("MouseSensitivity", amount);
+            PlayerPrefs.Save();
         }
     }
 }
