@@ -3422,8 +3422,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5201618990676c418e7d5061a833be0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAlert
-  questionIcon: {fileID: 0}
-  exclamationIcon: {fileID: 0}
+  questionIcon: {fileID: 7579312789094035872}
+  exclamationIcon: {fileID: 1805570447967222708}
   alertDuration: 2
 --- !u!114 &8321933926564823506
 MonoBehaviour:
@@ -3602,8 +3602,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e18c83c57e5b4440977aa08dca06ab8, type: 3}
+--- !u!1 &1805570447967222708 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9084038242153873676, guid: 7e18c83c57e5b4440977aa08dca06ab8, type: 3}
+  m_PrefabInstance: {fileID: 7430464840493316792}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &4670311281898855549 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2868255553270228677, guid: 7e18c83c57e5b4440977aa08dca06ab8, type: 3}
+  m_PrefabInstance: {fileID: 7430464840493316792}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7579312789094035872 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1022722510231456536, guid: 7e18c83c57e5b4440977aa08dca06ab8, type: 3}
   m_PrefabInstance: {fileID: 7430464840493316792}
   m_PrefabAsset: {fileID: 0}

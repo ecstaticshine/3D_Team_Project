@@ -30,6 +30,7 @@ public class J_AIController : MonoBehaviour
     // ===============================
     [Header("참조")]
     public GameObject player;
+    public Transform EnemyChasePosition;
     public Transform eyePoint;
 
     public NavMeshAgent Agent { get; private set; }
@@ -226,20 +227,20 @@ public class J_AIController : MonoBehaviour
     // ===============================
     // 행동
     // ===============================
-    public void LookAt(Vector3 targetPosition)
+    public void LookAt(Vector3 targetPos)
     {
-        Vector3 dir = targetPosition - transform.position;
-        dir.y = 0f;
+        // targetPos: 플레이어의 가슴 위치입니다.
+        Vector3 direction = targetPos - transform.position;
+        direction.y = 0; // 몸체가 위아래로 까딱거리는 것을 원천 차단합니다.
 
-        if (dir.sqrMagnitude < 0.0001f)
-            return;
+        if (direction.sqrMagnitude > 0.1f) // 방향이 확실할 때만 회전합니다.
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
 
-        Quaternion targetRot = Quaternion.LookRotation(dir.normalized);
-        transform.rotation = Quaternion.Slerp(
-            transform.rotation,
-            targetRot,
-            Time.deltaTime * BASE_LOOK_SPEED * timeScaleMultiplier
-        );
+            // 0.15f 같은 낮은 값을 사용하여 몸체는 아주 부드럽게 따라가게 합니다.
+            // 몸체가 천천히 돌아가도 상체 IK(EnemyWeaponIK)가 조준을 대신 해주므로 자연스럽습니다.
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 0.15f);
+        }
     }
 
     public void MoveTo(Vector3 destination)

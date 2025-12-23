@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GunData
   gunName: M1911
   fireMode: 0
-  gunPrefab: {fileID: 0}
+  gunPrefab: {fileID: 1085417395900564196, guid: 136950be0ffc5874f82d86888d3361e6, type: 3}
+  itemPrefab: {fileID: 1085417395900564196, guid: 7bc379de9cb07c04c81f1505d65bbe3f, type: 3}
   itemScale: {x: 1, y: 1, z: 1}
-  gunAnimation: {fileID: 0}
   bulletPrefab: {fileID: 1325836922669442, guid: c63679d7cfb07c348842c52c1ee64589, type: 3}
   bulletSpeed: 100
   fireDelay: 0.3

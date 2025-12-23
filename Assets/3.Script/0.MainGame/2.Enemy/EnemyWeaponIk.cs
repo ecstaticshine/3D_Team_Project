@@ -15,6 +15,7 @@ public class EnemyWeaponIK : MonoBehaviour
     [Range(0, 1)]
     public float ikWeight = 0f; // 전체적인 IK 적용 강도입니다 (0: 꺼짐, 1: 완전 조준).
     public float weightSpeed = 2.5f; // 조준 자세로 전환되는 속도입니다.
+    private Vector3 smoothedTargetPos;
 
     [Header("Hand IK (Step 1)")]
     // 무기 모델에 자식으로 붙어있는 '오른손/왼손 잡이용 빈 오브젝트'를 할당합니다.
@@ -43,33 +44,30 @@ public class EnemyWeaponIK : MonoBehaviour
 
     private void Update()
     {
-        // 1. 조준 활성화 조건 판단
-        // - 현재 상태가 Patrol(순찰) 상태가 아니어야 함.
-        // - 시야(CanSeePlayer)에 플레이어가 들어와야 함.
         bool isNotPatrolling = !(aiController.currentState is J_PatrolState);
         bool canSee = aiController.CanSeePlayer();
-
-        // 두 조건이 모두 충족되면 목표 가중치는 1, 아니면 0입니다.
         float targetWeight = (isNotPatrolling && canSee) ? 1.0f : 0.0f;
 
-        // 2. 가중치를 부드럽게 보간 (Lerp)
-        // 불릿타임(timeScaleMultiplier)을 고려하여 속도를 조절합니다.
         ikWeight = Mathf.MoveTowards(ikWeight, targetWeight, Time.deltaTime * weightSpeed * aiController.timeScaleMultiplier);
 
-        // 3. 타겟 위치 갱신
-        if (aiController.player != null)
+        if (aiController.EnemyChasePosition != null)
+        {
+            targetTransform = aiController.EnemyChasePosition;
+        }
+        else if (aiController.player != null)
+        {
             targetTransform = aiController.player.transform;
+        }
     }
 
-    // [Step 1] 애니메이션 엔진의 IK 계산 단계 (손 위치 고정)
     private void OnAnimatorIK(int layerIndex)
     {
-        if (animator == null) return;
+        if (animator == null || targetTransform == null) return;
 
-        // 시선(LookAt) 처리: ikWeight만큼 타겟을 바라봅니다.
+        // 3. [수정] 시선 처리 시에도 정확한 타겟 좌표 사용
         animator.SetLookAtWeight(ikWeight);
-        if (targetTransform != null) animator.SetLookAtPosition(targetTransform.position);
-
+        // targetTransform.position: 이제 가슴 위치를 가리키므로 바닥을 보지 않습니다.
+        animator.SetLookAtPosition(targetTransform.position);
         // 오른손 위치 고정
         if (rightHandAnchor != null)
         {
@@ -92,18 +90,19 @@ public class EnemyWeaponIK : MonoBehaviour
     // [Step 2] 모든 애니메이션 계산 후 실행 (상체 회전 미세 조정)
     private void LateUpdate()
     {
-        // 가중치가 거의 0이거나 필수 참조가 없으면 계산을 생략합니다.
         if (ikWeight <= 0.001f || targetTransform == null || aimPoint == null) return;
 
-        // 현재 총구(aimPoint)에서 타겟을 향하는 방향 벡터를 구합니다.
-        Vector3 targetDirection = targetTransform.position - aimPoint.position;
+        // 1. [핵심] 타겟의 위치를 즉시 반영하지 않고 미세하게 부드럽게 만듭니다. (떨림 방지)
+        // Vector3.Lerp를 통해 현재 프레임의 플레이어 위치로 서서히 이동시켜 "지직"거리는 오차를 흡수합니다.
+        smoothedTargetPos = Vector3.Lerp(smoothedTargetPos, targetTransform.position, 0.2f);
 
-        // 설정된 횟수만큼 반복하며 뼈를 조금씩 회전시켜 오차를 줄입니다 (CCD IK와 유사한 방식).
+        // 2. 보정된 좌표로 방향 벡터를 구합니다.
+        Vector3 targetDirection = smoothedTargetPos - aimPoint.position;
+
         for (int i = 0; i < iterations; i++)
         {
             for (int j = 0; j < boneTransforms.Length; j++)
             {
-                // 각 뼈에 할당된 개별 weight와 전체 ikWeight를 곱해 최종 반영 수치를 결정합니다.
                 float finalBoneWeight = humanBones[j].weight * ikWeight;
                 AimAtTarget(boneTransforms[j], targetDirection, finalBoneWeight);
             }
@@ -112,13 +111,17 @@ public class EnemyWeaponIK : MonoBehaviour
 
     private void AimAtTarget(Transform bone, Vector3 targetDirection, float weight)
     {
-        // 현재 총구가 바라보는 방향(aimPoint.forward)을 구합니다.
+        // aimPoint.forward: 현재 총구가 가리키는 실제 방향입니다.
         Vector3 currentAimDir = aimPoint.forward;
-        // '현재 조준 방향'에서 '타겟 방향'으로 가기 위한 회전값(Quaternion)을 계산합니다.
+
+        // 1. 현재 조준 방향에서 타겟 방향으로 가기 위한 차이(Rotation)를 계산합니다.
         Quaternion aimTowards = Quaternion.FromToRotation(currentAimDir, targetDirection);
-        // weight만큼만 회전하도록 보간합니다.
+
+        // 2. Quaternion.identity(회전 없음)와 aimTowards 사이를 weight만큼 보간합니다.
         Quaternion blendedRotation = Quaternion.Slerp(Quaternion.identity, aimTowards, weight);
-        // 뼈의 기존 회전에 계산된 회전값을 곱해 최종 회전력을 적용합니다.
+
+        // 3. 기존 회전에 자연스럽게 더해줍니다. 
+        // 이때 뼈의 회전이 너무 급격하면 떨릴 수 있으므로, 최종 결과값에 제한을 주는 효과가 있습니다.
         bone.rotation = blendedRotation * bone.rotation;
     }
 }

@@ -52,41 +52,42 @@ public class J_AlertState : J_IState
 
         timer += Time.deltaTime * ai.timeScaleMultiplier;
 
-
         if (ai.CanSeePlayer())
         {
             ai.ChangeState(ai.combatState);
             return;
         }
 
+        // lastHeardPosition: 마지막으로 소리가 들린 위치입니다.
+        // soundDir: 내 위치에서 소리 지점까지의 방향을 정규화(길이를 1로 만듬)한 벡터입니다.
         Vector3 soundDir = (ai.lastHeardPosition - ai.transform.position).normalized;
 
-        Quaternion noise = Quaternion.Euler(
-            0,
-            Random.Range(-25f, 25f),
-            0
-        );
+        // noise: 소리 난 방향에서 좌우로 최대 25도 정도 오차를 주기 위한 무작위 회전값입니다.
+        Quaternion noise = Quaternion.Euler(0, Random.Range(-25f, 25f), 0);
 
+        // fakeTarget: 소리 난 곳 주변을 의심하며 바라볼 가상의 지점입니다. 
+        // y좌표 보정: ai.transform.position.y를 더해줌으로써 바닥이 아닌 자신의 눈높이 정도를 보게 합니다.
         Vector3 fakeTarget = ai.transform.position + (noise * soundDir) * 10f;
+        fakeTarget.y = ai.transform.position.y; // [추가] 수평을 바라보도록 고정
 
         ai.LookAt(fakeTarget);
 
-        if (!ai.Agent.pathPending &&
-            ai.Agent.remainingDistance <= ai.Agent.stoppingDistance + ARRIVAL_MARGIN)
+        if (!ai.Agent.pathPending && ai.Agent.remainingDistance <= ai.Agent.stoppingDistance + ARRIVAL_MARGIN)
         {
             rotationTimer += Time.deltaTime * ai.timeScaleMultiplier;
-
 
             if (rotationTimer >= ROTATION_CHANGE_TIME)
             {
                 Vector2 rand = Random.insideUnitCircle;
                 Vector3 randomDir = new Vector3(rand.x, 0f, rand.y);
 
+                // targetSearchDirection: 주변을 두리번거릴 때 바라볼 랜덤한 방향의 좌표입니다.
+                // ai.transform.position.y를 사용하여 수평을 유지합니다.
                 targetSearchDirection = ai.transform.position + randomDir.normalized;
+                targetSearchDirection.y = ai.transform.position.y;
                 rotationTimer = 0f;
             }
 
-            // 수색 방향으로 회전
             ai.LookAt(targetSearchDirection);
         }
 
