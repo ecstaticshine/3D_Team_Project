@@ -387,6 +387,11 @@ public class Player : MonoBehaviour
 
             SceneManager.LoadScene("ScoreScene");
         }
+
+        //if (other.CompareTag("Stage 1"))
+        //{
+        //    SceneManager.LoadScene("Stage 1");
+        //}
     }
 
     private void OnApplicationFocus(bool hasFocus)
