@@ -1650,7 +1650,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8443336894233732801
 Transform:
   m_ObjectHideFlags: 0
@@ -2197,6 +2197,10 @@ MonoBehaviour:
   cameraTransform: {fileID: 0}
   gunAnimator: {fileID: 0}
   isPlayerGun: 1
+  casingType: 0
+  casingExitLocation: {fileID: 0}
+  muzzleFlashPrefab: {fileID: 0}
+  flashPoolSize: 3
 --- !u!1 &3176390051020785474
 GameObject:
   m_ObjectHideFlags: 0
@@ -7046,7 +7050,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8925751834855083619
 Transform:
   m_ObjectHideFlags: 0

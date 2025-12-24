@@ -1977,6 +1977,8 @@ GameObject:
   - component: {fileID: 3133778771139089804}
   - component: {fileID: 3887934618477556249}
   - component: {fileID: -6002588838442019701}
+  - component: {fileID: 8009398223197185066}
+  - component: {fileID: 6800955805476069310}
   m_Layer: 0
   m_Name: 870
   m_TagString: Untagged
@@ -2014,7 +2016,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7336721936928238258}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e7f6b9e5d28752d4f97ae69f602747ea, type: 3}
   m_Name: 
@@ -2040,6 +2042,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1669e6399e738bb45b96ea14b484de9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GunDebugDraw
+--- !u!114 &8009398223197185066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7336721936928238258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 117db453b428fa840939fa8f9ac10f0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Gun
+  gunData: {fileID: 11400000, guid: a9470847588ffdd40b3c454e6bc65052, type: 2}
+  firePoint: {fileID: 4919957346319963338}
+  cameraTransform: {fileID: 0}
+  gunAnimator: {fileID: 0}
+  isPlayerGun: 1
+  casingType: 2
+  casingExitLocation: {fileID: 5720836133613522929}
+  ExitPower: 300
+  muzzleFlashPrefab: {fileID: 1782395880954752, guid: 948461fc03c41cc49ac1895ebf0ea1f3, type: 3}
+  flashPoolSize: 3
+--- !u!114 &6800955805476069310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7336721936928238258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79ca34efa7f2e9b46890e0b2e43672ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GunZoom
+  weaponModel: {fileID: 3133778771139089804}
+  hipPosition: {fileID: 1782774504096476469}
+  adsPosition: {fileID: 611814528802017389}
+  adsSpeed: 10
 --- !u!1 &7355539538990733307
 GameObject:
   m_ObjectHideFlags: 0

@@ -71,9 +71,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8988161818803807066}
-  - component: {fileID: 536796873648197121}
   - component: {fileID: 3849275598237272126}
   - component: {fileID: 5490398254844182819}
+  - component: {fileID: 5513615623680396304}
+  - component: {fileID: 8641770764261155553}
   m_Layer: 0
   m_Name: Pistol(M1911)
   m_TagString: Untagged
@@ -105,23 +106,6 @@ Transform:
   - {fileID: 3530270749638345527}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &536796873648197121
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1085417395900564196}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4040bbe19d2010f4ba1381af79ee976f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::A_Gun
-  bulletPrefab: {fileID: 6804990658058999119, guid: 65c9f6563c561ee4e8905d1e6a32548b, type: 3}
-  firePoint: {fileID: 1638604444846263293}
-  bulletSpeed: 50
-  fireDelay: 1
-  cameraTransform: {fileID: 0}
 --- !u!114 &3849275598237272126
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,6 +130,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1669e6399e738bb45b96ea14b484de9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GunDebugDraw
+--- !u!114 &5513615623680396304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1085417395900564196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 117db453b428fa840939fa8f9ac10f0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Gun
+  gunData: {fileID: 11400000, guid: 8802f6466aacd124ca652353b71134c8, type: 2}
+  firePoint: {fileID: 1638604444846263293}
+  cameraTransform: {fileID: 0}
+  gunAnimator: {fileID: 0}
+  isPlayerGun: 1
+  casingType: 0
+  casingExitLocation: {fileID: 6207647911704500513}
+  ExitPower: 300
+  muzzleFlashPrefab: {fileID: 1782395880954752, guid: 3dd9cf2e209c504448f1c4c6835675cf, type: 3}
+  flashPoolSize: 3
+--- !u!114 &8641770764261155553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1085417395900564196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79ca34efa7f2e9b46890e0b2e43672ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GunZoom
+  weaponModel: {fileID: 8988161818803807066}
+  hipPosition: {fileID: 6023459968549930287}
+  adsPosition: {fileID: 4045465374833722949}
+  adsSpeed: 10
 --- !u!1 &2463752579456916409
 GameObject:
   m_ObjectHideFlags: 0
@@ -449,7 +471,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3455177816964080978}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6be84e4d7829855419c06b94e56bd135, type: 3}
   m_Name: 
@@ -959,7 +981,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1638604444846263293}
   m_Layer: 0
-  m_Name: GunPos
+  m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

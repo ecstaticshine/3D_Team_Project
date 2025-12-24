@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.Pool;
 
 public class Gun : MonoBehaviour
@@ -19,6 +20,17 @@ public class Gun : MonoBehaviour
 
     [Header("설정")]
     [SerializeField] private bool isPlayerGun = true;
+
+    [Header("탄피 설정")]
+    [SerializeField] private CasingType casingType;
+    [SerializeField] private Transform casingExitLocation;
+    [SerializeField] private float ExitPower = 300;
+
+    [Header("Muzzle Flash 설정")]
+    [SerializeField] private GameObject muzzleFlashPrefab;
+    [SerializeField] private int flashPoolSize = 3;
+    private List<ParticleSystem> _flashPool = new List<ParticleSystem>();
+    private int _currentFlashIndex = 0;
 
     public GunState gunState { get; private set; }
     private int totalAmmo;
@@ -41,6 +53,19 @@ public class Gun : MonoBehaviour
             defaultCapacity: 20,
             maxSize: 100
         );
+
+        if (muzzleFlashPrefab != null && firePoint != null)
+        {
+            for (int i = 0; i < flashPoolSize; i++)
+            {
+                GameObject obj = Instantiate(muzzleFlashPrefab, firePoint);
+                if (obj.TryGetComponent(out ParticleSystem ps))
+                {
+                    ps.Stop(); 
+                    _flashPool.Add(ps);
+                }
+            }
+        }
     }
 
     private void OnEnable()
@@ -172,6 +197,8 @@ public class Gun : MonoBehaviour
         SoundSystem.EmitSound(transform.position, 20f);
 
         if (gunAnimator != null) gunAnimator.SetTrigger("Fire");
+        CasingRelease();
+        PlayMuzzleFlash();
         AudioManager.instance.PlaySFX(gunData.fireSoundName);
 
         UpdateAmmoUI();
@@ -265,5 +292,41 @@ public class Gun : MonoBehaviour
         }
     }
 
+    #endregion
+
+    #region Casing
+    void CasingRelease()
+    {
+        GameObject tempCasing = CasingManager.Instance.GetCasing(casingType);
+
+        if (tempCasing != null)
+        {
+            tempCasing.transform.position = casingExitLocation.position;
+            tempCasing.transform.rotation = casingExitLocation.rotation;
+
+            if (tempCasing.TryGetComponent(out Rigidbody rb))
+            {
+                rb.linearVelocity = Vector3.zero;
+                rb.angularVelocity = Vector3.zero;
+
+
+                rb.AddExplosionForce(ExitPower, casingExitLocation.position - casingExitLocation.right * 0.3f, 1f);
+            }
+        }
+    }
+    private void PlayMuzzleFlash()
+    {
+        if (_flashPool.Count <= 0) return;
+
+        ParticleSystem currentPS = _flashPool[_currentFlashIndex];
+        if (currentPS != null)
+        {
+            currentPS.Stop(); 
+            currentPS.Play(); 
+        }
+
+        
+        _currentFlashIndex = (_currentFlashIndex + 1) % _flashPool.Count;
+    }
     #endregion
 }

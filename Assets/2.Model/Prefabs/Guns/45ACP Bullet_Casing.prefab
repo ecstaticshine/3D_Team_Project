@@ -159,8 +159,28 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8535412081993147290, guid: a737d62f4ff0b854a9d767507f039686, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8397418048603587307}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3625037896966406280, guid: a737d62f4ff0b854a9d767507f039686, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -755197180927866433}
   m_SourcePrefab: {fileID: 100100000, guid: a737d62f4ff0b854a9d767507f039686, type: 3}
+--- !u!1 &4362657251999731927 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3625037896966406280, guid: a737d62f4ff0b854a9d767507f039686, type: 3}
+  m_PrefabInstance: {fileID: 1064535522211975263}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &-755197180927866433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4362657251999731927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1404ae689d2fdbf4e8f42eb572fb8d36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Casing
 --- !u!4 &8698172140991394757 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8535412081993147290, guid: a737d62f4ff0b854a9d767507f039686, type: 3}

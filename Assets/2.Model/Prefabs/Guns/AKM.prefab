@@ -203,7 +203,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2398567468824503294}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b850efc28de70724188449f9e3967ff0, type: 3}
   m_Name: 
@@ -250,6 +250,11 @@ MonoBehaviour:
   cameraTransform: {fileID: 0}
   gunAnimator: {fileID: 0}
   isPlayerGun: 1
+  casingType: 1
+  casingExitLocation: {fileID: 0}
+  ExitPower: 300
+  muzzleFlashPrefab: {fileID: 1782395880954752, guid: 3dd9cf2e209c504448f1c4c6835675cf, type: 3}
+  flashPoolSize: 3
 --- !u!1 &3074165861407545031
 GameObject:
   m_ObjectHideFlags: 0
