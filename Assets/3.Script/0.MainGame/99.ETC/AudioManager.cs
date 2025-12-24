@@ -52,6 +52,7 @@ public class AudioManager : MonoBehaviour
     {
         BGMPlayer = transform.GetChild(0).GetComponent<AudioSource>();
         SFXPlayer = transform.GetChild(1).GetComponents<AudioSource>();
+
     }
 
     public void PlaySlow(float slowFactor)
@@ -155,7 +156,7 @@ public class AudioManager : MonoBehaviour
         {
             mainMixer.SetFloat(volumeName, Mathf.Log10(level) * 20f);
         }
-        PlayerPrefs.SetFloat(volumeName, level);
+
     }
 
 }

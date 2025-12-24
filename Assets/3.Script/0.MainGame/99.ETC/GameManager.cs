@@ -2,22 +2,41 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
+    public enum GameState
+    {
+        Title,
+        Playing,
+        Paused
+    }
+
     public static GameManager instance = null;
     // [추가] 일시정지 상태가 변할 때마다 외칠 전광판 (true: 정지, false: 재개)
     public event Action<bool> OnPauseChanged;
-    private bool isPlaying = true;
+    //private bool isPlaying = true;
+    
+    [Header("씬 상태")]
+    public GameState CurrentState { get; private set; }
+
+    [Header("패널 연결")]
+    [SerializeField] private GameObject settingsPanel; // 방금 만든 Panel_Settings 연결
 
     public long totalPlayTimeMs;
     public int deathCount;
+
+    [Header("입력 연결 (New Input System)")]
+    // 인스펙터에서 만들어둔 'Pause'나 'Menu' 액션을 여기에 드래그해서 넣으세요
+    [SerializeField] private InputActionReference menuAction;
 
     private void Awake()
     {
         if (instance == null)
         {
             instance = this;
+            CurrentState = GameState.Playing;
             DontDestroyOnLoad(gameObject);
         }
         else
@@ -25,6 +44,8 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    private bool isSettingsOpen = false;
 
     private IEnumerator Start()
     {
@@ -42,23 +63,46 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (!isPlaying) return;
 
-        // 슬로우 타임 영향을 받지 않게
-        totalPlayTimeMs += (long)(Time.unscaledDeltaTime * 1000);
+        if (menuAction != null && menuAction.action.WasPressedThisFrame())
+        {
+            if (CurrentState == GameState.Playing)
+            {
+                PauseGame();
+            }
+            else if (CurrentState == GameState.Paused)
+            {
+                ResumeGame();
+            }
+        }
+        
+        if (CurrentState == GameState.Playing)
+        {
+            // 슬로우 타임 영향을 받지 않게
+            totalPlayTimeMs += (long)(Time.deltaTime * 1000);
+        }
     }
 
     public void PauseGame()
     {
-        isPlaying = false;
-        Time.timeScale = 0f; // [추가]시간 정지
+        CurrentState = GameState.Paused;
+        Time.timeScale = 0f;
+
+        settingsPanel.SetActive(true);
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         OnPauseChanged?.Invoke(true); // [추가]"모두 멈춰!"라고 신호 보냄
     }
 
     public void ResumeGame()
     {
-        isPlaying = true; 
-        Time.timeScale = 1f; // [추가]시간 재개
+        CurrentState = GameState.Playing;
+        Time.timeScale = 1f;
+
+        settingsPanel.SetActive(false);
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
         OnPauseChanged?.Invoke(false); // [추가]"다시 움직여!"라고 신호 보냄
     }
+
 }
