@@ -778,11 +778,15 @@ MonoBehaviour:
   dashDuration: 0.2
   dashCooldown: 1
   crouchTransitionSpeed: 10
+  standHeight: 2
+  standBodyY: 0
+  crouchHeight: 1
+  crouchBodyY: 0.25
   jumpHeight: 1.5
   gravity: -9.81
   isTimeSlow: 0
   slowFactor: 0.1
-  isDead: 0
+  isDie: 0
   currentHP: 0
   isGround: 0
   isJumping: 0
@@ -3450,6 +3454,7 @@ MonoBehaviour:
   rangedEngageDistance: 12
   retreatDistance: 4
   player: {fileID: 109516777}
+  EnemyChasePosition: {fileID: 0}
   eyePoint: {fileID: 708379548}
   animator: {fileID: 704508027}
   timeScaleMultiplier: 1
@@ -3471,6 +3476,8 @@ MonoBehaviour:
   alertDuration: 5
   meleeAttackCooldown: 3
   j_AIShooter: {fileID: 2049348050}
+  enemyAlert: {fileID: 0}
+  hasDetectedPlayer: 0
 --- !u!136 &704508025
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -4397,6 +4404,7 @@ MonoBehaviour:
   rangedEngageDistance: 12
   retreatDistance: 4
   player: {fileID: 109516777}
+  EnemyChasePosition: {fileID: 0}
   eyePoint: {fileID: 944205525}
   animator: {fileID: 785609347}
   timeScaleMultiplier: 1
@@ -4418,6 +4426,8 @@ MonoBehaviour:
   alertDuration: 5
   meleeAttackCooldown: 3
   j_AIShooter: {fileID: 1863802628}
+  enemyAlert: {fileID: 0}
+  hasDetectedPlayer: 0
 --- !u!136 &785609345
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -5219,7 +5229,7 @@ AudioSource:
   m_GameObject: {fileID: 1008682697}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -1457973627351493060, guid: 7ef3b03a4a1570341b2500fa6a0e6f7a, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
@@ -6747,12 +6757,11 @@ MonoBehaviour:
     audioClip: {fileID: 8300000, guid: dfb44691deb73314b989b87317735648, type: 3}
   - audioClipName: RifleSound
     audioClip: {fileID: 8300000, guid: dfb44691deb73314b989b87317735648, type: 3}
+  mainMixer: {fileID: 24100000, guid: 7ef3b03a4a1570341b2500fa6a0e6f7a, type: 2}
   BGMPlayer: {fileID: 1613035569}
   SFXPlayer:
   - {fileID: 1008682698}
   globalPitch: 1
-  BGMVolume: 1
-  SFXVolume: 1
 --- !u!114 &1157896028
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6767,9 +6776,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ScreenEffectManager
   globalVolume: {fileID: 2671874144882818382}
   deadPanel: {fileID: 82175680}
-  effectSpeed: 5
   maxIntensity: 0.5
   damageColor: {r: 1, g: 0, b: 0, a: 1}
+  rewindUI: {fileID: 0}
+  rewindVolume: {fileID: 0}
 --- !u!114 &1157896029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9503,7 +9513,7 @@ AudioSource:
   m_GameObject: {fileID: 1613035568}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -919595092918811268, guid: 7ef3b03a4a1570341b2500fa6a0e6f7a, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
@@ -13464,6 +13474,7 @@ MonoBehaviour:
   rangedEngageDistance: 12
   retreatDistance: 4
   player: {fileID: 109516777}
+  EnemyChasePosition: {fileID: 0}
   eyePoint: {fileID: 2152158587161574653}
   animator: {fileID: 963981002197359110}
   timeScaleMultiplier: 1
@@ -13485,6 +13496,8 @@ MonoBehaviour:
   alertDuration: 5
   meleeAttackCooldown: 3
   j_AIShooter: {fileID: 1382435348419441608}
+  enemyAlert: {fileID: 0}
+  hasDetectedPlayer: 0
 --- !u!1 &2283681343844859560
 GameObject:
   m_ObjectHideFlags: 0

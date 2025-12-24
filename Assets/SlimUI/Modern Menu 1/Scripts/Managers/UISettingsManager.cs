@@ -9,7 +9,7 @@ namespace SlimUI.ModernMenu
     public class UISettingsManager : MonoBehaviour
     {
         [Header("연결")]
-        [SerializeField] private AudioMixer mainMixer;
+
         [SerializeField] private Slider masterSlider;
         [SerializeField] private Slider bgmSlider;
         [SerializeField] private Slider sfxSlider;
@@ -17,8 +17,22 @@ namespace SlimUI.ModernMenu
 
         private void Start()
         {
-            // 게임 시작 시, 저장된 볼륨이 있으면 불러오고 없으면 기본값(0.75) 설정
-            // (PlayerPrefs 기능은 나중에 추가해도 되니 일단 기본 세팅만 합니다)
+
+            float master = PlayerPrefs.GetFloat("MasterVol", 0.75f);
+            float bgm = PlayerPrefs.GetFloat("BGMVol", 0.75f);
+            float sfx = PlayerPrefs.GetFloat("SFXVol", 0.75f);
+
+            //UI 슬라이더 바꾸기
+            masterSlider.value = master;
+            bgmSlider.value = bgm;
+            sfxSlider.value = sfx;
+
+
+            ApplyAll();
+
+            masterSlider.onValueChanged.AddListener(OnMasterChanged);
+            bgmSlider.onValueChanged.AddListener(OnBGMChanged);
+            sfxSlider.onValueChanged.AddListener(OnSFXChanged);
 
             float savedValue = PlayerPrefs.GetFloat("MouseSensitivity", 50.0f);
 
@@ -26,62 +40,31 @@ namespace SlimUI.ModernMenu
             {
                 mouseSlider.value = savedValue;
             }
-
-            masterSlider.value = 1f;
-            bgmSlider.value = 1f;
-            sfxSlider.value = 1f;
-
-            // 믹서에 적용
-            SetMasterVolume(masterSlider.value);
-            SetBGMVolume(bgmSlider.value);
-            SetSFXVolume(sfxSlider.value);
         }
 
-        // 슬라이더 값이 바뀔 때 호출될 함수들
-        public void SetMasterVolume(float level)
+        private void ApplyAll()
         {
-            // 슬라이더가 0에 가까우면 그냥 음소거(-80dB) 처리
-            if (level <= 0.001f)
-            {
-                mainMixer.SetFloat("MasterVol", -80f);
-            }
-            else
-            {
-                // 그 외에는 로그 곡선 적용
-                mainMixer.SetFloat("MasterVol", Mathf.Log10(level) * 20);
-            }
+            AudioManager.instance.SetVolume(masterSlider.value, "MasterVol");
+            AudioManager.instance.SetVolume(bgmSlider.value, "BGMVol");
+            AudioManager.instance.SetVolume(sfxSlider.value, "SFXVol");
         }
 
-        public void SetBGMVolume(float level)
+        private void OnMasterChanged(float value)
         {
-            if (level <= 0.001f)
-            {
-                mainMixer.SetFloat("BGMVol", -80f);
-            }
-            else
-            {
-                mainMixer.SetFloat("BGMVol", Mathf.Log10(level) * 20);
-            }
+            AudioManager.instance.SetVolume(value, "MasterVol");
+            PlayerPrefs.SetFloat("MasterVol",value);
         }
 
-        public void SetSFXVolume(float level)
+        private void OnBGMChanged(float value)
         {
-            if (level <= 0.001f)
-            {
-                mainMixer.SetFloat("SFXVol", -80f);
-            }
-            else
-            {
-                mainMixer.SetFloat("SFXVol", Mathf.Log10(level) * 20);
-            }
+            AudioManager.instance.SetVolume(value, "BGMVol");
+            PlayerPrefs.SetFloat("BGMVol", value);
         }
 
-        public void SetMouseSensitivity(float amount)
+        private void OnSFXChanged(float value)
         {
-            Debug.Log($"[저장됨] 마우스 감도: {amount}");
-
-            PlayerPrefs.SetFloat("MouseSensitivity", amount);
-            PlayerPrefs.Save();
+            AudioManager.instance.SetVolume(value, "SFXVol");
+            PlayerPrefs.SetFloat("SFXVol", value);
         }
     }
 }

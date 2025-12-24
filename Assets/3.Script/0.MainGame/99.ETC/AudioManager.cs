@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 [System.Serializable]
 public class Sound
@@ -33,6 +34,9 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private Sound[] BGM;
     [SerializeField] private Sound[] SFX;
 
+    [Header("Audio Clip")]
+    public AudioMixer mainMixer;
+
     [Space(50f)]
     [Header("Audio Soucre")]
     [Space(10f)]
@@ -42,10 +46,7 @@ public class AudioManager : MonoBehaviour
     private float bgmPausedTime = 0f;
     [Header("음향 속도")]
     public float globalPitch = 1f;
-    [Space(10f)]
-    [Header("볼륨")]
-    public float BGMVolume = 1f;
-    public float SFXVolume = 1f;
+
 
     private void AutoSetting()
     {
@@ -56,31 +57,28 @@ public class AudioManager : MonoBehaviour
     public void PlaySlow(float slowFactor)
     {
         globalPitch = slowFactor;
-        SFXVolume = 0.5f;
-
         BGMPlayer.pitch = slowFactor;
             
 
         for (int i = 0; i < SFXPlayer.Length; i++)
         {
-
                 SFXPlayer[i].pitch = slowFactor;
-                SFXPlayer[i].volume = SFXVolume;
-
         }
+
+        mainMixer.SetFloat("SFX", 0.5f);
     }
     public void PlayOriginal()
     {
         globalPitch = 1f;
-        SFXVolume = 1f;
+
 
         BGMPlayer.pitch = 1f;
 
         for (int i = 0; i < SFXPlayer.Length; i++)
         {
                 SFXPlayer[i].pitch = 1f;
-                SFXPlayer[i].volume = SFXVolume;
         }
+        mainMixer.SetFloat("SFX", 1f);
     }
 
     public void PlaySFX(string bgmName)
@@ -144,4 +142,20 @@ public class AudioManager : MonoBehaviour
             BGMPlayer.time = bgmPausedTime;
         }
     }
+
+
+    public void SetVolume(float level, string volumeName)
+    {
+        // 슬라이더가 0에 가까우면 그냥 음소거(-80dB) 처리
+        if (level <= 0.001f)
+        {
+            mainMixer.SetFloat(volumeName, -80f);
+        }
+        else
+        {
+            mainMixer.SetFloat(volumeName, Mathf.Log10(level) * 20f);
+        }
+        PlayerPrefs.SetFloat(volumeName, level);
+    }
+
 }
