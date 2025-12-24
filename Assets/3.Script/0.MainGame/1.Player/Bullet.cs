@@ -168,27 +168,5 @@ public class Bullet : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Hit(other);
-
-        Debug.Log($"[총알] 쾅! 부딪힌 물체 이름: {other.gameObject.name} / 태그: {other.gameObject.tag}");
-
-        if (other.gameObject.CompareTag("Target"))
-        {
-            // [로그 2] 태그 조건 통과 확인
-            Debug.Log("[총알] 'Target' 태그 확인됨!");
-
-            TargetScript target = other.gameObject.GetComponent<TargetScript>();
-
-            if (target != null)
-            {
-                target.isHit = true;
-                // [로그 3] 스크립트 찾아서 변수 바꿨다고 출력
-                Debug.Log("[총알] TargetScript 발견! isHit를 True로 변경함!");
-            }
-            else
-            {
-                // [로그 4] 태그는 맞는데 스크립트가 없을 때
-                Debug.LogError("[총알] 태그는 맞는데, 그 물체에 'TargetScript'가 안 붙어 있어!");
-            }
-        }
     }
 }
