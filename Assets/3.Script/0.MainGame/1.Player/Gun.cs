@@ -181,6 +181,8 @@ public class Gun : MonoBehaviour
     }
     public void TryFire()
     {
+        if (gunData == null) return;
+
         if (gunState != GunState.Ready) return;
 
         if (currentTimer < gunData.fireDelay) return;
@@ -197,14 +199,22 @@ public class Gun : MonoBehaviour
         SoundSystem.EmitSound(transform.position, 20f);
 
         if (gunAnimator != null) gunAnimator.SetTrigger("Fire");
+
         CasingRelease();
         PlayMuzzleFlash();
-        AudioManager.instance.PlaySFX(gunData.fireSoundName);
+
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.PlaySFX(gunData.fireSoundName);
+        }
 
         UpdateAmmoUI();
         ProcessShooting();
 
-        ScoreManager.instance.AddShotFired();
+        if (ScoreManager.instance != null)
+        {
+            ScoreManager.instance.AddShotFired();
+        }
     }
     public void SetTriggerPressed(bool isPressed)
     {
@@ -297,6 +307,12 @@ public class Gun : MonoBehaviour
     #region Casing
     void CasingRelease()
     {
+        if (CasingManager.Instance == null)
+        {
+            Debug.LogWarning("CasingManager가 씬에 존재하지 않습니다!");
+            return;
+        }
+
         GameObject tempCasing = CasingManager.Instance.GetCasing(casingType);
 
         if (tempCasing != null)
@@ -316,16 +332,19 @@ public class Gun : MonoBehaviour
     }
     private void PlayMuzzleFlash()
     {
-        if (_flashPool.Count <= 0) return;
-
-        ParticleSystem currentPS = _flashPool[_currentFlashIndex];
-        if (currentPS != null)
+        if (_flashPool == null || _flashPool.Count == 0)
         {
-            currentPS.Stop(); 
-            currentPS.Play(); 
+            return;
         }
 
-        
+        ParticleSystem currentPS = _flashPool[_currentFlashIndex];
+
+        if (currentPS != null)
+        {
+            currentPS.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+            currentPS.Play();
+        }
+
         _currentFlashIndex = (_currentFlashIndex + 1) % _flashPool.Count;
     }
     #endregion
