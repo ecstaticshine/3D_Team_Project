@@ -7,6 +7,8 @@ TagManager:
   - Target
   - Metal
   - ExplosiveBarrel
+  - Stage 1
+  - Bullet
   layers:
   - Default
   - TransparentFX
