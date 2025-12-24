@@ -51505,6 +51505,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AKM
       objectReference: {fileID: 0}
+    - target: {fileID: 2398567468824503294, guid: f62aacadd7ff7b3419f60c02e6aafeb1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5071110161615995504, guid: f62aacadd7ff7b3419f60c02e6aafeb1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.251
@@ -55136,6 +55140,10 @@ PrefabInstance:
     - target: {fileID: 7086261890353471258, guid: ab5144b8956197d4db20851c1949621e, type: 3}
       propertyPath: m_TagString
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 7137671658955591953, guid: ab5144b8956197d4db20851c1949621e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7143843623446832345, guid: ab5144b8956197d4db20851c1949621e, type: 3}
       propertyPath: m_TagString
