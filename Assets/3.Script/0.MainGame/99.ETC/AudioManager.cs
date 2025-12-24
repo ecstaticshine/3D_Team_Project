@@ -40,7 +40,7 @@ public class AudioManager : MonoBehaviour
     [Space(50f)]
     [Header("Audio Soucre")]
     [Space(10f)]
-    [SerializeField] private AudioSource BGMPlayer;
+    [SerializeField] public AudioSource BGMPlayer;
     [SerializeField] private AudioSource[] SFXPlayer;
 
     private float bgmPausedTime = 0f;
