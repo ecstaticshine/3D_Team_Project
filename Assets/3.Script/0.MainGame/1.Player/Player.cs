@@ -128,6 +128,11 @@ public class Player : MonoBehaviour
                 break;
             }
         }
+        var settingManager = SettingsManager.instance;
+
+        settingManager.OnMouseSensitivityChanged += ApplyMouseSensitivity;
+
+        ApplyMouseSensitivity(settingManager.MouseSensitivity);
     }
     
     void Update()
@@ -188,6 +193,12 @@ public class Player : MonoBehaviour
             playerBody.localPosition = bodyPos;
         }
     }
+    private void OnDestroy()
+    {
+        if (SettingsManager.instance != null)
+            SettingsManager.instance.OnMouseSensitivityChanged -= ApplyMouseSensitivity;
+    }
+
     private void Look()
     {
         if (cameraTransform == null) return;
@@ -455,5 +466,10 @@ public class Player : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
+    }
+
+    private void ApplyMouseSensitivity(float value)
+    {
+        mouseSensitivity = value;
     }
 }

@@ -28855,6 +28855,7 @@ GameObject:
   - component: {fileID: 1157896028}
   - component: {fileID: 1157896029}
   - component: {fileID: 1157896030}
+  - component: {fileID: 1157896031}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -28973,6 +28974,18 @@ MonoBehaviour:
   shotsHit: 0
   finalScore: 0
   finalAccuracy: 0
+--- !u!114 &1157896031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1157896023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3febaba55594f349b3a96b90af56e52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SettingsManager
 --- !u!1 &1158927937
 GameObject:
   m_ObjectHideFlags: 0
@@ -66247,7 +66260,7 @@ MonoBehaviour:
   weightSpeed: 2.5
   rightHandAnchor: {fileID: 3095218904224570659}
   leftHandAnchor: {fileID: 1958768505594369527}
-  iterations: 1
+  iterations: 40
   humanBones:
   - bone: 7
     weight: 0.2
@@ -69490,7 +69503,7 @@ MonoBehaviour:
   timeScaleMultiplier: 1
   baseAgentSpeed: 0
   viewDistance: 20
-  viewAngle: 90
+  viewAngle: 135
   turnSpeed: 120
   obstacleMask:
     serializedVersion: 2

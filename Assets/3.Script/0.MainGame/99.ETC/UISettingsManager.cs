@@ -64,7 +64,7 @@ public class UISettingsManager : MonoBehaviour
 
     private void OnMouseChanged(float value)
     {
-        PlayerPrefs.SetFloat("MouseSensitivity", value);
+        SettingsManager.instance.SetMouseSensitivity(value);
     }
 
 }
