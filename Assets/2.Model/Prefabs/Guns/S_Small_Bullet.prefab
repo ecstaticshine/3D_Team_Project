@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: -3872164544236673104}
   m_Layer: 0
   m_Name: S_Small_Bullet
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -167,6 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc06f4165309d0c48b7518cf738db82c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RewindableObject
+  recordDuration: 15
 --- !u!1 &5914827968627979159
 GameObject:
   m_ObjectHideFlags: 0

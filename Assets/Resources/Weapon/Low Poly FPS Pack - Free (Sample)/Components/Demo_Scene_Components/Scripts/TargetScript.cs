@@ -1,65 +1,79 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-// ----- Low Poly FPS Pack Free Version -----
-public class TargetScript : MonoBehaviour {
+public class TargetScript : MonoBehaviour
+{
 
-	float randomTime;
-	bool routineStarted = false;
+    [Header("Customizable Options")]
+    public float minTime;
+    public float maxTime;
 
-	//Used to check if the target has been hit
-	public bool isHit = false;
+    [Header("Audio")]
+    public AudioClip upSound;
+    public AudioClip downSound;
+    public AudioSource audioSource;
 
-	[Header("Customizable Options")]
-	//Minimum time before the target goes back up
-	public float minTime;
-	//Maximum time before the target goes back up
-	public float maxTime;
+    public bool isHit = false;
 
-	[Header("Audio")]
-	public AudioClip upSound;
-	public AudioClip downSound;
+    private Animation targetAnim;
 
-	public AudioSource audioSource;
-	
-	private void Update () {
-		
-		//Generate random time based on min and max time values
-		randomTime = Random.Range (minTime, maxTime);
+    private void Start()
+    {
+        if (!TryGetComponent<Animation>(out targetAnim))
+        {
+        }
 
-		//If the target is hit
-		if (isHit == true) 
-		{
-			if (routineStarted == false) 
-			{
-				//Animate the target "down"
-				gameObject.GetComponent<Animation> ().Play("target_down");
+        if (audioSource == null && !TryGetComponent<AudioSource>(out audioSource))
+        {
+        }
+    }
 
-				//Set the downSound as current sound, and play it
-				audioSource.GetComponent<AudioSource>().clip = downSound;
-				audioSource.Play();
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Bullet") && isHit == false)
+        {
+            GetHit();
+        }
+    }
 
-				//Start the timer
-				StartCoroutine(DelayTimer());
-				routineStarted = true;
-			} 
-		}
-	}
+    public void GetHit()
+    {
+        if (isHit) return;
 
-	//Time before the target pops back up
-	private IEnumerator DelayTimer () {
-		//Wait for random amount of time
-		yield return new WaitForSeconds(randomTime);
-		//Animate the target "up" 
-		gameObject.GetComponent<Animation> ().Play ("target_up");
+        isHit = true;
 
-		//Set the upSound as current sound, and play it
-		audioSource.GetComponent<AudioSource>().clip = upSound;
-		audioSource.Play();
+        if (audioSource != null && downSound != null)
+        {
+            audioSource.clip = downSound;
+            audioSource.Play();
+        }
 
-		//Target is no longer hit
-		isHit = false;
-		routineStarted = false;
-	}
+        if (targetAnim != null)
+        {
+            targetAnim.Stop();
+            targetAnim.Play("target_down");
+        }
+
+        StartCoroutine(DelayTimer());
+    }
+
+    private IEnumerator DelayTimer()
+    {
+        float randomWaitTime = Random.Range(minTime, maxTime);
+        yield return new WaitForSeconds(randomWaitTime);
+
+        if (targetAnim != null)
+        {
+            targetAnim.Stop();
+            targetAnim.Play("target_up");
+        }
+
+        if (audioSource != null && upSound != null)
+        {
+            audioSource.clip = upSound;
+            audioSource.Play();
+        }
+
+        isHit = false;
+    }
 }
-// ----- Low Poly FPS Pack Free Version -----
