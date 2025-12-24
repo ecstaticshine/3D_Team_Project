@@ -9,7 +9,7 @@ public class J_PatrolState : J_IState
 {
     private const int MAX_SAMPLE_TRY = 10;
     private const float STUCK_VELOCITY_THRESHOLD = 0.01f;
-    private const float ARRIVE_DISTANCE_BUFFER = 0.3f;
+    private const float ARRIVE_DISTANCE_BUFFER = 1.0f;
 
     private float waitTimer;
     private float waitDuration;
@@ -85,6 +85,13 @@ public class J_PatrolState : J_IState
                 GotoNextPoint(controller);
             }
         }
+
+        if (waitTimer >= waitDuration)
+        {
+            waitTimer = 0f;
+
+            GotoNextPoint(controller);
+        }
     }
 
     public void Exit(J_AIController controller)
@@ -92,6 +99,8 @@ public class J_PatrolState : J_IState
         controller.Agent.isStopped = true;
         controller.animator.SetBool("isMove", false);
     }
+
+   
 
     // ======================================
     // 다음 순찰 지점 설정 (고정 / 랜덤)
