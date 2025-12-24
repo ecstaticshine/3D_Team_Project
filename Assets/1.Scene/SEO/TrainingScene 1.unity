@@ -42936,6 +42936,7 @@ Transform:
   - {fileID: 326602265}
   - {fileID: 4301190843454201442}
   - {fileID: 210959015}
+  - {fileID: 8600148761275972719}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1861889762
@@ -51323,6 +51324,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &590391117579587635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2856107899111450104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6f1720f8beb4ef4c80d837dd08ba855, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CasingManager
+  casingSettings:
+  - type: 0
+    prefab: {fileID: 4362657251999731927, guid: 98ca7eb79912ed04aa3a002314021e84, type: 3}
+    defaultSize: 100
+  - type: 1
+    prefab: {fileID: 4362657251999731927, guid: 650cf33e4d11eae44b2d452a6479edd8, type: 3}
+    defaultSize: 100
+  - type: 2
+    prefab: {fileID: 8156270933289846220, guid: 0887d2171aad4c24b80ee1ea8c189081, type: 3}
+    defaultSize: 100
 --- !u!4 &591234728051127641
 Transform:
   m_ObjectHideFlags: 0
@@ -52935,6 +52958,11 @@ MonoBehaviour:
   cameraTransform: {fileID: 2976051250857615416}
   gunAnimator: {fileID: 0}
   isPlayerGun: 1
+  casingType: 0
+  casingExitLocation: {fileID: 0}
+  ExitPower: 300
+  muzzleFlashPrefab: {fileID: 0}
+  flashPoolSize: 3
 --- !u!1 &1110599691437782433
 GameObject:
   m_ObjectHideFlags: 0
@@ -54576,10 +54604,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Gun
   gunData: {fileID: 11400000, guid: 72e03fa40aecfc7408cf1807973bf6eb, type: 2}
-  firePoint: {fileID: 7434397172167737189}
+  firePoint: {fileID: 6341430858306152378}
   cameraTransform: {fileID: 2976051250857615416}
   gunAnimator: {fileID: 0}
   isPlayerGun: 1
+  casingType: 0
+  casingExitLocation: {fileID: 6654308366787003077}
+  ExitPower: 300
+  muzzleFlashPrefab: {fileID: 1782395880954752, guid: 3dd9cf2e209c504448f1c4c6835675cf, type: 3}
+  flashPoolSize: 3
 --- !u!224 &1805509526586795735
 RectTransform:
   m_ObjectHideFlags: 0
@@ -56802,6 +56835,11 @@ MonoBehaviour:
   cameraTransform: {fileID: 999640414601771756}
   gunAnimator: {fileID: 0}
   isPlayerGun: 1
+  casingType: 0
+  casingExitLocation: {fileID: 0}
+  ExitPower: 300
+  muzzleFlashPrefab: {fileID: 0}
+  flashPoolSize: 3
 --- !u!114 &2546175992536088137
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -57475,6 +57513,23 @@ GameObject:
   - component: {fileID: 5584568369481003065}
   m_Layer: 0
   m_Name: PinkyFinger1_L
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &2856107899111450104
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8600148761275972719}
+  - component: {fileID: 590391117579587635}
+  m_Layer: 0
+  m_Name: CasingPoolManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -58182,6 +58237,11 @@ MonoBehaviour:
   cameraTransform: {fileID: 999640414601771756}
   gunAnimator: {fileID: 7723430160043581723}
   isPlayerGun: 1
+  casingType: 0
+  casingExitLocation: {fileID: 0}
+  ExitPower: 300
+  muzzleFlashPrefab: {fileID: 0}
+  flashPoolSize: 3
 --- !u!114 &3282677805448411231
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66876,7 +66936,7 @@ Transform:
   m_GameObject: {fileID: 3844462244181042123}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.086, z: 0.159}
+  m_LocalPosition: {x: -0, y: 0.086, z: 0.255}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -70502,6 +70562,11 @@ MonoBehaviour:
   cameraTransform: {fileID: 2976051250857615416}
   gunAnimator: {fileID: 0}
   isPlayerGun: 1
+  casingType: 0
+  casingExitLocation: {fileID: 0}
+  ExitPower: 300
+  muzzleFlashPrefab: {fileID: 0}
+  flashPoolSize: 3
 --- !u!114 &7874001184701504357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -70519,6 +70584,11 @@ MonoBehaviour:
   cameraTransform: {fileID: 999640414601771756}
   gunAnimator: {fileID: 0}
   isPlayerGun: 1
+  casingType: 0
+  casingExitLocation: {fileID: 0}
+  ExitPower: 300
+  muzzleFlashPrefab: {fileID: 0}
+  flashPoolSize: 3
 --- !u!114 &7889368153318921330
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -72422,6 +72492,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!4 &8600148761275972719
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2856107899111450104}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 98.47796, y: -1.3985, z: -116.36755}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1860268200}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8601752144747385851
 GameObject:
   m_ObjectHideFlags: 0
