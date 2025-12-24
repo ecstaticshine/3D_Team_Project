@@ -32,6 +32,6 @@ Material:
     - _FlickerSpeed: 1.54
     - _MinIntensity: 0.493
     m_Colors:
-    - _NeonColor: {r: 0.76170343, g: 1, b: 0.7028302, a: 1}
+    - _NeonColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
