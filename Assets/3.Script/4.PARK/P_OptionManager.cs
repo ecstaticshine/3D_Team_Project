@@ -15,6 +15,7 @@ public class P_OptionManager : MonoBehaviour
     [SerializeField] private Slider masterSlider;
     [SerializeField] private Slider bgmSlider;
     [SerializeField] private Slider sfxSlider;
+    [SerializeField] private Slider mouseSlider; // [추가] 감도 슬라이더 연결
 
     private bool isSettingsOpen = false;
 
@@ -26,8 +27,13 @@ public class P_OptionManager : MonoBehaviour
         masterSlider.value = PlayerPrefs.GetFloat("MasterVolValue", 0.75f);
         bgmSlider.value = PlayerPrefs.GetFloat("BGMVolValue", 0.75f);
         sfxSlider.value = PlayerPrefs.GetFloat("SFXVolValue", 0.75f);
-
+        // 마우스 감도 로드 (기존 UISettingsManager 로직 활용)
+        if (mouseSlider != null)
+        {
+            mouseSlider.value = PlayerPrefs.GetFloat("MouseSensitivity", 25.0f);
+        }
         ApplyAllVolume();
+        ApplyMouseSensitivity(mouseSlider.value); // 시작 시 감도 적용
     }
 
     private void Update()
@@ -57,7 +63,24 @@ public class P_OptionManager : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
         }
     }
+    // 마우스 감도 조절 함수 (Dynamic float으로 슬라이더에 연결)
+    public void SetMouseSensitivity(float amount)
+    {
+        PlayerPrefs.SetFloat("MouseSensitivity", amount);
+        PlayerPrefs.Save(); //
+        ApplyMouseSensitivity(amount);
+    }
 
+    private void ApplyMouseSensitivity(float amount)
+    {
+        // 씬에 있는 Player를 찾아 실시간으로 감도를 바꿔줍니다.
+        var player = GameObject.FindWithTag("Player")?.GetComponent<Player>();
+        if (player != null)
+        {
+            // Player.cs의 mouseSensitivity 변수에 접근 (public이어야 함)
+            // player.mouseSensitivity = amount; 
+        }
+    }
     // 슬라이더 호출용 함수들 (Dynamic float으로 연결)
     public void SetMasterVolume(float level)
     {

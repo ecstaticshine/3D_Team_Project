@@ -6,7 +6,8 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null;
-
+    // [추가] 일시정지 상태가 변할 때마다 외칠 전광판 (true: 정지, false: 재개)
+    public event Action<bool> OnPauseChanged;
     private bool isPlaying = true;
 
     public long totalPlayTimeMs;
@@ -50,10 +51,14 @@ public class GameManager : MonoBehaviour
     public void PauseGame()
     {
         isPlaying = false;
+        Time.timeScale = 0f; // [추가]시간 정지
+        OnPauseChanged?.Invoke(true); // [추가]"모두 멈춰!"라고 신호 보냄
     }
 
     public void ResumeGame()
     {
-        isPlaying = true;
+        isPlaying = true; 
+        Time.timeScale = 1f; // [추가]시간 재개
+        OnPauseChanged?.Invoke(false); // [추가]"다시 움직여!"라고 신호 보냄
     }
 }

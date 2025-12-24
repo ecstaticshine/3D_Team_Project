@@ -59,6 +59,7 @@ public class Player : MonoBehaviour
     private int hashIsCrouching; 
 
     private CharacterController characterController;
+    private PlayerInput playerInput; //[추가] 플레이어인풋
     private Vector2 moveInput;
     private Vector2 lookInput;
     private Vector3 velocity;
@@ -75,7 +76,7 @@ public class Player : MonoBehaviour
         Cursor.visible = false;
         TryGetComponent(out characterController);
         TryGetComponent(out animator);
-
+        TryGetComponent(out playerInput); //[추가]
         TryGetComponent(out animator);
         hashInputX = Animator.StringToHash("input_x"); 
         hashInputY = Animator.StringToHash("input_y"); 
@@ -87,6 +88,37 @@ public class Player : MonoBehaviour
         currentSpeed = moveSpeed;
 
         currentHP = maxHP;
+    }
+
+    private void OnEnable()
+    {
+        if (GameManager.instance != null)
+            GameManager.instance.OnPauseChanged += HandleInputOnPause;
+    }
+
+    private void OnDisable()
+    {
+        if (GameManager.instance != null)
+            GameManager.instance.OnPauseChanged -= HandleInputOnPause;
+    }
+
+    private void HandleInputOnPause(bool isPaused)
+    {
+        if (playerInput == null) playerInput = GetComponent<PlayerInput>();
+
+        if (isPaused)
+        {
+            playerInput.DeactivateInput(); // [핵심] 입력 차단
+                                           // [중요 추가] 현재 남아있는 입력값을 강제로 0으로 만듭니다.
+            moveInput = Vector2.zero;
+            lookInput = Vector2.zero;
+            this.enabled = false;          // [중요] Update()를 멈춰서 화면 회전(Look) 완전 방지
+        }
+        else
+        {
+            playerInput.ActivateInput();   // [핵심] 입력 재개
+            this.enabled = true;           // Update() 재개
+        }
     }
 
     void Start()
@@ -107,6 +139,8 @@ public class Player : MonoBehaviour
     
     void Update()
     {
+        // [핵심 추가 코드] 시간이 멈췄으면(일시정지), 아래 로직(이동, 회전)을 아예 실행하지 마라!
+        if (Time.timeScale == 0f) return;
         isGround = characterController.isGrounded;
 
         HandleAbilityGauge();
