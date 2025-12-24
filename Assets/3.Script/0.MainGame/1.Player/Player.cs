@@ -104,20 +104,13 @@ public class Player : MonoBehaviour
 
     private void HandleInputOnPause(bool isPaused)
     {
-        if (playerInput == null) playerInput = GetComponent<PlayerInput>();
 
         if (isPaused)
         {
-            playerInput.DeactivateInput(); // [핵심] 입력 차단
-                                           // [중요 추가] 현재 남아있는 입력값을 강제로 0으로 만듭니다.
+            // [중요 추가] 현재 남아있는 입력값을 강제로 0으로 만듭니다.
             moveInput = Vector2.zero;
             lookInput = Vector2.zero;
-            this.enabled = false;          // [중요] Update()를 멈춰서 화면 회전(Look) 완전 방지
-        }
-        else
-        {
-            playerInput.ActivateInput();   // [핵심] 입력 재개
-            this.enabled = true;           // Update() 재개
+            
         }
     }
 

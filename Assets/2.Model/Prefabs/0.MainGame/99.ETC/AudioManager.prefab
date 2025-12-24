@@ -1057,7 +1057,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cefa49ac39578f9469ab9b443c7bba96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AudioManager
-  BGM: []
+  BGM:
+  - audioClipName: Title
+    audioClip: {fileID: 8300000, guid: 5ae5b4f05aaedda4bb073e24ee777fb3, type: 3}
+  - audioClipName: Training
+    audioClip: {fileID: 8300000, guid: aed9b13d3b6ad634785938c0a68496df, type: 3}
   SFX:
   - audioClipName: PistolSound
     audioClip: {fileID: 8300000, guid: 6aa8d76a39198e540994691eb8b4c86a, type: 3}
@@ -1065,12 +1069,11 @@ MonoBehaviour:
     audioClip: {fileID: 8300000, guid: dfb44691deb73314b989b87317735648, type: 3}
   - audioClipName: RifleSound
     audioClip: {fileID: 8300000, guid: dfb44691deb73314b989b87317735648, type: 3}
+  mainMixer: {fileID: 24100000, guid: 7ef3b03a4a1570341b2500fa6a0e6f7a, type: 2}
   BGMPlayer: {fileID: 3358364809206705097}
   SFXPlayer:
   - {fileID: 6707260310672979373}
   globalPitch: 1
-  BGMVolume: 1
-  SFXVolume: 1
 --- !u!1 &8789419747750433416
 GameObject:
   m_ObjectHideFlags: 0
