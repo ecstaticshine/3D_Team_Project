@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class J_CombatState : J_IState
+public class CombatState : IState
 {
     private float fireCooldown; // 사격 간격을 관리하기 위한 변수입니다.
     private float lostSightTimer; // 플레이어를 놓친 후의 경과 시간을 저장하는 변수입니다.
@@ -12,7 +12,7 @@ public class J_CombatState : J_IState
     private const float MAX_FIRE_INTERVAL = 0.6f; // 최대 사격 대기 시간입니다.
     private const float LOST_SIGHT_GRACE_TIME = 5.0f; // 시야에서 사라진 후 상태를 유지할 유예 시간입니다.
 
-    public void Enter(J_AIController ai)
+    public void Enter(AIController ai)
     {
         ai.hasDetectedPlayer = true; // AI가 플레이어를 발견했음을 기억하는 변수를 참으로 설정합니다.
 
@@ -32,7 +32,7 @@ public class J_CombatState : J_IState
         //ai.animator.SetBool("isRun", true); // 애니메이터의 'isRun' 파라미터를 true로 바꿔 달리기 애니메이션을 재생합니다.
     }
 
-    public void Execute(J_AIController ai)
+    public void Execute(AIController ai)
     {
         // 1. 플레이어 가슴 위치 참조 (가슴 위치가 없을 경우를 대비해 예외 처리)
         // targetPos: 플레이어의 발바닥 대신 가슴(Chest)의 월드 좌표를 가져와 저장합니다.
@@ -65,7 +65,7 @@ public class J_CombatState : J_IState
         ai.LookAt(targetPos);
 
         // 4. 타입별 전투 동작
-        if (ai.combatType == J_AIController.CombatType.Melee)
+        if (ai.combatType == AIController.CombatType.Melee)
         {
             HandleMeleeCombat(ai, targetPos, distance);
         }
@@ -75,7 +75,7 @@ public class J_CombatState : J_IState
         }
     }
 
-    private void HandleMeleeCombat(J_AIController ai, Vector3 targetPos, float distance)
+    private void HandleMeleeCombat(AIController ai, Vector3 targetPos, float distance)
     {
         // meleeEngageDistance: 근접 공격을 시작할 거리 기준값입니다.
         if (distance > ai.meleeEngageDistance)
@@ -95,7 +95,7 @@ public class J_CombatState : J_IState
         }
     }
 
-    private void HandleRangedCombat(J_AIController ai, Vector3 targetPos, float distance)
+    private void HandleRangedCombat(AIController ai, Vector3 targetPos, float distance)
     {
         // 0.8: 사격 유지 거리보다 조금 더 가까워지면(80% 거리) 뒤로 물러납니다.
         if (distance < ai.rangedEngageDistance * 0.8)
@@ -119,11 +119,11 @@ public class J_CombatState : J_IState
         if (!ai.player.GetComponent<Player>().isDie)
         {
             // TryFire: 원거리 공격 컴포넌트(j_AIShooter)에서 사격을 시도합니다.
-            ai.j_AIShooter.TryFire();
+            ai.aIShooter.TryFire();
         }
     }
 
-    private void Move(J_AIController ai, Vector3 targetPos)
+    private void Move(AIController ai, Vector3 targetPos)
     {
         // pathPending: NavMesh가 경로를 계산 중인지 확인합니다.
         // sqrMagnitude: 두 지점 간의 거리 제곱값으로, 연산 속도가 빨라 거리 비교 시 자주 사용됩니다.
@@ -134,7 +134,7 @@ public class J_CombatState : J_IState
         }
     }
 
-    public void Exit(J_AIController ai)
+    public void Exit(AIController ai)
     {
         ai.StopMove(); // 상태를 나갈 때 이동을 멈춥니다.
     }

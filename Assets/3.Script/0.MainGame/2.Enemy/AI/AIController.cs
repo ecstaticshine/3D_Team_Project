@@ -6,10 +6,8 @@ using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
 
-public class K_AIController : MonoBehaviour
+public class AIController : MonoBehaviour
 {
-
-
 
     public enum CombatType
     {
@@ -31,33 +29,37 @@ public class K_AIController : MonoBehaviour
     // 참조
     // ===============================
     [Header("참조")]
-    public Transform player;
+    public GameObject player;
+    public Transform EnemyChasePosition;
     public Transform eyePoint;
 
     public NavMeshAgent Agent { get; private set; }
 
+    public Animator animator;
     
     [Header("시간 제어")]
     [Range(0.1f, 3f)]
     [Tooltip("불릿타임 시 AI 개별 시간 배율")]
     public float timeScaleMultiplier = 1f;
 
-    private float baseAgentSpeed;
+    public float baseAgentSpeed;
     private float baseAngularSpeed;
     private const float BASE_LOOK_SPEED = 5f;
 
-    
+
     [Header("시야설정")]
     [Tooltip("플레이어를 인식할 수 있는 최대 거리")]
     public float viewDistance = 20f;
     [Range(0f, 180f)]
     [Tooltip("플레이어를 인식할 수 있는 시야각")]
     public float viewAngle = 90f;
+    [Tooltip("AI가 옆으로 도는 속도")]
+    public float turnSpeed = 200f;
     [Tooltip("Raycast 시 플레이어를 가리는 장애물 Layer Mask")]
-    public LayerMask obstacleMask; 
+    public LayerMask obstacleMask;
 
-   
-    private IState currentState;
+
+    public IState currentState;
 
     // 상태 인스턴스 (GC 방지)
     public readonly PatrolState patrolState = new PatrolState();
@@ -84,9 +86,22 @@ public class K_AIController : MonoBehaviour
     [Header("경계 및 수색")]
     public Vector3 lastHeardPosition;
     [Tooltip("경계 상태를 유지하는 시간")]
-    public float alertDuration = 5f; 
+    public float alertDuration = 5f;
 
-   
+    [Header("근접 공격")]
+    public float meleeAttackCooldown = 3f;
+    private float meleeAttackTimer;
+
+    [Header("총")]
+    public AIShooter aIShooter;
+
+    [Header("UI 연결")]
+    public EnemyAlert enemyAlert; // [추가] 리모컨 슬롯
+
+    [Header("상태 기억")]
+    // [추가] 한 번이라도 들켰는지 확인하는 '전투 기억' 변수
+    public bool hasDetectedPlayer = false;
+
     void Awake()
     {
         Agent = GetComponent<NavMeshAgent>();
@@ -95,16 +110,31 @@ public class K_AIController : MonoBehaviour
         baseAngularSpeed = Agent.angularSpeed;
 
         ApplyTimeScale();
+        // [추가] 자동으로 내 몸에 붙은 EnemyAlert 찾기
+        if (enemyAlert == null)
+            enemyAlert = GetComponent<EnemyAlert>();
     }
 
     void Start()
     {
         ChangeState(patrolState);
+        meleeAttackTimer = -meleeAttackCooldown;
     }
 
     void Update()
     {
+        meleeAttackTimer -= Time.deltaTime * timeScaleMultiplier;
         currentState?.Execute(this);
+
+        UpdateAnimation();
+    }
+    private void UpdateAnimation()
+    {
+        if (animator == null) return;
+
+        float currentSpeed = Agent.velocity.magnitude;
+
+        animator.SetFloat("Speed", currentSpeed, 0.1f, Time.deltaTime);
     }
 
     // ===============================
@@ -119,7 +149,7 @@ public class K_AIController : MonoBehaviour
         currentState = newState;
         currentState.Enter(this);
 
-        Debug.Log($"[AI] {name} -> {newState.GetType().Name}");
+        //Debug.Log($"[AI] {name} -> {newState.GetType().Name}");
     }
 
     // ===============================
@@ -137,6 +167,16 @@ public class K_AIController : MonoBehaviour
         Agent.angularSpeed = baseAngularSpeed * timeScaleMultiplier;
     }
 
+    public void LookAround()
+    {
+        Vector3 toPlayer = player.transform.position - transform.position;
+        toPlayer.y = 0f;
+
+        Quaternion targetRotate = Quaternion.LookRotation(toPlayer);
+
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotate, turnSpeed * Time.deltaTime);
+    }
+
     // ===============================
     // 시야 판정
     // ===============================
@@ -145,7 +185,7 @@ public class K_AIController : MonoBehaviour
         if (player == null || eyePoint == null)
             return false;
 
-        Vector3 toPlayer = player.position - eyePoint.position;
+        Vector3 toPlayer = player.transform.position - eyePoint.position;
         float distance = toPlayer.magnitude;
 
         // 1. 거리 체크
@@ -180,7 +220,6 @@ public class K_AIController : MonoBehaviour
         // 전투 중이 아닐 때만 Alert 진입
         if (currentState is not CombatState)
         {
-            LookAt(soundPosition);
             ChangeState(alertState);
         }
     }
@@ -188,20 +227,20 @@ public class K_AIController : MonoBehaviour
     // ===============================
     // 행동
     // ===============================
-    public void LookAt(Vector3 targetPosition)
+    public void LookAt(Vector3 targetPos)
     {
-        Vector3 dir = targetPosition - transform.position;
-        dir.y = 0f;
+        // targetPos: 플레이어의 가슴 위치입니다.
+        Vector3 direction = targetPos - transform.position;
+        direction.y = 0; // 몸체가 위아래로 까딱거리는 것을 원천 차단합니다.
 
-        if (dir.sqrMagnitude < 0.0001f)
-            return;
+        if (direction.sqrMagnitude > 0.1f) // 방향이 확실할 때만 회전합니다.
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
 
-        Quaternion targetRot = Quaternion.LookRotation(dir.normalized);
-        transform.rotation = Quaternion.Slerp(
-            transform.rotation,
-            targetRot,
-            Time.deltaTime * BASE_LOOK_SPEED * timeScaleMultiplier
-        );
+            // 0.15f 같은 낮은 값을 사용하여 몸체는 아주 부드럽게 따라가게 합니다.
+            // 몸체가 천천히 돌아가도 상체 IK(EnemyWeaponIK)가 조준을 대신 해주므로 자연스럽습니다.
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 0.15f);
+        }
     }
 
     public void MoveTo(Vector3 destination)
@@ -218,10 +257,29 @@ public class K_AIController : MonoBehaviour
         Agent.isStopped = true;
     }
 
-    public void Shoot()
+    public void Attack()
     {
+
+        if (meleeAttackTimer > 0f)
+        {
+            return;
+        }
+
+        meleeAttackTimer = meleeAttackCooldown;
+
+        Collider[] hits = Physics.OverlapSphere(eyePoint.position, meleeEngageDistance, LayerMask.GetMask("Player"));
+
+        foreach(Collider hit in hits)
+        {
+            if (hit.TryGetComponent<Player>(out Player player))
+            {
+                player.TakeDamage(gameObject.GetComponent<Enemy>().MeleeDamage);
+            }
+        }
+
+
         // 무기 시스템 연결 예정
-        Debug.DrawRay(eyePoint.position, eyePoint.forward * 10f, Color.red);
+        //Debug.DrawRay(eyePoint.position, eyePoint.forward * 10f, Color.red);
     }
 
     // ===============================
@@ -244,6 +302,11 @@ public class K_AIController : MonoBehaviour
 
         Gizmos.DrawRay(origin, leftRot * forward * range);
         Gizmos.DrawRay(origin, rightRot * forward * range);
+    }
+
+    public void SetMoveSpeed(float speed)
+    {
+        Agent.speed = speed * timeScaleMultiplier;
     }
 
 }

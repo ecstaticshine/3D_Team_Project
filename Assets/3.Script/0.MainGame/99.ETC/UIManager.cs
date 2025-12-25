@@ -47,7 +47,7 @@ public class UIManager : MonoBehaviour
     {
         ammoText.text = currentAmmo.ToString();
 
-        ammoText.text = $"{currentAmmo} / {totalAmmo}";
+        ammoText.text = $"{currentAmmo}";
 
         ammoText.color = currentAmmo == 0 ? Color.red : Color.white;
     }

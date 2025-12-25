@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class J_PatrolState : J_IState
+public class PatrolState : IState
 {
     private const int MAX_SAMPLE_TRY = 10;
     private const float STUCK_VELOCITY_THRESHOLD = 0.01f;
@@ -17,7 +17,7 @@ public class J_PatrolState : J_IState
 
     private float speed;
 
-    public void Enter(J_AIController controller)
+    public void Enter(AIController controller)
     {
         controller.hasDetectedPlayer = false;
 
@@ -40,7 +40,7 @@ public class J_PatrolState : J_IState
         GotoNextPoint(controller);
     }
 
-    public void Execute(J_AIController controller)
+    public void Execute(AIController controller)
     {
         // 1. 플레이어 발견
         if (controller.CanSeePlayer())
@@ -103,14 +103,14 @@ public class J_PatrolState : J_IState
         // 위에서 이미 처리하고 있어서 두 번 실행될 위험이 있거든.
     }
 
-    public void Exit(J_AIController controller)
+    public void Exit(AIController controller)
     {
         controller.Agent.isStopped = true;
         controller.animator.SetBool("isMove", false);
     }
 
     // (GotoNextPoint랑 TrySetDestination은 그대로 두면 돼!)
-    private void GotoNextPoint(J_AIController controller)
+    private void GotoNextPoint(AIController controller)
     {
         // ... (오빠 코드 그대로) ...
         // 코드 길어지니까 생략할게, 기존 거 그대로 써!
@@ -165,7 +165,7 @@ public class J_PatrolState : J_IState
         controller.Agent.ResetPath();
     }
 
-    private bool TrySetDestination(J_AIController controller, Vector3 target)
+    private bool TrySetDestination(AIController controller, Vector3 target)
     {
         NavMeshPath path = new NavMeshPath();
         if (controller.Agent.CalculatePath(target, path) &&

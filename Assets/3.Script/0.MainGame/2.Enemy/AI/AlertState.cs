@@ -6,7 +6,7 @@ using UnityEngine.AI;
 
 
 // ai가 어 무슨 소리였지?하고 주위를 경계하는 걸 담당하는 코드
-public class J_AlertState : J_IState
+public class AlertState : IState
 {
     private float timer;
     private float rotationTimer;
@@ -18,7 +18,7 @@ public class J_AlertState : J_IState
 
     private float speed;
 
-    public void Enter(J_AIController ai) // AI가 처음 경계 상태에 들어오자마자 하는 행동(방금 저기서 소리가 났는데?)
+    public void Enter(AIController ai) // AI가 처음 경계 상태에 들어오자마자 하는 행동(방금 저기서 소리가 났는데?)
     {
         // [핵심 로직 수정]
         // 방금 전까지 전투 중이 아니었을 때만(평화로울 때만) '?'를 띄운다.
@@ -47,7 +47,7 @@ public class J_AlertState : J_IState
         }
     }
 
-    public void Execute(J_AIController ai) // AI가 소리가 난 곳에 도착한 이후의 행동(도착했으니 주변을 살펴보자)
+    public void Execute(AIController ai) // AI가 소리가 난 곳에 도착한 이후의 행동(도착했으니 주변을 살펴보자)
     {
 
         timer += Time.deltaTime * ai.timeScaleMultiplier;
@@ -98,7 +98,7 @@ public class J_AlertState : J_IState
         }
     }
 
-    public void Exit(J_AIController ai) // AI가 일정시간 동안 수색해도 아무것도 없을 때 하는 행동(아무것도 없네 다시 순찰이나 하자)
+    public void Exit(AIController ai) // AI가 일정시간 동안 수색해도 아무것도 없을 때 하는 행동(아무것도 없네 다시 순찰이나 하자)
     {
         ai.StopMove();
     }

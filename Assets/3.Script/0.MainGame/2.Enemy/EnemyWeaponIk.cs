@@ -6,7 +6,7 @@ public class EnemyWeaponIK : MonoBehaviour
     // 컴포넌트 및 참조 변수
     // ===============================
     private Animator animator; // 캐릭터의 애니메이션을 제어하는 컴포넌트입니다.
-    private J_AIController aiController; // 현재 AI의 상태(Patrol 등)를 확인하기 위한 메인 컨트롤러입니다.
+    private AIController aiController; // 현재 AI의 상태(Patrol 등)를 확인하기 위한 메인 컨트롤러입니다.
 
     [Header("Targeting")]
     public Transform targetTransform; // 조준할 대상(플레이어)의 위치입니다.
@@ -31,7 +31,7 @@ public class EnemyWeaponIK : MonoBehaviour
     {
         // 1. 필요한 컴포넌트들을 내 오브젝트에서 가져옵니다.
         animator = GetComponent<Animator>();
-        aiController = GetComponent<J_AIController>();
+        aiController = GetComponent<AIController>();
 
         // 2. humanBones 배열에 설정된 HumanBodyBones 정보를 실제 Transform으로 변환하여 저장합니다.
         boneTransforms = new Transform[humanBones.Length];
@@ -44,7 +44,7 @@ public class EnemyWeaponIK : MonoBehaviour
 
     private void Update()
     {
-        bool isNotPatrolling = !(aiController.currentState is J_PatrolState);
+        bool isNotPatrolling = !(aiController.currentState is PatrolState);
         bool canSee = aiController.CanSeePlayer();
         float targetWeight = (isNotPatrolling && canSee) ? 1.0f : 0.0f;
 

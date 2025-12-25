@@ -15000,7 +15000,7 @@ MonoBehaviour:
   lastHeardPosition: {x: 0, y: 0, z: 0}
   alertDuration: 5
   meleeAttackCooldown: 3
-  j_AIShooter: {fileID: 1452169146}
+  aIShooter: {fileID: 1452169146}
   enemyAlert: {fileID: 620260651}
   hasDetectedPlayer: 0
 --- !u!114 &620260654
@@ -20345,7 +20345,7 @@ MonoBehaviour:
   lastHeardPosition: {x: 0, y: 0, z: 0}
   alertDuration: 5
   meleeAttackCooldown: 3
-  j_AIShooter: {fileID: 1223822470}
+  aIShooter: {fileID: 1223822470}
   enemyAlert: {fileID: 810068856}
   hasDetectedPlayer: 0
 --- !u!114 &810068859
@@ -27152,6 +27152,82 @@ Transform:
   - {fileID: 1421946386}
   m_Father: {fileID: 1164071518}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1011797036
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1011797037}
+  - component: {fileID: 1011797039}
+  - component: {fileID: 1011797038}
+  m_Layer: 7
+  m_Name: Panel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1011797037
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1011797036}
+  m_LocalRotation: {x: 0, y: 0, z: -0.13052624, w: 0.9914449}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2630206745758442436}
+  m_Father: {fileID: 7037608131011407966}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -15}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 500, y: -200}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1011797038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1011797036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.9803922, g: 0.5019608, b: 0.44705886, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: e5a390d359542f845bd18b3970c5eff3, type: 3}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1011797039
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1011797036}
+  m_CullTransparentMesh: 1
 --- !u!1 &1017300730
 GameObject:
   m_ObjectHideFlags: 0
@@ -28282,7 +28358,7 @@ MonoBehaviour:
   lastHeardPosition: {x: 0, y: 0, z: 0}
   alertDuration: 5
   meleeAttackCooldown: 3
-  j_AIShooter: {fileID: 1920643380}
+  aIShooter: {fileID: 1920643380}
   enemyAlert: {fileID: 1057865201}
   hasDetectedPlayer: 0
 --- !u!114 &1057865204
@@ -42661,7 +42737,7 @@ MonoBehaviour:
   lastHeardPosition: {x: 0, y: 0, z: 0}
   alertDuration: 5
   meleeAttackCooldown: 3
-  j_AIShooter: {fileID: 970430606}
+  aIShooter: {fileID: 970430606}
   enemyAlert: {fileID: 1781868705}
   hasDetectedPlayer: 0
 --- !u!114 &1781868708
@@ -52331,7 +52407,11 @@ MonoBehaviour:
   weaponModel: {fileID: 5650042582911529372}
   hipPosition: {fileID: 7311309111153549176}
   adsPosition: {fileID: 7855320528223439879}
+  mainCamera: {fileID: 0}
+  overlayCamera: {fileID: 0}
   adsSpeed: 10
+  normalFOV: 60
+  zoomFOV: 40
 --- !u!23 &631894346748758163
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -53747,7 +53827,6 @@ Transform:
   - {fileID: 3274911392142464084}
   - {fileID: 6901065342126398849}
   - {fileID: 2936374129837913683}
-  - {fileID: 7037608131011407966}
   - {fileID: 2001942620}
   m_Father: {fileID: 5060086303047117698}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -57046,7 +57125,7 @@ Camera:
     height: 1
   near clip plane: 0.01
   far clip plane: 1000
-  field of view: 60
+  field of view: 40
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -57906,18 +57985,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7689962988944710239}
-  m_LocalRotation: {x: -0, y: -0, z: -0.13052624, w: 0.9914449}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.000085449225}
   m_LocalScale: {x: 2.2, y: 2.2, z: 2.2}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 7037608131011407966}
+  m_Father: {fileID: 1011797037}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -15}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -200, y: 100.00003}
-  m_SizeDelta: {x: 150, y: 100}
-  m_Pivot: {x: 1, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0.00033950806, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2657083152742061640
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59365,7 +59444,11 @@ MonoBehaviour:
   weaponModel: {fileID: 9034699565306119580}
   hipPosition: {fileID: 9189333512671719117}
   adsPosition: {fileID: 3152176366026711726}
+  mainCamera: {fileID: 3426456628138590071}
+  overlayCamera: {fileID: 2343020524678915129}
   adsSpeed: 10
+  normalFOV: 60
+  zoomFOV: 40
 --- !u!1 &3376797113426603672
 GameObject:
   m_ObjectHideFlags: 0
@@ -62476,7 +62559,11 @@ MonoBehaviour:
   weaponModel: {fileID: 6293622417373731393}
   hipPosition: {fileID: 112956924283415110}
   adsPosition: {fileID: 7437193745892026889}
+  mainCamera: {fileID: 0}
+  overlayCamera: {fileID: 0}
   adsSpeed: 10
+  normalFOV: 60
+  zoomFOV: 40
 --- !u!23 &4601835048618533471
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -68434,8 +68521,8 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -68507,7 +68594,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!33 &6837073453019329892
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -69167,8 +69254,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2630206745758442436}
-  m_Father: {fileID: 999640414601771756}
+  - {fileID: 1011797037}
+  m_Father: {fileID: 8729091192720795193}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -70128,7 +70215,7 @@ MonoBehaviour:
   lastHeardPosition: {x: 0, y: 0, z: 0}
   alertDuration: 5
   meleeAttackCooldown: 3
-  j_AIShooter: {fileID: 5510424676304439936}
+  aIShooter: {fileID: 5510424676304439936}
   enemyAlert: {fileID: 4729591307962616695}
   hasDetectedPlayer: 0
 --- !u!4 &7451530326823148379
@@ -73437,6 +73524,7 @@ Transform:
   - {fileID: 2976051250857615416}
   - {fileID: 6655152152228366437}
   - {fileID: 6681159374768786297}
+  - {fileID: 7037608131011407966}
   m_Father: {fileID: 6850856770541213482}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &8763332982596310487

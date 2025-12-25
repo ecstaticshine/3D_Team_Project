@@ -27,7 +27,7 @@ public class SoundSystem : MonoBehaviour
 
         foreach (var hit in hits)
         {
-            if (hit.TryGetComponent<J_AIController>(out var ai))
+            if (hit.TryGetComponent<AIController>(out var ai))
             {
                 ai.OnSoundHeard(position);
             }

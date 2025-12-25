@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class J_AIShooter : MonoBehaviour
+public class AIShooter : MonoBehaviour
 {
     public enum GunState { Ready, Empty, Reloading }
 
