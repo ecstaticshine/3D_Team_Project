@@ -27164,7 +27164,7 @@ GameObject:
   - component: {fileID: 1011797039}
   - component: {fileID: 1011797038}
   m_Layer: 7
-  m_Name: Panel
+  m_Name: AmmoPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -52407,8 +52407,8 @@ MonoBehaviour:
   weaponModel: {fileID: 5650042582911529372}
   hipPosition: {fileID: 7311309111153549176}
   adsPosition: {fileID: 7855320528223439879}
-  mainCamera: {fileID: 0}
-  overlayCamera: {fileID: 0}
+  mainCamera: {fileID: 3426456628138590071}
+  overlayCamera: {fileID: 2343020524678915129}
   adsSpeed: 10
   normalFOV: 60
   zoomFOV: 40
@@ -59510,7 +59510,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b45914265ab5fe0489747bcc201c6236, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
-  currentGun: {fileID: 0}
+  currentGun: {fileID: 1797937814769688680}
   cameraTransform: {fileID: 2976051250857615416}
   playerBody: {fileID: 728369790457918319}
   moveSpeed: 5
@@ -62559,8 +62559,8 @@ MonoBehaviour:
   weaponModel: {fileID: 6293622417373731393}
   hipPosition: {fileID: 112956924283415110}
   adsPosition: {fileID: 7437193745892026889}
-  mainCamera: {fileID: 0}
-  overlayCamera: {fileID: 0}
+  mainCamera: {fileID: 3426456628138590071}
+  overlayCamera: {fileID: 2343020524678915129}
   adsSpeed: 10
   normalFOV: 60
   zoomFOV: 40

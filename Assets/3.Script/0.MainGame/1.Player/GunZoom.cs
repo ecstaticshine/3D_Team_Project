@@ -43,23 +43,23 @@ public class GunZoom : MonoBehaviour
         }
 
         // 2. 부드러운 이동 처리
-        weaponModel.localPosition = Vector3.Lerp(weaponModel.localPosition, targetPos, Time.deltaTime * adsSpeed);
+        weaponModel.localPosition = Vector3.Lerp(weaponModel.localPosition, targetPos, Time.unscaledDeltaTime * adsSpeed);
 
-        weaponModel.localRotation = Quaternion.Slerp(weaponModel.localRotation, targetRot, Time.deltaTime * adsSpeed);
+        weaponModel.localRotation = Quaternion.Slerp(weaponModel.localRotation, targetRot, Time.unscaledDeltaTime * adsSpeed);
 
         float targetFOV = isAds ? zoomFOV : normalFOV;
 
         // 메인 카메라 줌 (실제 확대 효과)
         if (mainCamera != null)
         {
-            mainCamera.fieldOfView = Mathf.Lerp(mainCamera.fieldOfView, targetFOV, Time.deltaTime * adsSpeed);
+            mainCamera.fieldOfView = Mathf.Lerp(mainCamera.fieldOfView, targetFOV, Time.unscaledDeltaTime * adsSpeed);
         }
 
         // 오버레이 카메라 줌 (무기가 너무 어색하게 커지지 않도록 조절)
         if (overlayCamera != null)
         {
             // 무기 카메라도 메인과 보조를 맞춰주면 화면이 훨씬 자연스러워진답니다.
-            overlayCamera.fieldOfView = Mathf.Lerp(mainCamera.fieldOfView, targetFOV, Time.deltaTime * adsSpeed);
+            overlayCamera.fieldOfView = Mathf.Lerp(mainCamera.fieldOfView, targetFOV, Time.unscaledDeltaTime * adsSpeed);
         }
     }
 }
