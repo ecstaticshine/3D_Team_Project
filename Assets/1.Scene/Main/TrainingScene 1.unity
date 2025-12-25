@@ -36616,6 +36616,8 @@ MonoBehaviour:
   SFX:
   - audioClipName: PistolSound
     audioClip: {fileID: 8300000, guid: 6aa8d76a39198e540994691eb8b4c86a, type: 3}
+  - audioClipName: DryFire
+    audioClip: {fileID: 8300000, guid: 4e3cd9cf8ce3c3b48935681fb7f8861e, type: 3}
   mainMixer: {fileID: 24100000, guid: 7ef3b03a4a1570341b2500fa6a0e6f7a, type: 2}
   BGMPlayer: {fileID: 1613035569}
   SFXPlayer:

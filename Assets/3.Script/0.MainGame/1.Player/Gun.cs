@@ -61,7 +61,7 @@ public class Gun : MonoBehaviour
                 GameObject obj = Instantiate(muzzleFlashPrefab, firePoint);
                 if (obj.TryGetComponent(out ParticleSystem ps))
                 {
-                    ps.Stop(); 
+                    ps.Stop();
                     _flashPool.Add(ps);
                 }
             }
@@ -123,6 +123,14 @@ public class Gun : MonoBehaviour
         GameObject bullet = bulletPool.Get();
 
         if (bullet == null) return;
+
+        currentTimer = 0;
+        currentAmmo--;
+        UpdateAmmoUI();
+
+        //PlayMuzzleFlash();
+        //CasingRelease();
+
 
         string layerName = isPlayerGun ? "PlayerBullet" : "EnemyBullet";
 
@@ -189,26 +197,28 @@ public class Gun : MonoBehaviour
 
         if (currentAmmo <= 0)
         {
+            if (AudioManager.instance != null)
+            {
+                AudioManager.instance.PlaySFX("DryFire");
+            }
+
+
             Reload();
+
+            currentTimer = 0;
             return;
         }
-
-        currentTimer = 0;
-        currentAmmo--;
 
         SoundSystem.EmitSound(transform.position, 20f);
 
         if (gunAnimator != null) gunAnimator.SetTrigger("Fire");
-
-        CasingRelease();
-        PlayMuzzleFlash();
 
         if (AudioManager.instance != null)
         {
             AudioManager.instance.PlaySFX(gunData.fireSoundName);
         }
 
-        UpdateAmmoUI();
+
         ProcessShooting();
 
         if (ScoreManager.instance != null)
@@ -227,7 +237,7 @@ public class Gun : MonoBehaviour
     }
     private void CheckContinuousFire()
     {
-        if (isTriggerHeld && gunData.fireMode == GunFireMode.FullAuto)
+        if (isTriggerHeld && gunData.fireMode == GunFireMode.FullAuto&& gunState == GunState.Ready)
         {
             TryFire();
         }
