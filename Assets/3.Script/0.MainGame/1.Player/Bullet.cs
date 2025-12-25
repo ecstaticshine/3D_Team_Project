@@ -63,8 +63,26 @@ public class Bullet : MonoBehaviour
     {
         if (isReleased) return;
 
+        int otherLayer = other.gameObject.layer;
+        int myLayer = gameObject.layer;
+
         Enemy enemy = other.GetComponentInParent<Enemy>();
         Player player = other.GetComponentInParent<Player>();
+
+        if ((otherLayer == LayerMask.NameToLayer("PlayerBullet") ||
+         otherLayer == LayerMask.NameToLayer("EnemyBullet")) &&
+        otherLayer != myLayer)
+        {
+            SpawnClashEffect(transform.position);
+
+            if (other.TryGetComponent(out Bullet otherBullet))
+            {
+                otherBullet.ReturnPool();
+            }
+
+            ReturnPool();
+            return;
+        }
 
         float finalDamage = baseDamage;
         bool isHeadShot = false;
@@ -98,6 +116,17 @@ public class Bullet : MonoBehaviour
         //}
 
         ReturnPool();
+    }
+
+    private void SpawnClashEffect(Vector3 position)
+    {
+        SoundSystem.EmitSound(position,20f);
+
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.PlaySFX("BulletCrash"); 
+        }
+
     }
     private void EnableTrail()
     {

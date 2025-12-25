@@ -26,6 +26,14 @@ public class Enemy : MonoBehaviour
 
         currentHp -= damage;
 
+        if (TryGetComponent(out AIController ai))
+        {
+            if (ai.player != null)
+            {
+                ai.OnSoundHeard(ai.player.transform.position);
+            }
+        }
+
         if (currentHp <= 0)
         {
             Die(isHeadshot);
