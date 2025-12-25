@@ -66,14 +66,11 @@ public class Bullet : MonoBehaviour
         int otherLayer = other.gameObject.layer;
         int myLayer = gameObject.layer;
 
-        Enemy enemy = other.GetComponentInParent<Enemy>();
-        Player player = other.GetComponentInParent<Player>();
-
         if ((otherLayer == LayerMask.NameToLayer("PlayerBullet") ||
          otherLayer == LayerMask.NameToLayer("EnemyBullet")) &&
         otherLayer != myLayer)
         {
-            SpawnClashEffect(transform.position);
+            SpawnCrashEffect(transform.position);
 
             if (other.TryGetComponent(out Bullet otherBullet))
             {
@@ -86,6 +83,9 @@ public class Bullet : MonoBehaviour
 
         float finalDamage = baseDamage;
         bool isHeadShot = false;
+
+        Enemy enemy = other.GetComponentInParent<Enemy>();
+        Player player = other.GetComponentInParent<Player>();
 
         if (enemy != null)
         {
@@ -118,7 +118,7 @@ public class Bullet : MonoBehaviour
         ReturnPool();
     }
 
-    private void SpawnClashEffect(Vector3 position)
+    private void SpawnCrashEffect(Vector3 position)
     {
         SoundSystem.EmitSound(position,20f);
 

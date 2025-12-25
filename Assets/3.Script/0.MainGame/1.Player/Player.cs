@@ -50,6 +50,7 @@ public class Player : MonoBehaviour
     [SerializeField] public bool isJumping = false;
     [SerializeField] public bool isDashing = false;
     [SerializeField] public bool isCrouching = false;
+    private bool wasGround;
 
     [Header("애니메이션")]
     private Animator animator; 
@@ -67,6 +68,11 @@ public class Player : MonoBehaviour
     private float recoverTimer = 0f;
     private float currentSpeed;
     private float lastDashTime = -10f;
+
+    //점프
+    private float landSoundCooldown = 0.2f;
+    private float lastLandSoundTime;
+    private float minFallVelocity = -3.0f; 
 
     #endregion
 
@@ -139,7 +145,24 @@ public class Player : MonoBehaviour
     {
         // [핵심 추가 코드] 시간이 멈췄으면(일시정지), 아래 로직(이동, 회전)을 아예 실행하지 마라!
         if (Time.timeScale == 0f) return;
+
         isGround = characterController.isGrounded;
+
+        if (isGround && !wasGround && !isDashing)
+        {
+            
+            if (Time.unscaledTime - lastLandSoundTime > landSoundCooldown)
+            {
+
+                if (velocity.y < minFallVelocity)
+                {
+                    OnLand();
+                    lastLandSoundTime = Time.unscaledTime;
+                }
+            }
+        }
+
+        wasGround = isGround;
 
         HandleAbilityGauge();
         ToggleAbility();
@@ -227,12 +250,26 @@ public class Player : MonoBehaviour
 
         isDashing = false;
         velocity = Vector3.zero;
+
+        wasGround = true;
+        lastLandSoundTime = Time.unscaledTime + 0.2f;
+
+        yield return null;
     }
 
     #endregion
 
     #region Function
 
+
+    private void OnLand()
+    {
+        SoundSystem.EmitSound(gameObject.transform.position, 10f);
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.PlaySFX("Land");
+        }
+    }
     public void GunPickup(GunData newGunData)
     {
         Gun targetGun = null;
