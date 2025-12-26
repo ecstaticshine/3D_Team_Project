@@ -10739,7 +10739,7 @@ GameObject:
   m_Component:
   - component: {fileID: 404175471}
   m_Layer: 0
-  m_Name: Factory1Items
+  m_Name: Factory1Items_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13437,7 +13437,7 @@ GameObject:
   m_Component:
   - component: {fileID: 528715725}
   m_Layer: 0
-  m_Name: Factory1Items (1)
+  m_Name: Factory1Items_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32741,7 +32741,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1278536065}
   m_Layer: 0
-  m_Name: Factory2Items_2
+  m_Name: Factory2Items_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38509,7 +38509,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1520604274}
   m_Layer: 0
-  m_Name: Factory2Items_1
+  m_Name: Factory2Items_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -55705,16 +55705,20 @@ PrefabInstance:
       value: Stage 2
       objectReference: {fileID: 0}
     - target: {fileID: 1993402409395103931, guid: 320c2d60c89a1f14fb9e5958c839553e, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1993402409395103931, guid: 320c2d60c89a1f14fb9e5958c839553e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -11.269614
+      value: -11.372
       objectReference: {fileID: 0}
     - target: {fileID: 1993402409395103931, guid: 320c2d60c89a1f14fb9e5958c839553e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.02399715
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1993402409395103931, guid: 320c2d60c89a1f14fb9e5958c839553e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -130.69344
+      value: -130.964
       objectReference: {fileID: 0}
     - target: {fileID: 1993402409395103931, guid: 320c2d60c89a1f14fb9e5958c839553e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -55747,6 +55751,22 @@ PrefabInstance:
     - target: {fileID: 5971931016570219520, guid: 320c2d60c89a1f14fb9e5958c839553e, type: 3}
       propertyPath: m_Name
       value: Quad
+      objectReference: {fileID: 0}
+    - target: {fileID: 8981776614276659785, guid: 320c2d60c89a1f14fb9e5958c839553e, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8981776614276659785, guid: 320c2d60c89a1f14fb9e5958c839553e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 8981776614276659785, guid: 320c2d60c89a1f14fb9e5958c839553e, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.009
+      objectReference: {fileID: 0}
+    - target: {fileID: 8981776614276659785, guid: 320c2d60c89a1f14fb9e5958c839553e, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -55865,8 +55885,8 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 327823790}
-  - {fileID: 404175471}
   - {fileID: 528715725}
+  - {fileID: 404175471}
   - {fileID: 1520604274}
   - {fileID: 1278536065}
   - {fileID: 1463480906}
