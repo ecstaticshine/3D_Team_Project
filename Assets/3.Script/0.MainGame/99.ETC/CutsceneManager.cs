@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
 
-public class PrologueManager : MonoBehaviour
+public class CutsceneManager : MonoBehaviour
 {
 
     [SerializeField] private PlayableDirector prologueDirector;
