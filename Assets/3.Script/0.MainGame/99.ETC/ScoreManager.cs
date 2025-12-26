@@ -1,9 +1,11 @@
 using UnityEngine;
-// [유니] UI 관련 코드는 여기서 다 뺄게! 오직 데이터만 관리해.
 
 public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager instance = null;
+
+    [Header("씬 이동 정보")]
+    public string nextSceneName;
 
     [Header("점수 기록")]
     public int killCount = 0;

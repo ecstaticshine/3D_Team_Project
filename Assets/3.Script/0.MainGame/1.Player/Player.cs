@@ -481,29 +481,14 @@ public class Player : MonoBehaviour
     private void AbilityUI() { if (UIManager.instance != null) UIManager.instance.UpdateAbilitySlider(abilityGauge); }
     #endregion
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Finish"))
-        {
-            ScoreManager.instance.CalculateFinalScore();
-
-            SceneManager.LoadScene("ScoreScene");
-        }
-
-        //if (other.CompareTag("Stage 1"))
-        //{
-        //    SceneManager.LoadScene("Stage 1");
-        //}
-    }
-
-    private void OnApplicationFocus(bool hasFocus)
-    {
-        if (hasFocus)
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-        }
-    }
+    //private void OnApplicationFocus(bool hasFocus)
+    //{
+    //    if (hasFocus)
+    //    {
+    //        Cursor.lockState = CursorLockMode.Locked;
+    //        Cursor.visible = false;
+    //    }
+    //}
 
     private void ApplyMouseSensitivity(float value)
     {
