@@ -454,6 +454,7 @@ GameObject:
   - component: {fileID: 397704542}
   - component: {fileID: 397704541}
   - component: {fileID: 397704543}
+  - component: {fileID: 397704544}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -506,6 +507,24 @@ MonoBehaviour:
   progressText: {fileID: 1485347943}
   minLoadingTime: 2
   canActivateScene: 0
+--- !u!114 &397704544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 397704540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ea3c935c34a09d43bf1fd5665e485de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SaveManager
+  saveData:
+    clearStage: 0
+    deathCount: 0
+    totalPlayTimeMs: 0
+    lastSaveTime: 1766716398
+    sceneToLoad: TrainingScene 1
 --- !u!1 &428005929
 GameObject:
   m_ObjectHideFlags: 0
