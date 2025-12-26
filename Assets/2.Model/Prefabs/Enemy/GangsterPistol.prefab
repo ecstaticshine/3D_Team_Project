@@ -2226,6 +2226,7 @@ GameObject:
   - component: {fileID: 1123663658933284675}
   - component: {fileID: 9103101955640368032}
   - component: {fileID: 6610525770099352554}
+  - component: {fileID: 8454277003585597650}
   m_Layer: 8
   m_Name: Head_M
   m_TagString: Untagged
@@ -2346,6 +2347,19 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &8454277003585597650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3252502143429854146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3c753950a5a7224fb1ac92a46d925c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HitBox
+  damageMultiplier: 2.5
 --- !u!1 &3452495315199944927
 GameObject:
   m_ObjectHideFlags: 0
@@ -3371,24 +3385,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyWeaponIK
   targetTransform: {fileID: 0}
   aimPoint: {fileID: 1824746209810983531}
-  ikWeight: 0
-  weightSpeed: 2.5
-  rightHandAnchor: {fileID: 3095218904271982203}
-  leftHandAnchor: {fileID: 1958768505616156335}
+  weight: 1
+  smoothTime: 5
+  kneeSpreadWeight: 0.7
+  kneeSpreadDistance: 0.35
   iterations: 1
   humanBones:
   - bone: 7
     weight: 0.2
-    maxAngle: 40
   - bone: 8
     weight: 0.3
-    maxAngle: 40
   - bone: 54
     weight: 0.3
-    maxAngle: 40
   - bone: 10
     weight: 0.2
-    maxAngle: 40
 --- !u!114 &7451490676561856480
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4073,6 +4083,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6929332367700109125}
+  - component: {fileID: 6054938570285020132}
   m_Layer: 8
   m_Name: DeformationSystem
   m_TagString: Untagged
@@ -4096,6 +4107,19 @@ Transform:
   - {fileID: 3754263155653218363}
   m_Father: {fileID: 4864743387008753145}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6054938570285020132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6012708405230363601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3c753950a5a7224fb1ac92a46d925c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HitBox
+  damageMultiplier: 1
 --- !u!1 &6027646979149334437
 GameObject:
   m_ObjectHideFlags: 0

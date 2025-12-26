@@ -694,7 +694,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &18687596
 Transform:
   m_ObjectHideFlags: 0
@@ -1891,6 +1891,7 @@ GameObject:
   - component: {fileID: 56502456}
   - component: {fileID: 56502455}
   - component: {fileID: 56502454}
+  - component: {fileID: 56502457}
   m_Layer: 8
   m_Name: Head_M
   m_TagString: Untagged
@@ -2011,6 +2012,19 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.08157539
   m_Center: {x: -0.08157539, y: 0, z: 0}
+--- !u!114 &56502457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 56502452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3c753950a5a7224fb1ac92a46d925c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HitBox
+  damageMultiplier: 2.5
 --- !u!1 &59532125
 GameObject:
   m_ObjectHideFlags: 0
@@ -9390,26 +9404,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8205276a486a5f2428e291395cdf27ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyWeaponIK
-  targetTransform: {fileID: 0}
+  targetTransform: {fileID: 6655152152228366437}
   aimPoint: {fileID: 824284876}
-  ikWeight: 0
-  weightSpeed: 2.5
-  rightHandAnchor: {fileID: 324891379}
-  leftHandAnchor: {fileID: 970743730}
+  weight: 1
+  smoothTime: 5
+  kneeSpreadWeight: 0.7
+  kneeSpreadDistance: 0.35
   iterations: 40
   humanBones:
   - bone: 7
     weight: 0.2
-    maxAngle: 40
   - bone: 8
     weight: 0.3
-    maxAngle: 40
   - bone: 54
     weight: 0.3
-    maxAngle: 40
   - bone: 10
     weight: 0.2
-    maxAngle: 40
 --- !u!136 &304311926
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -9833,7 +9843,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &316902218
 Transform:
   m_ObjectHideFlags: 0
@@ -13968,26 +13978,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8205276a486a5f2428e291395cdf27ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyWeaponIK
-  targetTransform: {fileID: 0}
+  targetTransform: {fileID: 6655152152228366437}
   aimPoint: {fileID: 637023654}
-  ikWeight: 0
-  weightSpeed: 2.5
-  rightHandAnchor: {fileID: 34208843}
-  leftHandAnchor: {fileID: 2007945672}
+  weight: 1
+  smoothTime: 5
+  kneeSpreadWeight: 0.7
+  kneeSpreadDistance: 0.35
   iterations: 40
   humanBones:
   - bone: 7
     weight: 0.2
-    maxAngle: 40
   - bone: 8
     weight: 0.3
-    maxAngle: 40
   - bone: 54
     weight: 0.3
-    maxAngle: 40
   - bone: 10
     weight: 0.2
-    maxAngle: 40
 --- !u!136 &422382632
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -18328,6 +18334,7 @@ GameObject:
   - component: {fileID: 600629761}
   - component: {fileID: 600629760}
   - component: {fileID: 600629759}
+  - component: {fileID: 600629762}
   m_Layer: 8
   m_Name: Head_M
   m_TagString: Untagged
@@ -18448,6 +18455,19 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.08157539
   m_Center: {x: -0.08157539, y: 0, z: 0}
+--- !u!114 &600629762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 600629757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3c753950a5a7224fb1ac92a46d925c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HitBox
+  damageMultiplier: 2.5
 --- !u!1 &601124796
 GameObject:
   m_ObjectHideFlags: 0
@@ -20466,26 +20486,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8205276a486a5f2428e291395cdf27ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyWeaponIK
-  targetTransform: {fileID: 0}
+  targetTransform: {fileID: 6655152152228366437}
   aimPoint: {fileID: 757567228}
-  ikWeight: 0
-  weightSpeed: 2.5
-  rightHandAnchor: {fileID: 1186401786}
-  leftHandAnchor: {fileID: 391002746}
+  weight: 1
+  smoothTime: 5
+  kneeSpreadWeight: 0.7
+  kneeSpreadDistance: 0.35
   iterations: 40
   humanBones:
   - bone: 7
     weight: 0.2
-    maxAngle: 40
   - bone: 8
     weight: 0.3
-    maxAngle: 40
   - bone: 54
     weight: 0.3
-    maxAngle: 40
   - bone: 10
     weight: 0.2
-    maxAngle: 40
 --- !u!136 &638760406
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -30086,6 +30102,7 @@ GameObject:
   - component: {fileID: 906116679}
   - component: {fileID: 906116678}
   - component: {fileID: 906116677}
+  - component: {fileID: 906116680}
   m_Layer: 8
   m_Name: Head_M
   m_TagString: Untagged
@@ -30206,6 +30223,19 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.08157539
   m_Center: {x: -0.08157539, y: 0, z: 0}
+--- !u!114 &906116680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 906116675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3c753950a5a7224fb1ac92a46d925c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HitBox
+  damageMultiplier: 2.5
 --- !u!1 &910122385
 GameObject:
   m_ObjectHideFlags: 0
@@ -31856,26 +31886,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8205276a486a5f2428e291395cdf27ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyWeaponIK
-  targetTransform: {fileID: 0}
+  targetTransform: {fileID: 6655152152228366437}
   aimPoint: {fileID: 1221911216}
-  ikWeight: 0
-  weightSpeed: 2.5
-  rightHandAnchor: {fileID: 656032378}
-  leftHandAnchor: {fileID: 1518798516}
+  weight: 1
+  smoothTime: 5
+  kneeSpreadWeight: 0.7
+  kneeSpreadDistance: 0.35
   iterations: 40
   humanBones:
   - bone: 7
     weight: 0.2
-    maxAngle: 40
   - bone: 8
     weight: 0.3
-    maxAngle: 40
   - bone: 54
     weight: 0.3
-    maxAngle: 40
   - bone: 10
     weight: 0.2
-    maxAngle: 40
 --- !u!136 &931620525
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -46085,6 +46111,7 @@ GameObject:
   - component: {fileID: 1338636953}
   - component: {fileID: 1338636952}
   - component: {fileID: 1338636951}
+  - component: {fileID: 1338636954}
   m_Layer: 8
   m_Name: Head_M
   m_TagString: Untagged
@@ -46205,6 +46232,19 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.08157539
   m_Center: {x: -0.08157539, y: 0, z: 0}
+--- !u!114 &1338636954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1338636949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3c753950a5a7224fb1ac92a46d925c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HitBox
+  damageMultiplier: 2.5
 --- !u!1 &1341597390
 GameObject:
   m_ObjectHideFlags: 0
@@ -48793,7 +48833,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1444556634
 Transform:
   m_ObjectHideFlags: 0
@@ -49447,7 +49487,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1471404322
 Transform:
   m_ObjectHideFlags: 0
@@ -57630,26 +57670,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8205276a486a5f2428e291395cdf27ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyWeaponIK
-  targetTransform: {fileID: 0}
+  targetTransform: {fileID: 6655152152228366437}
   aimPoint: {fileID: 1879825559}
-  ikWeight: 0
-  weightSpeed: 2.5
-  rightHandAnchor: {fileID: 81891304}
-  leftHandAnchor: {fileID: 390183832}
+  weight: 1
+  smoothTime: 5
+  kneeSpreadWeight: 0.7
+  kneeSpreadDistance: 0.35
   iterations: 40
   humanBones:
   - bone: 7
     weight: 0.2
-    maxAngle: 40
   - bone: 8
     weight: 0.3
-    maxAngle: 40
   - bone: 54
     weight: 0.3
-    maxAngle: 40
   - bone: 10
     weight: 0.2
-    maxAngle: 40
 --- !u!136 &1697923085
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -60912,6 +60948,7 @@ GameObject:
   - component: {fileID: 1841862841}
   - component: {fileID: 1841862840}
   - component: {fileID: 1841862839}
+  - component: {fileID: 1841862842}
   m_Layer: 8
   m_Name: Head_M
   m_TagString: Untagged
@@ -61032,6 +61069,19 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.08157539
   m_Center: {x: -0.08157539, y: 0, z: 0}
+--- !u!114 &1841862842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1841862837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3c753950a5a7224fb1ac92a46d925c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HitBox
+  damageMultiplier: 2.5
 --- !u!1 &1842242172
 GameObject:
   m_ObjectHideFlags: 0
@@ -67691,6 +67741,63 @@ Transform:
   - {fileID: 337938713}
   m_Father: {fileID: 1331096}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &2048698658
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4864743387008753145, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.8530164
+      objectReference: {fileID: 0}
+    - target: {fileID: 4864743387008753145, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.000004053116
+      objectReference: {fileID: 0}
+    - target: {fileID: 4864743387008753145, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -92.72976
+      objectReference: {fileID: 0}
+    - target: {fileID: 4864743387008753145, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4864743387008753145, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4864743387008753145, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4864743387008753145, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4864743387008753145, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4864743387008753145, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4864743387008753145, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5355254141850973528, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
+      propertyPath: m_Name
+      value: GangsterPistol
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
 --- !u!1 &2049682367
 GameObject:
   m_ObjectHideFlags: 0
@@ -68677,7 +68784,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2101209733
 Transform:
   m_ObjectHideFlags: 0
@@ -77334,6 +77441,7 @@ GameObject:
   - component: {fileID: 5813215693613359967}
   - component: {fileID: 5813215693613359966}
   - component: {fileID: 5813215693613359965}
+  - component: {fileID: 5813215693613359968}
   m_Layer: 8
   m_Name: Head_M
   m_TagString: Untagged
@@ -83484,6 +83592,19 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.08157539
   m_Center: {x: -0.08157539, y: 0, z: 0}
+--- !u!114 &5813215693613359968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3252502143407542426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3c753950a5a7224fb1ac92a46d925c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HitBox
+  damageMultiplier: 2.5
 --- !u!4 &5817007552075686637
 Transform:
   m_ObjectHideFlags: 0
@@ -84314,26 +84435,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8205276a486a5f2428e291395cdf27ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyWeaponIK
-  targetTransform: {fileID: 0}
+  targetTransform: {fileID: 6655152152228366437}
   aimPoint: {fileID: 1824746209832843571}
-  ikWeight: 0
-  weightSpeed: 2.5
-  rightHandAnchor: {fileID: 3095218904224570659}
-  leftHandAnchor: {fileID: 1958768505594369527}
+  weight: 1
+  smoothTime: 5
+  kneeSpreadWeight: 0.7
+  kneeSpreadDistance: 0.1
   iterations: 40
   humanBones:
   - bone: 7
     weight: 0.2
-    maxAngle: 40
   - bone: 8
     weight: 0.3
-    maxAngle: 40
   - bone: 54
     weight: 0.3
-    maxAngle: 40
   - bone: 10
     weight: 0.2
-    maxAngle: 40
 --- !u!1 &6083008609745972809
 GameObject:
   m_ObjectHideFlags: 0
@@ -91646,3 +91763,4 @@ SceneRoots:
   - {fileID: 1760910088}
   - {fileID: 1664989286}
   - {fileID: 190224362}
+  - {fileID: 2048698658}

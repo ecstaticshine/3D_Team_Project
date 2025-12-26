@@ -210,24 +210,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyWeaponIK
   targetTransform: {fileID: 0}
   aimPoint: {fileID: 550592502103629196}
-  ikWeight: 0
-  weightSpeed: 2.5
-  rightHandAnchor: {fileID: 4048436230817431374}
-  leftHandAnchor: {fileID: 1800521910247443179}
+  weight: 1
+  smoothTime: 5
+  kneeSpreadWeight: 0.7
+  kneeSpreadDistance: 0.2
   iterations: 1
   humanBones:
   - bone: 7
     weight: 0.2
-    maxAngle: 40
   - bone: 8
     weight: 0.3
-    maxAngle: 40
   - bone: 54
     weight: 0.3
-    maxAngle: 40
   - bone: 10
     weight: 0.2
-    maxAngle: 40
 --- !u!114 &1752086616759237786
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -697,6 +693,7 @@ GameObject:
   - component: {fileID: 6537276073273711648}
   - component: {fileID: 6710585341767777780}
   - component: {fileID: 8729752813558062646}
+  - component: {fileID: 8906371843067060695}
   m_Layer: 8
   m_Name: Head_M
   m_TagString: Untagged
@@ -817,6 +814,19 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &8906371843067060695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 655798018274642150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3c753950a5a7224fb1ac92a46d925c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HitBox
+  damageMultiplier: 2.5
 --- !u!1 &666062669531761359
 GameObject:
   m_ObjectHideFlags: 0
@@ -7212,6 +7222,7 @@ GameObject:
   - component: {fileID: 1714861118241869435}
   - component: {fileID: 1438149971074621166}
   - component: {fileID: 1969259008768081893}
+  - component: {fileID: 1897076113956869171}
   m_Layer: 8
   m_Name: 870
   m_TagString: Untagged
@@ -7275,6 +7286,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1669e6399e738bb45b96ea14b484de9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GunDebugDraw
+--- !u!114 &1897076113956869171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8151982487988923555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f8505157790dc44c9c370beff767f24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AIShooter
+  gunData: {fileID: 11400000, guid: a9470847588ffdd40b3c454e6bc65052, type: 2}
+  firePoint: {fileID: 550592502103629196}
+  gunAnimator: {fileID: 0}
 --- !u!1 &8203461014866190352
 GameObject:
   m_ObjectHideFlags: 0
@@ -8045,6 +8071,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8967270071417301269}
+  - component: {fileID: 363536212639609108}
   m_Layer: 8
   m_Name: DeformationSystem
   m_TagString: Untagged
@@ -8068,3 +8095,16 @@ Transform:
   - {fileID: 4535168640851241043}
   m_Father: {fileID: 4423149692410268346}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &363536212639609108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9221564740775413446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3c753950a5a7224fb1ac92a46d925c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HitBox
+  damageMultiplier: 1
