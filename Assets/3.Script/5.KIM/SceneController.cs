@@ -10,8 +10,11 @@ using TMPro;
 public enum SceneName
 {
     Title,
-    Lobby,
-    Game,
+    Prologue,
+    Training,
+    ScoreScene,
+    Stage1,
+    Stage2,
     Loading
 }
 
@@ -22,9 +25,12 @@ public static class SceneNameMap
     {
         return scene switch
         {
-            SceneName.Title =>"TitleScene",
-            SceneName.Lobby => "LobbyScene",
-            SceneName.Game => "GameScene",
+            SceneName.Title =>"Title",
+            SceneName.Prologue => "Prologue",
+            SceneName.Training => "TrainingScene 1",
+            SceneName.ScoreScene => "ScoreScene",
+            SceneName.Stage1 => "Stage1",
+            SceneName.Stage2 => "Stage2",
             SceneName.Loading => "LoadingScene",
             //씬을 새로 추가하고 싶으시면 여기에 넣으시면 됩니다
 
@@ -39,8 +45,8 @@ public class SceneController : MonoBehaviour
     public static SceneController Instance { get; private set; }
 
     [Header("UI References")]
-    [SerializeField] private GameObject lodingCanvas;
-    [SerializeField] private Image progressBar;
+    [SerializeField] private GameObject loadingCanvas;
+    [SerializeField] private Slider progressBar;
     [SerializeField] private TextMeshProUGUI progressText;
 
     [Header("Settings")]
@@ -66,8 +72,8 @@ public class SceneController : MonoBehaviour
 
     private IEnumerator LoadSceneProcess_co(SceneName targetSceneName)
     {
-        lodingCanvas.SetActive(true);
-        progressBar.fillAmount = 0;
+        loadingCanvas.SetActive(true);
+        progressBar.value = 0;
 
         // 1. 매핑 클래스에서 실제 씬 파일 이름 가져옵니다
         string scenePath = SceneNameMap.Get(targetSceneName);
@@ -77,18 +83,21 @@ public class SceneController : MonoBehaviour
         operation.allowSceneActivation = false; // 90%에서 대기
 
         float timer = 0f;
-        while (operation.isDone)
+        while (!operation.isDone)
         {
             yield return null;
             timer += Time.unscaledDeltaTime;
 
             float targetProgress = Mathf.Clamp01(operation.progress / 0.9f);
 
-            progressBar.fillAmount = Mathf.MoveTowards(progressBar.fillAmount, targetProgress, timer);
-            if (progressText != null)
-                progressText.text = $"Loading~~~{Mathf.FloorToInt(progressBar.fillAmount * 100)}%";
+            progressBar.value = Mathf.MoveTowards(progressBar.value, targetProgress, timer);
 
-            if(operation.progress>=0.9f && progressBar.fillAmount >= 0.99f)
+            if (progressText != null)
+            {
+                progressText.text = $"Loading~~~{Mathf.FloorToInt(progressBar.value * 100)}%";
+            }
+
+            if(operation.progress>=0.9f && progressBar.value >= 0.99f)
             {
                 if (timer >= minLoadingTime)
                 {
