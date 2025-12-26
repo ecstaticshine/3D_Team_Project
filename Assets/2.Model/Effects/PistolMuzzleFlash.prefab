@@ -4955,7 +4955,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 0
+  moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 0
   randomSeed: 0
@@ -4965,7 +4965,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.15
+      scalar: 0.0001
       minScalar: 0.1
       maxCurve:
         serializedVersion: 2
@@ -5348,8 +5348,8 @@ ParticleSystem:
     startRotationY:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0
-      minScalar: 0
+      scalar: -1.5707963
+      minScalar: 1.5707963
       maxCurve:
         serializedVersion: 2
         m_Curve:

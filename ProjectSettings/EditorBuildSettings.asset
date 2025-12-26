@@ -18,7 +18,7 @@ EditorBuildSettings:
     path: Assets/1.Scene/Main/Stage1.unity
     guid: 1bab9b5e48c11ed4f946afcbe504c00b
   - enabled: 1
-    path: Assets/1.Scene/KIM/KIM/1.Scene/Stage2.unity
+    path: Assets/1.Scene/Main/Stage2.unity
     guid: 5a463281e6e238742a45430f11e82829
   - enabled: 1
     path: Assets/1.Scene/Main/ScoreScene.unity
