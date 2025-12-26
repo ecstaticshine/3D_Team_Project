@@ -22,7 +22,7 @@ public class GunZoom : MonoBehaviour
         // value.isPressed: 버튼이 눌려 있으면 true, 떼면 false를 반환합니다.
         // 이 값을 isAds 변수에 실시간으로 저장합니다.
         isAds = value.isPressed;
-        Debug.Log("ADS 상태: " + isAds);
+        //Debug.Log("ADS 상태: " + isAds);
     }
 
     void Update()
