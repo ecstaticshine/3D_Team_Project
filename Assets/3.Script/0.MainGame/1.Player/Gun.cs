@@ -53,6 +53,7 @@ public class Gun : MonoBehaviour
             defaultCapacity: 20,
             maxSize: 100
         );
+        TryGetComponent(out gunAnimator);
 
         if (muzzleFlashPrefab != null && firePoint != null)
         {
@@ -124,13 +125,8 @@ public class Gun : MonoBehaviour
 
         if (bullet == null) return;
 
-        currentTimer = 0;
-        currentAmmo--;
-        UpdateAmmoUI();
-
         //PlayMuzzleFlash();
         //CasingRelease();
-
 
         string layerName = isPlayerGun ? "PlayerBullet" : "EnemyBullet";
 
@@ -195,6 +191,7 @@ public class Gun : MonoBehaviour
 
         if (currentTimer < gunData.fireDelay) return;
 
+
         if (currentAmmo <= 0)
         {
             if (AudioManager.instance != null)
@@ -209,9 +206,16 @@ public class Gun : MonoBehaviour
             return;
         }
 
+        currentTimer = 0;
+        currentAmmo--;
+        UpdateAmmoUI();
+
         SoundSystem.EmitSound(transform.position, 20f);
 
-        if (gunAnimator != null) gunAnimator.SetTrigger("Fire");
+        if (gunAnimator != null)
+        {
+            gunAnimator.SetTrigger("Fire");
+        }
 
         if (AudioManager.instance != null)
         {
@@ -237,13 +241,17 @@ public class Gun : MonoBehaviour
     }
     private void CheckContinuousFire()
     {
-        if (isTriggerHeld && gunData.fireMode == GunFireMode.FullAuto&& gunState == GunState.Ready)
+        if (isTriggerHeld && gunData.fireMode == GunFireMode.FullAuto && gunState == GunState.Ready)
         {
             TryFire();
         }
     }
     private void ProcessShooting()
     {
+        if (gunState == GunState.Reloading || currentAmmo < 0) return;
+        PlayMuzzleFlash();
+        CasingRelease();
+
         Vector3 targetPoint = GetAimTargetPoint();
         Vector3 baseDirection = (targetPoint - firePoint.position).normalized;
 

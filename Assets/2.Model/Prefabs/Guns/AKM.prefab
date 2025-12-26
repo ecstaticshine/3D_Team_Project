@@ -114,7 +114,7 @@ Transform:
   m_GameObject: {fileID: 2194764161927817088}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 1, z: -0, w: -0}
-  m_LocalPosition: {x: 0.251, y: -0.288, z: 0.434}
+  m_LocalPosition: {x: 0.251, y: -0.288, z: 0.49}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -146,7 +146,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0.7071068, z: -0, w: 0}
   m_LocalPosition: {x: 0, y: 0.075, z: -0.6270001}
-  m_LocalScale: {x: 10, y: 10, z: 10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5071110161615995504}
@@ -160,7 +160,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5071110161615995504}
-  - component: {fileID: 2107300605018438326}
   - component: {fileID: 8840460951271702530}
   - component: {fileID: 1405235870013455640}
   m_Layer: 14
@@ -169,7 +168,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5071110161615995504
 Transform:
   m_ObjectHideFlags: 0
@@ -196,27 +195,6 @@ Transform:
   - {fileID: 2281862600511596838}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!114 &2107300605018438326
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2398567468824503294}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b850efc28de70724188449f9e3967ff0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Shooter
-  bulletPrefab: {fileID: 6804990658058999119, guid: 266377f624120534a8fc4f2c7ea40255, type: 3}
-  casingPrefab: {fileID: 4362657251999731927, guid: 650cf33e4d11eae44b2d452a6479edd8, type: 3}
-  muzzleFlashPrefab: {fileID: 1782395880954752, guid: 3dd9cf2e209c504448f1c4c6835675cf, type: 3}
-  barrelLocation: {fileID: 3345775336097327788}
-  casingExitLocation: {fileID: 2281862600511596838}
-  destroyTimer: 2
-  shotPower: 500
-  ejectPower: 150
-  CasingExitforce: 1
 --- !u!114 &8840460951271702530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -257,7 +235,7 @@ MonoBehaviour:
   casingType: 1
   casingExitLocation: {fileID: 2281862600511596838}
   ExitPower: 300
-  muzzleFlashPrefab: {fileID: 1782395880954752, guid: 3dd9cf2e209c504448f1c4c6835675cf, type: 3}
+  muzzleFlashPrefab: {fileID: 1782395880954752, guid: bee3fa853d957b14191f2f0fa6f994f4, type: 3}
   flashPoolSize: 20
 --- !u!1 &3074165861407545031
 GameObject:
