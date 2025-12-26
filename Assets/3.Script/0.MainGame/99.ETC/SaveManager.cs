@@ -30,6 +30,20 @@ public class SaveManager : MonoBehaviour
         IsLoaded = true;
     }
 
+    public void NewGame() 
+    {
+        saveData = new SaveData();
+
+        Save(saveData);
+
+        if (GameManager.instance != null)
+        {
+            GameManager.instance.totalPlayTimeMs = 0;
+            GameManager.instance.deathCount = 0;
+            GameManager.instance.ResumeGame();
+        }
+    }
+
 
     public void Save(SaveData data)
     {

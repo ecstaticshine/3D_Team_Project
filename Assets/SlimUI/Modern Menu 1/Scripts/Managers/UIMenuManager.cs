@@ -109,13 +109,19 @@ namespace SlimUI.ModernMenu{
 			mainMenu.SetActive(true);
 		}
 
-		public void LoadScene(string scene){
-			if(scene != "")
-            {
-                //StartCoroutine(LoadAsynchronously(scene));
-                SceneManager.LoadScene(scene);
-            }
-        }
+		//public void LoadScene(string scene){
+		//	if(scene != "")
+        //    {
+		//		//StartCoroutine(LoadAsynchronously(scene));
+		//		SceneManager.LoadScene(scene);
+		//	}
+        //}
+
+		public void OnClickNewGame()
+        {
+			SaveManager.instance.NewGame();
+			SceneManager.LoadScene("Prologue");
+		}
 
 		public void OnClickLoadGame()
 		{
@@ -125,7 +131,7 @@ namespace SlimUI.ModernMenu{
 
 				if (string.IsNullOrEmpty(targetScene))
 				{
-					targetScene = "TrainingScene 1";
+					targetScene = "Prologue";
 				}
 
 				if (GameManager.instance != null)
@@ -138,7 +144,7 @@ namespace SlimUI.ModernMenu{
 			else
 			{
 				Debug.Log("세이브 파일이 없거나 매니저가 준비 안 됨");
-				SceneManager.LoadScene("TrainingScene 1");
+				SceneManager.LoadScene("Prologue");
 			}
 		}
 

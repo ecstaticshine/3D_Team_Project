@@ -261,7 +261,10 @@ public class Player : MonoBehaviour
 
     #region Function
 
-
+    private void ApplyMouseSensitivity(float value)
+    {
+        mouseSensitivity = value;
+    }
     private void OnLand()
     {
         SoundSystem.EmitSound(gameObject.transform.position, 10f);
@@ -345,6 +348,8 @@ public class Player : MonoBehaviour
 
             yield return new WaitForSecondsRealtime(5.5f);
         }
+
+        GameManager.instance.deathCount++;
 
         Resurrect();
     }
@@ -490,8 +495,5 @@ public class Player : MonoBehaviour
     //    }
     //}
 
-    private void ApplyMouseSensitivity(float value)
-    {
-        mouseSensitivity = value;
-    }
+    
 }
