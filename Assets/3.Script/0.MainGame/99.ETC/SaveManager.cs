@@ -35,14 +35,14 @@ public class SaveManager : MonoBehaviour
     {
         string json = JsonUtility.ToJson(data, true);
         File.WriteAllText(SavePath, json);
-        //Debug.Log($"저장 완료: {SavePath}");
+        Debug.Log($"저장 완료: {SavePath}");
     }
 
     public SaveData Load()
     {
         if (!File.Exists(SavePath))
         {
-            //Debug.Log("세이브 파일 없음, 새로 생성합니다.");
+            Debug.Log("세이브 파일 없음, 새로 생성합니다.");
             return new SaveData();
         }
 
@@ -53,12 +53,15 @@ public class SaveManager : MonoBehaviour
 
     public void SaveGame()
     {
-        SaveData data = new SaveData();
+        if (saveData == null)
+        {
+            saveData = new SaveData();
+        }
 
-        data.totalPlayTimeMs = GameManager.instance.totalPlayTimeMs;
-        data.deathCount = GameManager.instance.deathCount;
-        data.lastSaveTime = System.DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+        saveData.totalPlayTimeMs = GameManager.instance.totalPlayTimeMs;
+        saveData.deathCount = GameManager.instance.deathCount;
+        saveData.lastSaveTime = System.DateTimeOffset.UtcNow.ToUnixTimeSeconds();
 
-        Save(data);
+        Save(saveData);
     }
 }

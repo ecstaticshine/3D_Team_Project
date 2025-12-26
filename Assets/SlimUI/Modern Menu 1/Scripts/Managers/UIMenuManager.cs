@@ -117,6 +117,31 @@ namespace SlimUI.ModernMenu{
             }
         }
 
+		public void OnClickLoadGame()
+		{
+			if (SaveManager.instance != null && SaveManager.instance.IsLoaded)
+			{
+				string targetScene = SaveManager.instance.saveData.sceneToLoad;
+
+				if (string.IsNullOrEmpty(targetScene))
+				{
+					targetScene = "TrainingScene 1";
+				}
+
+				if (GameManager.instance != null)
+				{
+					GameManager.instance.ResumeGame();
+				}
+
+				SceneManager.LoadScene(targetScene);
+			}
+			else
+			{
+				Debug.Log("세이브 파일이 없거나 매니저가 준비 안 됨");
+				SceneManager.LoadScene("TrainingScene 1");
+			}
+		}
+
 		public void  DisablePlayCampaign(){
 			playMenu.SetActive(false);
 		}

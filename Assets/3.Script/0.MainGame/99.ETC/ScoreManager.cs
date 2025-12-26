@@ -43,24 +43,34 @@ public class ScoreManager : MonoBehaviour
     public void AddShotHit() => shotsHit++;
     public void AddAbilityUsage(float duration) { abilityUsageDuration += duration; }
 
-    public void CalculateFinalScore()
+    public void CalculateFinalScore(string nextStageName)
     {
         if (isStageClear) return;
         isStageClear = true;
 
-        int score = 0;
+        nextSceneName = nextStageName;
 
+        int score = 0;
         score += killCount * 100;
         score += headshotCount * 50;
-
         finalAccuracy = (shotsFired > 0) ? ((float)shotsHit / shotsFired) : 0f;
         score += Mathf.RoundToInt(finalAccuracy * 1000);
-
         score -= Mathf.FloorToInt(stageTime * 10);
         score -= Mathf.FloorToInt(abilityUsageDuration * 5);
-
         if (score < 0) score = 0;
-
         finalScore = score;
+
+        if (SaveManager.instance != null)
+        {
+            SaveManager.instance.saveData.totalPlayTimeMs = GameManager.instance.totalPlayTimeMs;
+
+            SaveManager.instance.saveData.deathCount = GameManager.instance.deathCount;
+
+            SaveManager.instance.saveData.sceneToLoad = nextSceneName;
+
+            SaveManager.instance.saveData.clearStage++;
+
+            SaveManager.instance.SaveGame();
+        }
     }
 }
