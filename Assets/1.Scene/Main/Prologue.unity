@@ -149,7 +149,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PrologueManager
   prologueDirector: {fileID: 0}
-  nextScene: 2
   skipTextObject: {fileID: 872129665}
   skipTextCanvasGroup: {fileID: 2004723087}
   isBlinking: 0
@@ -305,7 +304,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 910, y: 440}
-  m_SizeDelta: {x: 250, y: 50}
+  m_SizeDelta: {x: 300, y: 50}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &872129667
 MonoBehaviour:

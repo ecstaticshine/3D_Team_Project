@@ -78,6 +78,17 @@ public class SceneController : MonoBehaviour
         StartCoroutine(LoadSceneProcess_co(targetSceneName));
     }
 
+    public void LoadNextScene()
+    {
+        SceneName currentScene = (SceneName)SceneManager.GetActiveScene().buildIndex;
+        SceneName nextScene = (SceneName)((int)currentScene + 1);
+
+        if ((int)nextScene < Enum.GetNames(typeof(SceneName)).Length)
+        {
+            LoadScene(nextScene);
+        }
+    }
+
     private IEnumerator LoadSceneProcess_co(SceneName targetSceneName)
     {
 
@@ -104,14 +115,17 @@ public class SceneController : MonoBehaviour
 
             float targetProgress = Mathf.Clamp01(operation.progress / 0.9f);
 
-            progressBar.value = Mathf.MoveTowards(progressBar.value, targetProgress, timer);
+            progressBar.value = Mathf.MoveTowards(progressBar.value, targetProgress, Time.unscaledDeltaTime * 2f);
 
             if (progressText != null)
             {
                 progressText.text = $"Loading~~~{Mathf.FloorToInt(progressBar.value * 100)}%";
             }
 
-            if (progressBar.value >= 0.99f) isLoadingVisualDone = true;
+            if (progressBar.value >= 0.98f)
+            {
+                isLoadingVisualDone = true;
+            }
 
             if (operation.progress>=0.9f && isLoadingVisualDone)
             {

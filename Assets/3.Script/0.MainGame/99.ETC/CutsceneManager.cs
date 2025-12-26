@@ -6,9 +6,7 @@ using UnityEngine.Playables;
 
 public class CutsceneManager : MonoBehaviour
 {
-
     [SerializeField] private PlayableDirector prologueDirector;
-    [SerializeField] private SceneName nextScene = SceneName.Training;
 
     [Header("Skip UI")]
     [SerializeField] private GameObject skipTextObject;
@@ -18,9 +16,10 @@ public class CutsceneManager : MonoBehaviour
 
     void Start()
     {
-        SceneController.Instance.LoadScene(nextScene);
         if (prologueDirector != null)
             prologueDirector.Play();
+
+        SceneController.Instance.LoadNextScene();
     }
 
     // Update is called once per frame
@@ -32,9 +31,12 @@ public class CutsceneManager : MonoBehaviour
             SkipPrologue();
         }
 
-        if (SceneController.Instance.canActivateScene && !isBlinking)
+        if (SceneController.Instance != null && SceneController.Instance.isLoadingVisualDone)
         {
+            if (!isBlinking)
+            {
             StartCoroutine(BlinkText_co());
+            }
         }
 
     }
@@ -60,11 +62,17 @@ public class CutsceneManager : MonoBehaviour
 
         while (true)
         {
-            // 부드럽게 나타났다 사라졌다 하는 마법이에요 ✨
+            
             float alpha = (Mathf.Sin(Time.time * 3f) + 1f) / 2f;
             if (skipTextCanvasGroup != null) skipTextCanvasGroup.alpha = alpha;
 
             yield return null;
         }
+    }
+
+    public void LoadNextScene()
+    {
+        SceneController.Instance.LoadNextScene();
+
     }
 }
