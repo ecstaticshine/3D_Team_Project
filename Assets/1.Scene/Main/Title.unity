@@ -754,7 +754,7 @@ RectTransform:
   m_Father: {fileID: 759772360}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -6258,7 +6258,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1397349238
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24192,6 +24192,12 @@ MonoBehaviour:
     audioClip: {fileID: 8300000, guid: c12d40421acc84a4b90823d6080bbad1, type: 3}
   - audioClipName: 10Bird
     audioClip: {fileID: 8300000, guid: a74e214d25d26774e9e221073254b8fb, type: 3}
+  - audioClipName: DryFire
+    audioClip: {fileID: 8300000, guid: 4e3cd9cf8ce3c3b48935681fb7f8861e, type: 3}
+  - audioClipName: BulletCrash
+    audioClip: {fileID: 8300000, guid: 68c7e27c1ab535b4088997eda5ec4527, type: 3}
+  - audioClipName: BulletCrash
+    audioClip: {fileID: 8300000, guid: 68c7e27c1ab535b4088997eda5ec4527, type: 3}
   mainMixer: {fileID: 24100000, guid: 7ef3b03a4a1570341b2500fa6a0e6f7a, type: 2}
   BGMPlayer: {fileID: 7891401758375744202}
   SFXPlayer:
