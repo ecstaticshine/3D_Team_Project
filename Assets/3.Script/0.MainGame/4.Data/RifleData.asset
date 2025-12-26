@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2caa62fe255db5044bcf7504a702311f, type: 3}
   m_Name: RifleData
   m_EditorClassIdentifier: Assembly-CSharp::GunData
-  gunName: Rifle
+  gunName: AKM
   fireMode: 1
-  gunPrefab: {fileID: 1719131515888008, guid: 202ed215b2a74a048903e1375fc8549c, type: 3}
+  gunPrefab: {fileID: 2398567468824503294, guid: f62aacadd7ff7b3419f60c02e6aafeb1, type: 3}
   itemPrefab: {fileID: 1719131515888008, guid: 7d5c4c4edd38ff546b48715fb07554c3, type: 3}
   itemScale: {x: 1.5, y: 1.5, z: 1.5}
   bulletPrefab: {fileID: 1325836922669442, guid: e3a80f145c0d9924b95568742467a354, type: 3}

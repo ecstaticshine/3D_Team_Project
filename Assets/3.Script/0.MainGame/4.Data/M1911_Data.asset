@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2caa62fe255db5044bcf7504a702311f, type: 3}
   m_Name: M1911_Data
   m_EditorClassIdentifier: Assembly-CSharp::GunData
-  gunName: M1911
+  gunName: Pistol(M1911)
   fireMode: 0
   gunPrefab: {fileID: 1085417395900564196, guid: 136950be0ffc5874f82d86888d3361e6, type: 3}
   itemPrefab: {fileID: 1085417395900564196, guid: 7bc379de9cb07c04c81f1505d65bbe3f, type: 3}

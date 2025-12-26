@@ -7371,7 +7371,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1085417395900564196, guid: 136950be0ffc5874f82d86888d3361e6, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8988161818803807066, guid: 136950be0ffc5874f82d86888d3361e6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -15361,13 +15361,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: AKM
       objectReference: {fileID: 0}
+    - target: {fileID: 2398567468824503294, guid: f62aacadd7ff7b3419f60c02e6aafeb1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5071110161615995504, guid: f62aacadd7ff7b3419f60c02e6aafeb1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5071110161615995504, guid: f62aacadd7ff7b3419f60c02e6aafeb1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -1.1
       objectReference: {fileID: 0}
     - target: {fileID: 5071110161615995504, guid: f62aacadd7ff7b3419f60c02e6aafeb1, type: 3}
       propertyPath: m_LocalPosition.z

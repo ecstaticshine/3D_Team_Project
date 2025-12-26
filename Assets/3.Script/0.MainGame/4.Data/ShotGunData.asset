@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2caa62fe255db5044bcf7504a702311f, type: 3}
   m_Name: ShotGunData
   m_EditorClassIdentifier: Assembly-CSharp::GunData
-  gunName: ShotGun
+  gunName: 870
   fireMode: 2
-  gunPrefab: {fileID: 4759539053091665922, guid: 21e176e242810284d8109d1153aed4c5, type: 3}
+  gunPrefab: {fileID: 7336721936928238258, guid: 1aef9597686603a42a53353813a9dc0f, type: 3}
   itemPrefab: {fileID: 4759539053091665922, guid: 388ddf6bbf45d1a4284f4e252e101f8d, type: 3}
   itemScale: {x: 0.3, y: 0.3, z: 0.3}
   bulletPrefab: {fileID: 1325836922669442, guid: e3a80f145c0d9924b95568742467a354, type: 3}
