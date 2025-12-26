@@ -52,6 +52,12 @@ public class SceneController : MonoBehaviour
     [Header("Settings")]
     [SerializeField] private float minLoadingTime = 2f;
 
+    //Skip 가능
+    public bool canActivateScene = false;
+
+    //로딩 100퍼 확인 변수
+    public bool isLoadingVisualDone { get; private set; } = false;
+
     private void Awake()
     {
         if (Instance == null)
@@ -67,11 +73,19 @@ public class SceneController : MonoBehaviour
 
     public void LoadScene(SceneName targetSceneName)
     {
+        canActivateScene = false;
+        isLoadingVisualDone = false;
         StartCoroutine(LoadSceneProcess_co(targetSceneName));
     }
 
     private IEnumerator LoadSceneProcess_co(SceneName targetSceneName)
     {
+
+        // UI 요소가 연결되어 있는지 꼭 확인하는 마법의 방어 코드예요
+        if (loadingCanvas == null || progressBar == null)
+        {
+            yield break;
+        }
         loadingCanvas.SetActive(true);
         progressBar.value = 0;
 
@@ -97,11 +111,14 @@ public class SceneController : MonoBehaviour
                 progressText.text = $"Loading~~~{Mathf.FloorToInt(progressBar.value * 100)}%";
             }
 
-            if(operation.progress>=0.9f && progressBar.value >= 0.99f)
+            if (progressBar.value >= 0.99f) isLoadingVisualDone = true;
+
+            if (operation.progress>=0.9f && isLoadingVisualDone)
             {
-                if (timer >= minLoadingTime)
+                if (timer >= minLoadingTime && canActivateScene)
                 {
                     operation.allowSceneActivation = true;
+                    loadingCanvas.SetActive(false);
                 }
             }
         }
