@@ -1,4 +1,7 @@
 using UnityEngine;
+using UnityEngine.AI;
+
+using System.Collections;
 
 public class Enemy : MonoBehaviour
 {
@@ -7,6 +10,7 @@ public class Enemy : MonoBehaviour
     public float MeleeDamage = 50f;
     public float maxHp = 100f;
     private float currentHp;
+    [SerializeField] private float impactForce = 30f;
 
     [Header("적 장비")]
     public GunData enemyGunData;
@@ -14,67 +18,74 @@ public class Enemy : MonoBehaviour
     [Header("드랍 아이템")]
     public GameObject medicinePrefab;
 
+    [Header("Ragdoll Components")]
+    private Rigidbody[] ragdollRigidbodies;
+    private Animator animator;
+    private NavMeshAgent navAgent;
+    private CapsuleCollider mainCollider;
+    private AIController aiController;
+    private EnemyWeaponIK weaponIK;
+    private AIShooter aiShooter;
+
+    private void Awake()
+    {
+        animator = GetComponent<Animator>();
+        navAgent = GetComponent<NavMeshAgent>();
+        mainCollider = GetComponent<CapsuleCollider>();
+
+        aiController = GetComponent<AIController>();
+        weaponIK = GetComponent<EnemyWeaponIK>();
+        aiShooter = GetComponent<AIShooter>();
+
+        ragdollRigidbodies = GetComponentsInChildren<Rigidbody>();
+    }
+
     void Start()
     {
         isDead = false;
         currentHp = maxHp;
+
+        DisableRagdoll();
     }
 
-    public void TakeDamage(float damage, bool isHeadshot = false)
+    public void TakeDamage(float damage, Vector3 hitPoint, Vector3 hitDirection, bool isHeadshot = false)
     {
         if (isDead) return;
 
         currentHp -= damage;
 
-        if (TryGetComponent(out AIController ai))
+        if (aiController != null && aiController.player != null)
         {
-            if (ai.player != null)
-            {
-                ai.OnSoundHeard(ai.player.transform.position);
-            }
+            aiController.OnSoundHeard(aiController.player.transform.position);
         }
 
         if (currentHp <= 0)
         {
-            Die(isHeadshot);
+            Die(hitPoint, hitDirection, isHeadshot);
         }
     }
 
-    private void Die(bool isHeadshot)
+    public void TakeDamage(float damage, bool isHeadshot = false)
     {
-        //int randomValue = Random.Range(0, 2);
-        //
-        //switch (randomValue)
-        //{
-        //    case 0:
-        //        if (medicinePrefab != null)
-        //        {
-        //            Instantiate(medicinePrefab, transform.position, Quaternion.identity);
-        //        }
-        //        break;
-        //
-        //    case 1:
-        //        if (enemyGunData != null)
-        //        {
-        //            GameObject droppedGun = Instantiate(enemyGunData.gunPrefab, transform.position, Quaternion.identity);
-        //
-        //            if (droppedGun.TryGetComponent(out S_Item_Gun itemScript))
-        //            {
-        //                itemScript.SetGunData(enemyGunData);
-        //            }
-        //        }
-        //        break;
-        //}
+        TakeDamage(damage, transform.position + Vector3.up, transform.forward * -1, isHeadshot);
+    }
+
+    private void Die(Vector3 hitPoint, Vector3 hitDirection, bool isHeadshot)
+    {
+        if (isDead) return;
         isDead = true;
 
-        if (ScoreManager.instance != null)
-        {
-            ScoreManager.instance.AddKill(isHeadshot);
-        }
+        if (aiController != null) aiController.enabled = false;
+        if (aiShooter != null) aiShooter.enabled = false;
+        if (weaponIK != null) weaponIK.enabled = false;
+
+        if (ScoreManager.instance != null) ScoreManager.instance.AddKill(isHeadshot);
 
         DropItem();
 
-        Destroy(gameObject);
+        ActivateRagdoll(hitPoint, hitDirection);
+
+        StartCoroutine(DestroyAfterTime(5f));
     }
 
     private void DropItem()
@@ -99,5 +110,55 @@ public class Enemy : MonoBehaviour
                 item_gun.SetGunData(enemyGunData);
             }
         }
+    }
+
+    private void DisableRagdoll()
+    {
+        foreach (var rb in ragdollRigidbodies) rb.isKinematic = true;
+        if (animator != null) animator.enabled = true;
+        if (navAgent != null) { navAgent.enabled = true; navAgent.isStopped = false; }
+        if (mainCollider != null) mainCollider.enabled = true;
+
+        if (aiController != null) aiController.enabled = true;
+        if (weaponIK != null) weaponIK.enabled = true;
+        if (aiShooter != null) aiShooter.enabled = true;
+    }
+
+    private void ActivateRagdoll(Vector3 hitPoint, Vector3 hitDirection)
+    {
+        if (animator != null) animator.enabled = false;
+        if (navAgent != null) { navAgent.isStopped = true; navAgent.enabled = false; }
+        if (mainCollider != null) mainCollider.enabled = false;
+
+        Rigidbody closestRB = null;
+        float closestDist = float.MaxValue;
+
+        foreach (var rb in ragdollRigidbodies)
+        {
+            rb.isKinematic = false;
+
+            float dist = Vector3.SqrMagnitude(rb.position - hitPoint);
+            if (dist < closestDist)
+            {
+                closestDist = dist;
+                closestRB = rb;
+            }
+        }
+
+        if (closestRB != null)
+        {
+            closestRB.AddForceAtPosition(hitDirection.normalized * impactForce, hitPoint, ForceMode.Impulse);
+        }
+    }
+
+    private void ActivateRagdoll()
+    {
+        ActivateRagdoll(transform.position, Vector3.zero);
+    }
+
+    private IEnumerator DestroyAfterTime(float time)
+    {
+        yield return new WaitForSeconds(time);
+        Destroy(gameObject);
     }
 }

@@ -51,7 +51,7 @@ public class Bullet : MonoBehaviour
 
         if (distance > 0 && Physics.Raycast(prevPosition, direction, out RaycastHit hit, distance, collisionMask))
         {
-            Hit(hit.collider);
+            Hit(hit.collider, hit.point, direction);
         }
 
         prevPosition = transform.position;
@@ -59,7 +59,7 @@ public class Bullet : MonoBehaviour
 
     #region Function
 
-    private void Hit(Collider other)
+    private void Hit(Collider other, Vector3 hitPoint, Vector3 hitDirection)
     {
         if (isReleased) return;
 
@@ -67,14 +67,14 @@ public class Bullet : MonoBehaviour
         int myLayer = gameObject.layer;
 
         if ((otherLayer == LayerMask.NameToLayer("PlayerBullet") ||
-         otherLayer == LayerMask.NameToLayer("EnemyBullet")) &&
-        otherLayer != myLayer)
+             otherLayer == LayerMask.NameToLayer("EnemyBullet")) &&
+            otherLayer != myLayer)
         {
             SpawnCrashEffect(transform.position);
 
             if (other.TryGetComponent(out Bullet otherBullet))
             {
-                otherBullet.ReturnPool();
+                otherBullet.gameObject.SetActive(false);
             }
 
             ReturnPool();
@@ -101,19 +101,19 @@ public class Bullet : MonoBehaviour
                 }
             }
 
-            enemy.TakeDamage(finalDamage, isHeadShot);
+            enemy.TakeDamage(finalDamage, hitPoint, hitDirection, isHeadShot);
 
-            SpawnHitEffect(transform.position, -transform.forward);
+            SpawnHitEffect(hitPoint, -hitDirection);
         }
         else if (player != null)
         {
             player.TakeDamage(baseDamage);
-            SpawnHitEffect(transform.position, -transform.forward);
+            SpawnHitEffect(hitPoint, -hitDirection);
         }
-        //else
-        //{
-        //    SpawnHitEffect(transform.position, -transform.forward);
-        //}
+        else
+        {
+            SpawnHitEffect(hitPoint, -hitDirection);
+        }
 
         ReturnPool();
     }
@@ -171,7 +171,7 @@ public class Bullet : MonoBehaviour
     {
         bulletManagedPool = pool;
     }
-    private void ReturnPool()
+    public void ReturnPool()
     {
         if (isReleased || !gameObject.activeSelf) return;
 
@@ -196,6 +196,9 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Hit(other);
+        Vector3 hitPoint = other.ClosestPoint(transform.position);
+        Vector3 hitDirection = transform.forward;
+
+        Hit(other, hitPoint, hitDirection);
     }
 }
