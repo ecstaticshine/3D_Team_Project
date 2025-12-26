@@ -24206,16 +24206,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AudioManager
   BGM:
-  - audioClipName: Title
+  - sceneName: 0
+    audioClipName: Title
     audioClip: {fileID: 8300000, guid: 5ae5b4f05aaedda4bb073e24ee777fb3, type: 3}
-  - audioClipName: Training
+  - sceneName: 2
+    audioClipName: Training
     audioClip: {fileID: 8300000, guid: aed9b13d3b6ad634785938c0a68496df, type: 3}
   SFX:
+  - audioClipName: 10Bird
+    audioClip: {fileID: 8300000, guid: a74e214d25d26774e9e221073254b8fb, type: 3}
+  - audioClipName: BulletCrash
+    audioClip: {fileID: 8300000, guid: 68c7e27c1ab535b4088997eda5ec4527, type: 3}
   - audioClipName: PistolSound
     audioClip: {fileID: 8300000, guid: 6aa8d76a39198e540994691eb8b4c86a, type: 3}
   - audioClipName: ShotGunSound
-    audioClip: {fileID: 8300000, guid: dfb44691deb73314b989b87317735648, type: 3}
-  - audioClipName: RifleSound
     audioClip: {fileID: 8300000, guid: dfb44691deb73314b989b87317735648, type: 3}
   - audioClipName: Click_M
     audioClip: {fileID: 8300000, guid: 1e7a587164fcbef45b40536469e6c432, type: 3}
@@ -24223,12 +24227,8 @@ MonoBehaviour:
     audioClip: {fileID: 8300000, guid: 37c9133889e2bfc4296ead93a281acc2, type: 3}
   - audioClipName: Click_W
     audioClip: {fileID: 8300000, guid: c12d40421acc84a4b90823d6080bbad1, type: 3}
-  - audioClipName: 10Bird
-    audioClip: {fileID: 8300000, guid: a74e214d25d26774e9e221073254b8fb, type: 3}
   - audioClipName: DryFire
     audioClip: {fileID: 8300000, guid: 4e3cd9cf8ce3c3b48935681fb7f8861e, type: 3}
-  - audioClipName: BulletCrash
-    audioClip: {fileID: 8300000, guid: 68c7e27c1ab535b4088997eda5ec4527, type: 3}
   - audioClipName: Land
     audioClip: {fileID: 8300000, guid: f90fae99d3604044c88c98fb5071c5ef, type: 3}
   mainMixer: {fileID: 24100000, guid: 7ef3b03a4a1570341b2500fa6a0e6f7a, type: 2}

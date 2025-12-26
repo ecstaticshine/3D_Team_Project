@@ -14832,23 +14832,23 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 458138, guid: f6eef62831d5ee443978ff011b655caf, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9238797
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 458138, guid: f6eef62831d5ee443978ff011b655caf, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.00000007525956
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 458138, guid: f6eef62831d5ee443978ff011b655caf, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.38268322
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 458138, guid: f6eef62831d5ee443978ff011b655caf, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.000000031173506
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 458138, guid: f6eef62831d5ee443978ff011b655caf, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 45.000004
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 493984, guid: f6eef62831d5ee443978ff011b655caf, type: 3}
       propertyPath: m_RootOrder
@@ -55910,7 +55910,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1993402409395103931, guid: 320c2d60c89a1f14fb9e5958c839553e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 1993402409395103931, guid: 320c2d60c89a1f14fb9e5958c839553e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -59347,7 +59347,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.095146716, g: 0.06634924, b: 0.1981132, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0

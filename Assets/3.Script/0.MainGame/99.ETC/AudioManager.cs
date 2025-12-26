@@ -7,6 +7,13 @@ using UnityEngine.Audio;
 [System.Serializable]
 public class Sound
 {
+    public SceneName sceneName;
+    public string audioClipName;
+    public AudioClip audioClip;
+}
+[System.Serializable]
+public class SFXSound
+{
     public string audioClipName;
     public AudioClip audioClip;
 }
@@ -32,7 +39,7 @@ public class AudioManager : MonoBehaviour
     [Space(10f)]
     [Header("Audio Clip")]
     [SerializeField] private Sound[] BGM;
-    [SerializeField] private Sound[] SFX;
+    [SerializeField] private SFXSound[] SFX;
 
     [Header("Audio Clip")]
     public AudioMixer mainMixer;
@@ -47,9 +54,18 @@ public class AudioManager : MonoBehaviour
     [Header("음향 속도")]
     public float globalPitch = 1f;
 
+    private Dictionary<SceneName, Sound> bgmDictionary = new Dictionary<SceneName, Sound>();
 
     private void AutoSetting()
     {
+        foreach (var sound in BGM)
+        {
+            if (!bgmDictionary.ContainsKey(sound.sceneName))
+            {
+                bgmDictionary.Add(sound.sceneName, sound);
+            }
+        }
+
         BGMPlayer = transform.GetChild(0).GetComponent<AudioSource>();
         SFXPlayer = transform.GetChild(1).GetComponents<AudioSource>();
 
@@ -84,7 +100,7 @@ public class AudioManager : MonoBehaviour
 
     public void PlaySFX(string bgmName)
     {
-        foreach (Sound sound in SFX)
+        foreach (SFXSound sound in SFX)
         {
             if (sound.audioClipName.Equals(bgmName))
             {
@@ -117,6 +133,23 @@ public class AudioManager : MonoBehaviour
                 BGMPlayer.Play();
                 break;
             }
+        }
+    }
+
+    public void PlayBGMByScene(SceneName scene)
+    {
+        if (bgmDictionary.TryGetValue(scene, out Sound targetSound))
+        {
+            // 현재 나오는 곡과 같으면 무시
+            if (BGMPlayer.clip == targetSound.audioClip) return;
+
+            BGMPlayer.clip = targetSound.audioClip;
+            BGMPlayer.Play();
+        }
+        else
+        {
+            Debug.LogWarning($"{scene}에 할당된 BGM이 없습니다!");
+            StopBGM();
         }
     }
 

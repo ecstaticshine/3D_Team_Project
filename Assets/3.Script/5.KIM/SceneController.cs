@@ -58,6 +58,7 @@ public class SceneController : MonoBehaviour
     //로딩 100퍼 확인 변수
     public bool isLoadingVisualDone { get; private set; } = false;
 
+
     private void Awake()
     {
         if (Instance == null)
@@ -131,12 +132,16 @@ public class SceneController : MonoBehaviour
             {
                 if (timer >= minLoadingTime && canActivateScene)
                 {
+                    if (AudioManager.instance != null)
+                    {
+                        AudioManager.instance.PlayBGMByScene(targetSceneName);
+                    }
+
                     operation.allowSceneActivation = true;
                     loadingCanvas.SetActive(false);
                 }
             }
         }
     }
-
 
 }
