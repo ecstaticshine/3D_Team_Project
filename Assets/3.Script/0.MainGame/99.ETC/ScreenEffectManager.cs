@@ -9,7 +9,7 @@ public class ScreenEffectManager : MonoBehaviour
     public static ScreenEffectManager instance;
 
     [Header("1. 기본 화면 효과 (피격/체력)")]
-    [SerializeField] private Volume globalVolume; // 피격용 붉은 비네팅이 들어있는 볼륨
+    [SerializeField] private Volume globalVolume;
     [SerializeField] private GameObject deadPanel;
     [SerializeField] private float maxIntensity = 0.5f;
     [SerializeField] private Color damageColor = Color.red;
@@ -18,22 +18,29 @@ public class ScreenEffectManager : MonoBehaviour
     [SerializeField] private GameObject rewindUI;
     [SerializeField] private Volume rewindVolume;
 
-    [Header("3. 스킬 및 대쉬 이펙트 (NEW!)")]
-    [SerializeField] private Camera mainCam; // 메인 카메라 (FOV 조절용)
-    [SerializeField] private ParticleSystem dashSpeedLines; // 대쉬할 때 나오는 속도선 파티클
-    [SerializeField] private Volume timeAbilityVolume; // 시간 능력 쓸 때 켜질 볼륨 (채도 감소, 왜곡 등)
-    [SerializeField] private float dashFovAmount = 10f; // 대쉬 시 늘어날 시야각
-    [SerializeField] private float effectTransitionSpeed = 5f; // 시간 능력 켜지는 속도
+    [Header("3. 스킬 및 대쉬 이펙트")]
+    [SerializeField] private Camera mainCam;
+    [SerializeField] private ParticleSystem dashSpeedLines;
+    [SerializeField] private Volume timeAbilityVolume;
+    [SerializeField] private float dashFovAmount = 10f;
+    [SerializeField] private float effectTransitionSpeed = 5f;
 
-    // 내부 변수들
-    private Vignette vignette;
+    [Header("3-1. 스킬 동적 연출 설정")]
+    [SerializeField] private float minLensDistortion = 0.3f;
+    [SerializeField] private float maxLensDistortion = 0.5f;
+    [SerializeField] private float minVignette = 0.4f;
+    [SerializeField] private float maxVignette = 0.55f;
+
+    private Vignette damageVignette;
+
+    private LensDistortion abilityLensDistortion;
+    private Vignette abilityVignette;
+
     private bool isLowHealth = false;
     private bool isDead = false;
     private float blinkTimer = 0f;
     private float hitDurationTimer = 0f;
     private float targetIntensity = 0f;
-
-    // 대쉬/스킬용 변수
     private float defaultFov;
     private Coroutine timeEffectCoroutine;
 
@@ -42,13 +49,17 @@ public class ScreenEffectManager : MonoBehaviour
         if (instance == null) { instance = this; DontDestroyOnLoad(gameObject); }
         else Destroy(gameObject);
 
-        // Vignette 컴포넌트 가져오기 (피격 효과용)
         if (globalVolume != null && globalVolume.profile.TryGet(out Vignette v))
         {
-            vignette = v;
+            damageVignette = v;
         }
 
-        // 카메라 기본 FOV 저장 (씬 이동 시 카메라가 바뀔 수 있으니 체크)
+        if (timeAbilityVolume != null)
+        {
+            timeAbilityVolume.profile.TryGet(out abilityLensDistortion);
+            timeAbilityVolume.profile.TryGet(out abilityVignette);
+        }
+
         if (mainCam == null) mainCam = Camera.main;
         if (mainCam != null) defaultFov = mainCam.fieldOfView;
     }
@@ -58,43 +69,40 @@ public class ScreenEffectManager : MonoBehaviour
         HandleDamageEffect();
     }
 
-    #region 1. 기본 데미지 이펙트 (기존 코드 유지)
-
+    #region 1. 기본 데미지 이펙트
     private void HandleDamageEffect()
     {
-        if (vignette == null) return;
+        if (damageVignette == null) return;
 
         if (isDead)
         {
-            vignette.color.value = damageColor;
-            vignette.intensity.value = Mathf.Lerp(vignette.intensity.value, 0.5f, Time.unscaledDeltaTime * 2f);
+            damageVignette.color.value = damageColor;
+            damageVignette.intensity.value = Mathf.Lerp(damageVignette.intensity.value, 0.5f, Time.unscaledDeltaTime * 2f);
         }
         else if (hitDurationTimer > 0)
         {
             hitDurationTimer -= Time.unscaledDeltaTime;
-            vignette.color.value = damageColor;
-            vignette.intensity.value = Mathf.Lerp(vignette.intensity.value, 0.6f, Time.unscaledDeltaTime * 20f);
+            damageVignette.color.value = damageColor;
+            damageVignette.intensity.value = Mathf.Lerp(damageVignette.intensity.value, 0.6f, Time.unscaledDeltaTime * 20f);
         }
         else if (isLowHealth)
         {
-            vignette.color.value = damageColor;
+            damageVignette.color.value = damageColor;
             blinkTimer += Time.unscaledDeltaTime * 10f;
             float blink = targetIntensity + (Mathf.Sin(blinkTimer) * 0.1f);
             blink = Mathf.Clamp(blink, 0.2f, 0.8f);
-            vignette.intensity.value = Mathf.Lerp(vignette.intensity.value, blink, Time.unscaledDeltaTime * 10f);
+            damageVignette.intensity.value = Mathf.Lerp(damageVignette.intensity.value, blink, Time.unscaledDeltaTime * 10f);
         }
         else
         {
-            vignette.intensity.value = Mathf.Lerp(vignette.intensity.value, 0f, Time.unscaledDeltaTime * 5f);
+            damageVignette.intensity.value = Mathf.Lerp(damageVignette.intensity.value, 0f, Time.unscaledDeltaTime * 5f);
         }
     }
-
     public void CheckHealthStatus(float currentHp, float maxHp)
     {
         if (isDead) return;
         isLowHealth = (currentHp / maxHp <= 0.3f && currentHp > 0);
     }
-
     public void UpdateEffect(float currentGauge, float maxGauge)
     {
         float ratio = currentGauge / maxGauge;
@@ -103,58 +111,52 @@ public class ScreenEffectManager : MonoBehaviour
             float dangerFactor = 1.0f - (ratio / 0.3f);
             targetIntensity = dangerFactor * maxIntensity;
         }
-        else
+        else targetIntensity = 0f;
+    }
+    public void PlayHitEffect() { hitDurationTimer = 0.3f; }
+    public void SetDeathEffect() { isDead = true; isLowHealth = false; if (deadPanel != null) deadPanel.SetActive(true); }
+    #endregion
+
+    #region 2. 스킬 및 대쉬 이펙트
+
+    public void UpdateAbilityIntensity(float currentGauge, float maxGauge)
+    {
+        if (timeAbilityVolume == null) return;
+
+        float ratio = Mathf.Clamp01(currentGauge / maxGauge);
+
+        float t = 1.0f - ratio;
+
+        // 3. Lens Distortion 조절
+        if (abilityLensDistortion != null)
         {
-            targetIntensity = 0f;
+            abilityLensDistortion.intensity.value = Mathf.Lerp(minLensDistortion, maxLensDistortion, t);
+        }
+
+        // 4. Vignette 조절
+        if (abilityVignette != null)
+        {
+            abilityVignette.intensity.value = Mathf.Lerp(minVignette, maxVignette, t);
         }
     }
 
-    public void PlayHitEffect()
-    {
-        hitDurationTimer = 0.3f;
-    }
-
-    public void SetDeathEffect()
-    {
-        isDead = true;
-        isLowHealth = false;
-        if (deadPanel != null) deadPanel.SetActive(true);
-    }
-
-    #endregion
-
-    #region 2. 스킬 및 대쉬 이펙트 (NEW!)
-
-    // [대쉬] Player 스크립트에서 대쉬 시작할 때 호출해줘! (duration: 대쉬 지속시간)
-    public void PlayDashEffect(float duration)
-    {
-        StartCoroutine(DashRoutine(duration));
-    }
+    public void PlayDashEffect(float duration) { StartCoroutine(DashRoutine(duration)); }
 
     private IEnumerator DashRoutine(float duration)
     {
-        // 카메라가 혹시 유실되었으면 다시 찾기
         if (mainCam == null) mainCam = Camera.main;
-
-        // 1. 속도선 파티클 재생
         if (dashSpeedLines != null) dashSpeedLines.Play();
 
-        // 2. FOV 줌 아웃 (빨려 들어가는 느낌)
         float elapsed = 0f;
         while (elapsed < duration)
         {
             if (mainCam != null)
-            {
                 mainCam.fieldOfView = Mathf.Lerp(mainCam.fieldOfView, defaultFov + dashFovAmount, Time.unscaledDeltaTime * 15f);
-            }
             elapsed += Time.unscaledDeltaTime;
             yield return null;
         }
 
-        // 3. 파티클 정지
         if (dashSpeedLines != null) dashSpeedLines.Stop();
-
-        // 4. FOV 원상복구
         while (mainCam != null && Mathf.Abs(mainCam.fieldOfView - defaultFov) > 0.1f)
         {
             mainCam.fieldOfView = Mathf.Lerp(mainCam.fieldOfView, defaultFov, Time.unscaledDeltaTime * 10f);
@@ -163,7 +165,6 @@ public class ScreenEffectManager : MonoBehaviour
         if (mainCam != null) mainCam.fieldOfView = defaultFov;
     }
 
-    // [시간 능력] 능력을 켜거나(true) 끌 때(false) 호출
     public void ToggleTimeEffect(bool isActive)
     {
         if (timeEffectCoroutine != null) StopCoroutine(timeEffectCoroutine);
@@ -173,8 +174,6 @@ public class ScreenEffectManager : MonoBehaviour
     private IEnumerator FadeVolumeRoutine(float targetWeight)
     {
         if (timeAbilityVolume == null) yield break;
-
-        // Weight가 목표치에 도달할 때까지 부드럽게 전환
         while (Mathf.Abs(timeAbilityVolume.weight - targetWeight) > 0.01f)
         {
             timeAbilityVolume.weight = Mathf.Lerp(timeAbilityVolume.weight, targetWeight, Time.unscaledDeltaTime * effectTransitionSpeed);
@@ -182,11 +181,9 @@ public class ScreenEffectManager : MonoBehaviour
         }
         timeAbilityVolume.weight = targetWeight;
     }
-
     #endregion
 
-    #region 3. 초기화 및 되감기 (기존 코드 유지)
-
+    #region 3. 초기화
     public void ResetEffect()
     {
         isDead = false;
@@ -194,21 +191,18 @@ public class ScreenEffectManager : MonoBehaviour
         targetIntensity = 0f;
         hitDurationTimer = 0f;
         if (deadPanel != null) deadPanel.SetActive(false);
-        if (vignette != null) vignette.intensity.value = 0f;
+        if (damageVignette != null) damageVignette.intensity.value = 0f;
 
-        // [추가] 스킬 이펙트도 초기화
         if (timeAbilityVolume != null) timeAbilityVolume.weight = 0f;
         if (dashSpeedLines != null) dashSpeedLines.Stop();
         if (mainCam != null) mainCam.fieldOfView = defaultFov;
 
         SetRewindActive(false);
     }
-
     public void SetRewindActive(bool isActive)
     {
         if (rewindUI != null) rewindUI.SetActive(isActive);
         if (rewindVolume != null) rewindVolume.weight = isActive ? 1.0f : 0.0f;
     }
-
     #endregion
 }

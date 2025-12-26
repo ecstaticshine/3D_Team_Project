@@ -414,6 +414,11 @@ public class Player : MonoBehaviour
             if (ScoreManager.instance != null) ScoreManager.instance.AddAbilityUsage(Time.unscaledDeltaTime);
             if (AudioManager.instance != null) AudioManager.instance.PlaySlow(slowFactor);
             recoverTimer = 0f;
+
+            if (ScreenEffectManager.instance != null)
+            {
+                ScreenEffectManager.instance.UpdateAbilityIntensity(abilityGauge, 100f);
+            }
         }
         else if (abilityGauge < 100f)
         {
@@ -423,13 +428,7 @@ public class Player : MonoBehaviour
         }
 
         abilityGauge = Mathf.Clamp(abilityGauge, 0f, 100f);
-
         AbilityUI();
-
-        if (ScreenEffectManager.instance != null)
-        {
-            ScreenEffectManager.instance.UpdateEffect(abilityGauge, 100f);
-        }
     }
     public void Tranquilizer() { abilityGauge = 100f; AbilityUI(); }
 
