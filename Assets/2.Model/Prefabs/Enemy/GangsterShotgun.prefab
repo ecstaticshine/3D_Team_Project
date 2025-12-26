@@ -143,7 +143,7 @@ MonoBehaviour:
   lastHeardPosition: {x: 0, y: 0, z: 0}
   alertDuration: 5
   meleeAttackCooldown: 3
-  aIShooter: {fileID: 0}
+  aIShooter: {fileID: 1897076113956869171}
   enemyAlert: {fileID: 1752086616759237786}
   hasDetectedPlayer: 0
 --- !u!54 &394756218920917898
@@ -254,7 +254,7 @@ MonoBehaviour:
   MeleeDamage: 50
   maxHp: 100
   impactForce: 100
-  enemyGunData: {fileID: 11400000, guid: aeb3800fa49ada944b596115e48cdfed, type: 2}
+  enemyGunData: {fileID: 11400000, guid: a9470847588ffdd40b3c454e6bc65052, type: 2}
   medicinePrefab: {fileID: 1193652733296499636, guid: 55801f9716236bf43960be0778605c9b, type: 3}
 --- !u!1 &186587266720721022
 GameObject:
@@ -2786,8 +2786,8 @@ Transform:
   m_GameObject: {fileID: 3382434670217040360}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.020328894, y: 0.000000049763326, z: 0.00000009436809}
-  m_LocalScale: {x: 1.0000001, y: 1, z: 1}
+  m_LocalPosition: {x: 0.020328894, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5039454624806603869}

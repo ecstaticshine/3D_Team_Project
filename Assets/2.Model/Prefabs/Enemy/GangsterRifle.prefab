@@ -3814,7 +3814,7 @@ MonoBehaviour:
   lastHeardPosition: {x: 0, y: 0, z: 0}
   alertDuration: 5
   meleeAttackCooldown: 3
-  aIShooter: {fileID: 0}
+  aIShooter: {fileID: 8718316121815665307}
   enemyAlert: {fileID: 680850311310454712}
   hasDetectedPlayer: 0
 --- !u!54 &3097177715018139938
@@ -3884,7 +3884,7 @@ MonoBehaviour:
   weight: 1
   smoothTime: 5
   kneeSpreadWeight: 0.7
-  kneeSpreadDistance: 0.35
+  kneeSpreadDistance: 0.2
   iterations: 1
   humanBones:
   - bone: 7

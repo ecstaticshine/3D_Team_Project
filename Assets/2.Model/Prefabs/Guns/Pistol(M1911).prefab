@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3530270749638345527}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: RightHandMount
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8986138719675819391}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: LeftHandMount
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 5490398254844182819}
   - component: {fileID: 5513615623680396304}
   - component: {fileID: 8641770764261155553}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Pistol(M1911)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -183,7 +183,7 @@ GameObject:
   - component: {fileID: 8563734955948718666}
   - component: {fileID: 8502600438433179033}
   - component: {fileID: 8859195109008040829}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -272,7 +272,7 @@ GameObject:
   - component: {fileID: 3573577749409985898}
   - component: {fileID: 5754086370242429294}
   - component: {fileID: 3971892922550236477}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -363,7 +363,7 @@ GameObject:
   - component: {fileID: 4691243505554212568}
   - component: {fileID: 1379871598729270678}
   - component: {fileID: 7588263497401346693}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: M1911 Handgun_Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -476,7 +476,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8132618271176280385}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Ejection_Location
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -509,7 +509,7 @@ GameObject:
   - component: {fileID: 1011934865481998556}
   - component: {fileID: 6046491076511342750}
   - component: {fileID: 7472012696135516703}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: M1911 Magazine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -596,7 +596,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2594633221087664747}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Magazine_Location
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -628,7 +628,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4045465374833722949}
-  m_Layer: 7
+  m_Layer: 14
   m_Name: AdsPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -659,7 +659,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3557296367957394097}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: M1911 Magazine_Black
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -691,7 +691,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4463415433047373584}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Gunpivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -724,7 +724,7 @@ GameObject:
   - component: {fileID: 4776797160107415947}
   - component: {fileID: 5092800921667289256}
   - component: {fileID: 81938744070359860}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Hammer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -813,7 +813,7 @@ GameObject:
   - component: {fileID: 6207647911704500513}
   - component: {fileID: 3771811288469242440}
   - component: {fileID: 8083890294909972177}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: CasingExit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -900,7 +900,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5202651896945462437}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Barrel_Location
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -931,7 +931,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6023459968549930287}
-  m_Layer: 7
+  m_Layer: 14
   m_Name: HipPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -962,7 +962,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1638604444846263293}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
