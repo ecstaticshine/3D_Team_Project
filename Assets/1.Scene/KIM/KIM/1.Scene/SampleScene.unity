@@ -1658,10 +1658,14 @@ MonoBehaviour:
   rangedEngageDistance: 10
   retreatDistance: 2
   player: {fileID: 974370560}
+  EnemyChasePosition: {fileID: 0}
   eyePoint: {fileID: 1500781063}
+  animator: {fileID: 0}
   timeScaleMultiplier: 1
+  baseAgentSpeed: 0
   viewDistance: 10
   viewAngle: 110
+  turnSpeed: 200
   obstacleMask:
     serializedVersion: 2
     m_Bits: 64
@@ -1674,6 +1678,10 @@ MonoBehaviour:
   fireInterval: {x: 0.5, y: 1.5}
   lastHeardPosition: {x: 0, y: 0, z: 0}
   alertDuration: 5
+  meleeAttackCooldown: 3
+  aIShooter: {fileID: 0}
+  enemyAlert: {fileID: 0}
+  hasDetectedPlayer: 0
 --- !u!54 &1510627494
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1964,10 +1972,14 @@ MonoBehaviour:
   rangedEngageDistance: 10
   retreatDistance: 4
   player: {fileID: 974370560}
+  EnemyChasePosition: {fileID: 0}
   eyePoint: {fileID: 288090560}
+  animator: {fileID: 0}
   timeScaleMultiplier: 1
+  baseAgentSpeed: 0
   viewDistance: 10
   viewAngle: 110
+  turnSpeed: 200
   obstacleMask:
     serializedVersion: 2
     m_Bits: 64
@@ -1983,6 +1995,10 @@ MonoBehaviour:
   fireInterval: {x: 0.5, y: 1.5}
   lastHeardPosition: {x: 0, y: 0, z: 0}
   alertDuration: 4
+  meleeAttackCooldown: 3
+  aIShooter: {fileID: 0}
+  enemyAlert: {fileID: 0}
+  hasDetectedPlayer: 0
 --- !u!195 &1880414548
 NavMeshAgent:
   m_ObjectHideFlags: 0
