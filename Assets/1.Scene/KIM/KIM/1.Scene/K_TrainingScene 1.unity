@@ -4845,6 +4845,15 @@ MonoBehaviour:
   damageColor: {r: 1, g: 0, b: 0, a: 1}
   rewindUI: {fileID: 1239714204}
   rewindVolume: {fileID: 1616663592}
+  mainCam: {fileID: 0}
+  dashSpeedLines: {fileID: 0}
+  timeAbilityVolume: {fileID: 0}
+  dashFovAmount: 10
+  effectTransitionSpeed: 5
+  minLensDistortion: 0.3
+  maxLensDistortion: 0.5
+  minVignette: 0.4
+  maxVignette: 0.55
 --- !u!4 &190224362
 Transform:
   m_ObjectHideFlags: 0
@@ -17512,7 +17521,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 2
-  m_BaseOffset: 0
+  m_BaseOffset: -0.1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!114 &620260658
@@ -33077,7 +33086,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 2
-  m_BaseOffset: 0
+  m_BaseOffset: -0.1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!114 &1057865208
@@ -50565,7 +50574,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 2
-  m_BaseOffset: 0
+  m_BaseOffset: -0.1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!114 &1781868712
@@ -70285,7 +70294,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 2
-  m_BaseOffset: 0
+  m_BaseOffset: -0.1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!4 &4736928379626360832
