@@ -81820,6 +81820,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 531771398}
     m_Modifications:
+    - target: {fileID: 797380574706265598, guid: 320c2d60c89a1f14fb9e5958c839553e, type: 3}
+      propertyPath: useScoreScene
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1993402409395103931, guid: 320c2d60c89a1f14fb9e5958c839553e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.98

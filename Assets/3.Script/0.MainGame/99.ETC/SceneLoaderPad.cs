@@ -5,6 +5,7 @@ public class SceneLoaderPad : MonoBehaviour
 {
     [Header("이동할 씬 이름")]
     [SerializeField] private string targetSceneName = "Stage1";
+    [SerializeField] private bool useScoreScene = true; // 스코어 씬 이동할지
 
     [Header("저장 여부")]
     [SerializeField] private bool shouldSave = true;
@@ -19,6 +20,7 @@ public class SceneLoaderPad : MonoBehaviour
 
     private void MoveToScene()
     {
+
         if (shouldSave && SaveManager.instance != null)
         {
             SaveManager.instance.saveData.sceneToLoad = targetSceneName;
@@ -28,6 +30,14 @@ public class SceneLoaderPad : MonoBehaviour
             Debug.Log($"[유니] {targetSceneName} 진입 전 저장 완료!");
         }
 
-        SceneManager.LoadScene(targetSceneName);
+        if (useScoreScene && ScoreManager.instance != null)
+        {
+            ScoreManager.instance.CalculateFinalScore(targetSceneName);
+            SceneManager.LoadScene("ScoreScene");
+        }
+        else
+        {
+            SceneManager.LoadScene(targetSceneName);
+        }
     }
 }
