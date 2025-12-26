@@ -8292,7 +8292,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8988161818803807066, guid: 136950be0ffc5874f82d86888d3361e6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -1.38
       objectReference: {fileID: 0}
     - target: {fileID: 8988161818803807066, guid: 136950be0ffc5874f82d86888d3361e6, type: 3}
       propertyPath: m_LocalPosition.z
@@ -50025,7 +50025,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AudioManager
   BGM:
-  - audioClipName: Training
+  - sceneName: 0
+    audioClipName: Training
     audioClip: {fileID: 8300000, guid: aed9b13d3b6ad634785938c0a68496df, type: 3}
   SFX:
   - audioClipName: PistolSound
@@ -71023,18 +71024,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GangsterPistol
       objectReference: {fileID: 0}
-    - target: {fileID: 6079260776846456268, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
-      propertyPath: targetTransform
-      value: 
-      objectReference: {fileID: 6655152152228366437}
-    - target: {fileID: 7451490676561856480, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 2113007716799778364}
-    - target: {fileID: 7451490676561856480, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
-      propertyPath: EnemyChasePosition
-      value: 
-      objectReference: {fileID: 6655152152228366437}
+    - target: {fileID: 5355254141850973528, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -84126,21 +84119,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1496331519227933365, guid: 7671c6354e43a5f4c857dd14e42a9fc2, type: 3}
-      propertyPath: targetTransform
-      value: 
-      objectReference: {fileID: 6655152152228366437}
-    - target: {fileID: 3348818179370089016, guid: 7671c6354e43a5f4c857dd14e42a9fc2, type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 2113007716799778364}
-    - target: {fileID: 3348818179370089016, guid: 7671c6354e43a5f4c857dd14e42a9fc2, type: 3}
-      propertyPath: EnemyChasePosition
-      value: 
-      objectReference: {fileID: 6655152152228366437}
     - target: {fileID: 7054646036234710491, guid: 7671c6354e43a5f4c857dd14e42a9fc2, type: 3}
       propertyPath: m_Name
       value: GangsterRifle
+      objectReference: {fileID: 0}
+    - target: {fileID: 7054646036234710491, guid: 7671c6354e43a5f4c857dd14e42a9fc2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8483301899321809597, guid: 7671c6354e43a5f4c857dd14e42a9fc2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -84973,14 +84958,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GangsterShotgun
       objectReference: {fileID: 0}
-    - target: {fileID: 210877740639690166, guid: 8111ef1af2393f14cbd4660e037ced0e, type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 2113007716799778364}
-    - target: {fileID: 210877740639690166, guid: 8111ef1af2393f14cbd4660e037ced0e, type: 3}
-      propertyPath: EnemyChasePosition
-      value: 
-      objectReference: {fileID: 6655152152228366437}
+    - target: {fileID: 98703709402627270, guid: 8111ef1af2393f14cbd4660e037ced0e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4423149692410268346, guid: 8111ef1af2393f14cbd4660e037ced0e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.215972
@@ -85021,10 +85002,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5579889402178492917, guid: 8111ef1af2393f14cbd4660e037ced0e, type: 3}
-      propertyPath: targetTransform
-      value: 
-      objectReference: {fileID: 6655152152228366437}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
