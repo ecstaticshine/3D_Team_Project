@@ -230,7 +230,7 @@ public class Player : MonoBehaviour
         cameraTransform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
         transform.Rotate(Vector3.up * lookInput.x * mouseSensitivity * Time.unscaledDeltaTime);
     }
-    IEnumerator Dash()
+    private IEnumerator Dash()
     {
         isDashing = true;
         lastDashTime = Time.unscaledTime;
@@ -239,6 +239,8 @@ public class Player : MonoBehaviour
             (transform.right * moveInput.x + transform.forward * moveInput.y) : transform.forward;
 
         dashDir.Normalize();
+
+        ScreenEffectManager.instance.PlayDashEffect(dashDuration);
 
         float startTime = Time.unscaledTime;
         while (Time.unscaledTime < startTime + dashDuration && !isDie)
@@ -393,8 +395,16 @@ public class Player : MonoBehaviour
     }
     private void ToggleAbility()
     {
-        if (Keyboard.current.tKey.wasPressedThisFrame && abilityGauge >= 0 && !isDie) Ability();
-        else if (isTimeSlow && abilityGauge <= 0) Ability();
+        if (Keyboard.current.tKey.wasPressedThisFrame && abilityGauge >= 0 && !isDie)
+        {
+            Ability();
+            ScreenEffectManager.instance.ToggleTimeEffect(isTimeSlow);
+        }
+        else if (isTimeSlow && abilityGauge <= 0)
+        {
+            Ability();
+            ScreenEffectManager.instance.ToggleTimeEffect(false);
+        }
     }
     private void HandleAbilityGauge()
     {
