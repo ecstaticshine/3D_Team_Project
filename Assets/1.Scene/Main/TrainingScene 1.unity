@@ -4850,6 +4850,10 @@ MonoBehaviour:
   timeAbilityVolume: {fileID: 540559081}
   dashFovAmount: 10
   effectTransitionSpeed: 5
+  minLensDistortion: 0.3
+  maxLensDistortion: 0.5
+  minVignette: 0.4
+  maxVignette: 0.55
 --- !u!4 &190224362
 Transform:
   m_ObjectHideFlags: 0
@@ -7377,7 +7381,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1085417395900564196, guid: 136950be0ffc5874f82d86888d3361e6, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8988161818803807066, guid: 136950be0ffc5874f82d86888d3361e6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -15418,7 +15422,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2398567468824503294, guid: f62aacadd7ff7b3419f60c02e6aafeb1, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5071110161615995504, guid: f62aacadd7ff7b3419f60c02e6aafeb1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -17425,7 +17429,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   MeleeDamage: 50
   maxHp: 100
-  enemyGunData: {fileID: 11400000, guid: 72e03fa40aecfc7408cf1807973bf6eb, type: 2}
+  enemyGunData: {fileID: 11400000, guid: 8802f6466aacd124ca652353b71134c8, type: 2}
   medicinePrefab: {fileID: 1193652733296499636, guid: 55801f9716236bf43960be0778605c9b, type: 3}
 --- !u!114 &620260653
 MonoBehaviour:
@@ -23911,7 +23915,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   MeleeDamage: 50
   maxHp: 100
-  enemyGunData: {fileID: 11400000, guid: 72e03fa40aecfc7408cf1807973bf6eb, type: 2}
+  enemyGunData: {fileID: 11400000, guid: 8802f6466aacd124ca652353b71134c8, type: 2}
   medicinePrefab: {fileID: 1193652733296499636, guid: 55801f9716236bf43960be0778605c9b, type: 3}
 --- !u!114 &810068858
 MonoBehaviour:
@@ -32990,7 +32994,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   MeleeDamage: 50
   maxHp: 100
-  enemyGunData: {fileID: 11400000, guid: 72e03fa40aecfc7408cf1807973bf6eb, type: 2}
+  enemyGunData: {fileID: 11400000, guid: 8802f6466aacd124ca652353b71134c8, type: 2}
   medicinePrefab: {fileID: 1193652733296499636, guid: 55801f9716236bf43960be0778605c9b, type: 3}
 --- !u!114 &1057865203
 MonoBehaviour:
@@ -50477,7 +50481,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   MeleeDamage: 50
   maxHp: 100
-  enemyGunData: {fileID: 11400000, guid: 72e03fa40aecfc7408cf1807973bf6eb, type: 2}
+  enemyGunData: {fileID: 11400000, guid: 8802f6466aacd124ca652353b71134c8, type: 2}
   medicinePrefab: {fileID: 1193652733296499636, guid: 55801f9716236bf43960be0778605c9b, type: 3}
 --- !u!114 &1781868707
 MonoBehaviour:
@@ -74489,7 +74493,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e56531f29b8eab74a868b7d89c984279, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Item_Gun
-  gunData: {fileID: 11400000, guid: 72e03fa40aecfc7408cf1807973bf6eb, type: 2}
+  gunData: {fileID: 11400000, guid: 8802f6466aacd124ca652353b71134c8, type: 2}
 --- !u!222 &4513878123934674964
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -79513,7 +79517,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   MeleeDamage: 50
   maxHp: 100
-  enemyGunData: {fileID: 11400000, guid: 72e03fa40aecfc7408cf1807973bf6eb, type: 2}
+  enemyGunData: {fileID: 11400000, guid: 8802f6466aacd124ca652353b71134c8, type: 2}
   medicinePrefab: {fileID: 1193652733296499636, guid: 55801f9716236bf43960be0778605c9b, type: 3}
 --- !u!33 &6765863849307467489
 MeshFilter:
@@ -82940,7 +82944,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e56531f29b8eab74a868b7d89c984279, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Item_Gun
-  gunData: {fileID: 11400000, guid: 72e03fa40aecfc7408cf1807973bf6eb, type: 2}
+  gunData: {fileID: 11400000, guid: 8802f6466aacd124ca652353b71134c8, type: 2}
 --- !u!1 &8218404237031470136
 GameObject:
   m_ObjectHideFlags: 0

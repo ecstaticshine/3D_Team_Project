@@ -127,6 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e56531f29b8eab74a868b7d89c984279, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Item_Gun
+  gunData: {fileID: 11400000, guid: 8802f6466aacd124ca652353b71134c8, type: 2}
 --- !u!65 &-2256062726917613923
 BoxCollider:
   m_ObjectHideFlags: 0
