@@ -145,7 +145,7 @@ MonoBehaviour:
   gunData: {fileID: 11400000, guid: 8802f6466aacd124ca652353b71134c8, type: 2}
   firePoint: {fileID: 1638604444846263293}
   cameraTransform: {fileID: 0}
-  gunAnimator: {fileID: 0}
+  gunAnimator: {fileID: 7588263497401346693}
   isPlayerGun: 1
   casingType: 0
   casingExitLocation: {fileID: 6207647911704500513}
@@ -167,7 +167,11 @@ MonoBehaviour:
   weaponModel: {fileID: 8988161818803807066}
   hipPosition: {fileID: 6023459968549930287}
   adsPosition: {fileID: 4045465374833722949}
+  mainCamera: {fileID: 0}
+  overlayCamera: {fileID: 0}
   adsSpeed: 10
+  normalFOV: 60
+  zoomFOV: 40
 --- !u!1 &2463752579456916409
 GameObject:
   m_ObjectHideFlags: 0

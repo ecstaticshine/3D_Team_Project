@@ -106,7 +106,7 @@ public class PatrolState : IState
     public void Exit(AIController controller)
     {
         controller.Agent.isStopped = true;
-        controller.animator.SetBool("isMove", false);
+        //controller.animator.SetBool("isMove", false);
     }
 
     // (GotoNextPoint랑 TrySetDestination은 그대로 두면 돼!)

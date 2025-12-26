@@ -232,7 +232,11 @@ MonoBehaviour:
   weaponModel: {fileID: 5071110161615995504}
   hipPosition: {fileID: 8716235187485494310}
   adsPosition: {fileID: 5375551954514025740}
+  mainCamera: {fileID: 0}
+  overlayCamera: {fileID: 0}
   adsSpeed: 10
+  normalFOV: 60
+  zoomFOV: 40
 --- !u!114 &1405235870013455640
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -251,10 +255,10 @@ MonoBehaviour:
   gunAnimator: {fileID: 0}
   isPlayerGun: 1
   casingType: 1
-  casingExitLocation: {fileID: 0}
+  casingExitLocation: {fileID: 2281862600511596838}
   ExitPower: 300
   muzzleFlashPrefab: {fileID: 1782395880954752, guid: 3dd9cf2e209c504448f1c4c6835675cf, type: 3}
-  flashPoolSize: 3
+  flashPoolSize: 20
 --- !u!1 &3074165861407545031
 GameObject:
   m_ObjectHideFlags: 0
