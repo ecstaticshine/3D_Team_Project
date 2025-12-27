@@ -5,7 +5,7 @@ public class ScoreManager : MonoBehaviour
     public static ScoreManager instance = null;
 
     [Header("씬 이동 정보")]
-    public string nextSceneName;
+    public SceneName nextScene;
 
     [Header("점수 기록")]
     public int killCount = 0;
@@ -43,12 +43,12 @@ public class ScoreManager : MonoBehaviour
     public void AddShotHit() => shotsHit++;
     public void AddAbilityUsage(float duration) { abilityUsageDuration += duration; }
 
-    public void CalculateFinalScore(string nextStageName)
+    public void CalculateFinalScore(SceneName nextStage)
     {
         if (isStageClear) return;
         isStageClear = true;
 
-        nextSceneName = nextStageName;
+        nextScene = nextStage;
 
         int score = 0;
         score += killCount * 100;
@@ -66,7 +66,7 @@ public class ScoreManager : MonoBehaviour
 
             SaveManager.instance.saveData.deathCount = GameManager.instance.deathCount;
 
-            SaveManager.instance.saveData.sceneToLoad = nextSceneName;
+            SaveManager.instance.saveData.sceneToLoad = nextScene.ToString();
 
             SaveManager.instance.saveData.clearStage++;
 

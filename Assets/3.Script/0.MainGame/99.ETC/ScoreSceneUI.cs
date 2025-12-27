@@ -46,6 +46,14 @@ public class ScoreSceneUI : MonoBehaviour
         if (continueButton != null) continueButton.gameObject.SetActive(false);
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            OnClickContinue();
+        }
+    }
+
     private IEnumerator SequenceScoreAnimation()
     {
         // [유니] 연출 시작 전 아주 잠깐 대기 (로딩 뚝뚝 끊김 방지)
@@ -108,26 +116,19 @@ public class ScoreSceneUI : MonoBehaviour
         if (ScoreManager.instance != null)
         {
             // 1. 매니저가 기억하고 있는 다음 씬 이름을 가져와
-            string nextScene = ScoreManager.instance.nextSceneName;
+            SceneName nextScene = ScoreManager.instance.nextScene;
 
             // 2. 오빠가 원한대로 매니저 파괴 (점수 초기화를 위해)
             Destroy(ScoreManager.instance.gameObject);
 
             // 3. 다음 씬으로 출발!
             // 만약 이름이 비어있다면 메인화면으로 보내는 예외처리도 센스!
-            if (string.IsNullOrEmpty(nextScene))
-            {
-                SceneManager.LoadScene("Title");
-            }
-            else
-            {
-                SceneManager.LoadScene(nextScene);
-            }
+            SceneController.Instance.LoadScene(nextScene);
         }
         else
         {
             // 혹시라도 매니저가 없으면 메인으로
-            SceneManager.LoadScene("Title");
+            SceneController.Instance.LoadScene(SceneName.Title);
         }
     }
 }

@@ -12,10 +12,13 @@ public enum SceneName
     Title,
     Prologue,
     Training,
-    ScoreScene,
+    Score,
+    Stage1TimeLine,
     Stage1,
+    Stage2TimeLine,
     Stage2,
-    Loading
+    Loading,
+    GameClear
 }
 
 
@@ -25,13 +28,16 @@ public static class SceneNameMap
     {
         return scene switch
         {
-            SceneName.Title =>"Title",
+            SceneName.Title => "Title",
             SceneName.Prologue => "Prologue",
             SceneName.Training => "TrainingScene 1",
-            SceneName.ScoreScene => "ScoreScene",
+            SceneName.Score => "Score",
             SceneName.Stage1 => "Stage1",
+            SceneName.Stage1TimeLine => "Stage1TimeLine",
             SceneName.Stage2 => "Stage2",
+            SceneName.Stage2TimeLine => "Stage2TimeLine",
             SceneName.Loading => "LoadingScene",
+            SceneName.GameClear => "GameClear",
             //씬을 새로 추가하고 싶으시면 여기에 넣으시면 됩니다
 
             _ => throw new ArgumentOutOfRangeException(nameof(scene), scene, null)
@@ -48,9 +54,20 @@ public class SceneController : MonoBehaviour
     [SerializeField] private GameObject loadingCanvas;
     [SerializeField] private Slider progressBar;
     [SerializeField] private TextMeshProUGUI progressText;
+    [SerializeField] private GameObject skipGuideText;
 
     [Header("Settings")]
     [SerializeField] private float minLoadingTime = 2f;
+
+    [Header("수동 전환 씬 설정")]
+    [SerializeField]
+    private List<SceneName> enterToSceneList = new List<SceneName>
+    {
+        SceneName.Prologue,
+        SceneName.Training,
+        SceneName.Stage1TimeLine,
+        SceneName.Stage2TimeLine
+    };
 
     //Skip 가능
     public bool canActivateScene = false;
@@ -58,6 +75,8 @@ public class SceneController : MonoBehaviour
     //로딩 100퍼 확인 변수
     public bool isLoadingVisualDone { get; private set; } = false;
 
+    //실행 중인 코루틴, 중복 불가 
+    private Coroutine currentLoadingCoroutine;
 
     private void Awake()
     {
@@ -72,11 +91,17 @@ public class SceneController : MonoBehaviour
         }
     }
 
-    public void LoadScene(SceneName targetSceneName)
+    public void LoadScene(SceneName targetScene)
     {
-        canActivateScene = false;
+        //씬 2번 불리지 않도록 제어
+        if (currentLoadingCoroutine != null)
+        {
+            return;
+        }
+        
+
         isLoadingVisualDone = false;
-        StartCoroutine(LoadSceneProcess_co(targetSceneName));
+        currentLoadingCoroutine = StartCoroutine(LoadSceneProcess_co(targetScene));
     }
 
     public void LoadNextScene()
@@ -93,12 +118,22 @@ public class SceneController : MonoBehaviour
     private IEnumerator LoadSceneProcess_co(SceneName targetSceneName)
     {
 
+        canActivateScene = false;
+
+        if (!enterToSceneList.Contains(targetSceneName))
+        {
+            canActivateScene = true; // 수동 리스트에 없으면 자동으로 넘어가짐
+        }
+       
+
         // UI 요소가 연결되어 있는지 꼭 확인하는 마법의 방어 코드예요
         if (loadingCanvas == null || progressBar == null)
         {
+            currentLoadingCoroutine = null;
             yield break;
         }
         loadingCanvas.SetActive(true);
+        skipGuideText.SetActive(false);
         progressBar.value = 0;
 
         // 1. 매핑 클래스에서 실제 씬 파일 이름 가져옵니다
@@ -107,8 +142,8 @@ public class SceneController : MonoBehaviour
         // 비동기 로드가 시작됩니다.
         AsyncOperation operation = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(scenePath);
         operation.allowSceneActivation = false; // 90%에서 대기
-
         float timer = 0f;
+
         while (!operation.isDone)
         {
             yield return null;
@@ -126,22 +161,39 @@ public class SceneController : MonoBehaviour
             if (progressBar.value >= 0.98f)
             {
                 isLoadingVisualDone = true;
-            }
 
-            if (operation.progress>=0.9f && isLoadingVisualDone)
-            {
-                if (timer >= minLoadingTime && canActivateScene)
+                if (!canActivateScene)
                 {
-                    if (AudioManager.instance != null)
+                    if (skipGuideText != null)
                     {
-                        AudioManager.instance.PlayBGMByScene(targetSceneName);
+                        skipGuideText.SetActive(true);
                     }
-
-                    operation.allowSceneActivation = true;
-                    loadingCanvas.SetActive(false);
+                    if (Input.GetKeyDown(KeyCode.Return))
+                    {
+                        canActivateScene = true;
+                    }
                 }
+
+                if (canActivateScene && timer >= minLoadingTime)
+                {
+                    operation.allowSceneActivation = true;
+                }
+
+            }
+            if (operation.isDone)
+            {
+                if (AudioManager.instance != null)
+                {
+                    AudioManager.instance.PlayBGMByScene(targetSceneName);
+                }
+
+                loadingCanvas.SetActive(false);
+                currentLoadingCoroutine = null;
+                yield break;
+
             }
         }
+        currentLoadingCoroutine = null;
     }
 
 }

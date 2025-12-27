@@ -120,7 +120,7 @@ public class AudioManager : MonoBehaviour
             }
         }
         // 해당 이름을 가진 SFX가 없습니다.
-        Debug.Log($"해당 SFX를 가진 친국는 없습니다..[{bgmName}]");
+        Debug.Log($"해당 SFX를 가진 친구는 없습니다..[{bgmName}]");
     }
 
     public void PlayBGM(string bgmName)

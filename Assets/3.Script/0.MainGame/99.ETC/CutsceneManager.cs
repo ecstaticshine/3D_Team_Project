@@ -16,10 +16,27 @@ public class CutsceneManager : MonoBehaviour
 
     void Start()
     {
-        if (prologueDirector != null)
-            prologueDirector.Play();
-
         SceneController.Instance.LoadNextScene();
+
+        SceneController.Instance.canActivateScene = false;
+
+        if (prologueDirector != null)
+        {
+            prologueDirector.stopped += OnTimelineFinished;
+            prologueDirector.Play();
+        }
+        else
+        {
+           // ApproveNextScene();
+        }
+
+
+
+    }
+
+    private void OnTimelineFinished(PlayableDirector director)
+    {
+        ApproveNextScene();
     }
 
     // Update is called once per frame
@@ -29,14 +46,6 @@ public class CutsceneManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Return))
         {
             SkipPrologue();
-        }
-
-        if (SceneController.Instance != null && SceneController.Instance.isLoadingVisualDone)
-        {
-            if (!isBlinking)
-            {
-            StartCoroutine(BlinkText_co());
-            }
         }
 
     }
@@ -50,10 +59,8 @@ public class CutsceneManager : MonoBehaviour
             prologueDirector.Stop();
         }
 
-
-        SceneController.Instance.canActivateScene = true;
+        ApproveNextScene();
     }
-
 
     private IEnumerator BlinkText_co()
     {
@@ -68,6 +75,12 @@ public class CutsceneManager : MonoBehaviour
 
             yield return null;
         }
+    }
+    public void ApproveNextScene()
+    {
+        if (SceneController.Instance == null) return;
+
+        SceneController.Instance.canActivateScene = true;
     }
 
     public void LoadNextScene()
