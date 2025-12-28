@@ -123,7 +123,7 @@ public class ScoreSceneUI : MonoBehaviour
 
             // 3. 다음 씬으로 출발!
             // 만약 이름이 비어있다면 메인화면으로 보내는 예외처리도 센스!
-            SceneController.Instance.LoadScene(nextScene);
+            SceneController.Instance.LoadScene(nextScene,false);
         }
         else
         {

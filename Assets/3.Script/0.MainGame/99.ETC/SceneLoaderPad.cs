@@ -25,7 +25,7 @@ public class SceneLoaderPad : MonoBehaviour
 
         if (shouldSave && SaveManager.instance != null)
         {
-            SaveManager.instance.saveData.sceneToLoad = targetScene.ToString();
+            SaveManager.instance.saveData.sceneToLoad = targetScene;
 
             SaveManager.instance.SaveGame();
 
@@ -35,11 +35,11 @@ public class SceneLoaderPad : MonoBehaviour
         if (useScoreScene && ScoreManager.instance != null)
         {
             ScoreManager.instance.CalculateFinalScore(targetScene);
-            SceneController.Instance.LoadScene(SceneName.Score);
+            SceneController.Instance.LoadScene(SceneName.Score,true);
         }
         else
         {
-            SceneController.Instance.LoadScene(targetScene);
+            SceneController.Instance.LoadScene(targetScene, false);
         }
     }
 }

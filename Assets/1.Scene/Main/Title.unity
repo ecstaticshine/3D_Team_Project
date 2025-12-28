@@ -507,8 +507,7 @@ MonoBehaviour:
   progressText: {fileID: 1485347943}
   skipGuideText: {fileID: 1502743012}
   minLoadingTime: 2
-  enterToSceneList: 010000000400000006000000
-  canActivateScene: 0
+  enterToSceneList: 02000000
 --- !u!114 &397704544
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -526,7 +525,7 @@ MonoBehaviour:
     deathCount: 0
     totalPlayTimeMs: 0
     lastSaveTime: 1766716398
-    sceneToLoad: TrainingScene 1
+    sceneToLoad: 2
 --- !u!1 &428005929
 GameObject:
   m_ObjectHideFlags: 0

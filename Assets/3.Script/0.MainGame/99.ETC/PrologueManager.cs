@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
 
-public class CutsceneManager : MonoBehaviour
+public class PrologueManager : MonoBehaviour
 {
     [SerializeField] private PlayableDirector prologueDirector;
 
@@ -16,27 +16,23 @@ public class CutsceneManager : MonoBehaviour
 
     void Start()
     {
-        SceneController.Instance.LoadNextScene();
-
-        SceneController.Instance.canActivateScene = false;
+        //SceneController.Instance.LoadScene(SceneName.Training, false);
 
         if (prologueDirector != null)
         {
             prologueDirector.stopped += OnTimelineFinished;
             prologueDirector.Play();
         }
-        else
-        {
-           // ApproveNextScene();
-        }
 
+        StartCoroutine(BlinkText_co());
 
 
     }
 
     private void OnTimelineFinished(PlayableDirector director)
     {
-        ApproveNextScene();
+        GoNext();
+
     }
 
     // Update is called once per frame
@@ -59,7 +55,7 @@ public class CutsceneManager : MonoBehaviour
             prologueDirector.Stop();
         }
 
-        ApproveNextScene();
+        GoNext();
     }
 
     private IEnumerator BlinkText_co()
@@ -76,16 +72,9 @@ public class CutsceneManager : MonoBehaviour
             yield return null;
         }
     }
-    public void ApproveNextScene()
+    private void GoNext()
     {
-        if (SceneController.Instance == null) return;
-
-        SceneController.Instance.canActivateScene = true;
+        SceneController.Instance.LoadScene(SceneName.Training, true);
     }
 
-    public void LoadNextScene()
-    {
-        SceneController.Instance.LoadNextScene();
-
-    }
 }

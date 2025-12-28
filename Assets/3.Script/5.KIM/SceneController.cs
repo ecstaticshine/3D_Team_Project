@@ -63,14 +63,15 @@ public class SceneController : MonoBehaviour
     [SerializeField]
     private List<SceneName> enterToSceneList = new List<SceneName>
     {
-        SceneName.Prologue,
         SceneName.Training,
         SceneName.Stage1TimeLine,
-        SceneName.Stage2TimeLine
+        SceneName.Stage2TimeLine,
     };
 
     //Skip 가능
-    public bool canActivateScene = false;
+    private bool canActivateScene = false;
+
+    private AsyncOperation currentOperation;
 
     //로딩 100퍼 확인 변수
     public bool isLoadingVisualDone { get; private set; } = false;
@@ -91,17 +92,25 @@ public class SceneController : MonoBehaviour
         }
     }
 
-    public void LoadScene(SceneName targetScene)
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            canActivateScene = true;
+        }
+    }
+
+    public void LoadScene(SceneName targetScene, bool showUI = true)
     {
         //씬 2번 불리지 않도록 제어
         if (currentLoadingCoroutine != null)
         {
             return;
         }
-        
+        canActivateScene = false;
 
         isLoadingVisualDone = false;
-        currentLoadingCoroutine = StartCoroutine(LoadSceneProcess_co(targetScene));
+        currentLoadingCoroutine = StartCoroutine(LoadSceneProcess_co(targetScene, showUI));
     }
 
     public void LoadNextScene()
@@ -115,84 +124,91 @@ public class SceneController : MonoBehaviour
         }
     }
 
-    private IEnumerator LoadSceneProcess_co(SceneName targetSceneName)
+    private IEnumerator LoadSceneProcess_co(SceneName targetSceneName, bool showUI)
     {
+        //UI 빼먹었는지 확인
+        bool hasUI = (loadingCanvas != null && progressBar != null);
 
-        canActivateScene = false;
-
-        if (!enterToSceneList.Contains(targetSceneName))
+        //  UI 보이기에 체크되있고 UI가 있어야 로딩 캔버스 표시 
+        if (showUI && hasUI)
         {
-            canActivateScene = true; // 수동 리스트에 없으면 자동으로 넘어가짐
+            loadingCanvas.SetActive(true);
         }
-       
 
-        // UI 요소가 연결되어 있는지 꼭 확인하는 마법의 방어 코드예요
-        if (loadingCanvas == null || progressBar == null)
+        //리스트에 없으면 자동, 있으면 수동
+        bool isManualTransition = enterToSceneList.Contains(targetSceneName);
+
+        if (isManualTransition)
         {
-            currentLoadingCoroutine = null;
-            yield break;
+            loadingCanvas.SetActive(true);
+            skipGuideText.SetActive(true);
         }
-        loadingCanvas.SetActive(true);
-        skipGuideText.SetActive(false);
+        else
+        {
+            loadingCanvas.SetActive(false);
+            skipGuideText.SetActive(false);
+        }
         progressBar.value = 0;
 
         // 1. 매핑 클래스에서 실제 씬 파일 이름 가져옵니다
         string scenePath = SceneNameMap.Get(targetSceneName);
 
         // 비동기 로드가 시작됩니다.
-        AsyncOperation operation = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(scenePath);
-        operation.allowSceneActivation = false; // 90%에서 대기
+        currentOperation = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(scenePath);
+        currentOperation.allowSceneActivation = false; // 90%에서 대기
         float timer = 0f;
 
-        while (!operation.isDone)
+        while (currentOperation.progress < 0.9f || (hasUI && progressBar.value < 0.99f))
         {
             yield return null;
             timer += Time.unscaledDeltaTime;
+            float targetProgress = Mathf.Clamp01(currentOperation.progress / 0.9f);
 
-            float targetProgress = Mathf.Clamp01(operation.progress / 0.9f);
-
-            progressBar.value = Mathf.MoveTowards(progressBar.value, targetProgress, Time.unscaledDeltaTime * 2f);
-
-            if (progressText != null)
+            if (hasUI)
             {
-                progressText.text = $"Loading~~~{Mathf.FloorToInt(progressBar.value * 100)}%";
-            }
-
-            if (progressBar.value >= 0.98f)
-            {
-                isLoadingVisualDone = true;
-
-                if (!canActivateScene)
-                {
-                    if (skipGuideText != null)
-                    {
-                        skipGuideText.SetActive(true);
-                    }
-                    if (Input.GetKeyDown(KeyCode.Return))
-                    {
-                        canActivateScene = true;
-                    }
-                }
-
-                if (canActivateScene && timer >= minLoadingTime)
-                {
-                    operation.allowSceneActivation = true;
-                }
-
-            }
-            if (operation.isDone)
-            {
-                if (AudioManager.instance != null)
-                {
-                    AudioManager.instance.PlayBGMByScene(targetSceneName);
-                }
-
-                loadingCanvas.SetActive(false);
-                currentLoadingCoroutine = null;
-                yield break;
-
+                progressBar.value = Mathf.MoveTowards(progressBar.value, targetProgress, Time.unscaledDeltaTime * 2f);
+                if (progressText != null)
+                    progressText.text = $"Loading...{Mathf.FloorToInt(progressBar.value * 100)}%";
             }
         }
+
+        isLoadingVisualDone = true;
+
+        // [2단계] 수동 전환 대기 (수동 리스트에 있고 자동 전환이 아닐 때)
+        if (isManualTransition)
+        {
+            // 수동 씬: 가이드를 띄우고 Enter(canActivateScene)를 기다림
+            if (hasUI && skipGuideText != null) skipGuideText.SetActive(true);
+
+            // 엔터를 누르거나 + 최소 로딩시간이 지날 때까지 대기
+            while (!canActivateScene || timer < minLoadingTime)
+            {
+                yield return null;
+                timer += Time.unscaledDeltaTime;
+            }
+        }
+        else
+        {
+            // 자동 씬: 엔터 상관없이 최소 로딩시간만 채우면 즉시 통과
+            while (timer < minLoadingTime)
+            {
+                yield return null;
+                timer += Time.unscaledDeltaTime;
+            }
+            canActivateScene = true;
+        }
+
+        currentOperation.allowSceneActivation = true;
+
+        // 씬이 완전히 바뀔 때까지 대기
+        while (!currentOperation.isDone)
+        {
+            yield return null;
+        }
+
+        // 후처리
+        if (AudioManager.instance != null) AudioManager.instance.PlayBGMByScene(targetSceneName);
+        if (hasUI) loadingCanvas.SetActive(false);
         currentLoadingCoroutine = null;
     }
 

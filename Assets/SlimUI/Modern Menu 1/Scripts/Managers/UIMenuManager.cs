@@ -120,31 +120,30 @@ namespace SlimUI.ModernMenu{
 		public void OnClickNewGame()
         {
 			SaveManager.instance.NewGame();
-			SceneManager.LoadScene("Prologue");
+			SceneController.Instance.LoadScene(SceneName.Prologue,false);
 		}
 
 		public void OnClickLoadGame()
 		{
 			if (SaveManager.instance != null && SaveManager.instance.IsLoaded)
 			{
-				string targetScene = SaveManager.instance.saveData.sceneToLoad;
+				SceneName targetScene = SaveManager.instance.saveData.sceneToLoad;
 
-				if (string.IsNullOrEmpty(targetScene))
+				if (targetScene == default)
 				{
-					targetScene = "Prologue";
+					targetScene = SceneName.Prologue;
 				}
 
 				if (GameManager.instance != null)
 				{
 					GameManager.instance.ResumeGame();
 				}
-
-				SceneManager.LoadScene(targetScene);
+				SceneController.Instance.LoadScene(SceneName.Prologue,false);
 			}
 			else
 			{
 				Debug.Log("세이브 파일이 없거나 매니저가 준비 안 됨");
-				SceneManager.LoadScene("Prologue");
+				SceneController.Instance.LoadScene(SceneName.Prologue, false);
 			}
 		}
 

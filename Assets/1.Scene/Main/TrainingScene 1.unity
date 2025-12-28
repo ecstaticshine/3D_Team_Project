@@ -55670,7 +55670,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d59e68c197841344ba7e48357bd763ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreManager
-  nextSceneName: 
+  nextScene: 0
   killCount: 0
   headshotCount: 0
   stageTime: 0
@@ -57058,7 +57058,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3eb631c7fa9a384490b8c84227ddb50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneLoaderPad
-  targetSceneName: Stage1
+  targetScene: 5
   useScoreScene: 1
   shouldSave: 1
 --- !u!1 &1693213488

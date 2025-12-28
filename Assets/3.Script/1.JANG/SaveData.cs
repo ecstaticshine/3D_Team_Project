@@ -8,7 +8,7 @@ public class SaveData
     public long totalPlayTimeMs;
     public long lastSaveTime;
 
-    public string sceneToLoad = "TrainingScene 1";
+    public SceneName sceneToLoad = SceneName.Training;
 
     public SaveData()
     {
@@ -17,7 +17,7 @@ public class SaveData
         totalPlayTimeMs = 0;
         //UTC
         lastSaveTime = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
-        sceneToLoad = "TrainingScene 1";
+        sceneToLoad = SceneName.Training;
     }
 
 }

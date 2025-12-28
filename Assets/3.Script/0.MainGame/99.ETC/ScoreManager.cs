@@ -66,7 +66,7 @@ public class ScoreManager : MonoBehaviour
 
             SaveManager.instance.saveData.deathCount = GameManager.instance.deathCount;
 
-            SaveManager.instance.saveData.sceneToLoad = nextScene.ToString();
+            SaveManager.instance.saveData.sceneToLoad = nextScene;
 
             SaveManager.instance.saveData.clearStage++;
 

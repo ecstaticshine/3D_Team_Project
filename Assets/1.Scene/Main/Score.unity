@@ -1737,7 +1737,7 @@ MonoBehaviour:
   startAngle: 60
   stepAngle: 15
   finalAngle: 120
-  rotateSpeed: 5
+  rotateSpeed: 4
   scoreTexts:
   - {fileID: 1450796059}
   - {fileID: 162223929}
