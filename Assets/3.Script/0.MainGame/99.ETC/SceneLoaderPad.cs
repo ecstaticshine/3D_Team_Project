@@ -34,6 +34,7 @@ public class SceneLoaderPad : MonoBehaviour
 
         if (useScoreScene && ScoreManager.instance != null)
         {
+            Debug.Log("Stage2");
             ScoreManager.instance.CalculateFinalScore(targetScene);
             SceneController.Instance.LoadScene(SceneName.Score,true);
         }

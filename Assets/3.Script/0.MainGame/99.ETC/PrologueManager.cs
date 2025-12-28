@@ -16,7 +16,6 @@ public class PrologueManager : MonoBehaviour
 
     void Start()
     {
-        //SceneController.Instance.LoadScene(SceneName.Training, false);
 
         if (prologueDirector != null)
         {
@@ -74,7 +73,7 @@ public class PrologueManager : MonoBehaviour
     }
     private void GoNext()
     {
-        SceneController.Instance.LoadScene(SceneName.Training, true);
+        SceneController.Instance.LoadScene(SceneName.Training, true, true);
     }
 
 }

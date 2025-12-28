@@ -100,7 +100,7 @@ public class SceneController : MonoBehaviour
         }
     }
 
-    public void LoadScene(SceneName targetScene, bool showUI = true)
+    public void LoadScene(SceneName targetScene, bool showUI = true, bool forceActivation = true)
     {
         //씬 2번 불리지 않도록 제어
         if (currentLoadingCoroutine != null)
@@ -110,7 +110,7 @@ public class SceneController : MonoBehaviour
         canActivateScene = false;
 
         isLoadingVisualDone = false;
-        currentLoadingCoroutine = StartCoroutine(LoadSceneProcess_co(targetScene, showUI));
+        currentLoadingCoroutine = StartCoroutine(LoadSceneProcess_co(targetScene, showUI, forceActivation));
     }
 
     public void LoadNextScene()
@@ -124,7 +124,7 @@ public class SceneController : MonoBehaviour
         }
     }
 
-    private IEnumerator LoadSceneProcess_co(SceneName targetSceneName, bool showUI)
+    private IEnumerator LoadSceneProcess_co(SceneName targetSceneName, bool showUI, bool forceActivation)
     {
         //UI 빼먹었는지 확인
         bool hasUI = (loadingCanvas != null && progressBar != null);
@@ -136,17 +136,20 @@ public class SceneController : MonoBehaviour
         }
 
         //리스트에 없으면 자동, 있으면 수동
-        bool isManualTransition = enterToSceneList.Contains(targetSceneName);
+        bool isManualTransition = !forceActivation && enterToSceneList.Contains(targetSceneName);
 
-        if (isManualTransition)
+        if (hasUI)
         {
-            loadingCanvas.SetActive(true);
-            skipGuideText.SetActive(true);
-        }
-        else
-        {
-            loadingCanvas.SetActive(false);
-            skipGuideText.SetActive(false);
+            if (isManualTransition && showUI)
+            {
+                loadingCanvas.SetActive(true);
+                skipGuideText.SetActive(true);
+            }
+            else
+            {
+                loadingCanvas.SetActive(false);
+                skipGuideText.SetActive(false);
+            }
         }
         progressBar.value = 0;
 
