@@ -114,12 +114,13 @@ public class AudioManager : MonoBehaviour
                         return;
                     }
                 }
-                // 모든 오디오소스가 플레이 중이다.
-                Debug.Log("모든 AudioSource가 플레이 중입니다...");
+
+                Debug.Log($"스피커가 꽉 차서 OneShot으로 재생함: {bgmName}");
+                SFXPlayer[0].PlayOneShot(sound.audioClip);
                 return;
             }
         }
-        // 해당 이름을 가진 SFX가 없습니다.
+
         Debug.Log($"해당 SFX를 가진 친구는 없습니다..[{bgmName}]");
     }
 
