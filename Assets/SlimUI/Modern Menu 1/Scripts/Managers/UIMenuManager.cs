@@ -138,7 +138,7 @@ namespace SlimUI.ModernMenu{
 				{
 					GameManager.instance.ResumeGame();
 				}
-				SceneController.Instance.LoadScene(SceneName.Prologue,false);
+				SceneController.Instance.LoadScene(targetScene, false);
 			}
 			else
 			{
