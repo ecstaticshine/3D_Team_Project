@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.SceneManagement;
 
 public class ScreenEffectManager : MonoBehaviour
 {
@@ -46,8 +47,15 @@ public class ScreenEffectManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null) { instance = this; DontDestroyOnLoad(gameObject); }
-        else Destroy(gameObject);
+        if (instance == null)
+        {
+            instance = this;
+            //DontDestroyOnLoad(gameObject);
+        }
+        //else
+        //{
+        //    Destroy(gameObject);
+        //}
 
         if (globalVolume != null && globalVolume.profile.TryGet(out Vignette v))
         {
@@ -62,6 +70,24 @@ public class ScreenEffectManager : MonoBehaviour
 
         if (mainCam == null) mainCam = Camera.main;
         if (mainCam != null) defaultFov = mainCam.fieldOfView;
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        mainCam = Camera.main;
+        if (mainCam != null) defaultFov = mainCam.fieldOfView;
+
+        ResetEffect();
     }
 
     private void Update()

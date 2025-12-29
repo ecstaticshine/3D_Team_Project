@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -25,6 +26,7 @@ public class GameManager : MonoBehaviour
 
     public long totalPlayTimeMs;
     public int deathCount;
+    public bool canPause = true;
 
     [Header("입력 연결 (New Input System)")]
     // 인스펙터에서 만들어둔 'Pause'나 'Menu' 액션을 여기에 드래그해서 넣으세요
@@ -36,15 +38,32 @@ public class GameManager : MonoBehaviour
         {
             instance = this;
             CurrentState = GameState.Playing;
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
         }
-        else
-        {
-            Destroy(gameObject);
-        }
+        //else
+        //{
+        //    Destroy(gameObject);
+        //}
     }
 
     private bool isSettingsOpen = false;
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        ResumeGame();
+
+        canPause = true;
+    }
 
     private IEnumerator Start()
     {
@@ -62,8 +81,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-
-        if (menuAction != null && menuAction.action.WasPressedThisFrame())
+        if (menuAction != null && menuAction.action.WasPressedThisFrame() && canPause)
         {
             if (CurrentState == GameState.Playing)
             {
@@ -74,10 +92,9 @@ public class GameManager : MonoBehaviour
                 ResumeGame();
             }
         }
-        
+
         if (CurrentState == GameState.Playing)
         {
-            // 슬로우 타임 영향을 받지 않게
             totalPlayTimeMs += (long)(Time.deltaTime * 1000);
         }
     }

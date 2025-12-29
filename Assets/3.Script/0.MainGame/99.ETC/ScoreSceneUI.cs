@@ -27,6 +27,12 @@ public class ScoreSceneUI : MonoBehaviour
 
     private void Start()
     {
+        if (GameManager.instance != null)
+        {
+            GameManager.instance.ResumeGame();
+            GameManager.instance.canPause = false;
+        }
+
         InitializeUI();
 
         StartCoroutine(SequenceScoreAnimation());

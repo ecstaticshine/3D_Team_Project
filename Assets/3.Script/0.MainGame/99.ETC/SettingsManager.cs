@@ -16,12 +16,12 @@ public class SettingsManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
         }
-        else
-        {
-            Destroy(gameObject);
-        }
+        //else
+        //{
+        //    Destroy(gameObject);
+        //}
     }
 
     public void SetMouseSensitivity(float value)
