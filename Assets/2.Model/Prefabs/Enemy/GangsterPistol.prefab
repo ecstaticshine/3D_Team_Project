@@ -3455,7 +3455,7 @@ MonoBehaviour:
   MeleeDamage: 50
   maxHp: 100
   impactForce: 100
-  enemyGunData: {fileID: 11400000, guid: 72e03fa40aecfc7408cf1807973bf6eb, type: 2}
+  enemyGunData: {fileID: 11400000, guid: 8802f6466aacd124ca652353b71134c8, type: 2}
   medicinePrefab: {fileID: 1193652733296499636, guid: 55801f9716236bf43960be0778605c9b, type: 3}
 --- !u!114 &4729591307909371951
 MonoBehaviour:
