@@ -559,9 +559,6 @@ MonoBehaviour:
   - sceneName: 3
     audioClipName: Score
     audioClip: {fileID: 8300000, guid: f5e1129a850ed03408b1274f8b9cc7a8, type: 3}
-  - sceneName: 4
-    audioClipName: Stage1
-    audioClip: {fileID: 8300000, guid: f5e1129a850ed03408b1274f8b9cc7a8, type: 3}
   SFX:
   - audioClipName: 10Bird
     audioClip: {fileID: 8300000, guid: a74e214d25d26774e9e221073254b8fb, type: 3}
