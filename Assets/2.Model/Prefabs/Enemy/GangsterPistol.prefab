@@ -1753,6 +1753,7 @@ GameObject:
   - component: {fileID: 1238824801394491983}
   - component: {fileID: 1478079412440154429}
   - component: {fileID: 6952822423215216402}
+  - component: {fileID: 5179697703443115416}
   m_Layer: 8
   m_Name: Spine1_M
   m_TagString: Untagged
@@ -1870,6 +1871,19 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &5179697703443115416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2407004978471198368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3c753950a5a7224fb1ac92a46d925c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HitBox
+  damageMultiplier: 1
 --- !u!1 &2494158256941271735
 GameObject:
   m_ObjectHideFlags: 0
@@ -2064,6 +2078,7 @@ GameObject:
   - component: {fileID: 3264654937156692776}
   - component: {fileID: 5614024716779305954}
   - component: {fileID: 1578085414810828717}
+  - component: {fileID: 7144418475166156750}
   m_Layer: 8
   m_Name: Elbow_R
   m_TagString: Untagged
@@ -2183,6 +2198,19 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &7144418475166156750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2961882199644978249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3c753950a5a7224fb1ac92a46d925c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HitBox
+  damageMultiplier: 0.7
 --- !u!1 &3128808066122823798
 GameObject:
   m_ObjectHideFlags: 0
@@ -2272,7 +2300,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.08157517
+  m_Radius: 0.1
   m_Center: {x: -0.08157517, y: 0, z: 0}
 --- !u!54 &9103101955640368032
 Rigidbody:
@@ -2624,6 +2652,7 @@ GameObject:
   - component: {fileID: 1553781515873552759}
   - component: {fileID: 3900925000794358123}
   - component: {fileID: 6047557806302755699}
+  - component: {fileID: 4542709584136914794}
   m_Layer: 8
   m_Name: Hip_L
   m_TagString: Untagged
@@ -2743,6 +2772,19 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &4542709584136914794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4317775797664558726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3c753950a5a7224fb1ac92a46d925c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HitBox
+  damageMultiplier: 0.7
 --- !u!1 &4355145826334976392
 GameObject:
   m_ObjectHideFlags: 0
@@ -4132,6 +4174,7 @@ GameObject:
   - component: {fileID: 8487395945308270554}
   - component: {fileID: 4254566486720221136}
   - component: {fileID: 3244404114694161503}
+  - component: {fileID: 492304660400082014}
   m_Layer: 8
   m_Name: Shoulder_R
   m_TagString: Untagged
@@ -4251,6 +4294,19 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &492304660400082014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6027646979149334437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3c753950a5a7224fb1ac92a46d925c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HitBox
+  damageMultiplier: 0.7
 --- !u!1 &6058362750557395147
 GameObject:
   m_ObjectHideFlags: 0
@@ -4711,6 +4767,7 @@ GameObject:
   - component: {fileID: 3057610382439909383}
   - component: {fileID: 5989029339882471118}
   - component: {fileID: 5595592541960507590}
+  - component: {fileID: 3830303274787310645}
   m_Layer: 8
   m_Name: Shoulder_L
   m_TagString: Untagged
@@ -4830,6 +4887,19 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &3830303274787310645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6671498172373307300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3c753950a5a7224fb1ac92a46d925c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HitBox
+  damageMultiplier: 0.7
 --- !u!1 &6847398748122176666
 GameObject:
   m_ObjectHideFlags: 0
@@ -4874,6 +4944,7 @@ GameObject:
   - component: {fileID: 1348288435201681894}
   - component: {fileID: 4859075981747333335}
   - component: {fileID: 5085459977153087050}
+  - component: {fileID: 428351690258502273}
   m_Layer: 8
   m_Name: Elbow_L
   m_TagString: Untagged
@@ -4993,6 +5064,19 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &428351690258502273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6899999730269663147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3c753950a5a7224fb1ac92a46d925c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HitBox
+  damageMultiplier: 0.7
 --- !u!1 &7069203061572379143
 GameObject:
   m_ObjectHideFlags: 0
@@ -5295,6 +5379,7 @@ GameObject:
   - component: {fileID: 8236025620527116552}
   - component: {fileID: 2782107048815493660}
   - component: {fileID: 8102207330773859604}
+  - component: {fileID: 2354773322782409276}
   m_Layer: 8
   m_Name: Knee_R
   m_TagString: Untagged
@@ -5414,6 +5499,19 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &2354773322782409276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7742084179016950373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3c753950a5a7224fb1ac92a46d925c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HitBox
+  damageMultiplier: 0.7
 --- !u!1 &8049041819053485000
 GameObject:
   m_ObjectHideFlags: 0
@@ -5554,6 +5652,7 @@ GameObject:
   - component: {fileID: 7414183301147784410}
   - component: {fileID: 2742660161028091135}
   - component: {fileID: 6400688398583841483}
+  - component: {fileID: 8469963847910053874}
   m_Layer: 8
   m_Name: Hip_R
   m_TagString: Untagged
@@ -5673,6 +5772,19 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &8469963847910053874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8257760605195181230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3c753950a5a7224fb1ac92a46d925c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HitBox
+  damageMultiplier: 0.7
 --- !u!1 &8349700359312554040
 GameObject:
   m_ObjectHideFlags: 0
@@ -5991,6 +6103,7 @@ GameObject:
   - component: {fileID: 3721681560604073007}
   - component: {fileID: 59714232031890893}
   - component: {fileID: 1721428066728642371}
+  - component: {fileID: 3890917891649524319}
   m_Layer: 8
   m_Name: Knee_L
   m_TagString: Untagged
@@ -6110,6 +6223,19 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &3890917891649524319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8900854836749782965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3c753950a5a7224fb1ac92a46d925c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HitBox
+  damageMultiplier: 0.7
 --- !u!1 &8952873186492275488
 GameObject:
   m_ObjectHideFlags: 0
