@@ -15724,6 +15724,11 @@ MonoBehaviour:
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 35d57523369006a45992cd6a1e22ec61, type: 2}
   m_BuildHeightMesh: 0
+--- !u!20 &580782493 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 4055124893250072840, guid: d014cc01ad920204d9c08255432b5ce1, type: 3}
+  m_PrefabInstance: {fileID: 1289802607}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &583570426
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23569,7 +23574,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 797380574706265598, guid: 320c2d60c89a1f14fb9e5958c839553e, type: 3}
       propertyPath: targetScene
-      value: 7
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 797380574706265598, guid: 320c2d60c89a1f14fb9e5958c839553e, type: 3}
       propertyPath: targetSceneName
@@ -35538,6 +35543,22 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: -0.45
       objectReference: {fileID: 0}
+    - target: {fileID: 2986293455955951622, guid: d014cc01ad920204d9c08255432b5ce1, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 1289802608}
+    - target: {fileID: 2986293455955951622, guid: d014cc01ad920204d9c08255432b5ce1, type: 3}
+      propertyPath: overlayCamera
+      value: 
+      objectReference: {fileID: 580782493}
+    - target: {fileID: 3119561456095974198, guid: d014cc01ad920204d9c08255432b5ce1, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 1289802608}
+    - target: {fileID: 3119561456095974198, guid: d014cc01ad920204d9c08255432b5ce1, type: 3}
+      propertyPath: overlayCamera
+      value: 
+      objectReference: {fileID: 580782493}
     - target: {fileID: 4644609488909797622, guid: d014cc01ad920204d9c08255432b5ce1, type: 3}
       propertyPath: m_SizeDelta.x
       value: 50
@@ -35562,6 +35583,14 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4953255236238839992, guid: d014cc01ad920204d9c08255432b5ce1, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 1289802608}
+    - target: {fileID: 4953255236238839992, guid: d014cc01ad920204d9c08255432b5ce1, type: 3}
+      propertyPath: overlayCamera
+      value: 
+      objectReference: {fileID: 580782493}
     - target: {fileID: 5277132409353725269, guid: d014cc01ad920204d9c08255432b5ce1, type: 3}
       propertyPath: m_Name
       value: Player
