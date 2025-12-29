@@ -227,7 +227,12 @@ public class Gun : MonoBehaviour
 
         if (ScoreManager.instance != null)
         {
-            ScoreManager.instance.AddShotFired();
+            int fireCount = (gunData.fireMode == GunFireMode.Shotgun) ? gunData.pelletCount : 1;
+
+            for (int i = 0; i < fireCount; i++)
+            {
+                ScoreManager.instance.AddShotFired();
+            }
         }
     }
     public void SetTriggerPressed(bool isPressed)

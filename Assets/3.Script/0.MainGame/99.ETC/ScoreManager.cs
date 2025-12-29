@@ -19,6 +19,7 @@ public class ScoreManager : MonoBehaviour
     public float finalAccuracy = 0f;
 
     private bool isStageClear = false;
+    public bool isTimerRunning = true;
 
     private void Awake()
     {
@@ -35,7 +36,10 @@ public class ScoreManager : MonoBehaviour
 
     private void Update()
     {
-        if (!isStageClear) stageTime += Time.unscaledDeltaTime;
+        if (!isStageClear && isTimerRunning && Time.timeScale > 0)
+        {
+            stageTime += Time.unscaledDeltaTime;
+        }
     }
 
     public void AddKill(bool isHeadshot) { killCount++; if (isHeadshot) headshotCount++; }

@@ -315,6 +315,9 @@ public class Player : MonoBehaviour
     private IEnumerator Die()
     {
         isDie = true;
+
+        if (ScoreManager.instance != null) ScoreManager.instance.isTimerRunning = false;
+
         isTimeSlow = false;
         Time.timeScale = 1.0f;
 
@@ -358,6 +361,9 @@ public class Player : MonoBehaviour
     private void Resurrect()
     {
         isDie = false;
+
+        if (ScoreManager.instance != null) ScoreManager.instance.isTimerRunning = true;
+
         currentHP = maxHP;
 
         if (ScreenEffectManager.instance != null) ScreenEffectManager.instance.ResetEffect();
