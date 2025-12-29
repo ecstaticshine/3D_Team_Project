@@ -59960,6 +59960,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6850856770541213482}
     m_Modifications:
+    - target: {fileID: 1580475551937376007, guid: d014cc01ad920204d9c08255432b5ce1, type: 3}
+      propertyPath: m_Color.a
+      value: 0.19607843
+      objectReference: {fileID: 0}
+    - target: {fileID: 2540227158440844861, guid: d014cc01ad920204d9c08255432b5ce1, type: 3}
+      propertyPath: m_Color.a
+      value: 0.19607843
+      objectReference: {fileID: 0}
     - target: {fileID: 2986293455955951622, guid: d014cc01ad920204d9c08255432b5ce1, type: 3}
       propertyPath: mainCamera
       value: 
@@ -59987,6 +59995,14 @@ PrefabInstance:
     - target: {fileID: 5277132409353725269, guid: d014cc01ad920204d9c08255432b5ce1, type: 3}
       propertyPath: m_Name
       value: Player (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5311387183477964920, guid: d014cc01ad920204d9c08255432b5ce1, type: 3}
+      propertyPath: m_Color.a
+      value: 0.19607843
+      objectReference: {fileID: 0}
+    - target: {fileID: 7146722954763322083, guid: d014cc01ad920204d9c08255432b5ce1, type: 3}
+      propertyPath: m_Color.a
+      value: 0.19607843
       objectReference: {fileID: 0}
     - target: {fileID: 7597693172614943640, guid: d014cc01ad920204d9c08255432b5ce1, type: 3}
       propertyPath: m_LocalPosition.x
