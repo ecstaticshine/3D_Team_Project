@@ -62,6 +62,17 @@ public class ScoreManager : MonoBehaviour
 
         if (SaveManager.instance != null)
         {
+            SaveManager.instance.lastStageResult = new StageResultData
+            {
+                kills = killCount,
+                headshots = headshotCount,
+                playTime = stageTime,
+                abilityTime = abilityUsageDuration,
+                accuracy = finalAccuracy,
+                totalScore = finalScore,
+                nextScene = nextStage
+            };
+
             SaveManager.instance.saveData.totalPlayTimeMs = GameManager.instance.totalPlayTimeMs;
 
             SaveManager.instance.saveData.deathCount = GameManager.instance.deathCount;

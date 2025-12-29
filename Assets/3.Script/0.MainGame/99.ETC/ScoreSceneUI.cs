@@ -55,20 +55,23 @@ public class ScoreSceneUI : MonoBehaviour
 
     private void ApplyScoreData()
     {
-        if (ScoreManager.instance == null)
+        if (SaveManager.instance == null || SaveManager.instance.lastStageResult == null)
         {
+            Debug.LogError("SaveManager가 없거나 전달된 점수 데이터가 없어요!");
             return;
         }
 
-        int kills = ScoreManager.instance.killCount;
-        int headshots = ScoreManager.instance.headshotCount;
-        float playTime = ScoreManager.instance.stageTime;
-        float abilityTime = ScoreManager.instance.abilityUsageDuration;
-        float accuracy = ScoreManager.instance.finalAccuracy * 100f;
-        int totalScore = ScoreManager.instance.finalScore;
+        var data = SaveManager.instance.lastStageResult;
+
+        int kills = data.kills;
+        int headshots = data.headshots;
+        float playTime = data.playTime;
+        float abilityTime = data.abilityTime;
+        float accuracy = data.accuracy * 100f;
+        int totalScore = data.totalScore;
+
 
         SetText(0, $"Kills\n{kills}");
-
         SetText(1, $"Headshots\n{headshots}");
 
         TimeSpan ts = TimeSpan.FromSeconds(playTime);
@@ -76,7 +79,6 @@ public class ScoreSceneUI : MonoBehaviour
         SetText(2, $"Accuracy\n{accuracy:F1}%");
 
         SetText(3, $"Time\n{timeString}");
-
         SetText(4, $"Ability\n{abilityTime:F1}s");
 
         if (totalScoreObject != null)
@@ -147,10 +149,12 @@ public class ScoreSceneUI : MonoBehaviour
 
     public void OnClickContinue()
     {
-        if (ScoreManager.instance != null)
+        if (SaveManager.instance != null && SaveManager.instance.lastStageResult != null)
         {
-            SceneName nextScene = ScoreManager.instance.nextScene;
-            Destroy(ScoreManager.instance.gameObject);
+            SceneName nextScene = SaveManager.instance.lastStageResult.nextScene;
+
+            if (ScoreManager.instance != null) Destroy(ScoreManager.instance.gameObject);
+
             SceneController.Instance.LoadScene(nextScene, false);
         }
         else

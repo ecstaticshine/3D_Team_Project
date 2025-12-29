@@ -2,6 +2,18 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
+[System.Serializable]
+public class StageResultData
+{
+    public int kills;
+    public int headshots;
+    public float playTime;
+    public float abilityTime;
+    public float accuracy;
+    public int totalScore;
+    public SceneName nextScene;
+}
+
 public class SaveManager : MonoBehaviour
 {
     public static SaveManager instance = null;
@@ -10,18 +22,19 @@ public class SaveManager : MonoBehaviour
     private string SavePath => Path.Combine(Application.persistentDataPath, "save.json");
 
     public SaveData saveData;
+    public StageResultData lastStageResult;
 
     private void Awake()
     {
         if (instance == null)
         {
             instance = this;
-            //DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad(gameObject);
         }
-        //else
-        //{
-        //    Destroy(gameObject);
-        //}
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void Start()
