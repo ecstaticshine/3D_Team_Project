@@ -1503,7 +1503,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7408513201531475151
 Transform:
   m_ObjectHideFlags: 0
@@ -1968,6 +1968,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e56531f29b8eab74a868b7d89c984279, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Item_Gun
+  gunData: {fileID: 0}
 --- !u!65 &5676652179862737129
 BoxCollider:
   m_ObjectHideFlags: 0
