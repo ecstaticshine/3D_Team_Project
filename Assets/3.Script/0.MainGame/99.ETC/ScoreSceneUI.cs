@@ -27,6 +27,8 @@ public class ScoreSceneUI : MonoBehaviour
 
     private void Start()
     {
+        Time.timeScale = 1.0f;
+
         if (GameManager.instance != null)
         {
             GameManager.instance.ResumeGame();
@@ -140,7 +142,12 @@ public class ScoreSceneUI : MonoBehaviour
 
         while (Quaternion.Angle(clockHand.localRotation, targetRotation) > 0.1f)
         {
-            clockHand.localRotation = Quaternion.Slerp(clockHand.localRotation, targetRotation, Time.deltaTime * rotateSpeed);
+            clockHand.localRotation = Quaternion.Slerp(
+                clockHand.localRotation,
+                targetRotation,
+                Time.unscaledDeltaTime * rotateSpeed
+            );
+
             yield return null;
         }
 
