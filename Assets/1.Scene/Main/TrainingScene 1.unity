@@ -54452,7 +54452,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3eb631c7fa9a384490b8c84227ddb50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneLoaderPad
-  targetScene: 5
+  targetScene: 4
   useScoreScene: 1
   shouldSave: 1
 --- !u!1 &1693213488

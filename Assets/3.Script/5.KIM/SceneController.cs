@@ -13,9 +13,7 @@ public enum SceneName
     Prologue,
     Training,
     Score,
-    Stage1TimeLine,
     Stage1,
-    Stage2TimeLine,
     Stage2,
     Loading,
     GameClear
@@ -33,9 +31,7 @@ public static class SceneNameMap
             SceneName.Training => "TrainingScene 1",
             SceneName.Score => "Score",
             SceneName.Stage1 => "Stage1",
-            SceneName.Stage1TimeLine => "Stage1TimeLine",
             SceneName.Stage2 => "Stage2",
-            SceneName.Stage2TimeLine => "Stage2TimeLine",
             SceneName.Loading => "LoadingScene",
             SceneName.GameClear => "GameClear",
             //씬을 새로 추가하고 싶으시면 여기에 넣으시면 됩니다
@@ -64,8 +60,7 @@ public class SceneController : MonoBehaviour
     private List<SceneName> enterToSceneList = new List<SceneName>
     {
         SceneName.Training,
-        SceneName.Stage1TimeLine,
-        SceneName.Stage2TimeLine,
+
     };
 
     //Skip 가능
