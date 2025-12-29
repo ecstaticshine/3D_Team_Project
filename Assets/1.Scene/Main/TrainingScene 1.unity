@@ -59960,6 +59960,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6850856770541213482}
     m_Modifications:
+    - target: {fileID: 2986293455955951622, guid: d014cc01ad920204d9c08255432b5ce1, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 2331087533167886232}
+    - target: {fileID: 2986293455955951622, guid: d014cc01ad920204d9c08255432b5ce1, type: 3}
+      propertyPath: overlayCamera
+      value: 
+      objectReference: {fileID: 2331087533167886231}
+    - target: {fileID: 3119561456095974198, guid: d014cc01ad920204d9c08255432b5ce1, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 2331087533167886232}
+    - target: {fileID: 3119561456095974198, guid: d014cc01ad920204d9c08255432b5ce1, type: 3}
+      propertyPath: overlayCamera
+      value: 
+      objectReference: {fileID: 2331087533167886231}
+    - target: {fileID: 4953255236238839992, guid: d014cc01ad920204d9c08255432b5ce1, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 2331087533167886232}
+    - target: {fileID: 4953255236238839992, guid: d014cc01ad920204d9c08255432b5ce1, type: 3}
+      propertyPath: overlayCamera
+      value: 
+      objectReference: {fileID: 2331087533167886231}
     - target: {fileID: 5277132409353725269, guid: d014cc01ad920204d9c08255432b5ce1, type: 3}
       propertyPath: m_Name
       value: Player (1)
@@ -60009,6 +60033,16 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d014cc01ad920204d9c08255432b5ce1, type: 3}
+--- !u!20 &2331087533167886231 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 4055124893250072840, guid: d014cc01ad920204d9c08255432b5ce1, type: 3}
+  m_PrefabInstance: {fileID: 2331087533167886230}
+  m_PrefabAsset: {fileID: 0}
+--- !u!20 &2331087533167886232 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 1537375998616416828, guid: d014cc01ad920204d9c08255432b5ce1, type: 3}
+  m_PrefabInstance: {fileID: 2331087533167886230}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2333486467618055459
 GameObject:
   m_ObjectHideFlags: 0
