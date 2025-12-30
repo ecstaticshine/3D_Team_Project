@@ -179,6 +179,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1496331519227933365, guid: 7671c6354e43a5f4c857dd14e42a9fc2, type: 3}
+      propertyPath: targetTransform
+      value: 
+      objectReference: {fileID: 1068419466}
     - target: {fileID: 1600310354695779563, guid: 7671c6354e43a5f4c857dd14e42a9fc2, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
@@ -259,6 +263,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1658396328}
+    - target: {fileID: 3348818179370089016, guid: 7671c6354e43a5f4c857dd14e42a9fc2, type: 3}
+      propertyPath: EnemyChasePosition
+      value: 
+      objectReference: {fileID: 1068419466}
     - target: {fileID: 3656844108203398955, guid: 7671c6354e43a5f4c857dd14e42a9fc2, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
@@ -657,6 +665,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1658396328}
+    - target: {fileID: 210877740639690166, guid: 8111ef1af2393f14cbd4660e037ced0e, type: 3}
+      propertyPath: EnemyChasePosition
+      value: 
+      objectReference: {fileID: 1068419466}
     - target: {fileID: 479072764665580991, guid: 8111ef1af2393f14cbd4660e037ced0e, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
@@ -1037,6 +1049,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5579889402178492917, guid: 8111ef1af2393f14cbd4660e037ced0e, type: 3}
+      propertyPath: targetTransform
+      value: 
+      objectReference: {fileID: 1068419466}
     - target: {fileID: 5623100972346425354, guid: 8111ef1af2393f14cbd4660e037ced0e, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
@@ -1465,6 +1481,18 @@ PrefabInstance:
       propertyPath: impactForce
       value: 200
       objectReference: {fileID: 0}
+    - target: {fileID: 1496331519227933365, guid: 7671c6354e43a5f4c857dd14e42a9fc2, type: 3}
+      propertyPath: targetTransform
+      value: 
+      objectReference: {fileID: 1068419466}
+    - target: {fileID: 3348818179370089016, guid: 7671c6354e43a5f4c857dd14e42a9fc2, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1658396328}
+    - target: {fileID: 3348818179370089016, guid: 7671c6354e43a5f4c857dd14e42a9fc2, type: 3}
+      propertyPath: EnemyChasePosition
+      value: 
+      objectReference: {fileID: 1068419466}
     - target: {fileID: 7054646036234710491, guid: 7671c6354e43a5f4c857dd14e42a9fc2, type: 3}
       propertyPath: m_Name
       value: GangsterRifle 2-12
@@ -1905,6 +1933,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1496331519227933365, guid: 7671c6354e43a5f4c857dd14e42a9fc2, type: 3}
+      propertyPath: targetTransform
+      value: 
+      objectReference: {fileID: 1068419466}
     - target: {fileID: 1600310354695779563, guid: 7671c6354e43a5f4c857dd14e42a9fc2, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
@@ -1985,6 +2017,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1658396328}
+    - target: {fileID: 3348818179370089016, guid: 7671c6354e43a5f4c857dd14e42a9fc2, type: 3}
+      propertyPath: EnemyChasePosition
+      value: 
+      objectReference: {fileID: 1068419466}
     - target: {fileID: 3656844108203398955, guid: 7671c6354e43a5f4c857dd14e42a9fc2, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
@@ -6572,6 +6608,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6079260776846456268, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
+      propertyPath: targetTransform
+      value: 
+      objectReference: {fileID: 1068419466}
     - target: {fileID: 6158528551747608878, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
@@ -6660,6 +6700,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1658396328}
+    - target: {fileID: 7451490676561856480, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
+      propertyPath: EnemyChasePosition
+      value: 
+      objectReference: {fileID: 1068419466}
     - target: {fileID: 7561559433110614820, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
@@ -7050,6 +7094,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: GangsterShotgun 2-13
       objectReference: {fileID: 0}
+    - target: {fileID: 210877740639690166, guid: 8111ef1af2393f14cbd4660e037ced0e, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1658396328}
+    - target: {fileID: 210877740639690166, guid: 8111ef1af2393f14cbd4660e037ced0e, type: 3}
+      propertyPath: EnemyChasePosition
+      value: 
+      objectReference: {fileID: 1068419466}
     - target: {fileID: 542557038649598644, guid: 8111ef1af2393f14cbd4660e037ced0e, type: 3}
       propertyPath: impactForce
       value: 200
@@ -7094,6 +7146,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5579889402178492917, guid: 8111ef1af2393f14cbd4660e037ced0e, type: 3}
+      propertyPath: targetTransform
+      value: 
+      objectReference: {fileID: 1068419466}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10535,6 +10591,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6079260776846456268, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
+      propertyPath: targetTransform
+      value: 
+      objectReference: {fileID: 1068419466}
     - target: {fileID: 6158528551747608878, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
@@ -10611,6 +10671,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1658396328}
+    - target: {fileID: 7451490676561856480, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
+      propertyPath: EnemyChasePosition
+      value: 
+      objectReference: {fileID: 1068419466}
     - target: {fileID: 7561559433110614820, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
@@ -11240,6 +11304,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: GangsterShotgun 2-14
       objectReference: {fileID: 0}
+    - target: {fileID: 210877740639690166, guid: 8111ef1af2393f14cbd4660e037ced0e, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1658396328}
+    - target: {fileID: 210877740639690166, guid: 8111ef1af2393f14cbd4660e037ced0e, type: 3}
+      propertyPath: EnemyChasePosition
+      value: 
+      objectReference: {fileID: 1068419466}
     - target: {fileID: 542557038649598644, guid: 8111ef1af2393f14cbd4660e037ced0e, type: 3}
       propertyPath: impactForce
       value: 200
@@ -11284,6 +11356,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5579889402178492917, guid: 8111ef1af2393f14cbd4660e037ced0e, type: 3}
+      propertyPath: targetTransform
+      value: 
+      objectReference: {fileID: 1068419466}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -12368,6 +12444,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6079260776846456268, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
+      propertyPath: targetTransform
+      value: 
+      objectReference: {fileID: 1068419466}
     - target: {fileID: 6158528551747608878, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
@@ -12444,6 +12524,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1658396328}
+    - target: {fileID: 7451490676561856480, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
+      propertyPath: EnemyChasePosition
+      value: 
+      objectReference: {fileID: 1068419466}
     - target: {fileID: 7561559433110614820, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
@@ -13137,6 +13221,11 @@ Transform:
 --- !u!20 &1068419465 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 1537375998616416828, guid: d014cc01ad920204d9c08255432b5ce1, type: 3}
+  m_PrefabInstance: {fileID: 1068419462}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1068419466 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7841779703576590179, guid: d014cc01ad920204d9c08255432b5ce1, type: 3}
   m_PrefabInstance: {fileID: 1068419462}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1068850814
@@ -15037,6 +15126,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6079260776846456268, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
+      propertyPath: targetTransform
+      value: 
+      objectReference: {fileID: 1068419466}
     - target: {fileID: 6158528551747608878, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
@@ -15113,6 +15206,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1658396328}
+    - target: {fileID: 7451490676561856480, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
+      propertyPath: EnemyChasePosition
+      value: 
+      objectReference: {fileID: 1068419466}
     - target: {fileID: 7561559433110614820, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
@@ -15567,6 +15664,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6079260776846456268, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
+      propertyPath: targetTransform
+      value: 
+      objectReference: {fileID: 1068419466}
     - target: {fileID: 6158528551747608878, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
@@ -15643,6 +15744,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1658396328}
+    - target: {fileID: 7451490676561856480, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
+      propertyPath: EnemyChasePosition
+      value: 
+      objectReference: {fileID: 1068419466}
     - target: {fileID: 7561559433110614820, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
@@ -17429,6 +17534,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6079260776846456268, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
+      propertyPath: targetTransform
+      value: 
+      objectReference: {fileID: 1068419466}
     - target: {fileID: 6158528551747608878, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
@@ -17505,6 +17614,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1658396328}
+    - target: {fileID: 7451490676561856480, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
+      propertyPath: EnemyChasePosition
+      value: 
+      objectReference: {fileID: 1068419466}
     - target: {fileID: 7561559433110614820, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
@@ -17791,6 +17904,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1496331519227933365, guid: 7671c6354e43a5f4c857dd14e42a9fc2, type: 3}
+      propertyPath: targetTransform
+      value: 
+      objectReference: {fileID: 1068419466}
     - target: {fileID: 1600310354695779563, guid: 7671c6354e43a5f4c857dd14e42a9fc2, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
@@ -17871,6 +17988,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1658396328}
+    - target: {fileID: 3348818179370089016, guid: 7671c6354e43a5f4c857dd14e42a9fc2, type: 3}
+      propertyPath: EnemyChasePosition
+      value: 
+      objectReference: {fileID: 1068419466}
     - target: {fileID: 3656844108203398955, guid: 7671c6354e43a5f4c857dd14e42a9fc2, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
@@ -19195,6 +19316,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6079260776846456268, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
+      propertyPath: targetTransform
+      value: 
+      objectReference: {fileID: 1068419466}
     - target: {fileID: 6158528551747608878, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
@@ -19271,6 +19396,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1658396328}
+    - target: {fileID: 7451490676561856480, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
+      propertyPath: EnemyChasePosition
+      value: 
+      objectReference: {fileID: 1068419466}
     - target: {fileID: 7451490676561856480, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
       propertyPath: PatrolPoints.Array.size
       value: 0
@@ -21717,6 +21846,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6079260776846456268, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
+      propertyPath: targetTransform
+      value: 
+      objectReference: {fileID: 1068419466}
     - target: {fileID: 6158528551747608878, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
@@ -21793,6 +21926,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1658396328}
+    - target: {fileID: 7451490676561856480, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
+      propertyPath: EnemyChasePosition
+      value: 
+      objectReference: {fileID: 1068419466}
     - target: {fileID: 7561559433110614820, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
@@ -22538,6 +22675,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1496331519227933365, guid: 7671c6354e43a5f4c857dd14e42a9fc2, type: 3}
+      propertyPath: targetTransform
+      value: 
+      objectReference: {fileID: 1068419466}
     - target: {fileID: 1600310354695779563, guid: 7671c6354e43a5f4c857dd14e42a9fc2, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
@@ -22618,6 +22759,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1658396328}
+    - target: {fileID: 3348818179370089016, guid: 7671c6354e43a5f4c857dd14e42a9fc2, type: 3}
+      propertyPath: EnemyChasePosition
+      value: 
+      objectReference: {fileID: 1068419466}
     - target: {fileID: 3656844108203398955, guid: 7671c6354e43a5f4c857dd14e42a9fc2, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
@@ -23876,6 +24021,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6079260776846456268, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
+      propertyPath: targetTransform
+      value: 
+      objectReference: {fileID: 1068419466}
     - target: {fileID: 6158528551747608878, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
@@ -23952,6 +24101,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1658396328}
+    - target: {fileID: 7451490676561856480, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
+      propertyPath: EnemyChasePosition
+      value: 
+      objectReference: {fileID: 1068419466}
     - target: {fileID: 7561559433110614820, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
@@ -25214,6 +25367,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6079260776846456268, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
+      propertyPath: targetTransform
+      value: 
+      objectReference: {fileID: 1068419466}
     - target: {fileID: 6158528551747608878, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
@@ -25290,6 +25447,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1658396328}
+    - target: {fileID: 7451490676561856480, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
+      propertyPath: EnemyChasePosition
+      value: 
+      objectReference: {fileID: 1068419466}
     - target: {fileID: 7561559433110614820, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
@@ -25744,6 +25905,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6079260776846456268, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
+      propertyPath: targetTransform
+      value: 
+      objectReference: {fileID: 1068419466}
     - target: {fileID: 6158528551747608878, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
@@ -25820,6 +25985,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1658396328}
+    - target: {fileID: 7451490676561856480, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
+      propertyPath: EnemyChasePosition
+      value: 
+      objectReference: {fileID: 1068419466}
     - target: {fileID: 7561559433110614820, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
@@ -26313,6 +26482,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1658396328}
+    - target: {fileID: 210877740639690166, guid: 8111ef1af2393f14cbd4660e037ced0e, type: 3}
+      propertyPath: EnemyChasePosition
+      value: 
+      objectReference: {fileID: 1068419466}
     - target: {fileID: 479072764665580991, guid: 8111ef1af2393f14cbd4660e037ced0e, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
@@ -26693,6 +26866,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5579889402178492917, guid: 8111ef1af2393f14cbd4660e037ced0e, type: 3}
+      propertyPath: targetTransform
+      value: 
+      objectReference: {fileID: 1068419466}
     - target: {fileID: 5623100972346425354, guid: 8111ef1af2393f14cbd4660e037ced0e, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
