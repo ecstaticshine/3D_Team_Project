@@ -2853,50 +2853,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4000012506713666, guid: 58d97d456aead63499ac7d5316541f78, type: 3}
   m_PrefabInstance: {fileID: 128922900}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &132658079
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 132658081}
-  - component: {fileID: 132658080}
-  m_Layer: 0
-  m_Name: PolygonChecker
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 18
-  m_IsActive: 1
---- !u!114 &132658080
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 132658079}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aea2736aed2be0842838fbdaed4adba9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PolygonChecker
---- !u!4 &132658081
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 132658079}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14.2674, y: -0.09212, z: -27.16139}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &138315828
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5581,50 +5537,6 @@ Transform:
   - {fileID: 238952638}
   m_Father: {fileID: 1445944390}
   m_LocalEulerAnglesHint: {x: 123.033005, y: -21.440979, z: -21.869995}
---- !u!1 &275662114
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 275662116}
-  - component: {fileID: 275662115}
-  m_Layer: 0
-  m_Name: LightmapBakeDisabler
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &275662115
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 275662114}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f79ec13adb04a9b4f981cc0f0490d1e0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::LightmapBakeDisabler
---- !u!4 &275662116
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 275662114}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 89.50314, y: 14.97392, z: 17.08638}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &281545494
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -40723,50 +40635,6 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
---- !u!1 &1543182567
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1543182569}
-  - component: {fileID: 1543182568}
-  m_Layer: 0
-  m_Name: ShadowCasterChecker
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 18
-  m_IsActive: 1
---- !u!114 &1543182568
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1543182567}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d52b09d3c1f1f3f44957d3fb8d8a4f75, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ShadowCasterChecker
---- !u!4 &1543182569
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1543182567}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14.2674, y: -0.09212, z: -27.16139}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1544160326
 GameObject:
   m_ObjectHideFlags: 0
@@ -52575,6 +52443,14 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 18
       objectReference: {fileID: 0}
+    - target: {fileID: 210877740639690166, guid: 8111ef1af2393f14cbd4660e037ced0e, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1289802609}
+    - target: {fileID: 210877740639690166, guid: 8111ef1af2393f14cbd4660e037ced0e, type: 3}
+      propertyPath: EnemyChasePosition
+      value: 
+      objectReference: {fileID: 1289802610}
     - target: {fileID: 479072764665580991, guid: 8111ef1af2393f14cbd4660e037ced0e, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 18
@@ -52959,6 +52835,10 @@ PrefabInstance:
       propertyPath: iterations
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 5579889402178492917, guid: 8111ef1af2393f14cbd4660e037ced0e, type: 3}
+      propertyPath: targetTransform
+      value: 
+      objectReference: {fileID: 1289802610}
     - target: {fileID: 5623100972346425354, guid: 8111ef1af2393f14cbd4660e037ced0e, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 18
@@ -72414,7 +72294,4 @@ SceneRoots:
   - {fileID: 375194868}
   - {fileID: 481788573}
   - {fileID: 1485303243}
-  - {fileID: 275662116}
-  - {fileID: 132658081}
-  - {fileID: 1543182569}
   - {fileID: 246026103}
