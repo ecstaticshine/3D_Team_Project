@@ -462,11 +462,16 @@ public class Player : MonoBehaviour
     }
     //기존 온파이어
     //public void OnFire(InputValue value) { if (currentGun != null && !isDie) currentGun.SetTriggerPressed(value.isPressed); }
-    public void OnReload(InputValue value) { if (currentGun != null && !isDie) currentGun.Reload(); }
+    public void OnReload(InputValue value)
+    {
+        if (Time.timeScale == 0f) return; // 추가
+        if (currentGun != null && !isDie) currentGun.Reload();
+    }
     public void OnMove(InputValue value) {if(!isDie) moveInput = value.Get<Vector2>(); }
     public void OnLook(InputValue value) {if(!isDie) lookInput = value.Get<Vector2>(); }
     public void OnJump(InputValue value)
     {
+        if (Time.timeScale == 0f) return; // 추가
         if (isGround && !isJumping && !isCrouching && !isDie)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
@@ -475,10 +480,12 @@ public class Player : MonoBehaviour
     }
     public void OnCrouch(InputValue value)
     {
+        if (Time.timeScale == 0f) return; // 추가
         if (!isJumping && !isDashing) isCrouching = value.isPressed;
     }
     public void OnDash(InputValue value)
     {
+        if (Time.timeScale == 0f) return;//추가
         if (value.isPressed && !isDashing && !isCrouching && isGround && Time.unscaledTime >= lastDashTime + dashCooldown)
         {
             StartCoroutine(Dash());
