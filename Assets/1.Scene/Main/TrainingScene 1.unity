@@ -14688,11 +14688,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1049816300}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1050727700 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7794173678104378083, guid: d014cc01ad920204d9c08255432b5ce1, type: 3}
-  m_PrefabInstance: {fileID: 2331087533167886230}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1054948247
 GameObject:
   m_ObjectHideFlags: 0
@@ -20127,11 +20122,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1663592675}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1664164970 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5706211271265027650, guid: d014cc01ad920204d9c08255432b5ce1, type: 3}
-  m_PrefabInstance: {fileID: 2331087533167886230}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1666352222
 GameObject:
   m_ObjectHideFlags: 0
@@ -26722,6 +26712,7 @@ MonoBehaviour:
   isJumping: 0
   isDashing: 0
   isCrouching: 0
+  playerCanvases: []
 --- !u!1 &1144027560533827194
 GameObject:
   m_ObjectHideFlags: 0
@@ -29774,14 +29765,6 @@ PrefabInstance:
       propertyPath: mainCam
       value: 
       objectReference: {fileID: 2331087533167886232}
-    - target: {fileID: 2223531211905258475, guid: 021b169ca0531fb4f9da8cbb8bd9e481, type: 3}
-      propertyPath: rewindUI
-      value: 
-      objectReference: {fileID: 1664164970}
-    - target: {fileID: 2223531211905258475, guid: 021b169ca0531fb4f9da8cbb8bd9e481, type: 3}
-      propertyPath: deadPanel
-      value: 
-      objectReference: {fileID: 1050727700}
     - target: {fileID: 2223531211905258475, guid: 021b169ca0531fb4f9da8cbb8bd9e481, type: 3}
       propertyPath: dashSpeedLines
       value: 

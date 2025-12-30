@@ -13103,16 +13103,6 @@ Camera:
   m_CorrespondingSourceObject: {fileID: 1537375998616416828, guid: d014cc01ad920204d9c08255432b5ce1, type: 3}
   m_PrefabInstance: {fileID: 1068419462}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1068419466 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5706211271265027650, guid: d014cc01ad920204d9c08255432b5ce1, type: 3}
-  m_PrefabInstance: {fileID: 1068419462}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1068419467 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7794173678104378083, guid: d014cc01ad920204d9c08255432b5ce1, type: 3}
-  m_PrefabInstance: {fileID: 1068419462}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1068850814
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24228,11 +24218,11 @@ PrefabInstance:
     - target: {fileID: 2223531211905258475, guid: 021b169ca0531fb4f9da8cbb8bd9e481, type: 3}
       propertyPath: rewindUI
       value: 
-      objectReference: {fileID: 1068419466}
+      objectReference: {fileID: 1939842495}
     - target: {fileID: 2223531211905258475, guid: 021b169ca0531fb4f9da8cbb8bd9e481, type: 3}
       propertyPath: deadPanel
       value: 
-      objectReference: {fileID: 1068419467}
+      objectReference: {fileID: 1939842496}
     - target: {fileID: 2223531211905258475, guid: 021b169ca0531fb4f9da8cbb8bd9e481, type: 3}
       propertyPath: dashSpeedLines
       value: 
@@ -24286,6 +24276,16 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 021b169ca0531fb4f9da8cbb8bd9e481, type: 3}
+--- !u!1 &1939842495 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8101334531564316661, guid: 021b169ca0531fb4f9da8cbb8bd9e481, type: 3}
+  m_PrefabInstance: {fileID: 1939842494}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1939842496 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 333142149970258913, guid: 021b169ca0531fb4f9da8cbb8bd9e481, type: 3}
+  m_PrefabInstance: {fileID: 1939842494}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1951461649
 PrefabInstance:
   m_ObjectHideFlags: 0

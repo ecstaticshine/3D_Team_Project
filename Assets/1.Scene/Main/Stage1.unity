@@ -34875,16 +34875,6 @@ ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 6548054342876680242, guid: d014cc01ad920204d9c08255432b5ce1, type: 3}
   m_PrefabInstance: {fileID: 1289802607}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1289802612 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5706211271265027650, guid: d014cc01ad920204d9c08255432b5ce1, type: 3}
-  m_PrefabInstance: {fileID: 1289802607}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1289802613 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7794173678104378083, guid: d014cc01ad920204d9c08255432b5ce1, type: 3}
-  m_PrefabInstance: {fileID: 1289802607}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1290330469
 GameObject:
   m_ObjectHideFlags: 0
@@ -39506,11 +39496,11 @@ PrefabInstance:
     - target: {fileID: 2223531211905258475, guid: 021b169ca0531fb4f9da8cbb8bd9e481, type: 3}
       propertyPath: rewindUI
       value: 
-      objectReference: {fileID: 1289802612}
+      objectReference: {fileID: 1485303244}
     - target: {fileID: 2223531211905258475, guid: 021b169ca0531fb4f9da8cbb8bd9e481, type: 3}
       propertyPath: deadPanel
       value: 
-      objectReference: {fileID: 1289802613}
+      objectReference: {fileID: 1485303245}
     - target: {fileID: 2223531211905258475, guid: 021b169ca0531fb4f9da8cbb8bd9e481, type: 3}
       propertyPath: dashSpeedLines
       value: 
@@ -39728,6 +39718,16 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 021b169ca0531fb4f9da8cbb8bd9e481, type: 3}
+--- !u!1 &1485303244 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8101334531564316661, guid: 021b169ca0531fb4f9da8cbb8bd9e481, type: 3}
+  m_PrefabInstance: {fileID: 1485303243}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1485303245 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 333142149970258913, guid: 021b169ca0531fb4f9da8cbb8bd9e481, type: 3}
+  m_PrefabInstance: {fileID: 1485303243}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1492313205
 GameObject:
   m_ObjectHideFlags: 0
@@ -70309,6 +70309,7 @@ MonoBehaviour:
   isJumping: 0
   isDashing: 0
   isCrouching: 0
+  playerCanvases: []
 --- !u!1 &6091777414535883859
 GameObject:
   m_ObjectHideFlags: 0

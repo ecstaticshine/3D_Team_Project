@@ -57,7 +57,10 @@ public class Player : MonoBehaviour
     private int hashInputX; 
     private int hashInputY; 
     private int hashIsJump;
-    private int hashIsCrouching; 
+    private int hashIsCrouching;
+
+    [Header("UI 연결")]
+    [SerializeField] private GameObject[] playerCanvases;
 
     private CharacterController characterController;
     private PlayerInput playerInput; //[추가] 플레이어인풋
@@ -315,11 +318,18 @@ public class Player : MonoBehaviour
     private IEnumerator Die()
     {
         isDie = true;
+        isTimeSlow = false;
+        Time.timeScale = 1.0f;
 
         if (ScoreManager.instance != null) ScoreManager.instance.isTimerRunning = false;
 
-        isTimeSlow = false;
-        Time.timeScale = 1.0f;
+        if (playerCanvases != null)
+        {
+            foreach (var canvas in playerCanvases)
+            {
+                if (canvas != null) canvas.SetActive(false);
+            }
+        }
 
         if (characterController != null) characterController.enabled = false;
 
@@ -361,10 +371,17 @@ public class Player : MonoBehaviour
     private void Resurrect()
     {
         isDie = false;
+        currentHP = maxHP;
 
         if (ScoreManager.instance != null) ScoreManager.instance.isTimerRunning = true;
 
-        currentHP = maxHP;
+        if (playerCanvases != null)
+        {
+            foreach (var canvas in playerCanvases)
+            {
+                if (canvas != null) canvas.SetActive(true);
+            }
+        }
 
         if (ScreenEffectManager.instance != null) ScreenEffectManager.instance.ResetEffect();
 

@@ -9,7 +9,7 @@ public class TimeRewindManager : MonoBehaviour
 
     [Header("효과 연결")]
     [SerializeField] private ScreenEffectManager effectManager;
-    [SerializeField] private int rewindSpeed = 3;
+    [SerializeField] private int rewindSpeed = 5;
 
     private List<RewindableObject> rewindables = new List<RewindableObject>();
 
