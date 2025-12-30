@@ -360,39 +360,37 @@ public class Player : MonoBehaviour
         if (TimeRewindManager.Instance != null)
         {
             TimeRewindManager.Instance.StartFullRewind();
-
-            yield return new WaitForSecondsRealtime(5.5f);
         }
 
         GameManager.instance.deathCount++;
-
-        Resurrect();
     }
-    private void Resurrect()
-    {
-        isDie = false;
-        currentHP = maxHP;
 
-        if (ScoreManager.instance != null) ScoreManager.instance.isTimerRunning = true;
+    //private void Resurrect()
+    //{
+    //    isDie = false;
+    //    currentHP = maxHP;
+    //
+    //    if (ScoreManager.instance != null) ScoreManager.instance.isTimerRunning = true;
+    //
+    //    if (playerCanvases != null)
+    //    {
+    //        foreach (var canvas in playerCanvases)
+    //        {
+    //            if (canvas != null) canvas.SetActive(true);
+    //        }
+    //    }
+    //
+    //    if (ScreenEffectManager.instance != null) ScreenEffectManager.instance.ResetEffect();
+    //
+    //    if (UIManager.instance != null) UIManager.instance.UpdateHP(currentHP, maxHP);
+    //
+    //    cameraTransform.localPosition = new Vector3(0, 0.6f, 0);
+    //    cameraTransform.localRotation = Quaternion.identity;
+    //    xRotation = 0f;
+    //
+    //    if (characterController != null) characterController.enabled = true;
+    //}
 
-        if (playerCanvases != null)
-        {
-            foreach (var canvas in playerCanvases)
-            {
-                if (canvas != null) canvas.SetActive(true);
-            }
-        }
-
-        if (ScreenEffectManager.instance != null) ScreenEffectManager.instance.ResetEffect();
-
-        if (UIManager.instance != null) UIManager.instance.UpdateHP(currentHP, maxHP);
-
-        cameraTransform.localPosition = new Vector3(0, 0.6f, 0);
-        cameraTransform.localRotation = Quaternion.identity;
-        xRotation = 0f;
-
-        if (characterController != null) characterController.enabled = true;
-    }
     private void UpdateAnimation()
     {
         if (animator == null) return; 

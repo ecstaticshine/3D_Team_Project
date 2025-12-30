@@ -7,9 +7,12 @@ public class TimeRewindManager : MonoBehaviour
 {
     public static TimeRewindManager Instance;
 
+    [Header("설정")]
+    [SerializeField] private int baseRewindSpeed = 3;
+    [SerializeField] private float maxRewindDuration = 5.0f;
+
     [Header("효과 연결")]
     [SerializeField] private ScreenEffectManager effectManager;
-    [SerializeField] private int rewindSpeed = 5;
 
     private List<RewindableObject> rewindables = new List<RewindableObject>();
 
@@ -55,7 +58,22 @@ public class TimeRewindManager : MonoBehaviour
 
         if (ScreenEffectManager.instance != null) ScreenEffectManager.instance.SetRewindActive(true);
 
-        foreach (var obj in rewindables) { if (obj != null) obj.StartRewind(); }
+        int maxRecordCount = 0;
+        foreach (var obj in rewindables)
+        {
+            if (obj != null)
+            {
+                obj.StartRewind();
+                if (obj.RecordCount > maxRecordCount) maxRecordCount = obj.RecordCount;
+            }
+        }
+
+        float targetFrames = maxRewindDuration * 60f;
+        int calculatedSpeed = Mathf.CeilToInt(maxRecordCount / targetFrames);
+
+        int finalSpeed = Mathf.Max(baseRewindSpeed, calculatedSpeed);
+
+        Debug.Log($"데이터: {maxRecordCount}개 / 목표시간: {maxRewindDuration}초 / 결정된 배속: {finalSpeed}배");
 
         bool hasData = true;
 
@@ -63,7 +81,7 @@ public class TimeRewindManager : MonoBehaviour
         {
             hasData = false;
 
-            for (int speed = 0; speed < rewindSpeed; speed++)
+            for (int speed = 0; speed < finalSpeed; speed++)
             {
                 for (int i = 0; i < rewindables.Count; i++)
                 {
@@ -76,25 +94,6 @@ public class TimeRewindManager : MonoBehaviour
         if (ScreenEffectManager.instance != null)
         {
             yield return StartCoroutine(ScreenEffectManager.instance.Fade(1f));
-
             ScreenEffectManager.instance.SetRewindActive(false);
         }
-
-        string currentSceneNameStr = SceneManager.GetActiveScene().name;
-
-        SceneName targetScene = SceneName.Title;
-
-        foreach (SceneName scene in System.Enum.GetValues(typeof(SceneName)))
-        {
-            if (SceneNameMap.Get(scene) == currentSceneNameStr)
-            {
-                targetScene = scene;
-                break;
-            }
-        }
-
-        SceneController.Instance.LoadScene(targetScene, false);
-
-        isRewinding = false;
     }
-}

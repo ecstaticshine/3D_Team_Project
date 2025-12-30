@@ -9,6 +9,8 @@ public class RewindableObject : MonoBehaviour
     protected Rigidbody rigidBody;
     protected bool isRewinding = false;
 
+    public int RecordCount => positions.Count;
+
     protected virtual void Awake()
     {
         TryGetComponent(out rigidBody);
