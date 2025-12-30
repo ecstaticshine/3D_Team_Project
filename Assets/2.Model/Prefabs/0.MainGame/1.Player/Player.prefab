@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 1207581754188175749}
   - component: {fileID: 3212710721179631389}
   - component: {fileID: 1678417079897207084}
+  - component: {fileID: 3166551094357922955}
   m_Layer: 7
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -194,6 +195,19 @@ MonoBehaviour:
   standHeight: 2
   crouchHeight: 0.8
   changeSpeed: 10
+--- !u!114 &3166551094357922955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 72349919486248603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7992d4149e1d784ca611e6a356fd583, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraRewind
+  playerCamera: {fileID: 3930997420478136038}
 --- !u!1 &310449453766453903
 GameObject:
   m_ObjectHideFlags: 0
@@ -737,7 +751,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 0.19607843}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2433,6 +2447,7 @@ GameObject:
   - component: {fileID: 4337736735523397889}
   - component: {fileID: 659034024009077398}
   - component: {fileID: 6236016399805785305}
+  - component: {fileID: 2217209379886425595}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -2627,6 +2642,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WeaponIKHandler
   leftHandIK: {fileID: 3572070131574467679}
   rightHandIK: {fileID: 5937570221181968541}
+--- !u!114 &2217209379886425595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5277132409353725269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c8502bbcc93b2545898fe98b2e2b1ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerRewind
 --- !u!1 &5408133850996212600
 GameObject:
   m_ObjectHideFlags: 0
@@ -2908,7 +2935,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.7490196, b: 1, a: 1}
+  m_Color: {r: 0, g: 0.7490196, b: 1, a: 0.19607843}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3224,7 +3251,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 0, a: 1}
+  m_Color: {r: 0, g: 1, b: 0, a: 0.19607843}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4744,7 +4771,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  m_Color: {r: 1, g: 0.92156863, b: 0.015686275, a: 0.19607843}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5150,6 +5177,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8840460951271702530, guid: f62aacadd7ff7b3419f60c02e6aafeb1, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 1537375998616416828}
+    - target: {fileID: 8840460951271702530, guid: f62aacadd7ff7b3419f60c02e6aafeb1, type: 3}
+      propertyPath: overlayCamera
+      value: 
+      objectReference: {fileID: 4055124893250072840}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5234,6 +5269,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pistol(M1911)
       objectReference: {fileID: 0}
+    - target: {fileID: 8641770764261155553, guid: 136950be0ffc5874f82d86888d3361e6, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 1537375998616416828}
+    - target: {fileID: 8641770764261155553, guid: 136950be0ffc5874f82d86888d3361e6, type: 3}
+      propertyPath: overlayCamera
+      value: 
+      objectReference: {fileID: 4055124893250072840}
     - target: {fileID: 8988161818803807066, guid: 136950be0ffc5874f82d86888d3361e6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -5332,6 +5375,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6800955805476069310, guid: 1aef9597686603a42a53353813a9dc0f, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 1537375998616416828}
+    - target: {fileID: 6800955805476069310, guid: 1aef9597686603a42a53353813a9dc0f, type: 3}
+      propertyPath: overlayCamera
+      value: 
+      objectReference: {fileID: 4055124893250072840}
     - target: {fileID: 7336721936928238258, guid: 1aef9597686603a42a53353813a9dc0f, type: 3}
       propertyPath: m_Name
       value: 870
