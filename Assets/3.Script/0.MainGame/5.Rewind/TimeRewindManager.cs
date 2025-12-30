@@ -97,3 +97,4 @@ public class TimeRewindManager : MonoBehaviour
             ScreenEffectManager.instance.SetRewindActive(false);
         }
     }
+}
