@@ -32,6 +32,10 @@ public class ScreenEffectManager : MonoBehaviour
     [SerializeField] private float minVignette = 0.4f;
     [SerializeField] private float maxVignette = 0.55f;
 
+    [Header("4. 페이드 인/아웃")]
+    [SerializeField] private CanvasGroup fadeCanvasGroup;
+    [SerializeField] private float fadeDuration = 1.0f;
+
     private Vignette damageVignette;
 
     private LensDistortion abilityLensDistortion;
@@ -70,6 +74,15 @@ public class ScreenEffectManager : MonoBehaviour
 
         if (mainCam == null) mainCam = Camera.main;
         if (mainCam != null) defaultFov = mainCam.fieldOfView;
+    }
+
+    private void Start()
+    {
+        if (fadeCanvasGroup != null)
+        {
+            fadeCanvasGroup.alpha = 1f;
+            StartCoroutine(FadeRoutine(0f));
+        }
     }
 
     private void OnEnable()
@@ -229,6 +242,32 @@ public class ScreenEffectManager : MonoBehaviour
     {
         if (rewindUI != null) rewindUI.SetActive(isActive);
         if (rewindVolume != null) rewindVolume.weight = isActive ? 1.0f : 0.0f;
+    }
+    #endregion
+
+    #region 4. 페이드 효과
+
+    public IEnumerator Fade(float targetAlpha)
+    {
+        yield return StartCoroutine(FadeRoutine(targetAlpha));
+    }
+
+    private IEnumerator FadeRoutine(float targetAlpha)
+    {
+        if (fadeCanvasGroup == null) yield break;
+
+        float startAlpha = fadeCanvasGroup.alpha;
+        float elapsed = 0f;
+
+        while (elapsed < fadeDuration)
+        {
+            elapsed += Time.unscaledDeltaTime;
+            float t = elapsed / fadeDuration;
+            fadeCanvasGroup.alpha = Mathf.Lerp(startAlpha, targetAlpha, t);
+            yield return null;
+        }
+
+        fadeCanvasGroup.alpha = targetAlpha;
     }
     #endregion
 }
