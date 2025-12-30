@@ -19,22 +19,10 @@ public class CameraRewind : RewindableObject
     {
         base.Record();
 
-        int maxFrameCount = Mathf.RoundToInt(recordDuration / Time.fixedDeltaTime);
-
         if (playerCamera != null)
         {
-            if (cameraRotations.Count > maxFrameCount)
-            {
-                cameraRotations.RemoveAt(0);
-            }
             cameraRotations.Add(playerCamera.localRotation);
         }
-    }
-
-    public override void StartRewind()
-    {
-        if (charController != null) charController.enabled = false;
-        base.StartRewind();
     }
 
     public override bool RewindStep()
@@ -49,6 +37,12 @@ public class CameraRewind : RewindableObject
         }
 
         return hasData;
+    }
+
+    public override void StartRewind()
+    {
+        if (charController != null) charController.enabled = false;
+        base.StartRewind();
     }
 
     public override void StopRewind()

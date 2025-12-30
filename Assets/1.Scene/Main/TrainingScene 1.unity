@@ -2798,6 +2798,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 220190590}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &221453736 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9110269983039024159, guid: 021b169ca0531fb4f9da8cbb8bd9e481, type: 3}
+  m_PrefabInstance: {fileID: 5304055013563600564}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &226023254 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4864743387008753145, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
@@ -5222,6 +5227,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
+--- !u!114 &396295031 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2223531211905258475, guid: 021b169ca0531fb4f9da8cbb8bd9e481, type: 3}
+  m_PrefabInstance: {fileID: 5304055013563600564}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccb1c91d000314443961c1b546d41e76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ScreenEffectManager
 --- !u!1 &416565387
 GameObject:
   m_ObjectHideFlags: 0
@@ -14648,6 +14664,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1049816300}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1050727700 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7794173678104378083, guid: d014cc01ad920204d9c08255432b5ce1, type: 3}
+  m_PrefabInstance: {fileID: 2331087533167886230}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1054948247
 GameObject:
   m_ObjectHideFlags: 0
@@ -17859,6 +17880,11 @@ Transform:
   - {fileID: 754847718}
   m_Father: {fileID: 501975054}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1376949012 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 72349919486248603, guid: d014cc01ad920204d9c08255432b5ce1, type: 3}
+  m_PrefabInstance: {fileID: 2331087533167886230}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1418090523
 GameObject:
   m_ObjectHideFlags: 0
@@ -18481,6 +18507,51 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1478443848}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1487128614
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1487128615}
+  - component: {fileID: 1487128616}
+  m_Layer: 0
+  m_Name: RewindManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1487128615
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1487128614}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 221453736}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1487128616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1487128614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 263ca4177a9e7ff44ab867fdec07859f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TimeRewindManager
+  effectManager: {fileID: 396295031}
 --- !u!1 &1490369711
 GameObject:
   m_ObjectHideFlags: 0
@@ -20074,6 +20145,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1663592675}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1664164970 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5706211271265027650, guid: d014cc01ad920204d9c08255432b5ce1, type: 3}
+  m_PrefabInstance: {fileID: 2331087533167886230}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1666352222
 GameObject:
   m_ObjectHideFlags: 0
@@ -22074,6 +22150,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1842242172}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!198 &1842509778 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 6548054342876680242, guid: d014cc01ad920204d9c08255432b5ce1, type: 3}
+  m_PrefabInstance: {fileID: 2331087533167886230}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1862420828
 GameObject:
   m_ObjectHideFlags: 0
@@ -27652,7 +27733,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5277132409353725269, guid: d014cc01ad920204d9c08255432b5ce1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8729091192720795194}
+    - targetCorrespondingSourceObject: {fileID: 72349919486248603, guid: d014cc01ad920204d9c08255432b5ce1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2331087533167886238}
   m_SourcePrefab: {fileID: 100100000, guid: d014cc01ad920204d9c08255432b5ce1, type: 3}
 --- !u!20 &2331087533167886231 stripped
 Camera:
@@ -27669,6 +27756,24 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7841779703576590179, guid: d014cc01ad920204d9c08255432b5ce1, type: 3}
   m_PrefabInstance: {fileID: 2331087533167886230}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &2331087533167886234 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3930997420478136038, guid: d014cc01ad920204d9c08255432b5ce1, type: 3}
+  m_PrefabInstance: {fileID: 2331087533167886230}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2331087533167886238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1376949012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7992d4149e1d784ca611e6a356fd583, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraRewind
+  playerCamera: {fileID: 2331087533167886234}
 --- !u!23 &2478486695964035174
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -28594,7 +28699,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7992d4149e1d784ca611e6a356fd583, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraRewind
-  recordDuration: 15
   playerCamera: {fileID: 0}
 --- !u!33 &3816574216595685574
 MeshFilter:
@@ -29748,19 +29852,19 @@ PrefabInstance:
     - target: {fileID: 2223531211905258475, guid: 021b169ca0531fb4f9da8cbb8bd9e481, type: 3}
       propertyPath: mainCam
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2331087533167886232}
     - target: {fileID: 2223531211905258475, guid: 021b169ca0531fb4f9da8cbb8bd9e481, type: 3}
       propertyPath: rewindUI
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1664164970}
     - target: {fileID: 2223531211905258475, guid: 021b169ca0531fb4f9da8cbb8bd9e481, type: 3}
       propertyPath: deadPanel
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1050727700}
     - target: {fileID: 2223531211905258475, guid: 021b169ca0531fb4f9da8cbb8bd9e481, type: 3}
       propertyPath: dashSpeedLines
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1842509778}
     - target: {fileID: 9110269983039024159, guid: 021b169ca0531fb4f9da8cbb8bd9e481, type: 3}
       propertyPath: m_LocalPosition.x
       value: -89.47796
@@ -29803,7 +29907,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 9110269983039024159, guid: 021b169ca0531fb4f9da8cbb8bd9e481, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1487128615}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 021b169ca0531fb4f9da8cbb8bd9e481, type: 3}
 --- !u!1 &5363939804813732508
@@ -30190,7 +30297,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
+  m_VoxelSize: 0.4
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 1b2b70480a1147f48aeb558767766508, type: 2}
   m_BuildHeightMesh: 0
@@ -32310,6 +32417,18 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7597693172614943640, guid: d014cc01ad920204d9c08255432b5ce1, type: 3}
   m_PrefabInstance: {fileID: 2331087533167886230}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8729091192720795194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2113007716799778364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c8502bbcc93b2545898fe98b2e2b1ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerRewind
 --- !u!33 &8772539697630443109
 MeshFilter:
   m_ObjectHideFlags: 0

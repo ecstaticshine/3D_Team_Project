@@ -3,9 +3,6 @@ using UnityEngine;
 
 public class RewindableObject : MonoBehaviour
 {
-    [Header("되감기 설정")]
-    [SerializeField] protected float recordDuration = 15f;
-
     protected List<Vector3> positions = new List<Vector3>();
     protected List<Quaternion> rotations = new List<Quaternion>();
 
@@ -38,14 +35,6 @@ public class RewindableObject : MonoBehaviour
 
     public virtual void Record()
     {
-        int maxFrameCount = Mathf.RoundToInt(recordDuration / Time.fixedDeltaTime);
-
-        if (positions.Count > maxFrameCount)
-        {
-            positions.RemoveAt(0);
-            rotations.RemoveAt(0);
-        }
-
         positions.Add(transform.position);
         rotations.Add(transform.rotation);
     }

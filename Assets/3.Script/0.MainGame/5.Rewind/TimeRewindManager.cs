@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement; // 씬 관리를 위해 필요!
 
 public class TimeRewindManager : MonoBehaviour
 {
@@ -27,14 +28,9 @@ public class TimeRewindManager : MonoBehaviour
 
     public void RegisterObject(RewindableObject obj)
     {
-        if (!rewindables.Contains(obj))
-        {
-            rewindables.Add(obj);
-        }
+        if (!rewindables.Contains(obj)) rewindables.Add(obj);
     }
-
     public void UnregisterObject(RewindableObject obj) => rewindables.Remove(obj);
-
     private void FixedUpdate()
     {
         if (!isRewinding)
@@ -68,16 +64,19 @@ public class TimeRewindManager : MonoBehaviour
         while (hasData)
         {
             hasData = false;
-            for (int i = 0; i < rewindables.Count; i++)
+
+            for (int speed = 0; speed < 2; speed++)
             {
-                if (rewindables[i] != null && rewindables[i].RewindStep()) hasData = true;
+                for (int i = 0; i < rewindables.Count; i++)
+                {
+                    if (rewindables[i] != null && rewindables[i].RewindStep()) hasData = true;
+                }
             }
             yield return null;
         }
 
-        foreach (var obj in rewindables) { if (obj != null) obj.StopRewind(); }
-
-        if (ScreenEffectManager.instance != null) ScreenEffectManager.instance.SetRewindActive(false);
+        SceneName currentScene = (SceneName)SceneManager.GetActiveScene().buildIndex;
+        SceneController.Instance.LoadScene(currentScene);
 
         isRewinding = false;
     }
