@@ -12,6 +12,9 @@ public class Enemy : MonoBehaviour
     private float currentHp;
     [SerializeField] private float impactForce = 30f;
 
+    [Header("보상 설정")]
+    [SerializeField] private float killReward = 15f;
+
     [Header("적 장비")]
     public GunData enemyGunData;
 
@@ -80,6 +83,12 @@ public class Enemy : MonoBehaviour
         if (weaponIK != null) weaponIK.enabled = false;
 
         if (ScoreManager.instance != null) ScoreManager.instance.AddKill(isHeadshot);
+
+        Player player = FindAnyObjectByType<Player>();
+        if (player != null)
+        {
+            player.AddAbilityGauge(killReward);
+        }
 
         DropItem();
 
