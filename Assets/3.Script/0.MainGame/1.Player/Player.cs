@@ -288,10 +288,14 @@ public class Player : MonoBehaviour
 
         if (targetGun == null) return;
 
-        if (currentGun == targetGun) currentGun.AddAmmo(newGunData.maxAmmo);
+        if (currentGun == targetGun)
+        {
+            currentGun.InitializeGun();
+        }
         else
         {
             if (currentGun != null) currentGun.gameObject.SetActive(false);
+
             targetGun.InitializeGun();
             targetGun.gameObject.SetActive(true);
             currentGun = targetGun;
@@ -479,8 +483,7 @@ public class Player : MonoBehaviour
     //public void OnFire(InputValue value) { if (currentGun != null && !isDie) currentGun.SetTriggerPressed(value.isPressed); }
     public void OnReload(InputValue value)
     {
-        if (Time.timeScale == 0f) return; // Ãß°¡
-        if (currentGun != null && !isDie) currentGun.Reload();
+        return;
     }
     public void OnMove(InputValue value) {if(!isDie) moveInput = value.Get<Vector2>(); }
     public void OnLook(InputValue value) {if(!isDie) lookInput = value.Get<Vector2>(); }

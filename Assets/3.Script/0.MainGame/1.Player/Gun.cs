@@ -7,7 +7,7 @@ public class Gun : MonoBehaviour
 {
     #region Variable
 
-    public enum GunState { Ready, Empty, Reloading }
+    public enum GunState { Ready, Empty }
 
     [Header("설정")]
     [SerializeField] private GunData gunData;
@@ -33,7 +33,6 @@ public class Gun : MonoBehaviour
     private int _currentFlashIndex = 0;
 
     public GunState gunState { get; private set; }
-    private int totalAmmo;
     private int currentAmmo;
 
     private ObjectPool<GameObject> bulletPool;
@@ -77,22 +76,15 @@ public class Gun : MonoBehaviour
 
     private void Start()
     {
-        if (gunData != null)
-        {
-            currentAmmo = gunData.maxAmmo;
-            totalAmmo = gunData.maxAmmo * 2;
-        }
-
+        InitializeGun();
         if (cameraTransform == null && Camera.main != null) cameraTransform = Camera.main.transform;
-
-        UpdateAmmoUI();
     }
 
     private void Update()
     {
         currentTimer += Time.unscaledDeltaTime;
 
-        if (gunData == null || gunState == GunState.Reloading) return;
+        if (gunData == null) return;
 
         CheckContinuousFire();
     }
@@ -101,79 +93,37 @@ public class Gun : MonoBehaviour
     {
         if (gunData == null) return;
         currentAmmo = gunData.maxAmmo;
-        totalAmmo = gunData.maxAmmo * 2;
         gunState = GunState.Ready;
         UpdateAmmoUI();
     }
 
     #region Pool
-
     private GameObject CreateBulletObject()
     {
         GameObject bullet = Instantiate(gunData.bulletPrefab);
-
-        if (bullet.TryGetComponent(out Bullet bulletScript))
-        {
-            bulletScript.SetManagedPool(bulletPool);
-        }
+        if (bullet.TryGetComponent(out Bullet bulletScript)) bulletScript.SetManagedPool(bulletPool);
         return bullet;
     }
-
     private void FireBulletFromPool(Vector3 direction)
     {
         GameObject bullet = bulletPool.Get();
-
         if (bullet == null) return;
-
-        //PlayMuzzleFlash();
-        //CasingRelease();
-
         string layerName = isPlayerGun ? "PlayerBullet" : "EnemyBullet";
-
         bullet.layer = LayerMask.NameToLayer(layerName);
-
         bullet.transform.up = direction;
-
-        if (bullet.TryGetComponent(out Rigidbody rb))
-        {
-            rb.linearVelocity = direction * gunData.bulletSpeed;
-        }
+        if (bullet.TryGetComponent(out Rigidbody rb)) rb.linearVelocity = direction * gunData.bulletSpeed;
     }
-
     private void OnGetBullet(GameObject bullet)
     {
         if (bullet == null) return;
-
         bullet.transform.position = firePoint.position;
         bullet.transform.rotation = Quaternion.identity;
-
         bullet.SetActive(true);
-
-        if (bullet.TryGetComponent(out Rigidbody rb))
-        {
-            rb.linearVelocity = Vector3.zero;
-            rb.angularVelocity = Vector3.zero;
-        }
-
-        if (bullet.TryGetComponent(out Bullet bulletScript))
-        {
-            bulletScript.SetManagedPool(bulletPool);
-            bulletScript.SetHitEffect(gunData.hitEffectPrefab);
-        }
+        if (bullet.TryGetComponent(out Rigidbody rb)) { rb.linearVelocity = Vector3.zero; rb.angularVelocity = Vector3.zero; }
+        if (bullet.TryGetComponent(out Bullet bulletScript)) { bulletScript.SetManagedPool(bulletPool); bulletScript.SetHitEffect(gunData.hitEffectPrefab); }
     }
-
-    private void OnReleaseBullet(GameObject bullet)
-    {
-        if (bullet == null) return;
-
-        bullet.SetActive(false);
-    }
-
-    private void OnDestroyBullet(GameObject bullet)
-    {
-        Destroy(bullet);
-    }
-
+    private void OnReleaseBullet(GameObject bullet) { if (bullet != null) bullet.SetActive(false); }
+    private void OnDestroyBullet(GameObject bullet) { Destroy(bullet); }
     #endregion
 
     #region Fire
@@ -183,25 +133,16 @@ public class Gun : MonoBehaviour
         Ray ray = new Ray(cameraTransform.position, cameraTransform.forward);
         return Physics.Raycast(ray, out RaycastHit hit, 100f) ? hit.point : ray.GetPoint(100f);
     }
+
     public void TryFire()
     {
         if (gunData == null) return;
-
         if (gunState != GunState.Ready) return;
-
         if (currentTimer < gunData.fireDelay) return;
-
 
         if (currentAmmo <= 0)
         {
-            if (AudioManager.instance != null)
-            {
-                AudioManager.instance.PlaySFX("DryFire");
-            }
-
-
-            Reload();
-
+            if (AudioManager.instance != null) AudioManager.instance.PlaySFX("DryFire");
             currentTimer = 0;
             return;
         }
@@ -212,54 +153,27 @@ public class Gun : MonoBehaviour
 
         SoundSystem.EmitSound(transform.position, 20f);
 
-        if (gunAnimator != null)
-        {
-            gunAnimator.SetTrigger("Fire");
-        }
-
-        if (AudioManager.instance != null)
-        {
-            AudioManager.instance.PlaySFX(gunData.fireSoundName);
-        }
-
+        if (gunAnimator != null) gunAnimator.SetTrigger("Fire");
+        if (AudioManager.instance != null) AudioManager.instance.PlaySFX(gunData.fireSoundName);
 
         ProcessShooting();
 
         if (ScoreManager.instance != null)
         {
             int fireCount = (gunData.fireMode == GunFireMode.Shotgun) ? gunData.pelletCount : 1;
+            for (int i = 0; i < fireCount; i++) ScoreManager.instance.AddShotFired();
+        }
+    }
 
-            for (int i = 0; i < fireCount; i++)
-            {
-                ScoreManager.instance.AddShotFired();
-            }
-        }
-    }
-    public void SetTriggerPressed(bool isPressed)
-    {
-        isTriggerHeld = isPressed;
-
-        if (isPressed && gunData.fireMode != GunFireMode.FullAuto)
-        {
-            TryFire();
-        }
-    }
-    private void CheckContinuousFire()
-    {
-        if (isTriggerHeld && gunData.fireMode == GunFireMode.FullAuto && gunState == GunState.Ready)
-        {
-            TryFire();
-        }
-    }
+    public void SetTriggerPressed(bool isPressed) { isTriggerHeld = isPressed; if (isPressed && gunData.fireMode != GunFireMode.FullAuto) TryFire(); }
+    private void CheckContinuousFire() { if (isTriggerHeld && gunData.fireMode == GunFireMode.FullAuto && gunState == GunState.Ready) TryFire(); }
     private void ProcessShooting()
     {
-        if (gunState == GunState.Reloading || currentAmmo < 0) return;
+        if (currentAmmo < 0) return;
         PlayMuzzleFlash();
         CasingRelease();
-
         Vector3 targetPoint = GetAimTargetPoint();
         Vector3 baseDirection = (targetPoint - firePoint.position).normalized;
-
         if (gunData.fireMode == GunFireMode.Shotgun)
         {
             for (int i = 0; i < gunData.pelletCount; i++)
@@ -268,60 +182,33 @@ public class Gun : MonoBehaviour
                 FireBulletFromPool(spreadDir);
             }
         }
-        else
-        {
-            FireBulletFromPool(baseDirection);
-        }
+        else { FireBulletFromPool(baseDirection); }
     }
     private Vector3 GetSpreadDirection(Vector3 baseDir, float angle)
     {
         float x = Random.Range(-angle, angle);
         float y = Random.Range(-angle, angle);
-
         Quaternion spreadRot = Quaternion.LookRotation(baseDir) * Quaternion.Euler(x, y, 0);
         return spreadRot * Vector3.forward;
     }
-
     #endregion
 
     #region Reload
 
-    public void Reload()
-    {
-        if (gunState == GunState.Reloading || currentAmmo >= gunData.maxAmmo || totalAmmo <= 0) return;
-        StartCoroutine(ReloadCoroutine());
-    }
-    private IEnumerator ReloadCoroutine()
-    {
-        gunState = GunState.Reloading;
-        if (gunAnimator != null) gunAnimator.SetTrigger("Reload");
-
-        yield return new WaitForSecondsRealtime(gunData.reloadTime);
-
-        int need = gunData.maxAmmo - currentAmmo;
-        int take = Mathf.Min(need, totalAmmo);
-
-        currentAmmo += take;
-        totalAmmo -= take;
-
-        gunState = GunState.Ready;
-        UpdateAmmoUI();
-    }
+    //public void Reload()
+    //{
+    //}
 
     #endregion
 
     #region Ammo
 
-    public void AddAmmo(int amount)
-    {
-        totalAmmo += amount;
-        UpdateAmmoUI();
-    }
+
     private void UpdateAmmoUI()
     {
         if (gameObject.activeInHierarchy && UIManager.instance != null)
         {
-            UIManager.instance.UpdateAmmoText(currentAmmo, totalAmmo);
+            UIManager.instance.UpdateAmmoText(currentAmmo, 0);
         }
     }
 
@@ -330,44 +217,24 @@ public class Gun : MonoBehaviour
     #region Casing
     void CasingRelease()
     {
-        if (CasingManager.Instance == null)
-        {
-            Debug.LogWarning("CasingManager가 씬에 존재하지 않습니다!");
-            return;
-        }
-
+        if (CasingManager.Instance == null) return;
         GameObject tempCasing = CasingManager.Instance.GetCasing(casingType);
-
         if (tempCasing != null)
         {
             tempCasing.transform.position = casingExitLocation.position;
             tempCasing.transform.rotation = casingExitLocation.rotation;
-
             if (tempCasing.TryGetComponent(out Rigidbody rb))
             {
-                rb.linearVelocity = Vector3.zero;
-                rb.angularVelocity = Vector3.zero;
-
-
+                rb.linearVelocity = Vector3.zero; rb.angularVelocity = Vector3.zero;
                 rb.AddExplosionForce(ExitPower, casingExitLocation.position - casingExitLocation.right * 0.3f, 1f);
             }
         }
     }
     private void PlayMuzzleFlash()
     {
-        if (_flashPool == null || _flashPool.Count == 0)
-        {
-            return;
-        }
-
+        if (_flashPool == null || _flashPool.Count == 0) return;
         ParticleSystem currentPS = _flashPool[_currentFlashIndex];
-
-        if (currentPS != null)
-        {
-            currentPS.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
-            currentPS.Play();
-        }
-
+        if (currentPS != null) { currentPS.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear); currentPS.Play(); }
         _currentFlashIndex = (_currentFlashIndex + 1) % _flashPool.Count;
     }
     #endregion

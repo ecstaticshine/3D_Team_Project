@@ -9,7 +9,7 @@ public class TimeRewindManager : MonoBehaviour
 
     [Header("설정")]
     [SerializeField] private int baseRewindSpeed = 3;
-    [SerializeField] private float maxRewindDuration = 5.0f;
+    [SerializeField] private float maxRewindDuration = 10.0f;
 
     [Header("효과 연결")]
     [SerializeField] private ScreenEffectManager effectManager;

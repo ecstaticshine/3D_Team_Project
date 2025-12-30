@@ -45,8 +45,6 @@ public class UIManager : MonoBehaviour
 
     public void UpdateAmmoText(int currentAmmo, int totalAmmo)
     {
-        ammoText.text = currentAmmo.ToString();
-
         ammoText.text = $"{currentAmmo}";
 
         ammoText.color = currentAmmo == 0 ? Color.red : Color.white;
