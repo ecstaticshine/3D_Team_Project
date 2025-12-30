@@ -7,7 +7,7 @@ public class Gun : MonoBehaviour
 {
     #region Variable
 
-    public enum GunState { Ready, Empty }
+    public enum GunState { Ready, Empty, Reloading }
 
     [Header("설정")]
     [SerializeField] private GunData gunData;
@@ -26,6 +26,9 @@ public class Gun : MonoBehaviour
     [SerializeField] private Transform casingExitLocation;
     [SerializeField] private float ExitPower = 300;
 
+    [Header("적 전용 설정")]
+    [SerializeField] private int enemyAmmoMultiplier = 3;
+
     [Header("Muzzle Flash 설정")]
     [SerializeField] private GameObject muzzleFlashPrefab;
     [SerializeField] private int flashPoolSize = 3;
@@ -38,6 +41,15 @@ public class Gun : MonoBehaviour
     private ObjectPool<GameObject> bulletPool;
     private float currentTimer;
     private bool isTriggerHeld = false;
+
+    private int MaxAmmo
+    {
+        get
+        {
+            if (gunData == null) return 0;
+            return isPlayerGun ? gunData.maxAmmo : gunData.maxAmmo * enemyAmmoMultiplier;
+        }
+    }
 
     #endregion
 
@@ -86,13 +98,24 @@ public class Gun : MonoBehaviour
 
         if (gunData == null) return;
 
+        if (gunState == GunState.Reloading) return;
+
         CheckContinuousFire();
     }
 
-    public void InitializeGun()
+    public void InitializeGun(int ammoOverride = -1)
     {
         if (gunData == null) return;
-        currentAmmo = gunData.maxAmmo;
+
+        if (ammoOverride > 0)
+        {
+            currentAmmo = ammoOverride;
+        }
+        else
+        {
+            currentAmmo = MaxAmmo;
+        }
+
         gunState = GunState.Ready;
         UpdateAmmoUI();
     }
@@ -143,6 +166,12 @@ public class Gun : MonoBehaviour
         if (currentAmmo <= 0)
         {
             if (AudioManager.instance != null) AudioManager.instance.PlaySFX("DryFire");
+
+            if (!isPlayerGun)
+            {
+                Reload();
+            }
+
             currentTimer = 0;
             return;
         }
@@ -195,9 +224,25 @@ public class Gun : MonoBehaviour
 
     #region Reload
 
-    //public void Reload()
-    //{
-    //}
+    public void Reload()
+    {
+        if (isPlayerGun) return;
+
+        if (gunState == GunState.Reloading || currentAmmo >= MaxAmmo) return;
+        StartCoroutine(ReloadCoroutine());
+    }
+
+    private IEnumerator ReloadCoroutine()
+    {
+        gunState = GunState.Reloading;
+
+        yield return new WaitForSecondsRealtime(gunData.reloadTime);
+
+        currentAmmo = MaxAmmo;
+
+        gunState = GunState.Ready;
+        UpdateAmmoUI();
+    }
 
     #endregion
 
@@ -208,7 +253,10 @@ public class Gun : MonoBehaviour
     {
         if (gameObject.activeInHierarchy && UIManager.instance != null)
         {
-            UIManager.instance.UpdateAmmoText(currentAmmo, 0);
+            if (isPlayerGun)
+            {
+                UIManager.instance.UpdateAmmoText(currentAmmo, 0);
+            }
         }
     }
 
