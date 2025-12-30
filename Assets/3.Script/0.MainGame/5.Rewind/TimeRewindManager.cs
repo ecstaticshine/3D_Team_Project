@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement; // 씬 관리를 위해 필요!
+using UnityEngine.SceneManagement;
 
 public class TimeRewindManager : MonoBehaviour
 {
@@ -9,6 +9,7 @@ public class TimeRewindManager : MonoBehaviour
 
     [Header("효과 연결")]
     [SerializeField] private ScreenEffectManager effectManager;
+    [SerializeField] private int rewindSpeed = 3;
 
     private List<RewindableObject> rewindables = new List<RewindableObject>();
 
@@ -20,10 +21,6 @@ public class TimeRewindManager : MonoBehaviour
         {
             Instance = this;
         }
-        else
-        {
-            Destroy(gameObject);
-        }
     }
 
     public void RegisterObject(RewindableObject obj)
@@ -31,6 +28,7 @@ public class TimeRewindManager : MonoBehaviour
         if (!rewindables.Contains(obj)) rewindables.Add(obj);
     }
     public void UnregisterObject(RewindableObject obj) => rewindables.Remove(obj);
+
     private void FixedUpdate()
     {
         if (!isRewinding)
@@ -65,7 +63,7 @@ public class TimeRewindManager : MonoBehaviour
         {
             hasData = false;
 
-            for (int speed = 0; speed < 2; speed++)
+            for (int speed = 0; speed < rewindSpeed; speed++)
             {
                 for (int i = 0; i < rewindables.Count; i++)
                 {
@@ -75,8 +73,27 @@ public class TimeRewindManager : MonoBehaviour
             yield return null;
         }
 
-        SceneName currentScene = (SceneName)SceneManager.GetActiveScene().buildIndex;
-        SceneController.Instance.LoadScene(currentScene);
+        if (ScreenEffectManager.instance != null)
+        {
+            yield return StartCoroutine(ScreenEffectManager.instance.Fade(1f));
+
+            ScreenEffectManager.instance.SetRewindActive(false);
+        }
+
+        string currentSceneNameStr = SceneManager.GetActiveScene().name;
+
+        SceneName targetScene = SceneName.Title;
+
+        foreach (SceneName scene in System.Enum.GetValues(typeof(SceneName)))
+        {
+            if (SceneNameMap.Get(scene) == currentSceneNameStr)
+            {
+                targetScene = scene;
+                break;
+            }
+        }
+
+        SceneController.Instance.LoadScene(targetScene, false);
 
         isRewinding = false;
     }
