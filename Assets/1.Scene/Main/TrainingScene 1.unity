@@ -27818,6 +27818,7 @@ MonoBehaviour:
   casingType: 0
   casingExitLocation: {fileID: 0}
   ExitPower: 300
+  enemyAmmoMultiplier: 3
   muzzleFlashPrefab: {fileID: 0}
   flashPoolSize: 3
 --- !u!23 &2554727009283765166
@@ -28215,6 +28216,7 @@ MonoBehaviour:
   casingType: 0
   casingExitLocation: {fileID: 0}
   ExitPower: 300
+  enemyAmmoMultiplier: 3
   muzzleFlashPrefab: {fileID: 0}
   flashPoolSize: 3
 --- !u!23 &3294937825270965700
@@ -31529,6 +31531,7 @@ MonoBehaviour:
   casingType: 0
   casingExitLocation: {fileID: 0}
   ExitPower: 300
+  enemyAmmoMultiplier: 3
   muzzleFlashPrefab: {fileID: 0}
   flashPoolSize: 3
 --- !u!1 &7917944368970910022
@@ -32288,7 +32291,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &8663910049026190020
 GameObject:
   m_ObjectHideFlags: 0

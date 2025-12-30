@@ -455,6 +455,17 @@ public class Player : MonoBehaviour
         abilityGauge = Mathf.Clamp(abilityGauge, 0f, 100f);
         AbilityUI();
     }
+
+    public void AddAbilityGauge(float amount)
+    {
+        if (isDie) return;
+
+        abilityGauge += amount;
+        abilityGauge = Mathf.Clamp(abilityGauge, 0f, 100f);
+
+        AbilityUI();
+    }
+
     public void Tranquilizer() { abilityGauge = 100f; AbilityUI(); }
 
     #endregion
