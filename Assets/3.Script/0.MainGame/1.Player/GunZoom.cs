@@ -19,6 +19,8 @@ public class GunZoom : MonoBehaviour
 
     private void OnZoom(InputValue value)
     {
+        // [추가 1] 일시정지 상태면 입력 자체를 받지 마라 (줌 상태 변경 X)
+        if (Time.timeScale == 0f) return;
         // value.isPressed: 버튼이 눌려 있으면 true, 떼면 false를 반환합니다.
         // 이 값을 isAds 변수에 실시간으로 저장합니다.
         isAds = value.isPressed;
@@ -27,6 +29,8 @@ public class GunZoom : MonoBehaviour
 
     void Update()
     {
+        // [추가 2] 일시정지 상태면 위치 계산도 하지 마라 (화면 고정)
+        if (Time.timeScale == 0f) return;
         // 1. 목표 지점 결정
         Vector3 targetPos;
         Quaternion targetRot;

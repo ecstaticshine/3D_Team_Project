@@ -444,6 +444,7 @@ public class Player : MonoBehaviour
 
     public void OnFire(InputValue value)
     {
+        if (Time.timeScale == 0f) return;
         // 1. [핵심 방어]
         // "지금 버튼을 눌렀고(isPressed)" + "마우스가 UI 위에 있다면" -> 무시해라!
         if (value.isPressed && EventSystem.current.IsPointerOverGameObject())
