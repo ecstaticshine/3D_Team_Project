@@ -21,7 +21,7 @@ MonoBehaviour:
   bulletSpeed: 100
   fireDelay: 0.3
   reloadTime: 2
-  maxAmmo: 7
+  maxAmmo: 5
   pelletCount: 5
   spreadAngle: 15
   fireSoundName: PistolSound
