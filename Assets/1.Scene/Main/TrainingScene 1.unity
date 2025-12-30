@@ -5197,6 +5197,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: GangsterPistol (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 6079260776846456268, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
+      propertyPath: iterations
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6079260776846456268, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
+      propertyPath: targetTransform
+      value: 
+      objectReference: {fileID: 2331087533167886233}
     - target: {fileID: 7451490676561856480, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
       propertyPath: player
       value: 
@@ -5785,6 +5793,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 59641997}
     m_Modifications:
+    - target: {fileID: 1496331519227933365, guid: 7671c6354e43a5f4c857dd14e42a9fc2, type: 3}
+      propertyPath: iterations
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1496331519227933365, guid: 7671c6354e43a5f4c857dd14e42a9fc2, type: 3}
+      propertyPath: targetTransform
+      value: 
+      objectReference: {fileID: 2331087533167886233}
     - target: {fileID: 3348818179370089016, guid: 7671c6354e43a5f4c857dd14e42a9fc2, type: 3}
       propertyPath: player
       value: 
@@ -11742,6 +11758,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: GangsterPistol (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 6079260776846456268, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
+      propertyPath: iterations
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6079260776846456268, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
+      propertyPath: targetTransform
+      value: 
+      objectReference: {fileID: 2331087533167886233}
     - target: {fileID: 7451490676561856480, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
       propertyPath: player
       value: 
@@ -12345,6 +12369,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5579889402178492917, guid: 8111ef1af2393f14cbd4660e037ced0e, type: 3}
+      propertyPath: iterations
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5579889402178492917, guid: 8111ef1af2393f14cbd4660e037ced0e, type: 3}
+      propertyPath: targetTransform
+      value: 
+      objectReference: {fileID: 2331087533167886233}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -12504,6 +12536,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 59641997}
     m_Modifications:
+    - target: {fileID: 1496331519227933365, guid: 7671c6354e43a5f4c857dd14e42a9fc2, type: 3}
+      propertyPath: iterations
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1496331519227933365, guid: 7671c6354e43a5f4c857dd14e42a9fc2, type: 3}
+      propertyPath: targetTransform
+      value: 
+      objectReference: {fileID: 2331087533167886233}
     - target: {fileID: 3348818179370089016, guid: 7671c6354e43a5f4c857dd14e42a9fc2, type: 3}
       propertyPath: player
       value: 
@@ -18204,6 +18244,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: GangsterPistol (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 6079260776846456268, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
+      propertyPath: iterations
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6079260776846456268, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
+      propertyPath: targetTransform
+      value: 
+      objectReference: {fileID: 2331087533167886233}
     - target: {fileID: 7451490676561856480, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
       propertyPath: player
       value: 
@@ -22751,6 +22799,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5579889402178492917, guid: 8111ef1af2393f14cbd4660e037ced0e, type: 3}
+      propertyPath: iterations
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5579889402178492917, guid: 8111ef1af2393f14cbd4660e037ced0e, type: 3}
+      propertyPath: targetTransform
+      value: 
+      objectReference: {fileID: 2331087533167886233}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
