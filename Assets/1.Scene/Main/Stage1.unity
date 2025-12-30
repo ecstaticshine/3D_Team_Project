@@ -1174,6 +1174,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 542557038649598644, guid: 8111ef1af2393f14cbd4660e037ced0e, type: 3}
+      propertyPath: impactForce
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 602227633034264601, guid: 8111ef1af2393f14cbd4660e037ced0e, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
@@ -13570,6 +13574,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 542557038649598644, guid: 8111ef1af2393f14cbd4660e037ced0e, type: 3}
+      propertyPath: impactForce
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 602227633034264601, guid: 8111ef1af2393f14cbd4660e037ced0e, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
@@ -17564,6 +17572,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 542557038649598644, guid: 8111ef1af2393f14cbd4660e037ced0e, type: 3}
+      propertyPath: impactForce
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 602227633034264601, guid: 8111ef1af2393f14cbd4660e037ced0e, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
@@ -21302,6 +21314,10 @@ PrefabInstance:
     - target: {fileID: 6671498172373307300, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6739084902261510122, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
+      propertyPath: impactForce
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 6847398748122176666, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -25174,6 +25190,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6739084902261510122, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
+      propertyPath: impactForce
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 6847398748122176666, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
@@ -28778,6 +28798,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6739084902261510122, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
+      propertyPath: impactForce
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 6847398748122176666, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
@@ -30846,6 +30870,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 172148666561157679, guid: 7671c6354e43a5f4c857dd14e42a9fc2, type: 3}
+      propertyPath: impactForce
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 302821179930534488, guid: 7671c6354e43a5f4c857dd14e42a9fc2, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
@@ -32388,6 +32416,10 @@ PrefabInstance:
     - target: {fileID: 6671498172373307300, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6739084902261510122, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
+      propertyPath: impactForce
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 6847398748122176666, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -34496,6 +34528,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 172148666561157679, guid: 7671c6354e43a5f4c857dd14e42a9fc2, type: 3}
+      propertyPath: impactForce
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 302821179930534488, guid: 7671c6354e43a5f4c857dd14e42a9fc2, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
@@ -35831,6 +35867,10 @@ PrefabInstance:
     - target: {fileID: 6671498172373307300, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6739084902261510122, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
+      propertyPath: impactForce
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 6847398748122176666, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -37650,6 +37690,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6739084902261510122, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
+      propertyPath: impactForce
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 6847398748122176666, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
@@ -39285,6 +39329,10 @@ PrefabInstance:
     - target: {fileID: 479072764665580991, guid: 8111ef1af2393f14cbd4660e037ced0e, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 542557038649598644, guid: 8111ef1af2393f14cbd4660e037ced0e, type: 3}
+      propertyPath: impactForce
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 602227633034264601, guid: 8111ef1af2393f14cbd4660e037ced0e, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -42151,6 +42199,10 @@ PrefabInstance:
     - target: {fileID: 51282248066171488, guid: 7671c6354e43a5f4c857dd14e42a9fc2, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 172148666561157679, guid: 7671c6354e43a5f4c857dd14e42a9fc2, type: 3}
+      propertyPath: impactForce
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 302821179930534488, guid: 7671c6354e43a5f4c857dd14e42a9fc2, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -51786,6 +51838,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6739084902261510122, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
+      propertyPath: impactForce
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 6847398748122176666, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
@@ -54075,6 +54131,10 @@ PrefabInstance:
     - target: {fileID: 6671498172373307300, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6739084902261510122, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
+      propertyPath: impactForce
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 6847398748122176666, guid: eb5437358f58e964991b1e0e9fac913d, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -65664,6 +65724,7 @@ MonoBehaviour:
   casingType: 0
   casingExitLocation: {fileID: 4458626764836079693}
   ExitPower: 300
+  enemyAmmoMultiplier: 3
   muzzleFlashPrefab: {fileID: 1782395880954752, guid: 3dd9cf2e209c504448f1c4c6835675cf, type: 3}
   flashPoolSize: 3
 --- !u!1 &2847169813068502709
@@ -70980,6 +71041,7 @@ MonoBehaviour:
   casingType: 1
   casingExitLocation: {fileID: 7088382643849396170}
   ExitPower: 300
+  enemyAmmoMultiplier: 3
   muzzleFlashPrefab: {fileID: 1782395880954752, guid: bee3fa853d957b14191f2f0fa6f994f4, type: 3}
   flashPoolSize: 20
 --- !u!4 &7974977741749372637
@@ -71684,6 +71746,7 @@ MonoBehaviour:
   casingType: 2
   casingExitLocation: {fileID: 6487656715008660074}
   ExitPower: 300
+  enemyAmmoMultiplier: 3
   muzzleFlashPrefab: {fileID: 1782395880954752, guid: 948461fc03c41cc49ac1895ebf0ea1f3, type: 3}
   flashPoolSize: 10
 --- !u!4 &8853594090846625894 stripped
