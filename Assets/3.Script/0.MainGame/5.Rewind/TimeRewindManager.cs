@@ -96,5 +96,21 @@ public class TimeRewindManager : MonoBehaviour
             yield return StartCoroutine(ScreenEffectManager.instance.Fade(1f));
             ScreenEffectManager.instance.SetRewindActive(false);
         }
+
+        string currentSceneNameStr = SceneManager.GetActiveScene().name;
+        SceneName targetScene = SceneName.Title;
+
+        foreach (SceneName scene in System.Enum.GetValues(typeof(SceneName)))
+        {
+            if (SceneNameMap.Get(scene) == currentSceneNameStr)
+            {
+                targetScene = scene;
+                break;
+            }
+        }
+
+        SceneController.Instance.LoadScene(targetScene, false);
+
+        isRewinding = false;
     }
 }
