@@ -340,7 +340,7 @@ public class Player : MonoBehaviour
 
         Vector3 startPos = cameraTransform.localPosition;
         Quaternion startRot = cameraTransform.localRotation;
-        Vector3 targetPos = new Vector3(startPos.x, -1f, startPos.z);
+        Vector3 targetPos = new Vector3(startPos.x, 0.4f, startPos.z);
         Quaternion targetRot = Quaternion.Euler(0, 0, -60f);
 
         float elapsed = 0f;
